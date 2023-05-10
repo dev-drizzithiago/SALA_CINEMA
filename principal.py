@@ -1,4 +1,4 @@
-import numpy as np
+from tkinter import messagebox
 
 
 cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
@@ -48,10 +48,11 @@ while True:
     elif valor_linha == 'J':
         valor_linha = 9
     valor_coluna = int(entrada[1])
-    print(type(valor_coluna))
     if entrada == '999':
         break
     elif cinema[valor_linha][valor_coluna] == '--':
-        print('Lugar já esta reservado')
+        resp = messagebox.askyesno('AVISO', 'Poltrona já esta reservada! \nDeseja reservar outra?')
+        if not resp:
+            break
     else:
         cinema[valor_linha][valor_coluna] = str('--')
