@@ -1,5 +1,6 @@
 import numpy as np
 
+
 cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
 cadeiras_cinema_b = ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9']
 cadeiras_cinema_c = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
@@ -46,10 +47,11 @@ while True:
         valor_linha = 8
     elif valor_linha == 'J':
         valor_linha = 9
-
     valor_coluna = int(entrada[1])
     print(type(valor_coluna))
     if entrada == '999':
         break
+    elif cinema[valor_linha][valor_coluna] == '--':
+        print('Lugar já esta reservado')
     else:
         cinema[valor_linha][valor_coluna] = str('--')
