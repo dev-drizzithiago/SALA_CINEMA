@@ -51,7 +51,7 @@ while True:
     if entrada == '999':
         break
     elif cinema[valor_linha][valor_coluna] == '--':
-        resp = messagebox.askyesno('AVISO', 'Poltrona já esta reservada! \nDeseja reservar outra?')
+        resp = input('Poltrona já esta reservada! \nDeseja reservar outra?')
         if not resp:
             break
     else:
