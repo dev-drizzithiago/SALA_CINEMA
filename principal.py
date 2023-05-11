@@ -31,54 +31,70 @@ def sala_cinema():
 # Iniciando o programa do zero
 cinema = sala_cinema()
 
+# Menu principal
 while True:
-    linhas_aparencia = '--' * 40
-    print(linhas_aparencia)
-    print(f'TELA'.center(80))
-    print(linhas_aparencia)
-    print()
-    for linhas in cinema:
-        print()
-        for coluna in linhas:
-            print(f'[{coluna}] ', end='   ')
-
-    print(f'\n{linhas_aparencia}')
-    entrada = str(input('Escolha uma Poltrona (999 SAIR / 888 Menu): ').upper())
+    print(
+        '''
+        [1] Reservar uma Poltrona
+        [2] Cadastrar um usuário
+        [3] Sair
+        ''')
     try:
-        valor_linha = entrada[0]
-        if valor_linha == 'A':
-            valor_linha = 0
-        elif valor_linha == 'B':
-            valor_linha = 1
-        elif valor_linha == 'C':
-            valor_linha = 2
-        elif valor_linha == 'D':
-            valor_linha = 3
-        elif valor_linha == 'E':
-            valor_linha = 4
-        elif valor_linha == 'F':
-            valor_linha = 5
-        elif valor_linha == 'G':
-            valor_linha = 6
-        elif valor_linha == 'H':
-            valor_linha = 7
-        elif valor_linha == 'I':
-            valor_linha = 8
-        elif valor_linha == 'J':
-            valor_linha = 9
-        try:
-            valor_coluna = int(entrada[1])
-            if entrada == '999':
-                break
-            elif cinema[valor_linha][valor_coluna] == '--':
-                resp = str(input('Poltrona esta reservada para outra pessoa! Deseja reservar outra? [S/N]: ')).upper()[
-                    0]
-                if resp == 'N':
-                    print('Não é possível reservar essa poltrona, reserve outra poltrona')
-                    sleep(1)
-            else:
-                cinema[valor_linha][valor_coluna] = str('--')
-        except TypeError:
-            print('Dado informado esta incorreto!')
+        resp_menu_principal = int(input('Escolha uma opção: '))
     except TypeError:
-        print('Dados informados esta incorreto!')
+        print('Opção invalida!')
+
+if
+    while True:
+
+        linhas_aparencia = '--' * 40
+        print(linhas_aparencia)
+        print(f'TELA'.center(80))
+        print(linhas_aparencia)
+        print()
+        for linhas in cinema:
+            print()
+            for coluna in linhas:
+                print(f'[{coluna}] ', end='   ')
+
+        print(f'\n{linhas_aparencia}')
+        entrada = str(input('Escolha uma Poltrona (999 SAIR / 888 Menu): ').upper())
+        try:
+            valor_linha = entrada[0]
+            if valor_linha == 'A':
+                valor_linha = 0
+            elif valor_linha == 'B':
+                valor_linha = 1
+            elif valor_linha == 'C':
+                valor_linha = 2
+            elif valor_linha == 'D':
+                valor_linha = 3
+            elif valor_linha == 'E':
+                valor_linha = 4
+            elif valor_linha == 'F':
+                valor_linha = 5
+            elif valor_linha == 'G':
+                valor_linha = 6
+            elif valor_linha == 'H':
+                valor_linha = 7
+            elif valor_linha == 'I':
+                valor_linha = 8
+            elif valor_linha == 'J':
+                valor_linha = 9
+            try:
+                valor_coluna = int(entrada[1])
+                if entrada == '999':
+                    break
+                elif cinema[valor_linha][valor_coluna] == '--':
+                    resp = \
+                    str(input('Poltrona esta reservada para outra pessoa! Deseja reservar outra? [S/N]: ')).upper()[
+                        0]
+                    if resp == 'N':
+                        print('Não é possível reservar essa poltrona, reserve outra poltrona')
+                        sleep(1)
+                else:
+                    cinema[valor_linha][valor_coluna] = str('--')
+            except TypeError:
+                print('Dado informado esta incorreto!')
+        except TypeError:
+            print('Dados informados esta incorreto!')
