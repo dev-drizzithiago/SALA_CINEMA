@@ -2,12 +2,14 @@ from time import sleep
 
 """"""
 
+
 def cadastro_cliente():
     lista_cliente = list()
     nome = input('Digite seu nome completo: ').title()
     idade = int(input('Digite sua idade: '))
     email = input('Digite seu e-mail: ')
     lista_cliente.append([nome, idade, email])
+
 
 # A montagem do programa
 def sala_cinema():
