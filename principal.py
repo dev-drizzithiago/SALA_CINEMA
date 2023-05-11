@@ -28,25 +28,8 @@ def sala_cinema():
     return cinema
 
 
-# Iniciando o programa do zero
-cinema = sala_cinema()
-
-# Menu principal
-while True:
-    print(
-        '''
-        [1] Reservar uma Poltrona
-        [2] Cadastrar um usuário
-        [3] Sair
-        ''')
-    try:
-        resp_menu_principal = int(input('Escolha uma opção: '))
-    except TypeError:
-        print('Opção invalida!')
-
-if
+def reservar_cadeira():
     while True:
-
         linhas_aparencia = '--' * 40
         print(linhas_aparencia)
         print(f'TELA'.center(80))
@@ -58,7 +41,7 @@ if
                 print(f'[{coluna}] ', end='   ')
 
         print(f'\n{linhas_aparencia}')
-        entrada = str(input('Escolha uma Poltrona (999 SAIR / 888 Menu): ').upper())
+        entrada = str(input('Escolha uma Poltrona (999 SAIR): ').upper())
         try:
             valor_linha = entrada[0]
             if valor_linha == 'A':
@@ -87,8 +70,8 @@ if
                     break
                 elif cinema[valor_linha][valor_coluna] == '--':
                     resp = \
-                    str(input('Poltrona esta reservada para outra pessoa! Deseja reservar outra? [S/N]: ')).upper()[
-                        0]
+                        str(input('Poltrona esta reservada para outra pessoa! Deseja reservar outra? [S/N]: ')).upper()[
+                            0]
                     if resp == 'N':
                         print('Não é possível reservar essa poltrona, reserve outra poltrona')
                         sleep(1)
@@ -98,3 +81,25 @@ if
                 print('Dado informado esta incorreto!')
         except TypeError:
             print('Dados informados esta incorreto!')
+
+
+# Iniciando o programa do zero
+cinema = sala_cinema()
+
+# Menu principal
+while True:
+    print(
+        '''
+        [1] Reservar uma Poltrona
+        [2] Cadastrar um usuário
+        [3] Sair
+        ''')
+    try:
+        resp_menu_principal = int(input('Escolha uma opção: '))
+        if resp_menu_principal == 1:
+            reservar_cadeira()
+        elif resp_menu_principal == 2:
+            cadastro_cliente()
+
+    except TypeError:
+        print('Opção invalida!')
