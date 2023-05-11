@@ -1,9 +1,15 @@
 from time import sleep
 
-
 """"""
 
+def cadastro_cliente():
+    lista_cliente = list()
+    nome = input('Digite seu nome completo: ').title()
+    idade = int(input('Digite sua idade: '))
+    email = input('Digite seu e-mail: ')
+    lista_cliente.append([nome, idade, email])
 
+# A montagem do programa
 def sala_cinema():
     cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
     cadeiras_cinema_b = ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9']
@@ -35,7 +41,7 @@ while True:
             print(f'[{coluna}] ', end='   ')
 
     print(f'\n{linhas_aparencia}')
-    entrada = str(input('Escolha uma Poltrona (999 SAIR): ').upper())
+    entrada = str(input('Escolha uma Poltrona (999 SAIR / 888 Menu): ').upper())
     try:
         valor_linha = entrada[0]
         if valor_linha == 'A':
@@ -71,6 +77,6 @@ while True:
             else:
                 cinema[valor_linha][valor_coluna] = str('--')
         except TypeError:
-            print('Dados informados esta incorreto!')
+            print('Dado informado esta incorreto!')
     except TypeError:
         print('Dados informados esta incorreto!')
