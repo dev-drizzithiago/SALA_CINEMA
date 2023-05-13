@@ -4,14 +4,20 @@ from time import sleep
 
 
 def cadastro_cliente():
-    lista_cliente = list()
-    nome = input('Digite seu nome completo: ').title()
-    cpf = int(input('Digite seu CPF: '))
-    idade = int(input('Digite sua idade: '))
-    email = input('Digite seu e-mail: ')
-    lista_cliente.append([cpf, nome, idade, email])
-    gravando_dados = open('G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt', 'w')
-    gravando_dados.write(lista_cliente)
+    while True:
+        lista_cliente = list()
+        nome = input('Digite seu nome completo: ').title()
+        cpf = int(input('Digite seu CPF: '))
+        idade = int(input('Digite sua idade: '))
+        email = input('Digite seu e-mail: ')
+        lista_cliente.append([cpf, nome, idade, email])
+        try:
+            gravando_dados = open('G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt', 'w')
+            gravando_dados.write(f'{lista_cliente} \n')
+            gravando_dados.close()
+            print('Cadastro realizado com sucesso!!')
+        except:
+            print('Não foi possível cadastrar seu usuário')
 
 
 # A montagem do programa
