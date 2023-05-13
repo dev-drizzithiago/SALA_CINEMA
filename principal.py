@@ -6,13 +6,15 @@ from time import sleep
 def cadastro_cliente():
     lista_cliente = list()
     nome = input('Digite seu nome completo: ').title()
+    cpf = int(input('Digite seu CPF'))
     idade = int(input('Digite sua idade: '))
     email = input('Digite seu e-mail: ')
-    lista_cliente.append([nome, idade, email])
+    lista_cliente.append([cpf, nome, idade, email])
 
 
 # A montagem do programa
 def sala_cinema():
+
     cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
     cadeiras_cinema_b = ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9']
     cadeiras_cinema_c = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
