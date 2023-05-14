@@ -13,7 +13,7 @@ def cadastro_cliente():
         email = input('Digite seu e-mail: ')
         try:
             gravando_dados = open('G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt', 'w')
-            gravando_dados.write(f'{nome} {cpf} {idade} {email}  \n')
+            gravando_dados.write(f'{cpf} {nome} {idade} {email}  \n')
             gravando_dados.close()
             print('Cadastro realizado com sucesso!!')
             break
