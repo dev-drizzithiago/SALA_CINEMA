@@ -93,6 +93,7 @@ class SalaCinema:
                         valor_linha = 9
                     try:
                         valor_coluna = int(entrada[1])
+                        self.inf_reserva = [cinema[valor_linha][valor_coluna]]
                         if entrada == '999':
                             break
                         elif cinema[valor_linha][valor_coluna] == '--':
@@ -109,6 +110,8 @@ class SalaCinema:
                         print('Dados informado esta incorreto!')
                 except TypeError:
                     print('Dados informados esta incorreto!')
+                else:
+                    print(f'Poltrona {self.inf_reserva} foi reservada para')
 
         # Iniciando o programa do zero
         cinema = sala_cinema()
