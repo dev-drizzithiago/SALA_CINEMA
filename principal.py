@@ -37,12 +37,13 @@ class SalaCinema:
             try:
                 gravando_dados = open(arq_cadastro_local, 'a')
                 gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email}\n')
-                print('Cadastro realizado com sucesso!!')
                 resp = input('Deseja realizar outro cadastro [S/N]: ').upper()
                 if resp == 'S':
                     return True
             except:
                 print('Não foi possível cadastrar seu usuário')
+            else:
+                print('Cadastro realizado com sucesso!!')
 
         def cadastro_cliente():
             while True:
@@ -105,7 +106,7 @@ class SalaCinema:
                         else:
                             cinema[valor_linha][valor_coluna] = str('--')
                     except TypeError:
-                        print('Dado informado esta incorreto!')
+                        print('Dados informado esta incorreto!')
                 except TypeError:
                     print('Dados informados esta incorreto!')
 
