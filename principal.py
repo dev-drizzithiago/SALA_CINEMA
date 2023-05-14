@@ -39,7 +39,7 @@ class SalaCinema:
                 gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email}\n')
                 print('Cadastro realizado com sucesso!!')
                 resp = input('Deseja realizar outro cadastro [S/N]: ').upper()
-                if resp == 'N':
+                if resp == 'S':
                     return True
             except:
                 print('Não foi possível cadastrar seu usuário')
