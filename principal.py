@@ -5,15 +5,6 @@ from time import sleep
 arq_cadastro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 
 
-def criando_arq():
-    criando_arq_txt = open(arq_cadastro_local, 'wt')
-    criando_arq_txt.close()
-
-
-if not arq_cadastro_local:
-    criando_arq()
-
-
 class SalaCinema:
     def __init__(self):
         def leiaInt(valor_int):
