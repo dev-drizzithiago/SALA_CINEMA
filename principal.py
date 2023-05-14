@@ -2,20 +2,21 @@ from time import sleep
 
 """"""
 
+arq_cadastro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
+
 
 def cadastro_cliente():
     while True:
-        lista_cliente = list()
         nome = input('Digite seu nome completo: ').title()
         cpf = int(input('Digite seu CPF: '))
         idade = int(input('Digite sua idade: '))
         email = input('Digite seu e-mail: ')
-        lista_cliente.append([cpf, nome, idade, email])
         try:
             gravando_dados = open('G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt', 'w')
-            gravando_dados.write(f'{lista_cliente} \n')
+            gravando_dados.write(f'{nome} {cpf} {idade} {email}  \n')
             gravando_dados.close()
             print('Cadastro realizado com sucesso!!')
+            break
         except:
             print('Não foi possível cadastrar seu usuário')
 
@@ -39,6 +40,11 @@ def sala_cinema():
 
 def reservar_cadeira():
     while True:
+        abrindo_cadastro = open(arq_cadastro_local, 'r')
+        lista_cadastro = abrindo_cadastro.readlines()
+        lista = str(lista_cadastro)
+        print(lista.strip())
+
         linhas_aparencia = '--' * 40
         print(linhas_aparencia)
         print(f'TELA'.center(80))
