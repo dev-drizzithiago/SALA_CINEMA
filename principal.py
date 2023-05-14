@@ -42,8 +42,9 @@ def reservar_cadeira():
     while True:
         abrindo_cadastro = open(arq_cadastro_local, 'r')
         lista_cadastro = abrindo_cadastro.readlines()
-        lista = str(lista_cadastro)
-        print(lista.strip())
+        for valor in lista_cadastro:
+            valor_1 = valor.split()
+            print(valor_1)
 
         linhas_aparencia = '--' * 40
         print(linhas_aparencia)
