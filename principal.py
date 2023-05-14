@@ -5,6 +5,15 @@ from time import sleep
 arq_cadastro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 
 
+def criando_arq():
+    criando_arq_txt = open(arq_cadastro_local, 'wt')
+    criando_arq_txt.close()
+
+
+if not arq_cadastro_local:
+    criando_arq()
+
+
 class SalaCinema:
     def __init__(self):
         def leiaInt(valor_int):
@@ -35,8 +44,7 @@ class SalaCinema:
 
         def gravando_arq():
             try:
-                gravando_dados = open(
-                    'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt', 'w')
+                gravando_dados = open(arq_cadastro_local, 'a')
                 gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email}\n')
                 print('Cadastro realizado com sucesso!!')
             except:
