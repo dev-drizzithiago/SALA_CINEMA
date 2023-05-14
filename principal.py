@@ -38,6 +38,9 @@ class SalaCinema:
                 gravando_dados = open(arq_cadastro_local, 'a')
                 gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email}\n')
                 print('Cadastro realizado com sucesso!!')
+                resp = input('Deseja realizar outro cadastro [S/N]: ').upper()
+                if resp == 'N':
+                    return True
             except:
                 print('Não foi possível cadastrar seu usuário')
 
@@ -47,7 +50,9 @@ class SalaCinema:
                 self.cpf = leiaInt('Digite seu CPF: ')
                 self.idade = leiaInt('Digite sua idade: ')
                 self.email = input('Digite seu e-mail: ')
-                gravando_arq()
+                resp = gravando_arq()
+                if not resp:
+                    break
 
         def reservar_cadeira():
             while True:
