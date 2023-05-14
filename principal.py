@@ -5,22 +5,6 @@ from time import sleep
 arq_cadastro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 
 
-def cadastro_cliente():
-    while True:
-        nome = input('Digite seu nome completo: ').title()
-        cpf = int(input('Digite seu CPF: '))
-        idade = int(input('Digite sua idade: '))
-        email = input('Digite seu e-mail: ')
-        try:
-            gravando_dados = open('G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt', 'w')
-            gravando_dados.write(f'{cpf} {nome} {idade} {email}  \n')
-            gravando_dados.close()
-            print('Cadastro realizado com sucesso!!')
-            break
-        except:
-            print('Não foi possível cadastrar seu usuário')
-
-
 # A montagem do programa
 def sala_cinema():
     cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
@@ -38,14 +22,35 @@ def sala_cinema():
     return cinema_sala
 
 
+def cadastro_cliente():
+    while True:
+        nome = input('Digite seu nome completo: ').title()
+        cpf = int(input('Digite seu CPF: '))
+        idade = int(input('Digite sua idade: '))
+        email = input('Digite seu e-mail: ')
+        try:
+            gravando_dados = open('G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt', 'w')
+            gravando_dados.write(f'{cpf} {nome} {idade} {email}  \n')
+            gravando_dados.close()
+            print('Cadastro realizado com sucesso!!')
+            break
+        except:
+            print('Não foi possível cadastrar seu usuário')
+
+
 def reservar_cadeira():
     while True:
         abrindo_cadastro = open(arq_cadastro_local, 'r')
         lista_cadastro = abrindo_cadastro.readlines()
         for valor in lista_cadastro:
-            valor_1 = valor.split()
-            print(valor_1)
+            cpf_cliente = valor[:12]
+            print(cpf_cliente)
+            if len(cpf_cliente) == 0:
+                print('Não é possível reservar sem cadastro. \nVolte ao menu e escolha a opção 2 para cadastrar')
+            else:
+                print('teste')
 
+        # Estruturando a sala de cinema
         linhas_aparencia = '--' * 40
         print(linhas_aparencia)
         print(f'TELA'.center(80))
