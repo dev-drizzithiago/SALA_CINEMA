@@ -14,26 +14,6 @@ class SalaCinema:
                     return valor_correto
                 except ValueError:
                     print('Valor incorreto. Digite novamente.')
-                    
-        def cadastro_cliente():
-            while True:
-                self.nome = input('Digite seu nome completo: ').title()
-                self.cpf = int(input('Digite seu CPF: '))
-                self.idade = int(input('Digite sua idade: '))
-                self.email = input('Digite seu e-mail: ')
-                gravando_arq()
-
-        def gravando_arq():
-            try:
-                gravando_dados = open(
-                    'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt', 'w')
-                gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email}  \n')
-                gravando_dados.close()
-                print('Cadastro realizado com sucesso!!')
-            except:
-                print('Não foi possível cadastrar seu usuário')
-
-
 
         # A montagem do programa
         def sala_cinema():
@@ -52,6 +32,23 @@ class SalaCinema:
                            cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
                            cadeiras_cinema_j]
             return cinema_sala
+
+        def gravando_arq():
+            try:
+                gravando_dados = open(
+                    'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt', 'w')
+                gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email}\n')
+                print('Cadastro realizado com sucesso!!')
+            except:
+                print('Não foi possível cadastrar seu usuário')
+
+        def cadastro_cliente():
+            while True:
+                self.nome = input('Digite seu nome completo: ').title()
+                self.cpf = leiaInt('Digite seu CPF: ')
+                self.idade = leiaInt('Digite sua idade: ')
+                self.email = input('Digite seu e-mail: ')
+                gravando_arq()
 
         def reservar_cadeira():
             while True:
@@ -112,13 +109,14 @@ class SalaCinema:
         cinema = sala_cinema()
 
         # Menu principal
+
         while True:
             print(
                 '''
-                [1] Reservar uma Poltrona
-                [2] Cadastrar um usuário
-                [3] Sair
-                ''')
+    [1] Reservar uma Poltrona
+    [2] Cadastrar um usuário
+    [3] Sair
+    ''')
             try:
                 resp_menu_principal = int(input('Escolha uma opção: '))
                 if resp_menu_principal == 1:
