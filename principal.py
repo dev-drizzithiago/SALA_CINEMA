@@ -79,22 +79,27 @@ class SalaCinema:
                     break
 
         def reservar_cadeira():
-            global stop_verif_cpf
             lendo_arq()
             while True:
                 print(self.linhas_aparencia)
                 print('É preciso entrar com seus dados para reserva')
-                cpf_reserva = int(input('Digite seu CPF (Sem "."): '))
-                for cpf_verifica in self.lista_cliente:
-                    if cpf_verifica != cpf_reserva:
-                        print('Seu CPF não esta cadastrado')
-                        stop_verif_cpf = False
+                cpf_cliente_reserva = leiaInt('Digite seu CPF (Sem "."): ')
+                for cpf_sistema_verifica in self.lista_cliente:
+                    print(cpf_sistema_verifica)
+                    if cpf_sistema_verifica == cpf_cliente_reserva:
+                        cpf = cpf_sistema_verifica
+                        print('Cadastro encontrado')
+                        break
                     else:
-                        print(cpf_verifica)
-                if not stop_verif_cpf:
+                        print(f'Não foi encontrado nenhum cadastro com o CPF {cpf_cliente_reserva}')
+                if not self.stop_verif_cpf:
+                    print('Não é possível continuar seu um cadastro')
                     break
 
             while True:
+                if not self.stop_verif_cpf:
+                    print('Faça um cadastro e volte!')
+                    break
                 # Estruturando a sala de cinema
                 print(self.linhas_aparencia)
                 print(f'TELA'.center(80))
@@ -149,6 +154,7 @@ class SalaCinema:
                     print('Dados informados esta incorreto!')
                 else:
                     print(f'Poltrona {self.inf_reserva} foi reservada para')
+
 
         # Iniciando o programa do zero
         cinema = sala_cinema()
