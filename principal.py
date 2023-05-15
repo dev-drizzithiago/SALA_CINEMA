@@ -9,6 +9,7 @@ class SalaCinema:
 
     def __init__(self):
         self.quebra_loop = True
+        self.info_reserva = None
         self.linhas_aparencia = '--' * 40
 
         def leiaInt(valor_int):
@@ -147,9 +148,7 @@ class SalaCinema:
                     try:
                         valor_coluna = int(entrada[1])
                         self.inf_reserva = [cinema[valor_linha][valor_coluna]]
-                        if entrada == '999':
-                            self.quebra_loop = True
-                        elif cinema[valor_linha][valor_coluna] == '--':
+                        if cinema[valor_linha][valor_coluna] == '--':
                             resp = \
                                 str(input(
                                     'Poltrona esta reservada para outra pessoa! Deseja reservar outra? [S/N]: ')).upper()[
@@ -164,7 +163,12 @@ class SalaCinema:
                 except TypeError:
                     print('Dados informados esta incorreto!')
                 else:
-                    print(f'Poltrona {self.inf_reserva} foi reservada para')
+                    try:
+                        print(f'Poltrona {self.inf_reserva} foi reservada para')
+                    except ValueError:
+                        print('Não foi reservada nenhuma poltrona')
+                if entrada == '999':
+                    break
 
         # Iniciando o programa do zero
         cinema = sala_cinema()
