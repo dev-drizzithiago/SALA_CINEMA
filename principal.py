@@ -51,7 +51,8 @@ class SalaCinema:
 
         def lendo_arq():
             self.dicionario_cliente = dict()
-            self.lista_cliente = list()
+            self.lista_cpf_cliente = list()
+            self.lista_dados_cliente = list()
             try:
                 leitura = open(arq_cadastro_local, 'r')
             except:
@@ -67,7 +68,8 @@ class SalaCinema:
                                                'CPF:': cpf_read,
                                                'Idade:': idade_read,
                                                'E-mail:': email_read}
-                    self.lista_cliente.append(cpf_read)
+                    self.lista_cpf_cliente.append(cpf_read)
+                    self.lista_dados_cliente.append([nome_read, cpf_read, idade_read, email_read])
 
         def cadastro_cliente():
             while True:
@@ -89,7 +91,7 @@ class SalaCinema:
                 print(self.linhas_aparencia)
                 print('Entre com seu CPF para reservar um poltrona')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
-                for cpf_sistema_verifica in self.lista_cliente:
+                for cpf_sistema_verifica in self.lista_cpf_cliente:
                     if cpf_sistema_verifica == cpf_cliente_reserva:
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
                         self.stop_verif_cpf = True
