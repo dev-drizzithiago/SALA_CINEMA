@@ -87,18 +87,20 @@ class SalaCinema:
                 for cpf_sistema_verifica in self.lista_cliente:
                     print(cpf_sistema_verifica)
                     if cpf_sistema_verifica == cpf_cliente_reserva:
-                        cpf = cpf_sistema_verifica
+                        self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
                         print('Cadastro encontrado')
                         break
                     else:
                         print(f'Não foi encontrado nenhum cadastro com o CPF {cpf_cliente_reserva}')
+                        self.stop_verif_cpf = False
+
                 if not self.stop_verif_cpf:
-                    print('Não é possível continuar seu um cadastro')
+                    print('Não é possível continuar sem um cadastro')
                     break
 
             while True:
                 if not self.stop_verif_cpf:
-                    print('Faça um cadastro e volte!')
+                    print('Faça um cadastro e depois volte!')
                     break
                 # Estruturando a sala de cinema
                 print(self.linhas_aparencia)
