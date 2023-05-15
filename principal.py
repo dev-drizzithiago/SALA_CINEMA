@@ -6,8 +6,10 @@ arq_cadastro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/
 
 
 class SalaCinema:
+
     def __init__(self):
         self.linhas_aparencia = '--' * 40
+
         def leiaInt(valor_int):
             while True:
                 try:
@@ -54,10 +56,15 @@ class SalaCinema:
             else:
                 for linha in leitura:
                     dados = linha.split(';')
-                    self.cpf_read = int(dados[0])
-                    self.nome_read = str(dados[1])
-                    self.idade_read = int(dados[2])
-                    self.email_read = str(dados[3])
+                    cpf_read = int(dados[0])
+                    nome_read = str(dados[1])
+                    idade_read = int(dados[2])
+                    email_read = str(dados[3])
+                    self.dicionario_cliente = {'Nome:': nome_read,
+                                               'CPF:': cpf_read,
+                                               'Idade:': idade_read,
+                                               'E-mail:': email_read}
+                    self.lista_cliente = [cpf_read]
 
         def cadastro_cliente():
             while True:
@@ -70,66 +77,74 @@ class SalaCinema:
                     break
 
         def reservar_cadeira():
-            while True:
-                lendo_arq()
-                print(self.linhas_aparencia)
-                cpf_reserva = int(input('Digite seu CPF (Sem "."): '))
-
-
-                # Estruturando a sala de cinema                
-                print(self.linhas_aparencia)
-                print(f'TELA'.center(80))
-                print(self.linhas_aparencia)
-                print()
-                for linhas in cinema:
-                    print()
-                    for coluna in linhas:
-                        print(f'[{coluna}] ', end='   ')
-                print(f'\n{linhas_aparencia}')
-                entrada = str(input('Escolha uma Poltrona (999 SAIR): ').upper())
-                try:
-                    valor_linha = entrada[0]
-                    if valor_linha == 'A':
-                        valor_linha = 0
-                    elif valor_linha == 'B':
-                        valor_linha = 1
-                    elif valor_linha == 'C':
-                        valor_linha = 2
-                    elif valor_linha == 'D':
-                        valor_linha = 3
-                    elif valor_linha == 'E':
-                        valor_linha = 4
-                    elif valor_linha == 'F':
-                        valor_linha = 5
-                    elif valor_linha == 'G':
-                        valor_linha = 6
-                    elif valor_linha == 'H':
-                        valor_linha = 7
-                    elif valor_linha == 'I':
-                        valor_linha = 8
-                    elif valor_linha == 'J':
-                        valor_linha = 9
-                    try:
-                        valor_coluna = int(entrada[1])
-                        self.inf_reserva = [cinema[valor_linha][valor_coluna]]
-                        if entrada == '999':
-                            break
-                        elif cinema[valor_linha][valor_coluna] == '--':
-                            resp = \
-                                str(input(
-                                    'Poltrona esta reservada para outra pessoa! Deseja reservar outra? [S/N]: ')).upper()[
-                                    0]
-                            if resp == 'N':
-                                print('Não é possível reservar essa poltrona, reserve outra poltrona')
-                                sleep(1)
-                        else:
-                            cinema[valor_linha][valor_coluna] = str('--')
-                    except TypeError:
-                        print('Dados informado esta incorreto!')
-                except TypeError:
-                    print('Dados informados esta incorreto!')
+            lendo_arq()
+            print(self.linhas_aparencia)
+            print('É preciso entrar com seus dados para reserva')
+            cpf_reserva = int(input('Digite seu CPF (Sem "."): '))
+            for cpf_verifica in self.lista_cliente:
+                if cpf_reserva != cpf_verifica:
+                    print('Seu CPF não esta cadastrado')
                 else:
-                    print(f'Poltrona {self.inf_reserva} foi reservada para')
+                    self.verifica_cpf = False
+            while True:
+                    # Estruturando a sala de cinema
+                    if not self.verifica_cpf:
+                        print('Você precisa realizar um cadastro')
+                        break
+                    else:
+                    print(self.linhas_aparencia)
+                    print(f'TELA'.center(80))
+                    print(self.linhas_aparencia)
+                    print()
+                    for linhas in cinema:
+                        print()
+                        for coluna in linhas:
+                            print(f'[{coluna}] ', end='   ')
+                    print(f'\n{self.linhas_aparencia}')
+                    entrada = str(input('Escolha uma Poltrona (999 SAIR): ').upper())
+                    try:
+                        valor_linha = entrada[0]
+                        if valor_linha == 'A':
+                            valor_linha = 0
+                        elif valor_linha == 'B':
+                            valor_linha = 1
+                        elif valor_linha == 'C':
+                            valor_linha = 2
+                        elif valor_linha == 'D':
+                            valor_linha = 3
+                        elif valor_linha == 'E':
+                            valor_linha = 4
+                        elif valor_linha == 'F':
+                            valor_linha = 5
+                        elif valor_linha == 'G':
+                            valor_linha = 6
+                        elif valor_linha == 'H':
+                            valor_linha = 7
+                        elif valor_linha == 'I':
+                            valor_linha = 8
+                        elif valor_linha == 'J':
+                            valor_linha = 9
+                        try:
+                            valor_coluna = int(entrada[1])
+                            self.inf_reserva = [cinema[valor_linha][valor_coluna]]
+                            if entrada == '999':
+                                break
+                            elif cinema[valor_linha][valor_coluna] == '--':
+                                resp = \
+                                    str(input(
+                                        'Poltrona esta reservada para outra pessoa! Deseja reservar outra? [S/N]: ')).upper()[
+                                        0]
+                                if resp == 'N':
+                                    print('Não é possível reservar essa poltrona, reserve outra poltrona')
+                                    sleep(1)
+                            else:
+                                cinema[valor_linha][valor_coluna] = str('--')
+                        except TypeError:
+                            print('Dados informado esta incorreto!')
+                    except TypeError:
+                        print('Dados informados esta incorreto!')
+                    else:
+                        print(f'Poltrona {self.inf_reserva} foi reservada para')
 
         # Iniciando o programa do zero
         cinema = sala_cinema()
@@ -139,10 +154,10 @@ class SalaCinema:
         while True:
             print(
                 '''
-    [1] Reservar uma Poltrona
-    [2] Cadastrar um usuário
-    [3] Sair
-    ''')
+                [1] Reservar uma Poltrona
+                [2] Cadastrar um usuário
+                [3] Sair
+                ''')
             try:
                 resp_menu_principal = int(input('Escolha uma opção: '))
                 if resp_menu_principal == 1:
