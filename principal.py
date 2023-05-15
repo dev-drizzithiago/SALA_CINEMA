@@ -180,6 +180,10 @@ class SalaCinema:
                     reservar_cadeira()
                 elif resp_menu_principal == 2:
                     cadastro_cliente()
+                elif resp_menu_principal == 3:
+                    print('Fechando o programa')
+                    sleep(1)
+                    break
 
             except TypeError:
                 print('Opção invalida!')
