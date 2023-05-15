@@ -52,8 +52,12 @@ class SalaCinema:
                 print('Erro ao abrir o arquivo')
             else:
                 for linha in leitura:
-                    self.dados = linha.split(';')
-                    cpf = self.dados[0]
+                    dados = linha.split(';')
+                    cpf = dados[0]
+                    nome = str(dados[1])
+                    idade = str(dados[2])
+                    email = str(dados[3])
+                    print(type(cpf), nome, idade, email)
                     if cpf == '33479360866':
                         print('correto')
                     else:
