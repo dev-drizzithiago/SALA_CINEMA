@@ -148,7 +148,7 @@ class SalaCinema:
                         valor_coluna = int(entrada[1])
                         self.inf_reserva = [cinema[valor_linha][valor_coluna]]
                         if entrada == '999':
-                            break
+                            self.quebra_loop = True
                         elif cinema[valor_linha][valor_coluna] == '--':
                             resp = \
                                 str(input(
