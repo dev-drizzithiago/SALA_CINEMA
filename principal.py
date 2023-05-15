@@ -148,7 +148,10 @@ class SalaCinema:
                         valor_linha = 9
                     try:
                         valor_coluna = int(entrada[1])
-                        self.inf_reserva = [cinema[valor_linha][valor_coluna]]
+                        try:
+                            self.inf_reserva = [cinema[valor_linha][valor_coluna]]
+                        except ValueError:
+                            print('Nenhum lugar foi reservado!')
                         if cinema[valor_linha][valor_coluna] == '--':
                             resp = \
                                 str(input(
