@@ -45,6 +45,20 @@ class SalaCinema:
             else:
                 print('Cadastro realizado com sucesso!!')
 
+        def lendo_arq():
+            try:
+                leitura = open(arq_cadastro_local, 'r')
+            except:
+                print('Erro ao abrir o arquivo')
+            else:
+                for linha in leitura:
+                    dados = linha.split(';')
+                    print(dados)
+                    print(f'CFP: {dados[0]} \n'
+                          f'Nome: {dados[1]} \n'
+                          f'Idade: {dados[2]} \n'
+                          f'E-mail: {dados[3]} \n')
+
         def cadastro_cliente():
             while True:
                 self.nome = input('Digite seu nome completo: ').title()
@@ -57,6 +71,7 @@ class SalaCinema:
 
         def reservar_cadeira():
             while True:
+                lendo_arq()
                 # Estruturando a sala de cinema
                 linhas_aparencia = '--' * 40
                 print(linhas_aparencia)
