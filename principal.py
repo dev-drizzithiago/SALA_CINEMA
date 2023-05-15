@@ -89,6 +89,7 @@ class SalaCinema:
 
             lendo_arq()
             while True:
+                self.quebra_loop = True
                 print(self.linhas_aparencia)
                 print('Entre com seu CPF para reservar um poltrona')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
@@ -163,10 +164,7 @@ class SalaCinema:
                 except TypeError:
                     print('Dados informados esta incorreto!')
                 else:
-                    try:
-                        print(f'Poltrona {self.inf_reserva} foi reservada para')
-                    except ValueError:
-                        print('Não foi reservada nenhuma poltrona')
+                    print(f'Poltrona {self.inf_reserva} foi reservada para')
                 if entrada == '999':
                     break
 
