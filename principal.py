@@ -8,6 +8,7 @@ arq_cadastro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/
 class SalaCinema:
 
     def __init__(self):
+        self.quebra_loop = True
         self.linhas_aparencia = '--' * 40
 
         def leiaInt(valor_int):
@@ -79,27 +80,28 @@ class SalaCinema:
                     break
 
         def reservar_cadeira():
+
             lendo_arq()
             while True:
                 print(self.linhas_aparencia)
-                print('É preciso entrar com seus dados para reserva')
-                cpf_cliente_reserva = leiaInt('Digite seu CPF (Sem "."): ')
+                print('Entre com seu CPF para reservar um poltrona')
+                cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
                 for cpf_sistema_verifica in self.lista_cliente:
-                    print(cpf_sistema_verifica)
                     if cpf_sistema_verifica == cpf_cliente_reserva:
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
-                        print('Cadastro encontrado')
+                        self.stop_verif_cpf = True
                         break
                     else:
-                        print(f'Não foi encontrado nenhum cadastro com o CPF {cpf_cliente_reserva}')
-                        self.stop_verif_cpf = False
-
-                if not self.stop_verif_cpf:
-                    print('Não é possível continuar sem um cadastro')
+                        self.quebra_loop = False
+                if self.quebra_loop:
+                    print('Cadastro encontrado')
+                    break
+                else:
                     break
 
             while True:
-                if not self.stop_verif_cpf:
+                if not self.quebra_loop:
+                    print(f'Não foi encontrado seu cadastro com o CPF {cpf_cliente_reserva}')
                     print('Faça um cadastro e depois volte!')
                     break
                 # Estruturando a sala de cinema
@@ -156,7 +158,6 @@ class SalaCinema:
                     print('Dados informados esta incorreto!')
                 else:
                     print(f'Poltrona {self.inf_reserva} foi reservada para')
-
 
         # Iniciando o programa do zero
         cinema = sala_cinema()
