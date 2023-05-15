@@ -7,6 +7,7 @@ arq_cadastro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/
 
 class SalaCinema:
     def __init__(self):
+        self.linhas_aparencia = '--' * 40
         def leiaInt(valor_int):
             while True:
                 try:
@@ -53,15 +54,10 @@ class SalaCinema:
             else:
                 for linha in leitura:
                     dados = linha.split(';')
-                    cpf = dados[0]
-                    nome = str(dados[1])
-                    idade = str(dados[2])
-                    email = str(dados[3])
-                    print(type(cpf), nome, idade, email)
-                    if cpf == '33479360866':
-                        print('correto')
-                    else:
-                        print('incorreto')
+                    self.cpf_read = int(dados[0])
+                    self.nome_read = str(dados[1])
+                    self.idade_read = int(dados[2])
+                    self.email_read = str(dados[3])
 
         def cadastro_cliente():
             while True:
@@ -76,11 +72,14 @@ class SalaCinema:
         def reservar_cadeira():
             while True:
                 lendo_arq()
-                # Estruturando a sala de cinema
-                linhas_aparencia = '--' * 40
-                print(linhas_aparencia)
+                print(self.linhas_aparencia)
+                cpf_reserva = int(input('Digite seu CPF (Sem "."): '))
+
+
+                # Estruturando a sala de cinema                
+                print(self.linhas_aparencia)
                 print(f'TELA'.center(80))
-                print(linhas_aparencia)
+                print(self.linhas_aparencia)
                 print()
                 for linhas in cinema:
                     print()
