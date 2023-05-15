@@ -79,6 +79,9 @@ class SalaCinema:
                 if not resp:
                     break
 
+        def registro_de_reserva():
+            print('<desenvolvimento>')
+
         def reservar_cadeira():
 
             lendo_arq()
