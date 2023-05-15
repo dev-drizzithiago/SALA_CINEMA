@@ -36,7 +36,7 @@ class SalaCinema:
         def gravando_arq():
             try:
                 gravando_dados = open(arq_cadastro_local, 'a')
-                gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email}\n')
+                gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email} \n')
                 resp = input('Deseja realizar outro cadastro [S/N]: ').upper()
                 if resp == 'S':
                     return True
