@@ -87,10 +87,8 @@ class SalaCinema:
             print('<desenvolvimento>')
 
         def reservar_cadeira():
-
             lendo_dados_no_arq_txt()
             while True:
-
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
                 print(self.linhas_aparencia)
@@ -205,7 +203,6 @@ class SalaCinema:
                     print('Fechando o programa')
                     sleep(1)
                     break
-
             except TypeError:
                 print('Opção invalida!')
 
