@@ -39,7 +39,7 @@ class SalaCinema:
                            cadeiras_cinema_j]
             return cinema_sala
 
-        def gravando_arq():
+        def gravando_dados_no_arq_txt():
             try:
                 gravando_dados = open(arq_cadastro_local, 'a')
                 gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email} \n')
@@ -51,7 +51,7 @@ class SalaCinema:
             else:
                 print('Cadastro realizado com sucesso!!')
 
-        def lendo_arq():
+        def lendo_dados_no_arq_txt():
             self.dicionario_cliente = dict()
             self.lista_cpf_cliente = list()
             self.lista_dados_cliente = list()
@@ -66,10 +66,10 @@ class SalaCinema:
                     nome_read = str(dados[1])
                     idade_read = int(dados[2])
                     email_read = str(dados[3])
-                    self.dicionario_cliente = {'Nome:': nome_read,
-                                               'CPF:': cpf_read,
-                                               'Idade:': idade_read,
-                                               'E-mail:': email_read}
+                    self.informacoes_dados_cliente = {'Nome:': nome_read,
+                                                      'CPF:': cpf_read,
+                                                      'Idade:': idade_read,
+                                                      'E-mail:': email_read}
                     self.lista_cpf_cliente.append(cpf_read)
                     self.lista_dados_cliente.append([nome_read, cpf_read, idade_read, email_read])
 
@@ -79,7 +79,7 @@ class SalaCinema:
                 self.cpf = leiaInt('Digite seu CPF: ')
                 self.idade = leiaInt('Digite sua idade: ')
                 self.email = input('Digite seu e-mail: ')
-                resp = gravando_arq()
+                resp = gravando_dados_no_arq_txt()
                 if not resp:
                     break
 
@@ -88,7 +88,7 @@ class SalaCinema:
 
         def reservar_cadeira():
 
-            lendo_arq()
+            lendo_dados_no_arq_txt()
             while True:
 
                 # Inicia a verificação do cadastro.
@@ -96,6 +96,7 @@ class SalaCinema:
                 print(self.linhas_aparencia)
                 print('Entre com seu CPF para reservar um poltrona')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
+
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
                     if cpf_sistema_verifica == cpf_cliente_reserva:
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
@@ -103,12 +104,14 @@ class SalaCinema:
                         break
                     else:
                         self.quebra_loop = False
+                for chave, valor in self.informacoes_dados_cliente:
+                    print(chave, valor)
+
                 if self.quebra_loop:
                     print('Seu cadastro encontrado')
                     break
                 else:
                     break
-
 
             while True:
                 # Caso não encontre o CPF informado pelo cliente
