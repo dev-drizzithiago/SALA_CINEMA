@@ -98,7 +98,7 @@ class SalaCinema:
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
                     if cpf_sistema_verifica == cpf_cliente_reserva:
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
-                        self.stop_verif_cpf = True
+                        self.quebra_loop = True
                         break
                     else:
                         self.quebra_loop = False
