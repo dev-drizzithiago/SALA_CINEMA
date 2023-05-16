@@ -11,6 +11,7 @@ class SalaCinema:
         self.quebra_loop = True
         self.info_reserva = None
         self.linhas_aparencia = '--' * 40
+        self.inf_reserva = list()
 
         def leiaInt(valor_int):
             while True:
@@ -148,7 +149,10 @@ class SalaCinema:
                         valor_linha = 9
                     try:
                         valor_coluna = int(entrada[1])
-                        self.inf_reserva = [cinema[valor_linha][valor_coluna]]
+
+                        if cinema[valor_linha][valor_coluna] != '--':
+                            self.inf_reserva.append(cinema[valor_linha][valor_coluna])
+
                         if cinema[valor_linha][valor_coluna] == '--':
                             resp = \
                                 str(input(
@@ -169,6 +173,7 @@ class SalaCinema:
                     except:
                         print('Nenhum lugar foi reservado!')
                 if entrada == '999':
+                    
                     break
 
         # Iniciando o programa do zero
