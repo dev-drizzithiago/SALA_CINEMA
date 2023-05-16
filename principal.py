@@ -167,13 +167,12 @@ class SalaCinema:
                         print('Dados informado esta incorreto!')
                 except TypeError:
                     print('Dados informados esta incorreto!')
-                else:
+                if entrada == '999':
                     try:
                         print(f'Poltrona {self.inf_reserva} foi reservada para')
+                        sleep(1)
                     except:
                         print('Nenhum lugar foi reservado!')
-                if entrada == '999':
-                    
                     break
 
         # Iniciando o programa do zero
