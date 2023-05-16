@@ -169,7 +169,7 @@ class SalaCinema:
                     print('Dados informados esta incorreto!')
                 if entrada == '999':
                     try:
-                        print(f'Poltrona {self.inf_reserva} foi reservada para')
+                        print(f'Poltrona {self.inf_reserva} foi reservada para {cpf_cliente_reserva}')
                         sleep(1)
                     except:
                         print('Nenhum lugar foi reservado!')
