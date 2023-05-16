@@ -90,6 +90,8 @@ class SalaCinema:
 
             lendo_arq()
             while True:
+
+                # Inicia a verificação do cadastro.
                 self.quebra_loop = True
                 print(self.linhas_aparencia)
                 print('Entre com seu CPF para reservar um poltrona')
@@ -107,14 +109,17 @@ class SalaCinema:
                 else:
                     break
 
+
             while True:
+                # Caso não encontre o CPF informado pelo cliente
                 if not self.quebra_loop:
                     print(f'Não foi encontrado nenhum cadastro com o CPF informado {cpf_cliente_reserva}')
                     sleep(1)
                     print('Faça um cadastro e depois volte!')
                     sleep(1)
-                    break
-                # Estruturando a sala de cinema
+                    break  # Volta para o menu principal, onde o cliente deve fazer um cadastro.
+
+                # Estruturando a sala de cinema para que o cliente visualize as poltronas livres e reservadas
                 print(self.linhas_aparencia)
                 print(f'TELA'.center(80))
                 print(self.linhas_aparencia)
