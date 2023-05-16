@@ -94,11 +94,9 @@ class SalaCinema:
                 print(self.linhas_aparencia)
                 print('Entre com seu CPF para reservar um poltrona')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
-
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
                     if cpf_sistema_verifica == cpf_cliente_reserva:
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
-                        self.quebra_loop = True
                         break
                     else:
                         self.quebra_loop = False
