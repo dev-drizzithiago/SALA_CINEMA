@@ -104,7 +104,7 @@ class SalaCinema:
                         break
                     else:
                         self.quebra_loop = False
-                for chave, valor in self.informacoes_dados_cliente:
+                for chave, valor in self.informacoes_dados_cliente.items:
                     print(chave, valor)
 
                 if self.quebra_loop:
