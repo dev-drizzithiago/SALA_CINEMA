@@ -71,7 +71,7 @@ class SalaCinema:
                                                       'Idade:': idade_read,
                                                       'E-mail:': email_read}
                     self.lista_cpf_cliente.append(cpf_read)
-                    self.lista_dados_cliente.append([cpf_read,nome_read, idade_read, email_read])
+                    self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
 
         def cadastro_cliente():
             while True:  # loop_02
@@ -182,7 +182,6 @@ class SalaCinema:
                     else:
                         if len(self.inf_reserva) == 1:
                             print(len(self.inf_reserva))
-                            print(self.lista_dados_cliente)
                             print(f'A Poltrona {self.inf_reserva} foi reservadas')
                             for dados_cliente in self.lista_dados_cliente:
                                 if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
