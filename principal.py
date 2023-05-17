@@ -97,14 +97,24 @@ class SalaCinema:
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
 
                 # for_002
-                for cpf_sistema_verifica in self.lista_cpf_cliente:  # Pega todos os cpf registrados e verifica com o informado pelo cliente
+                # Pega todos os cpf registrados e verifica com o informado pelo cliente
+                for cpf_sistema_verifica in self.lista_cpf_cliente:
                     if cpf_sistema_verifica == cpf_cliente_reserva:
-                        self.confirmado_cpf_no_cadastro = cpf_sistema_verifica  # Apos a confirmação. O CPF é colocado na variável para ser usado mais a frente
-                        self.quebra_loop = True  # Se tudo esta certo, quebra-se o loop_03
-                        break  # Quebra apenas o loop 'for_002'
-                    else:
-                        self.quebra_loop = False  # Caso não encontrar o cpf, ele colocar a variável como falso, quebrando o loop_03
 
+                        # Apos a confirmação. O CPF é colocado na variável para ser usado mais a frente
+                        self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
+
+                        # Se tudo esta certo, quebra-se o loop_03
+                        self.quebra_loop = True
+
+                        # Quebra apenas o loop 'for_002' quando encontra o cpf
+                        break  
+                    else:
+
+                        # Caso não encontrar o cpf, ele colocar a variável como falso, quebrando o loop_03
+                        self.quebra_loop = False
+
+                # Quebra o loop_03
                 if self.quebra_loop:
                     print('Seu cadastro encontrado')
                     break
@@ -131,49 +141,44 @@ class SalaCinema:
                         print(f'[{coluna}] ', end='   ')
                 print(f'\n{self.linhas_aparencia}')
                 entrada = str(input('Escolha uma Poltrona (999 SAIR): ').upper())
-                try:
-                    valor_linha = entrada[0]
-                    if valor_linha == 'A':
-                        valor_linha = 0
-                    elif valor_linha == 'B':
-                        valor_linha = 1
-                    elif valor_linha == 'C':
-                        valor_linha = 2
-                    elif valor_linha == 'D':
-                        valor_linha = 3
-                    elif valor_linha == 'E':
-                        valor_linha = 4
-                    elif valor_linha == 'F':
-                        valor_linha = 5
-                    elif valor_linha == 'G':
-                        valor_linha = 6
-                    elif valor_linha == 'H':
-                        valor_linha = 7
-                    elif valor_linha == 'I':
-                        valor_linha = 8
-                    elif valor_linha == 'J':
-                        valor_linha = 9
-                    try:
-                        valor_coluna = int(entrada[1])
+                valor_linha = entrada[0]
+                if valor_linha == 'A':
+                    valor_linha = 0
+                elif valor_linha == 'B':
+                    valor_linha = 1
+                elif valor_linha == 'C':
+                    valor_linha = 2
+                elif valor_linha == 'D':
+                    valor_linha = 3
+                elif valor_linha == 'E':
+                    valor_linha = 4
+                elif valor_linha == 'F':
+                    valor_linha = 5
+                elif valor_linha == 'G':
+                    valor_linha = 6
+                elif valor_linha == 'H':
+                    valor_linha = 7
+                elif valor_linha == 'I':
+                    valor_linha = 8
+                elif valor_linha == 'J':
+                    valor_linha = 9
+                valor_coluna = int(entrada[1])
 
-                        if cinema[valor_linha][valor_coluna] != '--':
-                            self.inf_reserva.append(cinema[valor_linha][valor_coluna])
+                # Verificar se lugar esta disponível. Caso esteja livre, adiciona os dados no registro.
+                if cinema[valor_linha][valor_coluna] != '--':
+                    self.inf_reserva.append(cinema[valor_linha][valor_coluna])
 
-                        if cinema[valor_linha][valor_coluna] == '--':
-                            resp = \
-                                str(input(
-                                    'Poltrona esta reservada para outra pessoa! Deseja reservar outra? [S/N]: ')).upper()[
-                                    0]
-                            if resp == 'N':
-                                print('Não é possível reservar essa poltrona, reserve outra poltrona')
-                                sleep(1)
-                        else:
-                            cinema[valor_linha][valor_coluna] = str('--')
-                    except TypeError:
-                        print('Dados informado esta incorreto!')
-                except TypeError:
-                    print('Dados informados esta incorreto!')
+                # Verificar se o lugar está ocupado. Caso esteja, pede para reservar outro.
+                if cinema[valor_linha][valor_coluna] == '--':
+                    print('Não é possível reservar essa poltrona, reserve outra poltrona')
+                    sleep(1)
+
+                # Se o lugar estiver livre. Marca o local com o simbolo.
+                else:
+                    cinema[valor_linha][valor_coluna] = str('--')
+
                 if entrada == '999':
+                    print(len(self.inf_reserva))
                     try:
                         print(f'Poltrona {self.inf_reserva} foi reservada para {cpf_cliente_reserva}')
                         sleep(1)
