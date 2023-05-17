@@ -89,6 +89,7 @@ class SalaCinema:
         def reservar_cadeira():
             global valor_linha, valor_coluna
             lendo_dados_no_arq_txt()
+            dados_cliente_confirmado = dict()
             while True:  # loop_03
 
                 # Inicia a verificação do cadastro.
@@ -184,11 +185,14 @@ class SalaCinema:
                             print(self.lista_dados_cliente)
                             print(f'A Poltrona {self.inf_reserva} foi reservadas')
                             for dados_cliente in self.lista_dados_cliente:
-                                if self.confirmado_cpf_no_cadastro == dados_cliente:
-                                    print(f'Nome: {dados_cliente[1]}\n'
-                                          f'Idade: {dados_cliente[2]}\n'
-                                          f'Email: {dados_cliente[3]}\n')
-                            print('não encontrou')
+                                if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
+                                    dados_cliente_confirmado['CPF: '] = dados_cliente[0]
+                                    dados_cliente_confirmado['Nome: '] = dados_cliente[1]
+                                    dados_cliente_confirmado['Idade: '] = dados_cliente[2]
+                                    dados_cliente_confirmado['E-mail: '] = dados_cliente[3]
+
+                            for chave, valor in dados_cliente_confirmado.items():
+                                print(f'{chave} {valor}')
                             input()
                             break
                         else:
