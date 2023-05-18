@@ -180,13 +180,13 @@ class SalaCinema:
                         if len(self.inf_reserva) == 1:
                             for dados_cliente in self.lista_dados_cliente:
                                 if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
-                                    dados_cliente_confirmado['CPF:'] = dados_cliente[0]
                                     dados_cliente_confirmado['Nome:'] = dados_cliente[1]
+                                    dados_cliente_confirmado['CPF:'] = dados_cliente[0]
                                     dados_cliente_confirmado['Idade:'] = dados_cliente[2]
                                     dados_cliente_confirmado['E-mail:'] = dados_cliente[3]
-                            print(f'Poltrona {self.inf_reserva} foi reservada para: ', end='-')
+                            print(f'Poltrona {self.inf_reserva} foi reservada para:', end=' - ')
                             for chave, valor in dados_cliente_confirmado.items():
-                                print(f'{chave}:{valor}', end=' ')
+                                print(f'{chave}{valor}', end=' ')
                             input()
                             break
                         else:
