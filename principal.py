@@ -1,7 +1,7 @@
 from time import sleep
 from datetime import datetime
-data_atual = datetime.now()
-data_atual.strftime('%dd/%mm/%yyyy')
+data = datetime.now()
+data_atual = data.strftime('%d/%m/%y - %H:%M')
 print(data_atual)
 
 """"""
