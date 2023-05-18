@@ -12,7 +12,6 @@ class SalaCinema:
         self.info_reserva = None
         self.linhas_aparencia = '--' * 40
         self.inf_reserva = list()
-        self.add_registro_reserva = list()
 
         def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
             while True:  # loop_01
@@ -55,6 +54,7 @@ class SalaCinema:
             self.dicionario_cliente = dict()
             self.lista_cpf_cliente = list()
             self.lista_dados_cliente = list()
+
             try:
                 leitura = open(arq_cadastro_local, 'r')
             except:
@@ -84,6 +84,7 @@ class SalaCinema:
             print('<desenvolvimento>')
 
         def reservar_cadeira():
+            self.add_registro_reserva = list()
             global valor_linha, valor_coluna
             lendo_dados_no_arq_txt()
             dados_cliente_confirmado = dict()
@@ -172,25 +173,32 @@ class SalaCinema:
                 except:
                     print('OS Dados que você informou estão incorretos!')
 
+                # Vai jogar na variável os dados dos cliente e ser mostrado conforme a opção
+                for dados_cliente in self.lista_dados_cliente:
+                    if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
+                        dados_cliente_confirmado['Nome:'] = dados_cliente[1]
+                        dados_cliente_confirmado['CPF:'] = dados_cliente[0]
+                        dados_cliente_confirmado['Idade:'] = dados_cliente[2]
+                        dados_cliente_confirmado['E-mail:'] = dados_cliente[3]
+                        self.lista_cliente_reservados = [dados_cliente_confirmado]
+
                 if entrada == '999':
                     if len(self.inf_reserva) == 0:
                         print('Nenhuma poltrona foi reservada!')
                         break
                     else:
+                        self.add_registro_reserva.append(self.lista_cliente_reservados)
+                        self.add_registro_reserva.append(self.inf_reserva)
                         if len(self.inf_reserva) == 1:
-                            for dados_cliente in self.lista_dados_cliente:
-                                if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
-                                    dados_cliente_confirmado['Nome:'] = dados_cliente[1]
-                                    dados_cliente_confirmado['CPF:'] = dados_cliente[0]
-                                    dados_cliente_confirmado['Idade:'] = dados_cliente[2]
-                                    dados_cliente_confirmado['E-mail:'] = dados_cliente[3]
-                            print(f'Poltrona {self.inf_reserva} foi reservada para:', end=' - ')
+                            print(f'Poltrona {self.inf_reserva} foi reservada para', end='')
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end=' ')
-                            input()
                             break
+
                         else:
-                            print(f"As seguintes poltrona's {self.inf_reserva} foram reservadas")
+                            print(f"As seguintes poltrona's {self.inf_reserva} foram reservadas", end=' ')
+                            for chave, valor in dados_cliente_confirmado.items():
+                                print(f'{chave}{valor}', end=' ')
                             break
 
         # Iniciando o programa do zero
