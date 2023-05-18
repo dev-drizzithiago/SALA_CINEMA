@@ -12,6 +12,7 @@ class SalaCinema:
         self.info_reserva = None
         self.linhas_aparencia = '--' * 40
         self.inf_reserva = list()
+        self.add_registro_reserva = list()
 
         def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
             while True:  # loop_01
@@ -66,10 +67,6 @@ class SalaCinema:
                     nome_read = str(dados[1])
                     idade_read = int(dados[2])
                     email_read = str(dados[3])
-                    self.informacoes_dados_cliente = {'Nome:': nome_read,
-                                                      'CPF:': cpf_read,
-                                                      'Idade:': idade_read,
-                                                      'E-mail:': email_read}
                     self.lista_cpf_cliente.append(cpf_read)
                     self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
 
@@ -181,17 +178,15 @@ class SalaCinema:
                         break
                     else:
                         if len(self.inf_reserva) == 1:
-                            print(len(self.inf_reserva))
-                            print(f'A Poltrona {self.inf_reserva} foi reservadas')
                             for dados_cliente in self.lista_dados_cliente:
                                 if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
                                     dados_cliente_confirmado['CPF: '] = dados_cliente[0]
                                     dados_cliente_confirmado['Nome: '] = dados_cliente[1]
                                     dados_cliente_confirmado['Idade: '] = dados_cliente[2]
                                     dados_cliente_confirmado['E-mail: '] = dados_cliente[3]
-
+                            print(f'Poltrona {self.inf_reserva} foi reservada para: ', end='')
                             for chave, valor in dados_cliente_confirmado.items():
-                                print(f'{chave} {valor}')
+                                print(f'{chave}:{valor}', end='')
                             input()
                             break
                         else:
