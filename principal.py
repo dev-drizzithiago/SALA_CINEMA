@@ -2,7 +2,8 @@ from time import sleep
 
 """"""
 
-arq_cadastro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
+arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
+
 
 
 class SalaCinema:
@@ -40,7 +41,7 @@ class SalaCinema:
 
         def gravando_dados_no_arq_txt():  # Pega Todos os dados digitado e grava no arquivo txt
             try:
-                gravando_dados = open(arq_cadastro_local, 'a')
+                gravando_dados = open(arq_cadastro_cliente_local, 'a')
                 gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email} \n')
                 resp = input('Deseja realizar outro cadastro [S/N]: ').upper()
                 if resp == 'S':
@@ -56,7 +57,7 @@ class SalaCinema:
             self.lista_dados_cliente = list()
 
             try:
-                leitura = open(arq_cadastro_local, 'r')
+                leitura = open(arq_cadastro_cliente_local, 'r')
             except:
                 print('Erro ao abrir o arquivo')
             else:
@@ -82,7 +83,7 @@ class SalaCinema:
 
         def registro_de_reserva():
             print('<desenvolvimento>')
-
+            print(self.add_registro_reserva)
         def reservar_cadeira():
             self.add_registro_reserva = list()
             global valor_linha, valor_coluna
@@ -193,6 +194,7 @@ class SalaCinema:
                             print(f'Poltrona {self.inf_reserva} foi reservada para', end='')
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end=' ')
+                            registro_de_reserva()
                             break
 
                         else:
