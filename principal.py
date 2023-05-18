@@ -1,9 +1,13 @@
 from time import sleep
+from datetime import datetime
+data_atual = datetime.now()
+data_atual.strftime('%dd/%mm/%yyyy')
+print(data_atual)
 
 """"""
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
-
+arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
 
 
 class SalaCinema:
@@ -84,6 +88,10 @@ class SalaCinema:
         def registro_de_reserva():
             print('<desenvolvimento>')
             print(self.add_registro_reserva)
+            registrando_reserva = open(arq_cadastro_registro_local, 'a')
+            registrando_reserva.write(f'{self.add_registro_reserva}\n')
+            registrando_reserva.close()
+
         def reservar_cadeira():
             self.add_registro_reserva = list()
             global valor_linha, valor_coluna
@@ -201,6 +209,7 @@ class SalaCinema:
                             print(f"As seguintes poltrona's {self.inf_reserva} foram reservadas", end=' ')
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end=' ')
+                            registro_de_reserva()
                             break
 
         # Iniciando o programa do zero
