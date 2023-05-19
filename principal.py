@@ -85,9 +85,13 @@ class SalaCinema:
             try:
                 leitura = open(arq_cadastro_registro_local, 'r')
             except:
+                print(self.linhas_aparencia)
                 print('Não foi possível ler o arquivo de registro')
             else:
-                self.lista_info_registro.append(leitura)
+                for valor in leitura:
+                    self.lista_info_registro.append(valor)
+
+
 
         # Manipulações
         def cadastro_cliente():
@@ -107,8 +111,9 @@ class SalaCinema:
 
         def consultar_registro_reserva():
             try:
-                print(self.lista_indo_registro)
+                print(self.lista_info_registro)
             except:
+                print(self.linhas_aparencia)
                 print('Não foi encontrado nenhum registro')
 
         # Corpo do programa
