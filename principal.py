@@ -19,6 +19,7 @@ class SalaCinema:
         self.linhas_aparencia = '--' * 40
         self.inf_reserva = list()
 
+        # Atributos
         def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
             while True:  # loop_01
                 try:
@@ -44,6 +45,7 @@ class SalaCinema:
                            cadeiras_cinema_j]
             return cinema_sala
 
+        # Métodos
         def gravando_dados_no_arq_txt():  # Pega Todos os dados digitado e grava no arquivo txt
             try:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
@@ -83,10 +85,11 @@ class SalaCinema:
             try:
                 leitura = open(arq_cadastro_registro_local, 'r')
             except:
-                print('Não foi ler o arquivo de registro')
+                print('Não foi possível ler o arquivo de registro')
             else:
-                self.valor_registro_reserva = leitura
+                self.lista_info_registro.append(leitura)
 
+        # Manipulações
         def cadastro_cliente():
             while True:  # loop_02
                 self.nome = input('Digite seu nome completo: ').title()
@@ -99,15 +102,16 @@ class SalaCinema:
 
         def registro_de_reserva():
             registrando_reserva = open(arq_cadastro_registro_local, 'a')
-            registrando_reserva.write(f'{self.add_registro_reserva} - {data_atual} - {hora_atual}\n')
+            registrando_reserva.write(f'{self.add_registro_reserva} ; {data_atual} ; {hora_atual}\n')
             registrando_reserva.close()
 
         def consultar_registro_reserva():
             try:
-                print(self.valor_registro_reserva)
+                print(self.lista_indo_registro)
             except:
                 print('Não foi encontrado nenhum registro')
 
+        # Corpo do programa
         def reservar_cadeira():
             self.add_registro_reserva = list()
             global valor_linha, valor_coluna
@@ -246,14 +250,15 @@ class SalaCinema:
         [2] Cadastrar um usuário
         [3] Veja suas reservas
         [0] Sair
-                ''')
+        {self.linhas_aparencia} ''')
             try:
-                resp_menu_principal = int(input('Escolha uma opção: '))
+                resp_menu_principal = int(input('        Escolha uma opção: '))
                 if resp_menu_principal == 1:
                     reservar_cadeira()
                 elif resp_menu_principal == 2:
                     cadastro_cliente()
                 elif resp_menu_principal == 3:
+                    lendo_dados_no_arq_reserva()
                     consultar_registro_reserva()
                 elif resp_menu_principal == 0:
                     print('Fechando o programa')
