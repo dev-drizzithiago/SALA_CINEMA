@@ -85,7 +85,7 @@ class SalaCinema:
             except:
                 print('Não foi ler o arquivo de registro')
             else:
-                
+                self.valor_registro_reserva = leitura
 
         def cadastro_cliente():
             while True:  # loop_02
@@ -103,7 +103,10 @@ class SalaCinema:
             registrando_reserva.close()
 
         def consultar_registro_reserva():
-            print('<desenvolvimento>')
+            try:
+                print(self.valor_registro_reserva)
+            except:
+                print('Não foi encontrado nenhum registro')
 
         def reservar_cadeira():
             self.add_registro_reserva = list()
@@ -231,13 +234,14 @@ class SalaCinema:
         # Menu principal
 
         while True:
-            data = datetime.now()
-            data_atual_menu = data.strftime('%D/%M/%Y')
-            hora_atual_menu = data.strftime('%H:%M:%S')
+            data_menu = datetime.now()
+            data_atual_menu = data_menu.strftime('%D/%M/%Y')
+            hora_atual_menu = data_menu.strftime('%H:%M:%S')
             print(
                 f'''
         Hora certa: 
         {data_atual_menu} - {hora_atual_menu}
+        {self.linhas_aparencia}
         [1] Reservar uma Poltrona
         [2] Cadastrar um usuário
         [3] Veja suas reservas
