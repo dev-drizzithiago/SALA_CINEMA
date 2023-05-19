@@ -1,8 +1,9 @@
 from time import sleep
 from datetime import datetime
+
 data = datetime.now()
-data_atual = data.strftime('%d/%m/%y - %H:%M')
-print(data_atual)
+data_atual = data.strftime('%d/%m/%y')
+hora_atual = data.strftime('%H:%M:%S')
 
 """"""
 
@@ -56,10 +57,12 @@ class SalaCinema:
                 print('Cadastro realizado com sucesso!!')
 
         def lendo_dados_no_arq_txt():
+            # Variáveis locais
             self.dicionario_cliente = dict()
             self.lista_cpf_cliente = list()
             self.lista_dados_cliente = list()
 
+            # Função para leitura
             try:
                 leitura = open(arq_cadastro_cliente_local, 'r')
             except:
@@ -75,6 +78,15 @@ class SalaCinema:
                     self.lista_cpf_cliente.append(cpf_read)
                     self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
 
+        def lendo_dados_no_arq_reserva():
+            self.lista_info_registro = list()
+            try:
+                leitura = open(arq_cadastro_registro_local, 'r')
+            except:
+                print('Não foi ler o arquivo de registro')
+            else:
+                
+
         def cadastro_cliente():
             while True:  # loop_02
                 self.nome = input('Digite seu nome completo: ').title()
@@ -86,11 +98,12 @@ class SalaCinema:
                     break
 
         def registro_de_reserva():
-            print('<desenvolvimento>')
-            print(self.add_registro_reserva)
             registrando_reserva = open(arq_cadastro_registro_local, 'a')
-            registrando_reserva.write(f'{self.add_registro_reserva}\n')
+            registrando_reserva.write(f'{self.add_registro_reserva} - {data_atual} - {hora_atual}\n')
             registrando_reserva.close()
+
+        def consultar_registro_reserva():
+            print('<desenvolvimento>')
 
         def reservar_cadeira():
             self.add_registro_reserva = list()
@@ -218,12 +231,17 @@ class SalaCinema:
         # Menu principal
 
         while True:
+            data = datetime.now()
+            data_atual_menu = data.strftime('%D/%M/%Y')
+            hora_atual_menu = data.strftime('%H:%M:%S')
             print(
-                '''
-                [1] Reservar uma Poltrona
-                [2] Cadastrar um usuário
-                [3] Veja suas reservas
-                [0] Sair
+                f'''
+        Hora certa: 
+        {data_atual_menu} - {hora_atual_menu}
+        [1] Reservar uma Poltrona
+        [2] Cadastrar um usuário
+        [3] Veja suas reservas
+        [0] Sair
                 ''')
             try:
                 resp_menu_principal = int(input('Escolha uma opção: '))
@@ -232,7 +250,7 @@ class SalaCinema:
                 elif resp_menu_principal == 2:
                     cadastro_cliente()
                 elif resp_menu_principal == 3:
-                    print('<em desenvolvimento>')
+                    consultar_registro_reserva()
                 elif resp_menu_principal == 0:
                     print('Fechando o programa')
                     sleep(1)
