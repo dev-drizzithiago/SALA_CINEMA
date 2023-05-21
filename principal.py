@@ -91,8 +91,6 @@ class SalaCinema:
                 for valor in leitura:
                     self.lista_info_registro.append(valor)
 
-
-
         # Manipulações
         def cadastro_cliente():
             while True:  # loop_02
@@ -168,7 +166,7 @@ class SalaCinema:
                     for coluna in linhas:
                         print(f'[{coluna}] ', end='   ')
                 print(f'\n{self.linhas_aparencia}')
-                entrada = str(input('Escolha uma Poltrona (999 SAIR): ').upper())
+                entrada = str(input('Escolha uma Poltrona (999  para Confirmar): ').upper())
 
                 try:
                     valor_linha = entrada[0]
