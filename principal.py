@@ -110,10 +110,7 @@ class SalaCinema:
         def consultar_registro_reserva():
             try:
                 for valor in self.lista_info_registro:
-                    valor_1 = str(valor).split(',')
-                for valor in valor_1:
                     print(valor)
-
             except:
                 print(self.linhas_aparencia)
                 print('Não foi encontrado nenhum registro')
@@ -216,14 +213,16 @@ class SalaCinema:
                         dados_cliente_confirmado['CPF:'] = dados_cliente[0]
                         dados_cliente_confirmado['Idade:'] = dados_cliente[2]
                         dados_cliente_confirmado['E-mail:'] = dados_cliente[3]
-                        self.lista_cliente_reservados = [dados_cliente_confirmado]
 
                 if entrada == '999':
                     if len(self.inf_reserva) == 0:
                         print('Nenhuma poltrona foi reservada!')
                         break
                     else:
-                        self.add_registro_reserva.append(self.lista_cliente_reservados)
+                        self.add_registro_reserva.append(dados_cliente_confirmado['Nome:'])
+                        self.add_registro_reserva.append(dados_cliente_confirmado['CPF:'])
+                        self.add_registro_reserva.append(dados_cliente_confirmado['Idade:'])
+                        self.add_registro_reserva.append(dados_cliente_confirmado['E-mail:'])
                         self.add_registro_reserva.append(self.inf_reserva)
                         if len(self.inf_reserva) == 1:
                             print(f'Poltrona {self.inf_reserva} foi reservada para', end='')
