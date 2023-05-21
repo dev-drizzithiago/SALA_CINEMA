@@ -109,7 +109,11 @@ class SalaCinema:
 
         def consultar_registro_reserva():
             try:
-                print(self.lista_info_registro)
+                for valor in self.lista_info_registro:
+                    valor_1 = str(valor).split(',')
+                for valor in valor_1:
+                    print(valor)
+
             except:
                 print(self.linhas_aparencia)
                 print('Não foi encontrado nenhum registro')
