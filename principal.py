@@ -193,7 +193,7 @@ class SalaCinema:
             while True:
                 # Caso não encontre o CPF informado pelo cliente
                 if not self.quebra_loop:  # Recebe a posição do for_002, se for falso. Quebra o loop_03. Final da fila, recebe o break
-                    print(f'Não foi encontrado nenhum cadastro com o CPF informado [{cpf_cliente_reserva[:3]}.'
+                    print(f'Não foi encontrado nenhum cadastro com o CPF informado [{cpf_cliente_reserva[0:3]}.'
                           f'{cpf_cliente_reserva[3:6]}.{cpf_cliente_reserva[6:9]}-{cpf_cliente_reserva[9:12]}]')
                     sleep(1)
                     print('Faça um cadastro para continuar!')
