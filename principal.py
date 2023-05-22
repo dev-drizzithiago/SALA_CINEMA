@@ -107,7 +107,6 @@ class SalaCinema:
                     email_read = str(dados[3])
                     self.lista_cpf_cliente.append(cpf_read)
                     self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
-                print('cfp', self.lista_cpf_cliente)
 
         def lendo_dados_no_arq_reserva():
             self.lista_info_registro = list()
@@ -136,6 +135,7 @@ class SalaCinema:
             registrando_reserva.write(f'{self.add_registro_reserva} ; {data_atual} - {hora_atual}')
             registrando_reserva.close()
 
+        # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
             try:
                 for valor in self.lista_info_registro:
@@ -155,16 +155,16 @@ class SalaCinema:
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
                 print(self.linhas_aparencia)
-                print('Entre com seu CPF para reservar um poltrona')
+                print('Entre com seu CPF para reservar uma poltrona')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
 
                 # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
                 if len(self.lista_cpf_cliente) == 0:
                     self.quebra_loop = False
+
                 #  for_002
                 #  Pega todos os cpf registrados e verifica com o informado pelo cliente
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
-
                     if cpf_sistema_verifica == cpf_cliente_reserva:
                         # Apos a confirmação. O CPF é colocado na variável para ser usado mais a frente
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
@@ -179,13 +179,12 @@ class SalaCinema:
 
                         # Quebra apenas o loop 'for_002' quando encontra o cpf do cliente
                         break
-
                     else:
                         # Caso não encontrar o cpf, ele colocar a variável como falso, quebrando o loop_03
                         self.quebra_loop = False
 
                 if self.quebra_loop:  # Quebra o loop_03
-                    print('Seu cadastro encontrado')
+                    print('Seu cadastro foi encontrado')
                     break
                 else:
                     break
