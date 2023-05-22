@@ -73,14 +73,12 @@ class SalaCinema:
                 # for_001
                 for linha in leitura:
                     dados = linha.split(';')
-                    dados[3] = dados[3].replace('\n', '')
                     cpf_read = int(dados[0])
                     nome_read = str(dados[1])
                     idade_read = int(dados[2])
                     email_read = str(dados[3])
                     self.lista_cpf_cliente.append(cpf_read)
                     self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
-                print(self.lista_dados_cliente)
 
         def lendo_dados_no_arq_reserva():
             self.lista_info_registro = list()
