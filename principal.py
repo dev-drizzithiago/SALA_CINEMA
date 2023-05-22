@@ -94,6 +94,8 @@ class SalaCinema:
                     return True
             except:
                 print('Não foi possível cadastrar seu usuário')
+                if not verificando_arq_registro_reserva():
+                    criando_arq_registro_reserva()
             else:
                 print('Cadastro realizado com sucesso!!')
 
@@ -284,12 +286,12 @@ class SalaCinema:
                         self.add_registro_reserva.extend(self.inf_reserva)
 
                         if len(self.inf_reserva) == 1:
-<<<<<<< Updated upstream
+
                             print(f'Poltrona {self.inf_reserva} foi reservada para', end='')
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end=' ')
                             registro_da_reserva()
-=======
+
                             for dados_cliente in self.lista_dados_cliente:
                                 if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
                                     dados_cliente_confirmado['Nome:'] = dados_cliente[1]
@@ -300,7 +302,7 @@ class SalaCinema:
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end='')
                             input()
->>>>>>> Stashed changes
+
                             break
 
                         else:
