@@ -22,9 +22,15 @@ class SalaCinema:
         self.inf_reserva = list()
 
         def inicio_verif_arq_reserva():
-            sleep(1)
+            sleep(0.1)
             if not verificando_arq_registro_reserva():
+                print('Estamos criando o arquivo para você')
+                sleep(1)
                 criando_arq_registro_reserva()
+                sleep(1)
+                print('Pronto, conseguimos criar o arquivo.\n'
+                      'tenha uma boa reserva!!')
+
         # VERIFICAR SE POSSUI O ARQUIVO RESPONSÁVEL PELO CADASTRO DO CLIENTE.
         def verificar_arq_cadastro_cliente():
             try:
@@ -139,9 +145,7 @@ class SalaCinema:
                 print('Não foi possível abrir o arquivo que registra as reservas.')
                 sleep(1)
                 print('Deixa eu verificar se o arquivo esta íntegro')
-                threading.Thread()
-
-
+                threading.Thread(target=inicio_verif_arq_reserva()).start()
             else:
                 for valor in leitura:
                     self.lista_info_registro.append(valor)
@@ -165,13 +169,14 @@ class SalaCinema:
 
         # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
-            try:
-                for valor in self.lista_info_registro:
+            lendo_dados_no_arq_reserva()
+            for valor in self.lista_info_registro:
+                if len(valor) == 0:
+                    print(self.linhas_aparencia)
+                    print('Não consegui encontrar nenhum registro no sistema. '
+                          'Verifique se a sessão já terminou')
+                else:
                     print(valor)
-            except:
-                print(self.linhas_aparencia)
-                print('Não consegui encontrar nenhum registro no sistema. '
-                      'Verifique se a sessão já terminou')
 
         # Corpo do programa
         def reservar_cadeira():
@@ -304,6 +309,7 @@ class SalaCinema:
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end=' ')
                             registro_da_reserva()
+                            sleep(1)
 
                             for dados_cliente in self.lista_dados_cliente:
                                 if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
@@ -314,10 +320,8 @@ class SalaCinema:
                             print(f'Poltrona {self.inf_reserva} foi reservada para:', end='')
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end='')
-                            input()
-
+                                sleep(1)
                             break
-
                         else:
                             print(f"As seguintes poltrona's {self.inf_reserva} foram reservadas", end=' ')
                             for chave, valor in dados_cliente_confirmado.items():
@@ -350,7 +354,6 @@ class SalaCinema:
             elif resp_menu_principal == 2:
                 cadastro_cliente()
             elif resp_menu_principal == 3:
-                lendo_dados_no_arq_reserva()
                 consultar_registro_reserva()
             elif resp_menu_principal == 0:
                 print('Fechando o programa')
@@ -358,7 +361,6 @@ class SalaCinema:
                 break
             else:
                 print('Opção invalida!')
-
 
 
 abrindo_cinema = SalaCinema()
