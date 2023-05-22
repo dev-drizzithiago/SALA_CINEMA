@@ -159,7 +159,8 @@ class SalaCinema:
                     print(valor)
             except:
                 print(self.linhas_aparencia)
-                print('Não foi encontrado nenhum registro')
+                print('Não consegui encontrar nenhum registro no sistema. '
+                      'Verifique se a sessão já terminou')
 
         # Corpo do programa
         def reservar_cadeira():
@@ -172,12 +173,14 @@ class SalaCinema:
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
                 print(self.linhas_aparencia)
-                print('Entre com seu CPF para reservar uma poltrona')
+                print('Preciso do seu CPF para reservar uma poltrona.')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
 
                 # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
                 if len(self.lista_cpf_cliente) == 0:
-                    print('Não foi encontrado nenhum registro no sistema.')
+                    print('DESCULPE!!! '
+                          'Não encontramos nenhum registro no sistema.'
+                          'Verifiquei se o bando de dados esta tudo certinho!')
                     self.quebra_loop = False
 
                 #  for_002
