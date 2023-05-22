@@ -73,12 +73,14 @@ class SalaCinema:
                 # for_001
                 for linha in leitura:
                     dados = linha.split(';')
+                    dados[3] = dados[3].replace('\n', '')
                     cpf_read = int(dados[0])
                     nome_read = str(dados[1])
                     idade_read = int(dados[2])
                     email_read = str(dados[3])
                     self.lista_cpf_cliente.append(cpf_read)
                     self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
+                print(self.lista_dados_cliente)
 
         def lendo_dados_no_arq_reserva():
             self.lista_info_registro = list()
@@ -118,7 +120,7 @@ class SalaCinema:
         # Corpo do programa
         def reservar_cadeira():
             self.add_registro_reserva = list()
-            global valor_linha, valor_coluna
+            global valor_linha, valor_coluna, nome_cliente
             lendo_dados_no_arq_txt()
             dados_cliente_confirmado = dict()
             while True:  # loop_03
@@ -137,7 +139,16 @@ class SalaCinema:
                         # Apos a confirmação. O CPF é colocado na variável para ser usado mais a frente
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
                         self.quebra_loop = True  # Se tudo esta certo, quebra-se o loop_03
-                        break  # Quebra apenas o loop 'for_002' quando encontra o cpf do cliente
+
+                        # Da as boas vindas ao cliente
+                        for valor in self.lista_dados_cliente:
+                            if cpf_sistema_verifica == valor[0]:
+                                nome_cliente = valor[1]
+                        print(f'Bem vindo, {nome_cliente}!\n'
+                              f'Você já pode fazer sua reservar')
+
+                        # Quebra apenas o loop 'for_002' quando encontra o cpf do cliente
+                        break
                     else:
                         # Caso não encontrar o cpf, ele colocar a variável como falso, quebrando o loop_03
                         self.quebra_loop = False
