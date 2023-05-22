@@ -1,5 +1,6 @@
 from time import sleep
 from datetime import datetime
+from threading import Thread
 
 data = datetime.now()
 data_atual = data.strftime('%d/%m/%y')
@@ -19,6 +20,10 @@ class SalaCinema:
         self.linhas_aparencia = '--' * 40
         self.inf_reserva = list()
 
+        def inicio_verif_arq_reserva():
+            sleep(1)
+            if not verificando_arq_registro_reserva():
+                criando_arq_registro_reserva()
         # VERIFICAR SE POSSUI O ARQUIVO RESPONSÁVEL PELO CADASTRO DO CLIENTE.
         def verificar_arq_cadastro_cliente():
             try:
@@ -130,7 +135,11 @@ class SalaCinema:
                 leitura = open(arq_cadastro_registro_local, 'r')
             except:
                 print(self.linhas_aparencia)
-                print('Não foi possível ler o arquivo de registro')
+                print('Não foi possível abrir o arquivo que registra as reservas.')
+                sleep(1)
+                print('Deixa eu verificar se o arquivo esta íntegro')
+                
+
             else:
                 for valor in leitura:
                     self.lista_info_registro.append(valor)
