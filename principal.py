@@ -149,6 +149,10 @@ class SalaCinema:
             else:
                 for valor in leitura:
                     self.lista_info_registro.append(valor)
+                if len(self.lista_info_registro) == 0:
+                    print(self.linhas_aparencia)
+                    print('Não consegui encontrar nenhum registro no sistema. '
+                          'Verifique se a sessão já terminou')
 
         # Manipulações
         def cadastro_cliente():
@@ -171,13 +175,8 @@ class SalaCinema:
         def consultar_registro_reserva():
             lendo_dados_no_arq_reserva()
             for valor in self.lista_info_registro:
-                if len(valor) == 0:
-                    print(self.linhas_aparencia)
-                    print('Não consegui encontrar nenhum registro no sistema. '
-                          'Verifique se a sessão já terminou')
-                else:
-                    print(valor)
-
+                print(valor)
+                
         # Corpo do programa
         def reservar_cadeira():
             self.add_registro_reserva = list()
