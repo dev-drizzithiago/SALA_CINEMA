@@ -207,11 +207,10 @@ class SalaCinema:
                 else:
                     break
 
-            while True:
+            while True:  # loop_04
                 # Caso não encontre o CPF informado pelo cliente
                 if not self.quebra_loop:  # Recebe a posição do for_002, se for falso. Quebra o loop_03. Final da fila, recebe o break
-                    print(f'Não foi encontrado nenhum cadastro com o CPF informado [{cpf_cliente_reserva[0:3]}.'
-                          f'{cpf_cliente_reserva[3:6]}.{cpf_cliente_reserva[6:9]}-{cpf_cliente_reserva[9:12]}]')
+                    print(f'Não foi encontrado nenhum cadastro com o CPF informado [{cpf_cliente_reserva}]')
                     sleep(1)
                     print('Faça um cadastro para continuar!')
                     sleep(1)
@@ -331,20 +330,19 @@ class SalaCinema:
         [3] Veja suas reservas
         [0] Sair
         {self.linhas_aparencia} ''')
-            try:
-                resp_menu_principal = int(input('        Escolha uma opção: '))
-                if resp_menu_principal == 1:
-                    reservar_cadeira()
-                elif resp_menu_principal == 2:
-                    cadastro_cliente()
-                elif resp_menu_principal == 3:
-                    lendo_dados_no_arq_reserva()
-                    consultar_registro_reserva()
-                elif resp_menu_principal == 0:
-                    print('Fechando o programa')
-                    sleep(1)
-                    break
-            except:
+            resp_menu_principal = leiaInt('        Escolha uma opção: ')
+            if resp_menu_principal == 1:
+                reservar_cadeira()
+            elif resp_menu_principal == 2:
+                cadastro_cliente()
+            elif resp_menu_principal == 3:
+                lendo_dados_no_arq_reserva()
+                consultar_registro_reserva()
+            elif resp_menu_principal == 0:
+                print('Fechando o programa')
+                sleep(1)
+                break
+            else:
                 print('Opção invalida!')
 
 
