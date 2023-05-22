@@ -66,6 +66,7 @@ class SalaCinema:
                 except ValueError:
                     print('Valor incorreto. Digite novamente.')
 
+        # Estrutura para sala de cinema
         def sala_cinema():  # A montagem do programa
             cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
             cadeiras_cinema_b = ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9']
@@ -174,6 +175,7 @@ class SalaCinema:
 
                 # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
                 if len(self.lista_cpf_cliente) == 0:
+                    print('Não foi encontrado nenhum registro no sistema.')
                     self.quebra_loop = False
 
                 #  for_002
