@@ -197,9 +197,11 @@ class SalaCinema:
 
                 # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
                 if len(self.lista_cpf_cliente) == 0:
+                    print(self.linhas_aparencia)
                     print('DESCULPE!!! '
-                          'Não encontramos nenhum registro no sistema.'
+                          'Não encontramos nenhum registro no sistema. '
                           'Verifiquei se o bando de dados esta tudo certinho!')
+                    apert_enter()
                     self.quebra_loop = False
 
                 #  for_002
