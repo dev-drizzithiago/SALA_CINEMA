@@ -19,6 +19,31 @@ class SalaCinema:
         self.linhas_aparencia = '--' * 40
         self.inf_reserva = list()
 
+        # VERIFICAR SE POSSUI O ARQUIVO RESPONSÁVEL PELO CADASTRO DO CLIENTE.
+        def verificar_arq_cadastro_cliente():
+            try:
+                verificacao = open(arq_cadastro_cliente_local, 'r')
+            except:
+                return False
+            verificacao.close()
+
+        # CASO NÃO EXISTA O ARQUIVO. O PROGRAMA IRA CRIAR UM
+        def criando_arq_cadastro_cliente():
+            try:
+                criando_arq_cliente = open(arq_cadastro_cliente_local, 'w')
+            except:
+                print('Não foi possível criar um arquivo para guardar seus cadastros')
+            else:
+                print('Não se preocupe, irei criar um cadastro para você')
+                sleep(2)
+                print('Prontinho!!')
+                sleep(1)
+                print('Cadastro Criado!!')
+                sleep(1)
+                print('Agora pode prosseguir com sua reserva!')
+                sleep(1)
+                criando_arq_cliente.close()
+
         # Atributos
         def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
             while True:  # loop_01
@@ -68,7 +93,10 @@ class SalaCinema:
             try:
                 leitura = open(arq_cadastro_cliente_local, 'r')
             except:
-                print('Erro ao abrir o arquivo')
+                print('Erro ao abrir o arquivo de cadastro / Arquivo pode estar corrompido ou Arquivo não existe')
+                sleep(1)
+                if not verificar_arq_cadastro_cliente():
+                    criando_arq_cadastro_cliente()
             else:
                 # for_001
                 for linha in leitura:
@@ -79,6 +107,7 @@ class SalaCinema:
                     email_read = str(dados[3])
                     self.lista_cpf_cliente.append(cpf_read)
                     self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
+                print('cfp', self.lista_cpf_cliente)
 
         def lendo_dados_no_arq_reserva():
             self.lista_info_registro = list()
@@ -129,11 +158,14 @@ class SalaCinema:
                 print('Entre com seu CPF para reservar um poltrona')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
 
+                # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
+                if len(self.lista_cpf_cliente) == 0:
+                    self.quebra_loop = False
                 #  for_002
                 #  Pega todos os cpf registrados e verifica com o informado pelo cliente
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
-                    if cpf_sistema_verifica == cpf_cliente_reserva:
 
+                    if cpf_sistema_verifica == cpf_cliente_reserva:
                         # Apos a confirmação. O CPF é colocado na variável para ser usado mais a frente
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
                         self.quebra_loop = True  # Se tudo esta certo, quebra-se o loop_03
@@ -147,6 +179,7 @@ class SalaCinema:
 
                         # Quebra apenas o loop 'for_002' quando encontra o cpf do cliente
                         break
+
                     else:
                         # Caso não encontrar o cpf, ele colocar a variável como falso, quebrando o loop_03
                         self.quebra_loop = False
@@ -160,9 +193,10 @@ class SalaCinema:
             while True:
                 # Caso não encontre o CPF informado pelo cliente
                 if not self.quebra_loop:  # Recebe a posição do for_002, se for falso. Quebra o loop_03. Final da fila, recebe o break
-                    print(f'Não foi encontrado nenhum cadastro com o CPF informado {cpf_cliente_reserva}')
+                    print(f'Não foi encontrado nenhum cadastro com o CPF informado [{cpf_cliente_reserva[:3]}.'
+                          f'{cpf_cliente_reserva[3:6]}.{cpf_cliente_reserva[6:9]}-{cpf_cliente_reserva[9:12]}]')
                     sleep(1)
-                    print('Faça um cadastro e depois volte!')
+                    print('Faça um cadastro para continuar!')
                     sleep(1)
                     break  # Volta para o menu principal, onde o cliente deve fazer um cadastro.
 
