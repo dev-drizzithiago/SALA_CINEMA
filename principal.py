@@ -1,3 +1,4 @@
+import threading
 from time import sleep
 from datetime import datetime
 from threading import Thread
@@ -138,7 +139,8 @@ class SalaCinema:
                 print('Não foi possível abrir o arquivo que registra as reservas.')
                 sleep(1)
                 print('Deixa eu verificar se o arquivo esta íntegro')
-                
+                threading.Thread()
+
 
             else:
                 for valor in leitura:
