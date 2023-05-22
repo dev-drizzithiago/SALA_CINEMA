@@ -21,6 +21,9 @@ class SalaCinema:
         self.linhas_aparencia = '--' * 40
         self.inf_reserva = list()
 
+        def apert_enter():
+            input('Aperte ENTER para continuar!')
+
         def inicio_verif_arq_reserva():
             sleep(0.1)
             if not verificando_arq_registro_reserva():
@@ -153,6 +156,7 @@ class SalaCinema:
                     print(self.linhas_aparencia)
                     print('Não consegui encontrar nenhum registro no sistema. '
                           'Verifique se a sessão já terminou')
+                    apert_enter()
 
         # Manipulações
         def cadastro_cliente():
@@ -176,7 +180,7 @@ class SalaCinema:
             lendo_dados_no_arq_reserva()
             for valor in self.lista_info_registro:
                 print(valor)
-                
+
         # Corpo do programa
         def reservar_cadeira():
             self.add_registro_reserva = list()
