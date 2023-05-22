@@ -94,23 +94,25 @@ class SalaCinema:
         # Manipulações
         def cadastro_cliente():
             while True:  # loop_02
-                self.nome = input('Digite seu nome completo: ').title()
-                self.cpf = leiaInt('Digite seu CPF: ')
-                self.idade = leiaInt('Digite sua idade: ')
-                self.email = input('Digite seu e-mail: ')
+                self.nome = input('Digite seu nome completo:').title()
+                self.cpf = leiaInt('Digite seu CPF:')
+                self.idade = leiaInt('Digite sua idade:')
+                self.email = input('Digite seu e-mail:')
                 resp = gravando_dados_no_arq_txt()
                 if not resp:
                     break
 
-        def registro_de_reserva():
+        def registro_da_reserva():
             registrando_reserva = open(arq_cadastro_registro_local, 'a')
-            registrando_reserva.write(f'{self.add_registro_reserva} ; {data_atual} ; {hora_atual}\n')
+            registrando_reserva.write(f'{self.add_registro_reserva} ; {data_atual} - {hora_atual}')
             registrando_reserva.close()
 
         def consultar_registro_reserva():
             try:
                 for valor in self.lista_info_registro:
-                    print(valor)
+                    lista_valor = str(valor).split(';')
+                    for lista_valor in enumerate(lista_valor):
+                        print(lista_valor)
             except:
                 print(self.linhas_aparencia)
                 print('Não foi encontrado nenhum registro')
@@ -223,19 +225,20 @@ class SalaCinema:
                         self.add_registro_reserva.append(dados_cliente_confirmado['CPF:'])
                         self.add_registro_reserva.append(dados_cliente_confirmado['Idade:'])
                         self.add_registro_reserva.append(dados_cliente_confirmado['E-mail:'])
-                        self.add_registro_reserva.append(self.inf_reserva)
+                        self.add_registro_reserva.extend(self.inf_reserva)
+
                         if len(self.inf_reserva) == 1:
                             print(f'Poltrona {self.inf_reserva} foi reservada para', end='')
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end=' ')
-                            registro_de_reserva()
+                            registro_da_reserva()
                             break
 
                         else:
                             print(f"As seguintes poltrona's {self.inf_reserva} foram reservadas", end=' ')
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end=' ')
-                            registro_de_reserva()
+                            registro_da_reserva()
                             break
 
         # Iniciando o programa do zero
