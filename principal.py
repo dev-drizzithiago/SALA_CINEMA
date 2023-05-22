@@ -44,6 +44,19 @@ class SalaCinema:
                 sleep(1)
                 criando_arq_cliente.close()
 
+        def verificando_arq_registro_reserva():
+            try:
+                verificacao_arq_reserva = open(arq_cadastro_registro_local, 'r')
+                return True
+            except:
+                return False
+
+        def criando_arq_registro_reserva():
+            try:
+                criando_arq_registro_reserva_txt = open(arq_cadastro_registro_local, 'w')
+            except:
+                print('Não foi possível criar o arquivo para registrar suas reservas')
+
         # Atributos
         def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
             while True:  # loop_01
@@ -131,6 +144,7 @@ class SalaCinema:
                     break
 
         def registro_da_reserva():
+
             registrando_reserva = open(arq_cadastro_registro_local, 'a')
             registrando_reserva.write(f'{self.add_registro_reserva} ; {data_atual} - {hora_atual}')
             registrando_reserva.close()
