@@ -188,7 +188,7 @@ class SalaCinema:
         # Corpo do programa
         def reservar_cadeira():
             self.add_registro_reserva = list()
-            global valor_linha, valor_coluna, nome_cliente
+            global valor_linha, valor_coluna, nome_cliente, nome_reservado
             lendo_dados_no_arq_txt()
             dados_cliente_confirmado = dict()
             while True:  # loop_03
@@ -259,6 +259,7 @@ class SalaCinema:
 
                 try:
                     valor_linha = entrada[0]
+                    valor_coluna = int(entrada[1])
                     if valor_linha == 'A':
                         valor_linha = 0
                     elif valor_linha == 'B':
@@ -279,17 +280,13 @@ class SalaCinema:
                         valor_linha = 8
                     elif valor_linha == 'J':
                         valor_linha = 9
-                    valor_coluna = int(entrada[1])
-
-                    # Verificar se lugar esta disponível. Caso esteja livre, adiciona os dados no registro.
-                    if cinema[valor_linha][valor_coluna] != '--':
-                        self.inf_reserva.append(cinema[valor_linha][valor_coluna])
 
                     # Verificar se o lugar está ocupado. Caso esteja, pede para reservar outro.
                     if cinema[valor_linha][valor_coluna] == '--':
                         print('Não é possível reservar essa poltrona, reserve outra poltrona')
-                        sleep(1)
+                        sleep(0.5)
                     else:  # Se o lugar estiver livre. Marca o local com o simbolo.
+                        self.inf_reserva.extend(cinema[valor_linha][valor_coluna])
                         cinema[valor_linha][valor_coluna] = str('--')
                 except:
                     print('OS Dados que você informou estão incorretos!')
@@ -297,42 +294,19 @@ class SalaCinema:
                 # Vai jogar na variável os dados dos cliente e ser mostrado conforme a opção
                 for dados_cliente in self.lista_dados_cliente:
                     if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
-                        dados_cliente_confirmado['Nome:'] = dados_cliente[1]
-                        dados_cliente_confirmado['CPF:'] = dados_cliente[0]
-                        dados_cliente_confirmado['Idade:'] = dados_cliente[2]
-                        dados_cliente_confirmado['E-mail:'] = dados_cliente[3]
+                        cpf_reservado = dados_cliente[0]
+                        nome_reservado = dados_cliente[1]
 
                 if entrada == '999':
                     if len(self.inf_reserva) == 0:
                         print('Nenhuma poltrona foi reservada!')
                         break
                     else:
-                        self.add_registro_reserva.append(dados_cliente_confirmado['Nome:'])
-                        self.add_registro_reserva.append(dados_cliente_confirmado['CPF:'])
-                        self.add_registro_reserva.append(dados_cliente_confirmado['Idade:'])
-                        self.add_registro_reserva.append(dados_cliente_confirmado['E-mail:'])
-                        self.add_registro_reserva.extend(self.inf_reserva)
-
                         if len(self.inf_reserva) == 1:
-                            print(f'Poltrona {self.inf_reserva} foi reservada para', end='')
-                            for chave, valor in dados_cliente_confirmado.items():
-                                print(f'{chave}{valor}', end=' ')
-                            registro_da_reserva()
-                            sleep(1)
-
-                            for dados_cliente in self.lista_dados_cliente:
-                                if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
-                                    dados_cliente_confirmado['Nome:'] = dados_cliente[1]
-                                    dados_cliente_confirmado['CPF:'] = dados_cliente[0]
-                                    dados_cliente_confirmado['Idade:'] = dados_cliente[2]
-                                    dados_cliente_confirmado['E-mail:'] = dados_cliente[3]
-                            print(f'Poltrona {self.inf_reserva} foi reservada para:', end='')
-                            for chave, valor in dados_cliente_confirmado.items():
-                                print(f'{chave}{valor}', end='')
-                                sleep(1)
-                            break
+                            print(f'{nome_reservado} você reservou a poltrona ==> {self.inf_reserva}', end='')
                         else:
-                            print(f"As seguintes poltrona's {self.inf_reserva} foram reservadas", end=' ')
+                            print(f"{nome_reservado} você reservou as seguintes poltronas ==> {self.inf_reserva}",
+                                  end=' ')
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end=' ')
                             registro_da_reserva()
