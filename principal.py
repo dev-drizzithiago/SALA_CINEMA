@@ -305,10 +305,7 @@ class SalaCinema:
                         if len(self.inf_reserva) == 1:
                             print(f'{nome_reservado} você reservou a poltrona ==> {self.inf_reserva}', end='')
                         else:
-                            print(f"{nome_reservado} você reservou as seguintes poltronas ==> {self.inf_reserva}",
-                                  end=' ')
-                            for chave, valor in dados_cliente_confirmado.items():
-                                print(f'{chave}{valor}', end=' ')
+                            print(f"{nome_reservado} você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             registro_da_reserva()
                             break
 
