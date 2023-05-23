@@ -202,9 +202,10 @@ class SalaCinema:
                 # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
                 if len(self.lista_cpf_cliente) == 0:
                     print(self.linhas_aparencia)
-                    print('DESCULPE!!! '
-                          'Não encontramos nenhum registro no sistema. '
-                          'Verifiquei se o bando de dados esta tudo certinho!')
+                    print('- DESCULPE!!! '
+                          '- Não encontramos nenhum registro no sistema. \n'
+                          '- Verifiquei se o bando de dados esta tudo certinho! \n'
+                          '- Caso esteja, verifique se você tem cadastro!')
                     aperte_enter()
                     self.quebra_loop = False
 
@@ -313,7 +314,6 @@ class SalaCinema:
                         self.add_registro_reserva.extend(self.inf_reserva)
 
                         if len(self.inf_reserva) == 1:
-
                             print(f'Poltrona {self.inf_reserva} foi reservada para', end='')
                             for chave, valor in dados_cliente_confirmado.items():
                                 print(f'{chave}{valor}', end=' ')
