@@ -1,7 +1,7 @@
 import threading
 from time import sleep
 from datetime import datetime
-from threading import Thread
+# from threading import Thread
 
 data = datetime.now()
 data_atual = data.strftime('%d/%m/%y')
@@ -18,8 +18,9 @@ class SalaCinema:
     def __init__(self):
         self.quebra_loop = True
         self.info_reserva = None
-        self.linhas_aparencia = '--' * 40
+        self.linhas_aparencia = '--' * 60
         self.inf_reserva = list()
+        self.lista_reserva_cliente = list()
 
         def aperte_enter():
             input('Aperte ENTER para continuar!')
@@ -103,7 +104,7 @@ class SalaCinema:
             return cinema_sala
 
         # Métodos
-        def gravando_dados_no_arq_txt():  # Pega Todos os dados digitado e grava no arquivo txt
+        def gravando_dados_arq_cliente_txt():  # Pega Todos os dados digitado e grava no arquivo txt
             try:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
                 gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email} \n')
@@ -117,7 +118,7 @@ class SalaCinema:
             else:
                 print('Cadastro realizado com sucesso!!')
 
-        def lendo_dados_no_arq_txt():
+        def lendo_dados_arq_cliente_txt():
             # Variáveis locais
             self.dicionario_cliente = dict()
             self.lista_cpf_cliente = list()
@@ -169,7 +170,7 @@ class SalaCinema:
                 self.cpf = leiaInt('Digite seu CPF:')
                 self.idade = leiaInt('Digite sua idade:')
                 self.email = input('Digite seu e-mail:')
-                resp = gravando_dados_no_arq_txt()
+                resp = gravando_dados_arq_cliente_txt()
                 if not resp:
                     break
 
@@ -189,8 +190,8 @@ class SalaCinema:
         def reservar_cadeira():
             self.add_registro_reserva = list()
             global valor_linha, valor_coluna, nome_cliente, nome_reservado
-            lendo_dados_no_arq_txt()
-            dados_cliente_confirmado = dict()
+            lendo_dados_arq_cliente_txt()
+            # dados_cliente_confirmado = dict()
             while True:  # loop_03
 
                 # Inicia a verificação do cadastro.
@@ -286,7 +287,7 @@ class SalaCinema:
                         print('Não é possível reservar essa poltrona, reserve outra poltrona')
                         sleep(0.5)
                     else:  # Se o lugar estiver livre. Marca o local com o simbolo.
-                        self.inf_reserva.extend(cinema[valor_linha][valor_coluna])
+                        self.inf_reserva.append(cinema[valor_linha][valor_coluna])
                         cinema[valor_linha][valor_coluna] = str('--')
                 except:
                     print('OS Dados que você informou estão incorretos!')
@@ -296,16 +297,24 @@ class SalaCinema:
                     if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
                         cpf_reservado = dados_cliente[0]
                         nome_reservado = dados_cliente[1]
-
+                        idade_reservado = dados_cliente[2]
+                        email_reservado = dados_cliente[3]
                 if entrada == '999':
                     if len(self.inf_reserva) == 0:
                         print('Nenhuma poltrona foi reservada!')
                         break
                     else:
+                        self.lista_reserva_cliente = [nome_cliente]
+                        for reservas in self.inf_reserva:
+                            self.lista_reserva_cliente.append(reservas)
+                        print(self.lista_reserva_cliente)
+                        aperte_enter()
                         if len(self.inf_reserva) == 1:
+                            print(self.linhas_aparencia)
                             print(f'{nome_reservado} você reservou a poltrona ==> {self.inf_reserva}', end='')
                         else:
-                            print(f"{nome_reservado} você reservou as seguintes poltronas ==> {self.inf_reserva}")
+                            print(self.linhas_aparencia)
+                            print(f"{nome_reservado}, você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             registro_da_reserva()
                             break
 
