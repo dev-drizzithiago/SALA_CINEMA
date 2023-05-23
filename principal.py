@@ -21,7 +21,7 @@ class SalaCinema:
         self.linhas_aparencia = '--' * 40
         self.inf_reserva = list()
 
-        def apert_enter():
+        def aperte_enter():
             input('Aperte ENTER para continuar!')
 
         def inicio_verif_arq_reserva():
@@ -61,7 +61,8 @@ class SalaCinema:
 
         def verificando_arq_registro_reserva():
             try:
-                verificacao_arq_reserva = open(arq_cadastro_registro_local, 'r')
+                verificacao_arq_reserva_txt = open(arq_cadastro_registro_local, 'r')
+                verificacao_arq_reserva_txt.close()
                 return True
             except:
                 return False
@@ -71,6 +72,8 @@ class SalaCinema:
                 criando_arq_registro_reserva_txt = open(arq_cadastro_registro_local, 'w')
             except:
                 print('Não foi possível criar o arquivo para registrar suas reservas')
+            else:
+                criando_arq_registro_reserva_txt.close()
 
         # Atributos
         def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
@@ -138,6 +141,7 @@ class SalaCinema:
                     email_read = str(dados[3])
                     self.lista_cpf_cliente.append(cpf_read)
                     self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
+                leitura.close()
 
         def lendo_dados_no_arq_reserva():
             self.lista_info_registro = list()
@@ -156,7 +160,7 @@ class SalaCinema:
                     print(self.linhas_aparencia)
                     print('Não consegui encontrar nenhum registro no sistema. '
                           'Verifique se a sessão já terminou')
-                    apert_enter()
+                    aperte_enter()
 
         # Manipulações
         def cadastro_cliente():
@@ -201,7 +205,7 @@ class SalaCinema:
                     print('DESCULPE!!! '
                           'Não encontramos nenhum registro no sistema. '
                           'Verifiquei se o bando de dados esta tudo certinho!')
-                    apert_enter()
+                    aperte_enter()
                     self.quebra_loop = False
 
                 #  for_002
