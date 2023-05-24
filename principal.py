@@ -1,6 +1,7 @@
 import threading
 from time import sleep
 from datetime import datetime
+
 # from threading import Thread
 
 data = datetime.now()
@@ -107,7 +108,7 @@ class SalaCinema:
         def gravando_dados_arq_cliente_txt():  # Pega Todos os dados digitado e grava no arquivo txt
             try:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
-                gravando_dados.write(f'{self.cpf} ; {self.nome} ; {self.idade} ; {self.email} \n')
+                gravando_dados.write(f'{self.cpf};{self.nome};{self.idade};{self.email}\n')
                 resp = input('Deseja realizar outro cadastro [S/N]: ').upper()
                 if resp == 'S':
                     return True
@@ -319,7 +320,6 @@ class SalaCinema:
                             registro_da_reserva()
                             aperte_enter()
                             break
-
 
         # Iniciando o programa do zero
         cinema = sala_cinema()
