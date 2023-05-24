@@ -189,7 +189,7 @@ class SalaCinema:
         # Corpo do programa
         def reservar_cadeira():
             self.add_registro_reserva = list()
-            global valor_linha, valor_coluna, nome_cliente, nome_reservado
+            global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado
             lendo_dados_arq_cliente_txt()
             # dados_cliente_confirmado = dict()
             while True:  # loop_03
@@ -297,26 +297,26 @@ class SalaCinema:
                     if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
                         cpf_reservado = dados_cliente[0]
                         nome_reservado = dados_cliente[1]
-                        idade_reservado = dados_cliente[2]
-                        email_reservado = dados_cliente[3]
+                        # idade_reservado = dados_cliente[2]
+                        # email_reservado = dados_cliente[3]
                 if entrada == '999':
                     if len(self.inf_reserva) == 0:
                         print('Nenhuma poltrona foi reservada!')
                         break
                     else:
-                        self.lista_reserva_cliente = [nome_cliente]
+                        self.lista_reserva_cliente = [cpf_reservado, nome_reservado]
                         for reservas in self.inf_reserva:
                             self.lista_reserva_cliente.append(reservas)
-                        print(self.lista_reserva_cliente)
-                        aperte_enter()
                         if len(self.inf_reserva) == 1:
                             print(self.linhas_aparencia)
-                            print(f'{nome_reservado} você reservou a poltrona ==> {self.inf_reserva}', end='')
+                            print(f'{nome_reservado} \nVocê reservou a poltrona: '
+                                  f'{self.inf_reserva}\n')
                         else:
                             print(self.linhas_aparencia)
                             print(f"{nome_reservado}, você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             registro_da_reserva()
                             break
+                    aperte_enter()
 
         # Iniciando o programa do zero
         cinema = sala_cinema()
