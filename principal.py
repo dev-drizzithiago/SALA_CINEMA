@@ -55,9 +55,9 @@ class SalaCinema:
                 sleep(2)
                 print('Prontinho!!')
                 sleep(1)
-                print('Cadastro Criado!!')
+                print('Arquivo para cadastro foi criado!!')
                 sleep(1)
-                print('Agora pode prosseguir com sua reserva!')
+                print('Realize seu cadastro e boa reserva!!')
                 sleep(1)
                 criando_arq_cliente.close()
 
@@ -207,7 +207,7 @@ class SalaCinema:
                     print('- DESCULPE!!! '
                           '- Não encontramos nenhum registro no sistema. \n'
                           '- Verifiquei se o bando de dados esta tudo certinho! \n'
-                          '- Caso esteja, verifique se você tem cadastro!')
+                          '- Caso o bano de dados esteja funcionando normalmente, verifique se você possui cadastro!')
                     aperte_enter()
                     self.quebra_loop = False
 
@@ -257,7 +257,7 @@ class SalaCinema:
                     for coluna in linhas:
                         print(f'[{coluna}] ', end='   ')
                 print(f'\n{self.linhas_aparencia}')
-                entrada = str(input('Escolha uma Poltrona (999  para Confirmar): ').upper())
+                entrada = str(input('Escolha uma Poltrona (999 para Confirmar): ').upper())
 
                 try:
                     valor_linha = entrada[0]
@@ -289,7 +289,7 @@ class SalaCinema:
                         sleep(0.5)
                     else:  # Se o lugar estiver livre. Marca o local com o simbolo.
                         self.inf_reserva.append(cinema[valor_linha][valor_coluna])
-                        cinema[valor_linha][valor_coluna] = str('--')
+                        cinema[valor_linha][valor_coluna] = str('--').strip()
                 except:
                     print('OS Dados que você informou estão incorretos!')
 
