@@ -177,7 +177,7 @@ class SalaCinema:
         def registro_da_reserva():
 
             registrando_reserva = open(arq_cadastro_registro_local, 'a')
-            registrando_reserva.write(f'{self.add_registro_reserva} ; {data_atual} - {hora_atual}')
+            registrando_reserva.write(f'{self.lista_reserva_cliente} ; {data_atual} - {hora_atual}\n')
             registrando_reserva.close()
 
         # Verificar o arq que contem os registros de reservas
@@ -310,13 +310,14 @@ class SalaCinema:
                         if len(self.inf_reserva) == 1:
                             print(self.linhas_aparencia)
                             print(f'{nome_reservado} \nVocê reservou a poltrona: '
-                                  f'{self.inf_reserva}\n')
+                                  f'{self.inf_reserva} \n')
                         else:
                             print(self.linhas_aparencia)
-                            print(f"{nome_reservado}, você reservou as seguintes poltronas ==> {self.inf_reserva}")
+                            print(f"{nome_reservado}\n"
+                                  f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             registro_da_reserva()
                             break
-                    aperte_enter()
+                        aperte_enter()
 
         # Iniciando o programa do zero
         cinema = sala_cinema()
