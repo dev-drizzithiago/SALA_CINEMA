@@ -311,13 +311,15 @@ class SalaCinema:
                             print(self.linhas_aparencia)
                             print(f'{nome_reservado} \nVocê reservou a poltrona: '
                                   f'{self.inf_reserva} \n')
+                            aperte_enter()
                         else:
                             print(self.linhas_aparencia)
                             print(f"{nome_reservado}\n"
                                   f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             registro_da_reserva()
+                            aperte_enter()
                             break
-                        aperte_enter()
+
 
         # Iniciando o programa do zero
         cinema = sala_cinema()
