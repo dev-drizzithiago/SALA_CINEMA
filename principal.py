@@ -233,7 +233,7 @@ class SalaCinema:
                         print(f'Você digitou o CPF [{cpf_cliente_reserva}], mas não foi encontrado seu cadastro.')
                         sleep(1)
                         print('Faça um cadastro e volte para continuar reservando!')
-                        sleep(1)
+                        aperte_enter()
                         self.quebra_loop = False
 
                 if self.quebra_loop:  # Quebra o loop_03
