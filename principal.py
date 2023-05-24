@@ -129,7 +129,9 @@ class SalaCinema:
             try:
                 leitura = open(arq_cadastro_cliente_local, 'r')
             except:
-                print('Erro ao abrir o arquivo de cadastro / Arquivo pode estar corrompido ou Arquivo não existe')
+                print('Erro ao abrir o arquivo de cadastro\n'
+                      'Arquivo pode estar corrompido ou...\n'
+                      'Arquivo não existe')
                 sleep(1)
                 if not verificar_arq_cadastro_cliente():
                     criando_arq_cadastro_cliente()
@@ -152,7 +154,7 @@ class SalaCinema:
             except:
                 print(self.linhas_aparencia)
                 print('Não foi possível abrir o arquivo que registra as reservas.')
-                sleep(1)
+                sleep(0.5)
                 print('Deixa eu verificar se o arquivo esta íntegro')
                 threading.Thread(target=inicio_verif_arq_reserva()).start()
             else:
@@ -160,7 +162,7 @@ class SalaCinema:
                     self.lista_info_registro.append(valor)
                 if len(self.lista_info_registro) == 0:
                     print(self.linhas_aparencia)
-                    print('Não consegui encontrar nenhum registro no sistema. '
+                    print('Não encontrei nenhum registro no sistema. '
                           'Verifique se a sessão já terminou')
                     aperte_enter()
 
@@ -176,10 +178,15 @@ class SalaCinema:
                     break
 
         def registro_da_reserva():
-
-            registrando_reserva = open(arq_cadastro_registro_local, 'a')
-            registrando_reserva.write(f'{self.lista_reserva_cliente} ; {data_atual} - {hora_atual}\n')
-            registrando_reserva.close()
+            global registrando_reserva
+            try:
+                registrando_reserva = open(arq_cadastro_registro_local, 'a')
+            except:
+                print('Não consegui registrar sua reservar.')
+                print('Verifiquei o administrador do sistema!')
+            else:
+                registrando_reserva.write(f'{self.lista_reserva_cliente} ; {data_atual} - {hora_atual}\n')
+                registrando_reserva.close()
 
         # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
