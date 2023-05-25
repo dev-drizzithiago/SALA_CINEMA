@@ -191,7 +191,8 @@ class SalaCinema:
         def consultar_registro_reserva():
             lendo_dados_no_arq_reserva()
             for valor in self.lista_info_registro:
-                print(valor)
+                cpf = valor[1:12]
+            print(cpf)
 
         # Corpo do programa
         def reservar_cadeira():
