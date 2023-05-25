@@ -109,6 +109,8 @@ class SalaCinema:
             try:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
                 gravando_dados.write(f'{self.cpf};{self.nome};{self.idade};{self.email}\n')
+                print('Cadastro realizado com sucesso!!')
+                sleep(0.5)
                 resp = input('Deseja realizar outro cadastro [S/N]: ').upper()
                 if resp == 'S':
                     return True
@@ -116,8 +118,6 @@ class SalaCinema:
                 print('Não foi possível cadastrar seu usuário')
                 if not verificando_arq_registro_reserva():
                     criando_arq_registro_reserva()
-            else:
-                print('Cadastro realizado com sucesso!!')
 
         def lendo_dados_arq_cliente_txt():
             # Variáveis locais
@@ -178,7 +178,6 @@ class SalaCinema:
                     break
 
         def registro_da_reserva():
-            global registrando_reserva
             try:
                 registrando_reserva = open(arq_cadastro_registro_local, 'a')
             except:
