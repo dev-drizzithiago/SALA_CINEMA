@@ -191,8 +191,12 @@ class SalaCinema:
         def consultar_registro_reserva():
             lendo_dados_no_arq_reserva()
             for valor in self.lista_info_registro:
+                valor_1 = str(valor).split()
+                for valor_2 in valor_1:
+                    cadeiras = valor_2
+                    print(cadeiras)
                 cpf_consulta = str(valor[1:12]).replace(',', '')
-                print(f'teste {len(cpf_consulta)}')
+                nome_consulta = str(valor[12:len(valor)])
                 if len(cpf_consulta) == 10:
                     cpf_consulta = '0' + cpf_consulta
                 print(len(cpf_consulta))
