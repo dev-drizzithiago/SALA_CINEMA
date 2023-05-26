@@ -192,6 +192,9 @@ class SalaCinema:
             lendo_dados_no_arq_reserva()
             for valor in self.lista_info_registro:
                 cpf_consulta = str(valor[1:12]).replace(',', '')
+                print(f'teste {len(cpf_consulta)}')
+                if len(cpf_consulta) == 10:
+                    cpf_consulta = '0' + cpf_consulta
                 print(len(cpf_consulta))
                 print(cpf_consulta)
 
