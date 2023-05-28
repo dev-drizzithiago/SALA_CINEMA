@@ -209,7 +209,7 @@ class SalaCinema:
         # Corpo do programa
         def reservar_cadeira():
             self.add_registro_reserva = list()
-            global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado
+            global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
             lendo_dados_arq_cliente_txt()
             # dados_cliente_confirmado = dict()
             while True:  # loop_03
@@ -246,16 +246,20 @@ class SalaCinema:
                         aperte_enter()
                         self.quebra_loop = False
 
-                    # Da as boas vindas ao cliente
-                    for valor in self.lista_dados_cliente:
-                        if cpf_sistema_verifica == valor[0]:
-                            nome_cliente = valor[1]
-                    print(f'Bem vindo, {nome_cliente}!\n'
-                          f'Você já pode fazer sua reservar')
-                    self.quebra_loop = True
+                # Da as boas vindas ao cliente
+                for valor in self.lista_dados_cliente:
+                    if cpf_sistema_verifica == valor[0]:
+                        nome_cliente = valor[1]
+                print(self.linhas_aparencia)
+                print(f'Seu cadastro foi encontrado... \n'                          
+                      f'Bem vindo, {nome_cliente}!\n'
+                      f'Você já pode fazer sua reservar')
+                print(self.linhas_aparencia)
+
+                aperte_enter()
+                self.quebra_loop = True
 
                 if self.quebra_loop:  # Quebra o loop_03
-                    print('Seu cadastro foi encontrado')
                     break
                 else:
                     break
