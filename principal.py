@@ -233,8 +233,15 @@ class SalaCinema:
                 #  for_002
                 #  Pega todos os cpf registrados e verifica com o informado pelo cliente
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
-                    if cpf_sistema_verifica == cpf_cliente_reserva:
-
+                    if  cpf_sistema_verifica != cpf_cliente_reserva:
+                        # Caso não encontrar o cpf, ele colocar a variável como falso, quebrando o loop_03
+                        print(f'Você digitou o CPF [{cpf_cliente_reserva}], mas não foi encontrado seu cadastro.')
+                        sleep(1)
+                        print('Faça um cadastro e volte para continuar reservando!')
+                        aperte_enter()
+                        self.quebra_loop = False
+                        break
+                    else:
                         # Apos a confirmação. O CPF é colocado na variável para ser usado mais a frente
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
                         for valor in self.lista_dados_cliente:
@@ -242,24 +249,15 @@ class SalaCinema:
                                 nome_cliente = valor[1]
                         self.quebra_loop = True  # Se tudo esta certo, quebra-se o loop_03
                         break  # Quebra apenas o loop 'for_002' quando encontra o cpf do cliente
-                    else:
-                        # Caso não encontrar o cpf, ele colocar a variável como falso, quebrando o loop_03
-                        print(f'Você digitou o CPF [{cpf_cliente_reserva}], mas não foi encontrado seu cadastro.')
-                        sleep(1)
-                        print('Faça um cadastro e volte para continuar reservando!')
+
+                        # Da as boas vindas ao cliente
+                        print(self.linhas_aparencia)
+                        print(f'Seu cadastro foi encontrado... \n'                          
+                              f'Bem vindo, {nome_cliente}!\n'
+                              f'Você já pode fazer sua reservar')
+                        print(self.linhas_aparencia)
                         aperte_enter()
-                        self.quebra_loop = False
-
-                # Da as boas vindas ao cliente
-
-                print(self.linhas_aparencia)
-                print(f'Seu cadastro foi encontrado... \n'                          
-                      f'Bem vindo, {nome_cliente}!\n'
-                      f'Você já pode fazer sua reservar')
-                print(self.linhas_aparencia)
-
-                aperte_enter()
-                self.quebra_loop = True
+                        self.quebra_loop = True
 
                 if self.quebra_loop:  # Quebra o loop_03
                     break
