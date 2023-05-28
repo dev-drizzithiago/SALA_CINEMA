@@ -128,7 +128,7 @@ class SalaCinema:
                 print('Verifiquei o administrador do sistema!')
             else:
                 for valores in self.lista_reserva_cliente:
-                    cpf_reserva = str(valores[0])
+                    cpf_reserva = valores[0]
                     nome_reserva = str(valores[1])
                 registrando_reserva.write(f'{cpf_reserva};{nome_reserva};')
                 for cadeiras_registro in self.inf_reserva:
@@ -183,6 +183,10 @@ class SalaCinema:
                           'Verifique se a sessão já terminou')
                     aperte_enter()
 
+        def consultar_cadastro_cliente():
+            for consultar_cliente in self.lista_dados_cliente:
+                print(consultar_cliente)
+
         # Manipulações
         def cadastro_cliente():
             while True:  # loop_02
@@ -233,16 +237,7 @@ class SalaCinema:
                         # Apos a confirmação. O CPF é colocado na variável para ser usado mais a frente
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
                         self.quebra_loop = True  # Se tudo esta certo, quebra-se o loop_03
-
-                        # Da as boas vindas ao cliente
-                        for valor in self.lista_dados_cliente:
-                            if cpf_sistema_verifica == valor[0]:
-                                nome_cliente = valor[1]
-                        print(f'Bem vindo, {nome_cliente}!\n'
-                              f'Você já pode fazer sua reservar')
-
-                        # Quebra apenas o loop 'for_002' quando encontra o cpf do cliente
-                        break
+                        break  # Quebra apenas o loop 'for_002' quando encontra o cpf do cliente
                     else:
                         # Caso não encontrar o cpf, ele colocar a variável como falso, quebrando o loop_03
                         print(f'Você digitou o CPF [{cpf_cliente_reserva}], mas não foi encontrado seu cadastro.')
@@ -250,6 +245,14 @@ class SalaCinema:
                         print('Faça um cadastro e volte para continuar reservando!')
                         aperte_enter()
                         self.quebra_loop = False
+
+                    # Da as boas vindas ao cliente
+                    for valor in self.lista_dados_cliente:
+                        if cpf_sistema_verifica == valor[0]:
+                            nome_cliente = valor[1]
+                    print(f'Bem vindo, {nome_cliente}!\n'
+                          f'Você já pode fazer sua reservar')
+                    self.quebra_loop = True
 
                 if self.quebra_loop:  # Quebra o loop_03
                     print('Seu cadastro foi encontrado')
@@ -347,8 +350,10 @@ class SalaCinema:
         {data_atual_menu} - {hora_atual_menu}
         {self.linhas_aparencia}
         [1] Reservar uma Poltrona
+        
         [2] Cadastrar um usuário
-        [3] Veja suas reservas
+        [3] Consultar Cadastro de cliente
+        [4] Veja suas reservas
         [0] Sair
         {self.linhas_aparencia} ''')
             resp_menu_principal = leiaInt('        Escolha uma opção: ')
@@ -357,6 +362,8 @@ class SalaCinema:
             elif resp_menu_principal == 2:
                 cadastro_cliente()
             elif resp_menu_principal == 3:
+                consultar_cadastro_cliente()
+            elif resp_menu_principal == 4:
                 consultar_registro_reserva()
             elif resp_menu_principal == 0:
                 print('Fechando o programa')
