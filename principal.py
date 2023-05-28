@@ -237,13 +237,18 @@ class SalaCinema:
                     if cpf_cliente_reserva == cpf_sistema_verifica:
                         cpf_confirma = True
                         for valor_nome in self.lista_dados_cliente:
-                            nome_reserva = valor_nome[1]
-
-
+                            if cpf_sistema_verifica == valor_nome[0]:
+                                nome_cliente = valor_nome[1]
                 if cpf_confirma:
-
-                    print('Seu cadastro foi encontrado!')
+                    print('Encontramos seu cadastro!')
+                    sleep(1)
+                    print(f'Seja bem vindo {nome_cliente}')
+                    aperte_enter()
+                    print('Boa reservar!')
                 else:
+                    print(f'O cadastro com o CPF:{cpf_cliente_reserva}, não foi encontrado!!\n'
+                          f'Caso ainda não tenha feito um cadastro, sugerimos que crie um no menu principal')
+                    aperte_enter()
                     self.quebra_loop = False
 
                 if self.quebra_loop:  # Quebra o loop_03
