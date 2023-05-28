@@ -237,15 +237,16 @@ class SalaCinema:
                     if cpf_cliente_reserva == cpf_sistema_verifica:  # Se o CPF foi encontrado...
                         cpf_confirma = True  # Deixa a variável VERDADEIRA depois que encontra o CPF
                         for valor_nome in self.lista_dados_cliente:  # Vai colocar o nome do cliente, conforme o cpf
-                            if cpf_sistema_verifica == valor_nome[0]:  # Busco na lista de cadastro o nome referente ao cpf
+                            if cpf_sistema_verifica == valor_nome[0]: \
+                                    # Busco na lista de cadastro o nome referente ao cpf
                                 nome_cliente = valor_nome[1]  # após encontrar, joga na variável
-                if cpf_confirma:
-                    print('Encontramos seu cadastro!')
+                if cpf_confirma:  # Se a busca pelo CPF foi verdadeira...
+                    print('Encontramos seu cadastro!')  # Avisa que encontro o cadastro
                     sleep(1)
-                    print(f'Seja bem vindo {nome_cliente}')
+                    print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     aperte_enter()
                     print('Boa reservar!')
-                else:
+                else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
                     print(f'O cadastro com o CPF:{cpf_cliente_reserva}, não foi encontrado!!\n'
                           f'Caso ainda não tenha feito um cadastro, sugerimos que crie um no menu principal')
                     aperte_enter()
@@ -345,12 +346,11 @@ class SalaCinema:
         Hora certa: 
         {data_atual_menu} - {hora_atual_menu}
         {self.linhas_aparencia}
-        [1] Reservar uma Poltrona
-        
-        [2] Cadastrar um usuário
-        [3] Consultar Cadastro de cliente
-        [4] Veja suas reservas
-        [0] Sair
+        [1] => Reservar uma Poltrona        
+        [2] ==> Cadastrar um usuário
+        [3] ===> Consultar Cadastro de cliente
+        [4] ====> Veja suas reservas
+        [0] =====> Sair
         {self.linhas_aparencia} ''')
             resp_menu_principal = leiaInt('        Escolha uma opção: ')
             if resp_menu_principal == 1:
