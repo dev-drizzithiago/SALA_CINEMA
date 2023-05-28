@@ -319,8 +319,6 @@ class SalaCinema:
                         break
                     else:
                         self.lista_reserva_cliente = [cpf_reservado, nome_reservado]
-                        for reservas in self.inf_reserva:
-                            self.lista_reserva_cliente.append(reservas)
                         if len(self.inf_reserva) == 1:
                             print(self.linhas_aparencia)
                             print(f'{nome_reservado} \nVocê reservou a poltrona: '
