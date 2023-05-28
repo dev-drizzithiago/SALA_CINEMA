@@ -5,6 +5,7 @@ from datetime import datetime
 # from threading import Thread
 
 data = datetime.now()
+ano_atual = data.strftime('%y')
 data_atual = data.strftime('%d/%m/%y')
 hora_atual = data.strftime('%H:%M:%S')
 
@@ -24,6 +25,9 @@ class SalaCinema:
         self.lista_reserva_cliente = list()
 
         def aperte_enter():
+            """
+            :return: Retorna uma entrada de teclado, para dar uma pausa até o usuário decidir continuar
+            """
             input('Aperte ENTER para continuar!')
 
         def inicio_verif_arq_reserva():
@@ -105,8 +109,13 @@ class SalaCinema:
             return cinema_sala
 
         # Métodos
-        def gravando_dados_arq_cliente_txt(cpf, nome, idade,
-                                           email):  # Pega Todos os dados digitado e grava no arquivo txt
+        def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
+            """
+            :param cpf:
+            :param nome:
+            :param idade:
+            :param email:
+            """
             try:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
                 gravando_dados.write(f'{cpf};{nome};{idade};{email}\n')
@@ -198,25 +207,20 @@ class SalaCinema:
         def cadastro_cliente():
             while True:  # loop_02
                 nome_cadastro = input('Digite seu nome completo: ').title()
-                validacao_cpf = str('Digite seu CPF: ')
-                ano_nasc_cadastro = leiaInt('Digite o ano do seu nascimento(YYYY): ')
-                idade_cadastro = int(data_atual - ano_nasc_cadastro)
+                cpf_cadastro = input('Digite seu CPF: ')
+                idade_cadastro = leiaInt('Digite sua idade: ')
                 email_cadastro = input('Digite seu e-mail: ')
-                if len(validacao_cpf) == 10:
-                    validacao_cpf = '0' + validacao_cpf
-                cpf_cadastro = int(validacao_cpf)
+
+                # Operações
+                # idade_cadastro = int(ano_atual - ano_nasc_cadastro)
 
                 print(f'Os dados que serão cadastrados são: \n'
                       f'Nome: {nome_cadastro}\n'
                       f'CPF: {cpf_cadastro}\n'
                       f'Idade: {idade_cadastro}\n'
                       f'Email: {email_cadastro}\n')
-                resp_cadastro = input('Deseja continuar? [S/N]: ')
-                if resp_cadastro == 'S':
-                    gravando_dados_arq_cliente_txt(cpf_cadastro, nome_cadastro, idade_cadastro, email_cadastro)
-                else:
-                    print('Refaça o cadastro!')
-                resp = input('Continuar cadastrando? [S/N]: ')
+                gravando_dados_arq_cliente_txt(cpf_cadastro, nome_cadastro, idade_cadastro, email_cadastro)
+                resp = input('Continuar cadastrando? [S/N]: ').upper()
                 if not resp:
                     break
 
