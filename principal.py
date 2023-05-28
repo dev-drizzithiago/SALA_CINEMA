@@ -119,6 +119,16 @@ class SalaCinema:
                 if not verificando_arq_registro_reserva():
                     criando_arq_registro_reserva()
 
+        def gravando_reserva_cliente_txt():
+            try:
+                registrando_reserva = open(arq_cadastro_registro_local, 'a')
+            except:
+                print('Não consegui registrar sua reservar.')
+                print('Verifiquei o administrador do sistema!')
+            else:
+                registrando_reserva.write(f'{self.lista_reserva_cliente} ; {data_atual} - {hora_atual}\n')
+                registrando_reserva.close()
+
         def lendo_dados_arq_cliente_txt():
             # Variáveis locais
             self.dicionario_cliente = dict()
@@ -177,16 +187,6 @@ class SalaCinema:
                 if not resp:
                     break
 
-        def registro_da_reserva():
-            try:
-                registrando_reserva = open(arq_cadastro_registro_local, 'a')
-            except:
-                print('Não consegui registrar sua reservar.')
-                print('Verifiquei o administrador do sistema!')
-            else:
-                registrando_reserva.write(f'{self.lista_reserva_cliente} ; {data_atual} - {hora_atual}\n')
-                registrando_reserva.close()
-
         # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
             lendo_dados_no_arq_reserva()
@@ -194,7 +194,6 @@ class SalaCinema:
             for lista_reserva in valor_dados:
                 lista_reserva = str(lista_reserva).replace(';', '').replace('-', '').split()
                 print(lista_reserva)
-
 
         # Corpo do programa
         def reservar_cadeira():
@@ -326,7 +325,7 @@ class SalaCinema:
                             print(self.linhas_aparencia)
                             print(f"{nome_reservado}\n"
                                   f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
-                            registro_da_reserva()
+                            gravando_reserva_cliente_txt()
                             aperte_enter()
                             break
 
