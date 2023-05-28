@@ -120,6 +120,7 @@ class SalaCinema:
                     criando_arq_registro_reserva()
 
         def gravando_reserva_cliente_txt():
+            global cpf_reserva, nome_reserva
             try:
                 registrando_reserva = open(arq_cadastro_registro_local, 'a')
             except:
@@ -129,7 +130,10 @@ class SalaCinema:
                 for valores in self.lista_reserva_cliente:
                     cpf_reserva = valores[0]
                     nome_reserva = valores[1]
-                registrando_reserva.write(f'{self.lista_reserva_cliente} ; {data_atual} - {hora_atual}\n')
+                registrando_reserva.write(f'{cpf_reserva};{nome_reserva};')
+                for cadeiras_registro in self.inf_reserva:
+                    registrando_reserva.write(f'{cadeiras_registro};')
+                registrando_reserva.write(f'{data_atual}-{hora_atual}')
                 registrando_reserva.close()
 
         def lendo_dados_arq_cliente_txt():
@@ -309,8 +313,6 @@ class SalaCinema:
                     if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
                         cpf_reservado = dados_cliente[0]
                         nome_reservado = dados_cliente[1]
-                        # idade_reservado = dados_cliente[2]
-                        # email_reservado = dados_cliente[3]
                 if entrada == '999':
                     if len(self.inf_reserva) == 0:
                         print('Nenhuma poltrona foi reservada!')
@@ -336,7 +338,6 @@ class SalaCinema:
         cinema = sala_cinema()
 
         # Menu principal
-
         while True:
             data_menu = datetime.now()
             data_atual_menu = data_menu.strftime('%D/%M/%Y')
