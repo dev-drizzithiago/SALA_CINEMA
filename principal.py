@@ -105,10 +105,10 @@ class SalaCinema:
             return cinema_sala
 
         # Métodos
-        def gravando_dados_arq_cliente_txt():  # Pega Todos os dados digitado e grava no arquivo txt
+        def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):  # Pega Todos os dados digitado e grava no arquivo txt
             try:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
-                gravando_dados.write(f'{self.cpf};{self.nome};{self.idade};{self.email}\n')
+                gravando_dados.write(f'{cpf};{nome};{idade};{email}\n')
                 print('Cadastro realizado com sucesso!!')
                 sleep(0.5)
                 resp = input('Deseja realizar outro cadastro [S/N]: ').upper()
@@ -184,14 +184,26 @@ class SalaCinema:
                     aperte_enter()
 
         def consultar_cadastro_cliente():
-            for consultar_cliente in self.lista_dados_cliente:
-                print(consultar_cliente)
+            dados_cliente_dict = dict()
+            lendo_dados_arq_cliente_txt()
+            for valor_consulta in self.lista_dados_cliente:
+                dados_cliente_dict = {'Nome:': valor_consulta[1],
+                                      'CPF:': valor_consulta[0],
+                                      'Idade:': valor_consulta[2],
+                                      'E-mail:': valor_consulta[3]}
+                for chave, valor in dados_cliente_dict.items():
+                    print(f'{chave} {valor}')
+                sleep(1)
+            aperte_enter()
 
         # Manipulações
         def cadastro_cliente():
             while True:  # loop_02
                 self.nome = input('Digite seu nome completo:').title()
-                self.cpf = leiaInt('Digite seu CPF:')
+                validacao_cpf = str('Digite seu CPF:')
+                if len(validacao_cpf) == 10:
+                    validacao_cpf = '0' + validacao_cpf
+                self.cpf = int(validacao_cpf)
                 self.idade = leiaInt('Digite sua idade:')
                 self.email = input('Digite seu e-mail:')
                 resp = gravando_dados_arq_cliente_txt()
