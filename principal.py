@@ -126,6 +126,9 @@ class SalaCinema:
                 print('Não consegui registrar sua reservar.')
                 print('Verifiquei o administrador do sistema!')
             else:
+                for valores in self.lista_reserva_cliente:
+                    cpf_reserva = valores[0]
+                    nome_reserva = valores[1]
                 registrando_reserva.write(f'{self.lista_reserva_cliente} ; {data_atual} - {hora_atual}\n')
                 registrando_reserva.close()
 
