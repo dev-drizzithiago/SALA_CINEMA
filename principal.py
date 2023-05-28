@@ -200,7 +200,7 @@ class SalaCinema:
                                       'E-mail:': valor_consulta[3]}
                 for chave, valor in dados_cliente_dict.items():
                     print(f'{chave} {valor}')
-                sleep(1)
+                sleep(0.5)
             aperte_enter()
 
         # Manipulações
