@@ -128,12 +128,12 @@ class SalaCinema:
                 print('Verifiquei o administrador do sistema!')
             else:
                 for valores in self.lista_reserva_cliente:
-                    cpf_reserva = valores[0]
-                    nome_reserva = valores[1]
+                    cpf_reserva = str(valores[0])
+                    nome_reserva = str(valores[1])
                 registrando_reserva.write(f'{cpf_reserva};{nome_reserva};')
                 for cadeiras_registro in self.inf_reserva:
                     registrando_reserva.write(f'{cadeiras_registro};')
-                registrando_reserva.write(f'{data_atual}-{hora_atual}')
+                registrando_reserva.write(f'{data_atual}-{hora_atual}\n')
                 registrando_reserva.close()
 
         def lendo_dados_arq_cliente_txt():
@@ -324,6 +324,7 @@ class SalaCinema:
                             print(f'{nome_reservado} \nVocê reservou a poltrona: '
                                   f'{self.inf_reserva} \n')
                             aperte_enter()
+                            break
                         else:
                             print(self.linhas_aparencia)
                             print(f"{nome_reservado}\n"
