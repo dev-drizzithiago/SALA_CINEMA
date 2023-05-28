@@ -210,6 +210,7 @@ class SalaCinema:
         def reservar_cadeira():
             self.add_registro_reserva = list()
             global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
+            cpf_confirma = False
             lendo_dados_arq_cliente_txt()
             # dados_cliente_confirmado = dict()
             while True:  # loop_03
@@ -233,27 +234,17 @@ class SalaCinema:
                 #  for_002
                 #  Pega todos os cpf registrados e verifica com o informado pelo cliente
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
-                    if cpf_sistema_verifica == cpf_cliente_reserva:
-                        # Apos a confirmação. O CPF é colocado na variável para ser usado mais a frente
-                        self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
-                        for valor in self.lista_dados_cliente:
-                            if self.confirmado_cpf_no_cadastro == valor[0]:
-                                nome_cliente = valor[1]
-                        self.quebra_loop = True  # Se tudo esta certo, quebra-se o loop_03
-                        break  # Quebra apenas o loop 'for_002' quando encontra o cpf do cliente
+                    if cpf_cliente_reserva == cpf_sistema_verifica:
+                        cpf_confirma = True
+                        for valor_nome in self.lista_dados_cliente:
+                            nome_reserva = valor_nome[1]
 
-                        # Da as boas vindas ao cliente
-                        print(self.linhas_aparencia)
-                        print(f'Seu cadastro foi encontrado... \n'                          
-                              f'Bem vindo, {nome_cliente}!\n'
-                              f'Você já pode fazer sua reservar')
-                        print(self.linhas_aparencia)
-                        aperte_enter()
-                        self.quebra_loop = False
-                    elif cpf_sistema_verifica != cpf_cliente_reserva:
-                        print('teste')
-                        self.quebra_loop = False
-                        break
+
+                if cpf_confirma:
+
+                    print('Seu cadastro foi encontrado!')
+                else:
+                    self.quebra_loop = False
 
                 if self.quebra_loop:  # Quebra o loop_03
                     break
