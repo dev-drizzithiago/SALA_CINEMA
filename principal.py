@@ -234,8 +234,12 @@ class SalaCinema:
                 #  Pega todos os cpf registrados e verifica com o informado pelo cliente
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
                     if cpf_sistema_verifica == cpf_cliente_reserva:
+
                         # Apos a confirmação. O CPF é colocado na variável para ser usado mais a frente
                         self.confirmado_cpf_no_cadastro = cpf_sistema_verifica
+                        for valor in self.lista_dados_cliente:
+                            if self.confirmado_cpf_no_cadastro == valor[0]:
+                                nome_cliente = valor[1]
                         self.quebra_loop = True  # Se tudo esta certo, quebra-se o loop_03
                         break  # Quebra apenas o loop 'for_002' quando encontra o cpf do cliente
                     else:
@@ -247,9 +251,7 @@ class SalaCinema:
                         self.quebra_loop = False
 
                 # Da as boas vindas ao cliente
-                for valor in self.lista_dados_cliente:
-                    if cpf_sistema_verifica == valor[0]:
-                        nome_cliente = valor[1]
+
                 print(self.linhas_aparencia)
                 print(f'Seu cadastro foi encontrado... \n'                          
                       f'Bem vindo, {nome_cliente}!\n'
