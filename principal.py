@@ -234,11 +234,11 @@ class SalaCinema:
                 #  for_002
                 #  Pega todos os cpf registrados e verifica com o informado pelo cliente
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
-                    if cpf_cliente_reserva == cpf_sistema_verifica:
-                        cpf_confirma = True
-                        for valor_nome in self.lista_dados_cliente:
-                            if cpf_sistema_verifica == valor_nome[0]:
-                                nome_cliente = valor_nome[1]
+                    if cpf_cliente_reserva == cpf_sistema_verifica:  # Se o CPF foi encontrado...
+                        cpf_confirma = True  # Deixa a variável VERDADEIRA depois que encontra o CPF
+                        for valor_nome in self.lista_dados_cliente:  # Vai colocar o nome do cliente, conforme o cpf
+                            if cpf_sistema_verifica == valor_nome[0]:  # Busco na lista de cadastro o nome referente ao cpf
+                                nome_cliente = valor_nome[1]  # após encontrar, joga na variável
                 if cpf_confirma:
                     print('Encontramos seu cadastro!')
                     sleep(1)
