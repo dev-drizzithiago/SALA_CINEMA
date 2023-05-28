@@ -120,20 +120,18 @@ class SalaCinema:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
                 gravando_dados.write(f'{cpf};{nome};{idade};{email}\n')
                 print('Cadastro realizado com sucesso!!')
-                aperte_enter()
+                sleep(1)
             except:
                 print('Não foi possível cadastrar seu usuário')
                 if not verificando_arq_registro_reserva():
                     criando_arq_registro_reserva()
+            else:
+                gravando_dados.close()
 
         def gravando_reserva_cliente_txt():
             global cpf_reserva, nome_reserva
             try:
                 registrando_reserva = open(arq_cadastro_registro_local, 'a')
-            except:
-                print('Não consegui registrar sua reservar.')
-                print('Verifiquei o administrador do sistema!')
-            else:
                 for valores in self.lista_reserva_cliente:
                     cpf_reserva = valores[0]
                     nome_reserva = str(valores[1])
@@ -141,6 +139,11 @@ class SalaCinema:
                 for cadeiras_registro in self.inf_reserva:
                     registrando_reserva.write(f'{cadeiras_registro};')
                 registrando_reserva.write(f'{data_atual}-{hora_atual}\n')
+                registrando_reserva.close()
+            except:
+                print('Não consegui registrar sua reservar.')
+                print('Verifiquei o administrador do sistema!')
+            else:
                 registrando_reserva.close()
 
         def lendo_dados_arq_cliente_txt():
@@ -219,9 +222,10 @@ class SalaCinema:
                       f'CPF: {cpf_cadastro}\n'
                       f'Idade: {idade_cadastro}\n'
                       f'Email: {email_cadastro}\n')
+                aperte_enter()
                 gravando_dados_arq_cliente_txt(cpf_cadastro, nome_cadastro, idade_cadastro, email_cadastro)
                 resp = input('Continuar cadastrando? [S/N]: ').upper()
-                if not resp:
+                if resp == 'N':
                     break
 
         # Verificar o arq que contem os registros de reservas
@@ -261,6 +265,7 @@ class SalaCinema:
                 #  Pega todos os cpf registrados e verifica com o informado pelo cliente
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
                     if cpf_cliente_reserva == cpf_sistema_verifica:  # Se o CPF foi encontrado...
+                        self.confirmado_cpf_no_cadastro = cpf_cliente_reserva
                         cpf_confirma = True  # Deixa a variável VERDADEIRA depois que encontra o CPF
                         for valor_nome in self.lista_dados_cliente:  # Vai colocar o nome do cliente, conforme o cpf
                             if cpf_sistema_verifica == valor_nome[0]: \
