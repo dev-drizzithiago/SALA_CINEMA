@@ -131,6 +131,11 @@ class SalaCinema:
                 gravando_dados.close()
 
         def gravando_reserva_cliente_txt(nome_reserva, cpf_reserva):
+            """
+            :param valor_1: Recebe o valor iterado da lista de cadeiras
+            :param cont: Contador, resposabel em buscar as informações iteradas na lista. Ex cont = 1 - lista[cont] = lista[1]
+            :return:
+            """
             try:
                 gravando_reserva = open(arq_cadastro_registro_local, 'a')
                 gravando_reserva.write(f'{cpf_reserva};{nome_reserva};')
@@ -143,7 +148,7 @@ class SalaCinema:
                         break
                 gravando_reserva.write(f'\n')
                 gravando_reserva.close()
-            except TypeError:
+            except:
                 print('Não foi possível abrir o arquivo de texto para salvar sua reserva!')
 
         def lendo_dados_arq_cliente_txt():
@@ -191,7 +196,6 @@ class SalaCinema:
                     aperte_enter()
 
         def consultar_cadastro_cliente():
-            dados_cliente_dict = dict()
             lendo_dados_arq_cliente_txt()
             for valor_consulta in self.lista_dados_cliente:
                 dados_cliente_dict = {'Nome:': valor_consulta[1],
