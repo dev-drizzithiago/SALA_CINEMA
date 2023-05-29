@@ -200,14 +200,14 @@ class SalaCinema:
         def consultar_cadastro_cliente():
             lendo_dados_arq_cliente_txt()
             for valor_consulta in self.lista_dados_cliente:
-                dados_cliente_dict = {'Nome:': valor_consulta[1],
-                                      'CPF:': valor_consulta[0],
-                                      'Idade:': valor_consulta[2],
-                                      'E-mail:': valor_consulta[3]}
-                for chave, valor in dados_cliente_dict.items():
+                self.dados_cliente_dict = {'Nome:': valor_consulta[1],
+                                           'CPF:': valor_consulta[0],
+                                           'Idade:': valor_consulta[2],
+                                           'E-mail:': valor_consulta[3]}
+                for chave, valor in self.dados_cliente_dict.items():
                     print(f'{chave} {valor}')
             aperte_enter()
-            dados_cliente_dict = None
+
         # Manipulações
         def cadastro_cliente():
             while True:  # loop_02
@@ -397,6 +397,7 @@ class SalaCinema:
                 cadastro_cliente()
             elif resp_menu_principal == 3:
                 consultar_cadastro_cliente()
+                self.dados_cliente_dict.clear()
             elif resp_menu_principal == 4:
                 consultar_registro_reserva()
             elif resp_menu_principal == 0:
