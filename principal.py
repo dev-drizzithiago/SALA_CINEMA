@@ -23,6 +23,8 @@ class SalaCinema:
         self.linhas_aparencia = '--' * 60
         self.inf_reserva = list()
         self.lista_reserva_cliente = list()
+        self.lista_cpf_cliente = list()
+        self.lista_dados_cliente = list()
 
         def aperte_enter():
             """
@@ -120,34 +122,39 @@ class SalaCinema:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
                 gravando_dados.write(f'{cpf};{nome};{idade};{email}\n')
                 print('Cadastro realizado com sucesso!!')
-                aperte_enter()
+                sleep(1)
             except:
                 print('Não foi possível cadastrar seu usuário')
                 if not verificando_arq_registro_reserva():
                     criando_arq_registro_reserva()
-
-        def gravando_reserva_cliente_txt():
-            global cpf_reserva, nome_reserva
-            try:
-                registrando_reserva = open(arq_cadastro_registro_local, 'a')
-            except:
-                print('Não consegui registrar sua reservar.')
-                print('Verifiquei o administrador do sistema!')
             else:
-                for valores in self.lista_reserva_cliente:
-                    cpf_reserva = valores[0]
-                    nome_reserva = str(valores[1])
-                registrando_reserva.write(f'{cpf_reserva};{nome_reserva};')
-                for cadeiras_registro in self.inf_reserva:
-                    registrando_reserva.write(f'{cadeiras_registro};')
-                registrando_reserva.write(f'{data_atual}-{hora_atual}\n')
-                registrando_reserva.close()
+                gravando_dados.close()
+
+        def gravando_reserva_cliente_txt(nome_reserva, cpf_reserva):
+            """
+            :param valor_1: Recebe o valor iterado da lista de cadeiras
+            :param cont: Contador, resposabel em buscar as informações iteradas na lista. Ex cont = 1 - lista[cont] = lista[1]
+            :param gravando_reserva: Salva os dados em um arquivo txt
+            """
+            try:
+                gravando_reserva = open(arq_cadastro_registro_local, 'a')
+                gravando_reserva.write(f'{cpf_reserva};{nome_reserva};')
+                cont = 0
+                while True:
+                    valor_1 = self.inf_reserva[cont]
+                    cont += 1
+                    gravando_reserva.write(f'{valor_1};')
+                    if cont == len(self.inf_reserva):
+                        break
+                gravando_reserva.write(f'{data_atual};{hora_atual}\n')
+                print('Seu reserva foi concluida!')
+                sleep(2)
+                gravando_reserva.close()
+            except:
+                print('Não foi possível abrir o arquivo de texto para salvar sua reserva!')
 
         def lendo_dados_arq_cliente_txt():
             # Variáveis locais
-            self.dicionario_cliente = dict()
-            self.lista_cpf_cliente = list()
-            self.lista_dados_cliente = list()
 
             # Função para leitura
             try:
@@ -191,16 +198,14 @@ class SalaCinema:
                     aperte_enter()
 
         def consultar_cadastro_cliente():
-            dados_cliente_dict = dict()
             lendo_dados_arq_cliente_txt()
             for valor_consulta in self.lista_dados_cliente:
-                dados_cliente_dict = {'Nome:': valor_consulta[1],
-                                      'CPF:': valor_consulta[0],
-                                      'Idade:': valor_consulta[2],
-                                      'E-mail:': valor_consulta[3]}
-                for chave, valor in dados_cliente_dict.items():
+                self.dados_cliente_dict = {'Nome:': valor_consulta[1],
+                                           'CPF:': valor_consulta[0],
+                                           'Idade:': valor_consulta[2],
+                                           'E-mail:': valor_consulta[3]}
+                for chave, valor in self.dados_cliente_dict.items():
                     print(f'{chave} {valor}')
-                sleep(0.5)
             aperte_enter()
 
         # Manipulações
@@ -211,17 +216,15 @@ class SalaCinema:
                 idade_cadastro = leiaInt('Digite sua idade: ')
                 email_cadastro = input('Digite seu e-mail: ')
 
-                # Operações
-                # idade_cadastro = int(ano_atual - ano_nasc_cadastro)
-
                 print(f'Os dados que serão cadastrados são: \n'
                       f'Nome: {nome_cadastro}\n'
                       f'CPF: {cpf_cadastro}\n'
                       f'Idade: {idade_cadastro}\n'
                       f'Email: {email_cadastro}\n')
+                aperte_enter()
                 gravando_dados_arq_cliente_txt(cpf_cadastro, nome_cadastro, idade_cadastro, email_cadastro)
                 resp = input('Continuar cadastrando? [S/N]: ').upper()
-                if not resp:
+                if resp == 'N':
                     break
 
         # Verificar o arq que contem os registros de reservas
@@ -244,7 +247,7 @@ class SalaCinema:
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
                 print(self.linhas_aparencia)
-                print('Preciso do seu CPF para reservar uma poltrona.')
+                print('Preciso que entre com o seu CPF para que possemos reservar uma poltrona.')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
 
                 # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
@@ -261,20 +264,28 @@ class SalaCinema:
                 #  Pega todos os cpf registrados e verifica com o informado pelo cliente
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
                     if cpf_cliente_reserva == cpf_sistema_verifica:  # Se o CPF foi encontrado...
+                        self.confirmado_cpf_no_cadastro = cpf_cliente_reserva
                         cpf_confirma = True  # Deixa a variável VERDADEIRA depois que encontra o CPF
                         for valor_nome in self.lista_dados_cliente:  # Vai colocar o nome do cliente, conforme o cpf
                             if cpf_sistema_verifica == valor_nome[0]: \
                                     # Busco na lista de cadastro o nome referente ao cpf
                                 nome_cliente = valor_nome[1]  # após encontrar, joga na variável
                 if cpf_confirma:  # Se a busca pelo CPF foi verdadeira...
-                    print('Encontramos seu cadastro!')  # Avisa que encontro o cadastro
+                    self.linhas_aparencia
+                    print('Verificando o banco de dados, aguarde...!')
                     sleep(1)
+                    print('Encontramos seu cadastro!')  # Avisa que encontro o cadastro
+                    sleep(0.5)
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
-                    aperte_enter()
+                    self.linhas_aparencia
                     print('Boa reservar!')
+                    aperte_enter()
                 else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
+                    sleep(0.5)
+                    self.linhas_aparencia
                     print(f'O cadastro com o CPF:{cpf_cliente_reserva}, não foi encontrado!!\n'
                           f'Caso ainda não tenha feito um cadastro, sugerimos que crie um no menu principal')
+                    self.linhas_aparencia
                     aperte_enter()
                     self.quebra_loop = False
 
@@ -344,18 +355,19 @@ class SalaCinema:
                         print('Nenhuma poltrona foi reservada!')
                         break
                     else:
-                        self.lista_reserva_cliente = [cpf_reservado, nome_reservado]
                         if len(self.inf_reserva) == 1:
                             print(self.linhas_aparencia)
-                            print(f'{nome_reservado} \nVocê reservou a poltrona: '
+                            print(f'Sr(a). {nome_reservado} \n'
+                                  f'Você reservou a poltrona: '
                                   f'{self.inf_reserva} \n')
+                            gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
                             break
                         else:
                             print(self.linhas_aparencia)
-                            print(f"{nome_reservado}\n"
+                            print(f"Sr(a). {nome_reservado}\n"
                                   f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
-                            gravando_reserva_cliente_txt()
+                            gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
                             break
 
@@ -385,6 +397,7 @@ class SalaCinema:
                 cadastro_cliente()
             elif resp_menu_principal == 3:
                 consultar_cadastro_cliente()
+                self.dados_cliente_dict.clear()
             elif resp_menu_principal == 4:
                 consultar_registro_reserva()
             elif resp_menu_principal == 0:
