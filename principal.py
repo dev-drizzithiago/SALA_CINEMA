@@ -129,23 +129,26 @@ class SalaCinema:
                 gravando_dados.close()
 
         def gravando_reserva_cliente_txt(nome_reserva, cpf_reserva):
+            gravando_reserva = o
             try:
-                gravando_reserva = open(gravando_dados_arq_cliente_txt(), 'a')
+                gravando_reserva = open(arq_cadastro_registro_local, 'a')
+                gravando_reserva.wrire(f'{cpf_reserva};{nome_reserva};')
                 cont = 0
                 print(f'{len(self.inf_reserva)}')
                 while True:
                     valor_1 = self.inf_reserva[cont]
                     cont += 1
+                    gravando_reserva.wrire(f'{valor_1};')
                     print(f'{valor_1}', end=' - ')
                     if cont == len(self.inf_reserva):
                         break
+                gravando_reserva.wrire(f';\n')
+                gravando_reserva.close()
             except:
                 print('Não foi possível abrir o arquivo de texto para salvar sua reserva!')
 
-
         def lendo_dados_arq_cliente_txt():
             # Variáveis locais
-            self.dicionario_cliente = dict()
             self.lista_cpf_cliente = list()
             self.lista_dados_cliente = list()
 
