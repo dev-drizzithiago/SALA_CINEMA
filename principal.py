@@ -339,13 +339,15 @@ class SalaCinema:
                         self.lista_reserva_cliente = [cpf_reservado, nome_reservado]
                         if len(self.inf_reserva) == 1:
                             print(self.linhas_aparencia)
-                            print(f'{nome_reservado} \nVocê reservou a poltrona: '
+                            print(f'Sr(a). {nome_reservado} \n'
+                                  f'Você reservou a poltrona: '
                                   f'{self.inf_reserva} \n')
+                            gravando_reserva_cliente_txt()
                             aperte_enter()
                             break
                         else:
                             print(self.linhas_aparencia)
-                            print(f"{nome_reservado}\n"
+                            print(f"Sr(a). {nome_reservado}\n"
                                   f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             gravando_reserva_cliente_txt()
                             aperte_enter()
