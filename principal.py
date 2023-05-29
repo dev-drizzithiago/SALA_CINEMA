@@ -129,7 +129,12 @@ class SalaCinema:
                 gravando_dados.close()
 
         def gravando_reserva_cliente_txt():
-            print(self.lista_reserva_cliente, self.inf_reserva)
+
+            for valor in self.lista_reserva_cliente:
+                nome_reserva = valor[1]
+                cpf_reserva = int(valor[0])
+            print(nome_reserva, cpf_reserva, self.inf_reserva)
+
             aperte_enter()
 
 
@@ -235,7 +240,7 @@ class SalaCinema:
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
                 print(self.linhas_aparencia)
-                print('Preciso do seu CPF para reservar uma poltrona.')
+                print('Preciso que entre com o seu CPF para que possemos reservar uma poltrona.')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
 
                 # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
@@ -259,14 +264,21 @@ class SalaCinema:
                                     # Busco na lista de cadastro o nome referente ao cpf
                                 nome_cliente = valor_nome[1]  # após encontrar, joga na variável
                 if cpf_confirma:  # Se a busca pelo CPF foi verdadeira...
-                    print('Encontramos seu cadastro!')  # Avisa que encontro o cadastro
+                    self.linhas_aparencia
+                    print('Verificando o banco de dados, aguarde...!')
                     sleep(1)
+                    print('Encontramos seu cadastro!')  # Avisa que encontro o cadastro
+                    sleep(0.5)
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
-                    aperte_enter()
+                    self.linhas_aparencia
                     print('Boa reservar!')
+                    aperte_enter()
                 else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
+                    sleep(0.5)
+                    self.linhas_aparencia
                     print(f'O cadastro com o CPF:{cpf_cliente_reserva}, não foi encontrado!!\n'
                           f'Caso ainda não tenha feito um cadastro, sugerimos que crie um no menu principal')
+                    self.linhas_aparencia
                     aperte_enter()
                     self.quebra_loop = False
 
