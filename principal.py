@@ -131,8 +131,9 @@ class SalaCinema:
         def gravando_reserva_cliente_txt():
 
             for valor in self.lista_reserva_cliente:
+                cpf_reserva = valor[0]
                 nome_reserva = valor[1]
-                cpf_reserva = int(valor[0])
+
             print(nome_reserva, cpf_reserva, self.inf_reserva)
 
             aperte_enter()
