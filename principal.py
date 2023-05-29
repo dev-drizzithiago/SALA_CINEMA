@@ -128,16 +128,19 @@ class SalaCinema:
             else:
                 gravando_dados.close()
 
-        def gravando_reserva_cliente_txt():
+        def gravando_reserva_cliente_txt(nome_reserva, cpf_reserva):
+            max = len(self.inf_reserva)
+            print(max)
+            valor = None
+            cont = 0
+            for cont in range(cont):
+                valor[cont] = self.inf_reserva[cont]
+                cont += cont + 1
+                print(valor)
 
-            for valor in self.lista_reserva_cliente:
-                cpf_reserva = valor[0]
-                nome_reserva = valor[1]
 
-            print(nome_reserva, cpf_reserva, self.inf_reserva)
-
+            print(nome_reserva, cpf_reserva, valor)
             aperte_enter()
-
 
         def lendo_dados_arq_cliente_txt():
             # Variáveis locais
@@ -206,9 +209,6 @@ class SalaCinema:
                 cpf_cadastro = input('Digite seu CPF: ')
                 idade_cadastro = leiaInt('Digite sua idade: ')
                 email_cadastro = input('Digite seu e-mail: ')
-
-                # Operações
-                # idade_cadastro = int(ano_atual - ano_nasc_cadastro)
 
                 print(f'Os dados que serão cadastrados são: \n'
                       f'Nome: {nome_cadastro}\n'
@@ -349,20 +349,19 @@ class SalaCinema:
                         print('Nenhuma poltrona foi reservada!')
                         break
                     else:
-                        self.lista_reserva_cliente = [cpf_reservado, nome_reservado]
                         if len(self.inf_reserva) == 1:
                             print(self.linhas_aparencia)
                             print(f'Sr(a). {nome_reservado} \n'
                                   f'Você reservou a poltrona: '
                                   f'{self.inf_reserva} \n')
-                            gravando_reserva_cliente_txt()
+                            gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
                             break
                         else:
                             print(self.linhas_aparencia)
                             print(f"Sr(a). {nome_reservado}\n"
                                   f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
-                            gravando_reserva_cliente_txt()
+                            gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
                             break
 
