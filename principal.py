@@ -134,7 +134,7 @@ class SalaCinema:
             """
             :param valor_1: Recebe o valor iterado da lista de cadeiras
             :param cont: Contador, resposabel em buscar as informações iteradas na lista. Ex cont = 1 - lista[cont] = lista[1]
-            :return:
+            :param gravando_reserva: Salva os dados em um arquivo txt
             """
             try:
                 gravando_reserva = open(arq_cadastro_registro_local, 'a')
@@ -146,7 +146,9 @@ class SalaCinema:
                     gravando_reserva.write(f'{valor_1};')
                     if cont == len(self.inf_reserva):
                         break
-                gravando_reserva.write(f'\n')
+                gravando_reserva.write(f'{data_atual};{hora_atual}\n')
+                print('Seu reserva foi concluida!')
+                sleep(2)
                 gravando_reserva.close()
             except:
                 print('Não foi possível abrir o arquivo de texto para salvar sua reserva!')
@@ -204,7 +206,6 @@ class SalaCinema:
                                       'E-mail:': valor_consulta[3]}
                 for chave, valor in dados_cliente_dict.items():
                     print(f'{chave} {valor}')
-                sleep(0.5)
             aperte_enter()
 
         # Manipulações
