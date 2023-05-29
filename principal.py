@@ -129,22 +129,9 @@ class SalaCinema:
                 gravando_dados.close()
 
         def gravando_reserva_cliente_txt():
-            global cpf_reserva, nome_reserva
-            try:
-                registrando_reserva = open(arq_cadastro_registro_local, 'a')
-                for valores in self.lista_reserva_cliente:
-                    cpf_reserva = valores[0]
-                    nome_reserva = str(valores[1])
-                registrando_reserva.write(f'{cpf_reserva};{nome_reserva};')
-                for cadeiras_registro in self.inf_reserva:
-                    registrando_reserva.write(f'{cadeiras_registro};')
-                registrando_reserva.write(f'{data_atual}-{hora_atual}\n')
-                registrando_reserva.close()
-            except:
-                print('Não consegui registrar sua reservar.')
-                print('Verifiquei o administrador do sistema!')
-            else:
-                registrando_reserva.close()
+            print(self.lista_reserva_cliente, self.inf_reserva)
+            aperte_enter()
+
 
         def lendo_dados_arq_cliente_txt():
             # Variáveis locais
