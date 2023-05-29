@@ -130,10 +130,10 @@ class SalaCinema:
 
         def gravando_reserva_cliente_txt(nome_reserva, cpf_reserva):
             max = len(self.inf_reserva)
-            print(max)
+            print(f'Número de poltronas reservadas {max}')
             valor = None
             cont = 0
-            for cont in range(cont):
+            while cont == len(self.inf_reserva):
                 valor[cont] = self.inf_reserva[cont]
                 cont += cont + 1
                 print(valor)
