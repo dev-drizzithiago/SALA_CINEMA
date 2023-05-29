@@ -207,7 +207,7 @@ class SalaCinema:
                 for chave, valor in dados_cliente_dict.items():
                     print(f'{chave} {valor}')
             aperte_enter()
-
+            dados_cliente_dict = None
         # Manipulações
         def cadastro_cliente():
             while True:  # loop_02
