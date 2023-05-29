@@ -129,18 +129,19 @@ class SalaCinema:
                 gravando_dados.close()
 
         def gravando_reserva_cliente_txt(nome_reserva, cpf_reserva):
-            max = len(self.inf_reserva)
-            valor = str
-            print(f"Número de poltronas reservadas {max}")
-            cont = 0
-            while cont == len(self.inf_reserva):
-                valor[cont] = self.inf_reserva[cont]
-                cont += cont + 1
-                print(valor)
+            try:
+                gravando_reserva = open(gravando_dados_arq_cliente_txt(), 'a')
+                cont = 0
+                print(f'{len(self.inf_reserva)}')
+                while True:
+                    valor_1 = self.inf_reserva[cont]
+                    cont += 1
+                    print(f'{valor_1}', end=' - ')
+                    if cont == len(self.inf_reserva):
+                        break
+            except:
+                print('Não foi possível abrir o arquivo de texto para salvar sua reserva!')
 
-
-            print(nome_reserva, cpf_reserva, valor)
-            aperte_enter()
 
         def lendo_dados_arq_cliente_txt():
             # Variáveis locais
