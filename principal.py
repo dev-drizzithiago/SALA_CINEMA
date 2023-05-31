@@ -234,9 +234,13 @@ class SalaCinema:
             for valor_bruto in self.lista_info_registro:
                 valor_limpo = valor_bruto.split(';')
                 for lista_reserva in valor_limpo:
-            #valor_limpo_nome = valor_limpo[1]
-            #print(valor_limpo_nome)
-                    print(lista_reserva)
+                    valor_limpo_cpf = valor_limpo[0]
+                    valor_limpo_nome = valor_limpo[1]
+                    cadeiras_reservadas = valor_limpo[2:]
+                print(valor_limpo_cpf)
+                print(valor_limpo_nome)
+                print(cadeiras_reservadas)
+
 
         # Corpo do programa
         def reservar_cadeira():
