@@ -233,6 +233,7 @@ class SalaCinema:
             lendo_dados_no_arq_reserva()
             for valor_bruto in self.lista_info_registro:
                 valor_limpo = valor_bruto.split(';')
+            print(len(valor_limpo))
             while True:
                 valor_limpo_cpf = valor_limpo[0]
                 valor_limpo_nome = valor_limpo[1]
@@ -240,8 +241,7 @@ class SalaCinema:
                 print(valor_limpo_cpf)
                 print(valor_limpo_nome)
                 print(cadeiras_reservadas)
-                if len(valor_limpo_cpf) == 0:
-                    break
+                break
 
 
 
