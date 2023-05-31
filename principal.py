@@ -155,7 +155,6 @@ class SalaCinema:
 
         def lendo_dados_arq_cliente_txt():
             # Variáveis locais
-
             # Função para leitura
             try:
                 leitura = open(arq_cadastro_cliente_local, 'r')
@@ -189,13 +188,15 @@ class SalaCinema:
                 print('Deixa eu verificar se o arquivo esta íntegro')
                 threading.Thread(target=inicio_verif_arq_reserva()).start()
             else:
-                for valor in leitura:
-                    self.lista_info_registro.append(valor)
+                for valor_bruto in leitura:
+                    valor_limpo = valor_bruto.split(';')
+                    self.lista_info_registro.append(valor_limpo)
                 if len(self.lista_info_registro) == 0:
                     print(self.linhas_aparencia)
                     print('Não encontrei nenhum registro no sistema. '
                           'Verifique se a sessão já terminou')
                     aperte_enter()
+
 
         def consultar_cadastro_cliente():
             lendo_dados_arq_cliente_txt()
@@ -230,9 +231,8 @@ class SalaCinema:
         # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
             lendo_dados_no_arq_reserva()
-            valor_dados = self.lista_info_registro
-            for lista_reserva in valor_dados:
-                lista_reserva = str(lista_reserva).replace(';', '').replace('-', '').split()
+            for valor_lista in self.lista_info_registro:
+                lista_reserva = valor_lista
                 print(lista_reserva)
 
         # Corpo do programa
