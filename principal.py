@@ -240,8 +240,8 @@ class SalaCinema:
                 cadeiras_reservadas = valor_limpo[2:]
                 print(len(cadeiras_reservadas))
                 for valor in cadeiras_reservadas:
-                    print(valor, end=' ')
-                print(valor_limpo_cpf)
+                    print(f'Cadeiras reservadas: {valor}', end=' ')
+                print(f'\n{valor_limpo_cpf}')
                 print(valor_limpo_nome)
                 break
 
