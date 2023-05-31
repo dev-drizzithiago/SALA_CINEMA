@@ -189,7 +189,7 @@ class SalaCinema:
                 threading.Thread(target=inicio_verif_arq_reserva()).start()
             else:
                 for valor_bruto in leitura:
-                    valor_limpo = valor_bruto.split(';')
+                    valor_limpo = valor_bruto.strip()
                     self.lista_info_registro.append(valor_limpo)
                 if len(self.lista_info_registro) == 0:
                     print(self.linhas_aparencia)
@@ -231,9 +231,12 @@ class SalaCinema:
         # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
             lendo_dados_no_arq_reserva()
-            for valor_lista in self.lista_info_registro:
-                lista_reserva = valor_lista
-                print(lista_reserva)
+            for valor_bruto in self.lista_info_registro:
+                valor_limpo = valor_bruto.split(';')
+                for lista_reserva in valor_limpo:
+            #valor_limpo_nome = valor_limpo[1]
+            #print(valor_limpo_nome)
+                    print(lista_reserva)
 
         # Corpo do programa
         def reservar_cadeira():
