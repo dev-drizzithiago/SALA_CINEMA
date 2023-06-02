@@ -155,7 +155,6 @@ class SalaCinema:
 
         def lendo_dados_arq_cliente_txt():
             # Variáveis locais
-
             # Função para leitura
             try:
                 leitura = open(arq_cadastro_cliente_local, 'r')
@@ -189,8 +188,9 @@ class SalaCinema:
                 print('Deixa eu verificar se o arquivo esta íntegro')
                 threading.Thread(target=inicio_verif_arq_reserva()).start()
             else:
-                for valor in leitura:
-                    self.lista_info_registro.append(valor)
+                for valor_bruto in leitura:
+                    valor_limpo = valor_bruto.strip()
+                    self.lista_info_registro.append(valor_limpo)
                 if len(self.lista_info_registro) == 0:
                     print(self.linhas_aparencia)
                     print('Não encontrei nenhum registro no sistema. '
@@ -229,11 +229,26 @@ class SalaCinema:
 
         # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
+            global valor_limpo
+            cont = 0
             lendo_dados_no_arq_reserva()
-            valor_dados = self.lista_info_registro
-            for lista_reserva in valor_dados:
-                lista_reserva = str(lista_reserva).replace(';', '').replace('-', '').split()
-                print(lista_reserva)
+            for valor_bruto in self.lista_info_registro:
+                valor_limpo = valor_bruto.split(';')
+                while True:
+                    valor_limpo_cpf = valor_limpo[0]
+                    valor_limpo_nome = valor_limpo[1]
+                    cadeiras_reservadas = valor_limpo[:-2]
+                    teste1 = valor_limpo[-1]
+                    teste2 = valor_limpo[-2]
+                    print(teste2, teste1)
+                    print(len(cadeiras_reservadas))
+                    print('Cadeiras reservadas:', end='')
+                    for valor in cadeiras_reservadas:
+                        print(f'[{valor}]', end=' ')
+                    print(f'\nCFP: {valor_limpo_nome} Nome: {valor_limpo_cpf}')
+                    cont += 1
+                    if cont == 3:
+                        break
 
         # Corpo do programa
         def reservar_cadeira():
