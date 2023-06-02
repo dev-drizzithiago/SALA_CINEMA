@@ -230,25 +230,23 @@ class SalaCinema:
         # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
             global valor_limpo
-            cont = 0
+            cont = -10
             lendo_dados_no_arq_reserva()
             for valor_bruto in self.lista_info_registro:
                 valor_limpo = valor_bruto.split(';')
-                while True:
-                    valor_limpo_cpf = valor_limpo[0]
-                    valor_limpo_nome = valor_limpo[1]
-                    cadeiras_reservadas = valor_limpo[:-2]
-                    teste1 = valor_limpo[-1]
-                    teste2 = valor_limpo[-2]
-                    print(teste2, teste1)
-                    print(len(cadeiras_reservadas))
-                    print('Cadeiras reservadas:', end='')
-                    for valor in cadeiras_reservadas:
-                        print(f'[{valor}]', end=' ')
-                    print(f'\nCFP: {valor_limpo_nome} Nome: {valor_limpo_cpf}')
-                    cont += 1
-                    if cont == 3:
-                        break
+                valor_limpo_cpf = valor_limpo[0]
+                valor_limpo_nome = valor_limpo[1]
+                cadeiras_reservadas = valor_limpo[cont:-2]
+                teste1 = valor_limpo[-1]
+                teste2 = valor_limpo[-2]
+                print()
+                print(f'\n{self.linhas_aparencia}')
+                print(f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}')
+                print('Cadeiras reservadas:', end='')
+                for valor in cadeiras_reservadas:
+                    print(f'[{valor}]', end=' ')
+
+
 
         # Corpo do programa
         def reservar_cadeira():
