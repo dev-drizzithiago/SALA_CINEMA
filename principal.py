@@ -229,6 +229,15 @@ class SalaCinema:
 
         # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
+            """
+            :lendo_dados_no_arq_reserva: Buscos as informões na funcão de mesmo nome. Coloca na variavel "self.lista_inf_registro".
+            :self.lista_registro: objeto que possui informações sobre os dados das reservas.
+            :valor_bruto:Pega todas as informações das varias "self.lista_info_registro" e distribui nos variáveis.
+            :valor_limpo:Responsável por separar as informações corretas e transferir para as variáveis referentes.
+            :valor_limpo_cpf:Vai receber apenas os dados de CFP do cliente. O CFP sempre sera iterado na posição 0.
+            :valor_limpo_nome. Recebe apenas os dados de Nome do cliente, o nome sempre sera iterado na posição 1.
+            :return:
+            """
             global valor_limpo
             cont = -10
             lendo_dados_no_arq_reserva()
@@ -239,6 +248,7 @@ class SalaCinema:
                 cadeiras_reservadas = valor_limpo[2:-2]
                 data_reserva = valor_limpo[-1]
                 hora_reserva = valor_limpo[-2]
+
                 print()
                 print(f'\n{self.linhas_aparencia}')
                 print(
