@@ -237,17 +237,16 @@ class SalaCinema:
                 valor_limpo_cpf = valor_limpo[0]
                 valor_limpo_nome = valor_limpo[1]
                 cadeiras_reservadas = valor_limpo[2:-2]
-                teste1 = valor_limpo[-1]
-                teste2 = valor_limpo[-2]
+                data_reserva = valor_limpo[-1]
+                hora_reserva = valor_limpo[-2]
                 print()
                 print(f'\n{self.linhas_aparencia}')
-                print(f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}')
+                print(
+                    f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}, você reservou {len(cadeiras_reservadas)} cadeiras')
                 print('Cadeiras reservadas:', end='')
                 for valor in cadeiras_reservadas:
                     print(f'[{valor}]', end=' ')
-            print(f'\n{self.linhas_aparencia}')
-
-
+            print(f'\nReserva feita na data: {data_reserva} - {hora_reserva} \n{self.linhas_aparencia}')
 
         # Corpo do programa
         def reservar_cadeira():
