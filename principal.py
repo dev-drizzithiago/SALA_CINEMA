@@ -232,10 +232,16 @@ class SalaCinema:
             """
             :lendo_dados_no_arq_reserva: Buscos as informões na funcão de mesmo nome. Coloca na variavel "self.lista_inf_registro".
             :self.lista_registro: objeto que possui informações sobre os dados das reservas.
-            :valor_bruto:Pega todas as informações das varias "self.lista_info_registro" e distribui nos variáveis.
-            :valor_limpo:Responsável por separar as informações corretas e transferir para as variáveis referentes.
-            :valor_limpo_cpf:Vai receber apenas os dados de CFP do cliente. O CFP sempre sera iterado na posição 0.
-            :valor_limpo_nome. Recebe apenas os dados de Nome do cliente, o nome sempre sera iterado na posição 1.
+            :valor_bruto: Pega todas as informações das varias "self.lista_info_registro" e distribui nos variáveis.
+            :valor_limpo: responsável por separar as informações corretas e transferir para as variáveis referentes.
+            :valor_limpo_cpf: vai receber apenas os dados de CFP do cliente. O CFP sempre sera iterado na posição 0.
+            :valor_limpo_nome: recebe apenas os dados de Nome do cliente, o nome sempre sera iterado na posição 1.
+            :cadeiras_reservadas: mostra todas as cadeiras reservadas pelo cliente. Como as cadeiras ficam no meio da lista
+            é precisar realizar uma "fatiação" usando as posições de 'cpf e nome, que fica no começo da lista' e 'data e hora que fica
+            no final da lista.'
+            :data_reserva: pega as informações do dia, mes e ano, realizado a reserva.
+            :hora_reserva: o mesmo que 'data_reserva', muda apenas a hora. Preferi deixar separado para poder manipular melhoras as informações.
+            Existem momentos que eu preciso apenas da hora, assim como exite momente que preciso apenas da data.
             :return:
             """
             global valor_limpo
