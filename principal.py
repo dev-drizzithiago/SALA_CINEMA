@@ -242,7 +242,7 @@ class SalaCinema:
             :data_reserva: pega as informações do dia, mes e ano, realizado a reserva.
             :hora_reserva: o mesmo que 'data_reserva', muda apenas a hora. Preferi deixar separado para poder manipular melhoras as informações.
             Existem momentos que eu preciso apenas da hora, assim como exite momente que preciso apenas da data.
-            :return:
+            :return: A função ira retornar de forma organizada as informações das reservas
             """
             global valor_limpo
             cont = -10
@@ -257,8 +257,7 @@ class SalaCinema:
 
                 print()
                 print(f'\n{self.linhas_aparencia}')
-                print(
-                    f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}, você reservou {len(cadeiras_reservadas)} cadeiras')
+                print(f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}, você reservou {len(cadeiras_reservadas)} cadeiras')
                 print('Cadeiras reservadas:', end='')
                 for valor in cadeiras_reservadas:
                     print(f'[{valor}]', end=' ')
