@@ -197,7 +197,6 @@ class SalaCinema:
                           'Verifique se a sessão já terminou')
                     aperte_enter()
 
-
         def consultar_cadastro_cliente():
             lendo_dados_arq_cliente_txt()
             for valor_consulta in self.lista_dados_cliente:
@@ -239,13 +238,12 @@ class SalaCinema:
                 valor_limpo_nome = valor_limpo[1]
                 cadeiras_reservadas = valor_limpo[2:]
                 print(len(cadeiras_reservadas))
+                print('Cadeiras reservadas:', end='')
                 for valor in cadeiras_reservadas:
-                    print(f'Cadeiras reservadas: {valor}', end=' ')
+                    print(f'[{valor}]', end=' ')
                 print(f'\n{valor_limpo_cpf}')
                 print(valor_limpo_nome)
                 break
-
-
 
         # Corpo do programa
         def reservar_cadeira():
