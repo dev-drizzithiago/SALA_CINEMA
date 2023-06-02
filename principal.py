@@ -236,7 +236,7 @@ class SalaCinema:
                 valor_limpo = valor_bruto.split(';')
                 valor_limpo_cpf = valor_limpo[0]
                 valor_limpo_nome = valor_limpo[1]
-                cadeiras_reservadas = valor_limpo[cont:-2]
+                cadeiras_reservadas = valor_limpo[2:-2]
                 teste1 = valor_limpo[-1]
                 teste2 = valor_limpo[-2]
                 print()
@@ -245,6 +245,7 @@ class SalaCinema:
                 print('Cadeiras reservadas:', end='')
                 for valor in cadeiras_reservadas:
                     print(f'[{valor}]', end=' ')
+            print(f'\n{self.linhas_aparencia}')
 
 
 
