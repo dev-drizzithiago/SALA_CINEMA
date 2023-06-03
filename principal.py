@@ -132,9 +132,9 @@ class SalaCinema:
 
         def gravando_reserva_cliente_txt(nome_reserva, cpf_reserva):
             """
-            :param valor_1: Recebe o valor iterado da lista de cadeiras
-            :param cont: Contador, resposabel em buscar as informações iteradas na lista. Ex cont = 1 - lista[cont] = lista[1]
-            :param gravando_reserva: Salva os dados em um arquivo txt
+            :param: valor_1: recebe o valor iterado da lista de cadeiras
+            :param: “cont”: contador, responsável em buscar as informações iteradas na lista. Ex cont = 1 - lista[cont] = lista[1]
+            :param: gravando_reserva: salva os dados em um arquivo txt.
             """
             try:
                 gravando_reserva = open(arq_cadastro_registro_local, 'a')
@@ -147,7 +147,7 @@ class SalaCinema:
                     if cont == len(self.inf_reserva):
                         break
                 gravando_reserva.write(f'{data_atual};{hora_atual}\n')
-                print('Seu reserva foi concluida!')
+                print('Seu reserva foi concluída!')
                 sleep(2)
                 gravando_reserva.close()
             except:
@@ -230,17 +230,17 @@ class SalaCinema:
         # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
             """
-            :lendo_dados_no_arq_reserva: buscas as informações na função de mesmo nome. Coloca na variável "self.lista_inf_registro".
-            :self.lista_registro: objeto que possui informações sobre os dados das reservas.
-            :valor_bruto: Pega todas as informações das várias "self.lista_info_registro" e distribui nos variáveis.
-            :valor_limpo: responsável por separar as informações corretas e transferir para as variáveis referentes.
-            :valor_limpo_cpf: vai receber apenas os dados de CFP do cliente. O CFP sempre sera iterado na posição 0.
-            :valor_limpo_nome: recebe apenas os dados de Nome do cliente, o nome sempre sera iterado na posição 1.
-            :cadeiras_reservadas: mostra todas as cadeiras reservadas pelo cliente. Como as cadeiras ficam no meio da lista
+            :param: lendo_dados_no_arq_reserva: buscas as informações na função de mesmo nome. Coloca na variável "self.lista_inf_registro".
+            :param: Self.lista_registro: objeto que possui informações sobre os dados das reservas.
+            :param: valor_bruto: Pega todas as informações das várias "self.lista_info_registro" e distribui nos variáveis.
+            :param: valor_limpo: responsável por separar as informações corretas e transferir para as variáveis referentes.
+            :param: valor_limpo_cpf: vai receber apenas os dados de CFP do cliente. O CFP sempre sera iterado na posição 0.
+            :param: valor_limpo_nome: recebe apenas os dados de Nome do cliente, o nome sempre sera iterado na posição 1.
+            :param: cadeiras_reservadas: mostra todas as cadeiras reservadas pelo cliente. Como as cadeiras ficam no meio da lista
             é preciso "fatiar" usando as posições de 'cpf e nome, que fica no começo da lista' e 'data e hora que fica
             no final da lista.'
-            :data_reserva: pega as informações do dia, mes e ano, realizado a reserva.
-            :hora_reserva: o mesmo que 'data_reserva', muda apenas a hora. Preferi deixar separado para poder manipular melhoras as informações.
+            :param: data_reserva: pega as informações do dia, mes e ano, realizado a reserva.
+            :param: hora_reserva: o mesmo que 'data_reserva', muda apenas a hora. Preferi deixar separado para poder manipular melhoras as informações.
             Existem momentos que eu preciso apenas da hora, assim como exite momentos que preciso apenas da data.
             :return: A função ira retornar de forma organizada as informações das reservas.
             """
@@ -253,8 +253,6 @@ class SalaCinema:
                 cadeiras_reservadas = valor_limpo[2:-2]
                 data_reserva = valor_limpo[-1]
                 hora_reserva = valor_limpo[-2]
-
-                print()
                 print(f'\n{self.linhas_aparencia}')
                 print(f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}, você reservou {len(cadeiras_reservadas)} cadeiras')
                 print('Cadeiras reservadas:', end='')
@@ -323,7 +321,7 @@ class SalaCinema:
 
             while True:  # loop_04
                 # Caso não encontre o CPF informado pelo cliente
-                if not self.quebra_loop:  # Recebe a posição do for_002, se for falso. Quebra o loop_03. Final da fila, recebe o break
+                if not self.quebra_loop:  # Recebe a posição do for_002, se for falso. Quebra o loop_03. Final da fila, recebe o break.
                     break  # Volta para o menu principal, onde o cliente deve fazer um cadastro.
 
                 # Estruturando a sala de cinema para que o cliente visualize as poltronas livres e reservadas
