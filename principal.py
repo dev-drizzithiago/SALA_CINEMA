@@ -18,6 +18,7 @@ class SalaCinema:
 
     def __init__(self):
         self.quebra_loop = True
+        self.verificacao_reservas = False
         self.info_reserva = None
         self.linhas_aparencia = '--' * 60
         self.inf_reserva = list()
@@ -283,7 +284,13 @@ class SalaCinema:
             lendo_dados_arq_cliente_txt()
             verif_estrutura_reserva()
             aperte_enter()
-            cinema = sala_cinema()
+            verif_estrutura_reserva()
+            if self.verificacao_reservas:
+                cinema = sala_cinema()
+                print(cinema)
+            else:
+                cinema = self.cadeiras_reservadas
+                print(self.cadeiras_reservadas)
             while True:  # loop_03
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
@@ -421,17 +428,30 @@ class SalaCinema:
             abrindo_arq_reserva_restrutura.close()
 
         def verif_estrutura_reserva():
-            global valor_limpo_2
-            # valor_arq = []
-            cont = 0
+            """
+
+            :return:
+            """
+            global valor_limpo_2, arquivos, teste_2
+            verificacao_reservas_cadeiras = list()
+            lista_valor_arq = list()
             abrindo_arq_restrutura = open(arq_estrutura_cadeiras_reserva_local, 'r')
             valor_arq = abrindo_arq_restrutura
+
             for valor in valor_arq:
                 valor_limpo_1 = (valor.replace("'", '').replace('[', '').replace(']', ''))
-                valor_limpo_2 = valor_limpo_1.replace('\n', '').split(',')
-                for valor_1 in valor_limpo_2:
-                    print(valor_1)
-                cont += 1
+                valor_limpo_2 = valor_limpo_1.replace('\n', '').strip()
+                lista_valor_arq.append(valor_limpo_2)
+
+            for valor_descompactado in lista_valor_arq:
+                arquivos = valor_descompactado.split(',')
+                for valor_lista_arquivos in arquivos:
+                    verificacao_reservas_cadeiras.append(valor_lista_arquivos.strip())
+                    if verificacao_reservas_cadeiras == '--':
+                        self.verificacao_reservas = True
+                    else:
+                        self.verificacao_reservas = False
+
 
         # Menu principal
         while True:
