@@ -230,22 +230,21 @@ class SalaCinema:
         # Verificar o arq que contem os registros de reservas
         def consultar_registro_reserva():
             """
-            :lendo_dados_no_arq_reserva: Buscos as informões na funcão de mesmo nome. Coloca na variavel "self.lista_inf_registro".
+            :lendo_dados_no_arq_reserva: buscas as informações na função de mesmo nome. Coloca na variável "self.lista_inf_registro".
             :self.lista_registro: objeto que possui informações sobre os dados das reservas.
             :valor_bruto: Pega todas as informações das várias "self.lista_info_registro" e distribui nos variáveis.
             :valor_limpo: responsável por separar as informações corretas e transferir para as variáveis referentes.
             :valor_limpo_cpf: vai receber apenas os dados de CFP do cliente. O CFP sempre sera iterado na posição 0.
             :valor_limpo_nome: recebe apenas os dados de Nome do cliente, o nome sempre sera iterado na posição 1.
             :cadeiras_reservadas: mostra todas as cadeiras reservadas pelo cliente. Como as cadeiras ficam no meio da lista
-            é precisar realizar uma "fatiação" usando as posições de 'cpf e nome, que fica no começo da lista' e 'data e hora que fica
+            é preciso "fatiar" usando as posições de 'cpf e nome, que fica no começo da lista' e 'data e hora que fica
             no final da lista.'
             :data_reserva: pega as informações do dia, mes e ano, realizado a reserva.
             :hora_reserva: o mesmo que 'data_reserva', muda apenas a hora. Preferi deixar separado para poder manipular melhoras as informações.
             Existem momentos que eu preciso apenas da hora, assim como exite momentos que preciso apenas da data.
-            :return: A função ira retornar de forma organizada as informações das reservas
+            :return: A função ira retornar de forma organizada as informações das reservas.
             """
             global valor_limpo, data_reserva, hora_reserva
-            cont = -10
             lendo_dados_no_arq_reserva()
             for valor_bruto in self.lista_info_registro:
                 valor_limpo = valor_bruto.split(';')
@@ -261,7 +260,7 @@ class SalaCinema:
                 print('Cadeiras reservadas:', end='')
                 for valor in cadeiras_reservadas:
                     print(f'[{valor}]', end=' ')
-            print(f'\nReserva feita na data: {data_reserva} - {hora_reserva} \n{self.linhas_aparencia}')
+                print(f'\nReserva feita na data: {data_reserva} - {hora_reserva} \n{self.linhas_aparencia}')
 
         # Corpo do programa
         def reservar_cadeira():
