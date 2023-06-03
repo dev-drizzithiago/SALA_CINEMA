@@ -18,7 +18,7 @@ class SalaCinema:
 
     def __init__(self):
         self.quebra_loop = True
-        self.verificacao_reservas = False
+        self.verificacao_reservas = True
         self.info_reserva = None
         self.linhas_aparencia = '--' * 60
         self.inf_reserva = list()
@@ -286,7 +286,7 @@ class SalaCinema:
 
             if self.verificacao_reservas:
                 cinema = sala_cinema()
-                print('Busca as informações novas', cinema)
+                print('A sala ainda esta vazia!')
             else:
                 print('Busca as informações da reserva')
                 cinema = ['<desconhecido>']
@@ -398,7 +398,7 @@ class SalaCinema:
                         nome_reservado = dados_cliente[1]
                 if entrada == '999':
                     if len(self.inf_reserva) == 0:
-                        print('Nenhuma poltrona foi reservada!')
+                        print('Você não reservou nenhuma poltrona!')
                         break
                     else:
                         if len(self.inf_reserva) == 1:
@@ -448,8 +448,6 @@ class SalaCinema:
                 for valor_lista_arquivos in arquivos:
                     verificacao_reservas_cadeiras.append(valor_lista_arquivos.strip())
                     if verificacao_reservas_cadeiras == '--':
-                        self.verificacao_reservas = True
-                    else:
                         self.verificacao_reservas = False
 
 
