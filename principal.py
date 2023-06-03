@@ -281,6 +281,8 @@ class SalaCinema:
             global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
             cpf_confirma = False
             lendo_dados_arq_cliente_txt()
+            verif_estrutura_reserva()
+            aperte_enter()
             cinema = sala_cinema()
             while True:  # loop_03
                 # Inicia a verificação do cadastro.
@@ -419,10 +421,13 @@ class SalaCinema:
             abrindo_arq_reserva_restrutura.close()
 
         def verif_estrutura_reserva():
+            valor_arq = []
             abrindo_arq_restrutura = open(arq_estrutura_cadeiras_reserva_local, 'r')
-            for valor_estrutura in abrindo_arq_restrutura:
-                print(valor_estrutura)
-
+            valor_arq = abrindo_arq_restrutura
+            for valor in valor_arq:
+                valor_limpo_1 = (valor.replace("'", '').replace('[', '').replace(']', ''))
+                valor_limpo_2 = valor_limpo_1.replace('\n', '').split(',')
+                print(valor_limpo_2[1])
         # Menu principal
         while True:
             data_menu = datetime.now()
