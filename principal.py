@@ -244,7 +244,8 @@ class SalaCinema:
             Existem momentos que eu preciso apenas da hora, assim como exite momentos que preciso apenas da data.
             :return: A função ira retornar de forma organizada as informações das reservas
             """
-            global valor_limpo            cont = -10
+            global valor_limpo, data_reserva, hora_reserva
+            cont = -10
             lendo_dados_no_arq_reserva()
             for valor_bruto in self.lista_info_registro:
                 valor_limpo = valor_bruto.split(';')
