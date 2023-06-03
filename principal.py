@@ -421,13 +421,18 @@ class SalaCinema:
             abrindo_arq_reserva_restrutura.close()
 
         def verif_estrutura_reserva():
-            valor_arq = []
+            global valor_limpo_2
+            # valor_arq = []
+            cont = 0
             abrindo_arq_restrutura = open(arq_estrutura_cadeiras_reserva_local, 'r')
             valor_arq = abrindo_arq_restrutura
             for valor in valor_arq:
                 valor_limpo_1 = (valor.replace("'", '').replace('[', '').replace(']', ''))
                 valor_limpo_2 = valor_limpo_1.replace('\n', '').split(',')
-                print(valor_limpo_2[1])
+                for valor_1 in valor_limpo_2:
+                    print(valor_1)
+                cont += 1
+
         # Menu principal
         while True:
             data_menu = datetime.now()
