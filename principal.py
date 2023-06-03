@@ -279,7 +279,7 @@ class SalaCinema:
             informações nas listas internas e joga na variável 'cinema'.
             :return:
             """
-            global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
+            global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica, cinema
             cpf_confirma = False
             lendo_dados_arq_cliente_txt()
             verif_estrutura_reserva()
@@ -287,10 +287,9 @@ class SalaCinema:
             verif_estrutura_reserva()
             if self.verificacao_reservas:
                 cinema = sala_cinema()
-                print(cinema)
+                print('Busca as informações novas')
             else:
-                cinema = self.cadeiras_reservadas
-                print(self.cadeiras_reservadas)
+                print('Busca as informações da reserva')
             while True:  # loop_03
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
