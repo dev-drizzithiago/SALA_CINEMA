@@ -9,10 +9,9 @@ ano_atual = data.strftime('%y')
 data_atual = data.strftime('%d/%m/%y')
 hora_atual = data.strftime('%H:%M:%S')
 
-""""""
-
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
+arq_estrutura_cadeiras_reserva_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/ESTRUTURA_RESERVADO.txt'
 
 
 class SalaCinema:
@@ -25,6 +24,28 @@ class SalaCinema:
         self.lista_reserva_cliente = list()
         self.lista_cpf_cliente = list()
         self.lista_dados_cliente = list()
+
+        def sala_cinema():  # A montagem do programa
+            """
+            Primeira estrutura para criação da sala de cinema. Aqui contem as filas, denominada por letras e as cadeiras
+            denominadas com números.
+            :return:
+            """
+            cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
+            cadeiras_cinema_b = ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9']
+            cadeiras_cinema_c = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
+            cadeiras_cinema_d = ['D0', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9']
+            cadeiras_cinema_e = ['E0', 'E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8', 'E9']
+            cadeiras_cinema_f = ['F0', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9']
+            cadeiras_cinema_g = ['G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7', 'G8', 'G9']
+            cadeiras_cinema_h = ['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9']
+            cadeiras_cinema_i = ['I0', 'I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I9']
+            cadeiras_cinema_j = ['J0', 'J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9']
+            cinema_sala = [cadeiras_cinema_a, cadeiras_cinema_b, cadeiras_cinema_c, cadeiras_cinema_d,
+                           cadeiras_cinema_e,
+                           cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
+                           cadeiras_cinema_j]
+            return cinema_sala
 
         def aperte_enter():
             """
@@ -92,24 +113,6 @@ class SalaCinema:
                 except ValueError:
                     print('Valor incorreto. Digite novamente.')
 
-        # Estrutura para sala de cinema
-        def sala_cinema():  # A montagem do programa
-            cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
-            cadeiras_cinema_b = ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9']
-            cadeiras_cinema_c = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
-            cadeiras_cinema_d = ['D0', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9']
-            cadeiras_cinema_e = ['E0', 'E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8', 'E9']
-            cadeiras_cinema_f = ['F0', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9']
-            cadeiras_cinema_g = ['G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7', 'G8', 'G9']
-            cadeiras_cinema_h = ['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9']
-            cadeiras_cinema_i = ['I0', 'I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I9']
-            cadeiras_cinema_j = ['J0', 'J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9']
-            cinema_sala = [cadeiras_cinema_a, cadeiras_cinema_b, cadeiras_cinema_c, cadeiras_cinema_d,
-                           cadeiras_cinema_e,
-                           cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
-                           cadeiras_cinema_j]
-            return cinema_sala
-
         # Métodos
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
             """
@@ -154,8 +157,14 @@ class SalaCinema:
                 print('Não foi possível abrir o arquivo de texto para salvar sua reserva!')
 
         def lendo_dados_arq_cliente_txt():
-            # Variáveis locais
-            # Função para leitura
+            """
+            Esta função serve para ler o arquivo de texto, que contem os cadastro do cliente.
+            :return: A função sempre retorna dois objetos; self.lista_cpf_cliente e self.lista_dados_cliente.
+            :param: self.lista.cpf_cliente: possui apenas a informação do CPF do cliente; ele é geralmente utilizada na função
+            'reserva_cadeiras'
+            :param: self.lista_dados_cliente: variável recebe todas as informações do cadastro do cliente e utiliza em diversas
+            partes do programas
+            """
             try:
                 leitura = open(arq_cadastro_cliente_local, 'r')
             except:
@@ -251,10 +260,11 @@ class SalaCinema:
                 valor_limpo_cpf = valor_limpo[0]
                 valor_limpo_nome = valor_limpo[1]
                 cadeiras_reservadas = valor_limpo[2:-2]
-                data_reserva = valor_limpo[-1]
-                hora_reserva = valor_limpo[-2]
+                data_reserva = valor_limpo[-2]
+                hora_reserva = valor_limpo[-1]
                 print(f'\n{self.linhas_aparencia}')
-                print(f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}, você reservou {len(cadeiras_reservadas)} cadeiras')
+                print(
+                    f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}, você reservou {len(cadeiras_reservadas)} cadeiras')
                 print('Cadeiras reservadas:', end='')
                 for valor in cadeiras_reservadas:
                     print(f'[{valor}]', end=' ')
@@ -262,19 +272,22 @@ class SalaCinema:
 
         # Corpo do programa
         def reservar_cadeira():
-            self.add_registro_reserva = list()
+            """
+            :param: 'lendo_dados_arq_cliente_txt' é preciso ativar a função para as variáveis serem preenchidas com os dados.
+            :param: 'cinema' variável que recebe as informações para estruturar a sala de cinema; 'sala_cinema()' busca as
+            informações nas listas internas e joga na variável 'cinema'.
+            :return:
+            """
             global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
             cpf_confirma = False
             lendo_dados_arq_cliente_txt()
-            # dados_cliente_confirmado = dict()
+            cinema = sala_cinema()
             while True:  # loop_03
-
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
                 print(self.linhas_aparencia)
                 print('Preciso que entre com o seu CPF para que possemos reservar uma poltrona.')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
-
                 # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
                 if len(self.lista_cpf_cliente) == 0:
                     print(self.linhas_aparencia)
@@ -284,7 +297,6 @@ class SalaCinema:
                           '- Caso o bano de dados esteja funcionando normalmente, verifique se você possui cadastro!')
                     aperte_enter()
                     self.quebra_loop = False
-
                 #  for_002
                 #  Pega todos os cpf registrados e verifica com o informado pelo cliente
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
@@ -387,6 +399,8 @@ class SalaCinema:
                                   f'{self.inf_reserva} \n')
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
+                            self.estrutura_cinema = cinema
+                            atualizando_estrutura_cinema()
                             break
                         else:
                             print(self.linhas_aparencia)
@@ -394,10 +408,14 @@ class SalaCinema:
                                   f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
+                            self.estrutura_cinema = cinema
+                            atualizando_estrutura_cinema()
                             break
 
-        # Iniciando o programa do zero
-        cinema = sala_cinema()
+        def atualizando_estrutura_cinema():
+            abrindo_arq_reserva_restrutura = open(arq_estrutura_cadeiras_reserva_local, 'a')
+            for valor_reservas in self.estrutura_cinema:
+                abrindo_arq_reserva_restrutura.write(f'{valor_reservas}\n')
 
         # Menu principal
         while True:
