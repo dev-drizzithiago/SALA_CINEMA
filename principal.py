@@ -416,6 +416,12 @@ class SalaCinema:
             abrindo_arq_reserva_restrutura = open(arq_estrutura_cadeiras_reserva_local, 'a')
             for valor_reservas in self.estrutura_cinema:
                 abrindo_arq_reserva_restrutura.write(f'{valor_reservas}\n')
+            abrindo_arq_reserva_restrutura.close()
+
+        def verif_estrutura_reserva():
+            abrindo_arq_restrutura = open(arq_estrutura_cadeiras_reserva_local, 'r')
+            for valor_estrutura in abrindo_arq_restrutura:
+                print(valor_estrutura)
 
         # Menu principal
         while True:
