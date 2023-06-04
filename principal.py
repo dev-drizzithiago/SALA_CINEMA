@@ -284,12 +284,13 @@ class SalaCinema:
             lendo_dados_arq_cliente_txt()
             verif_estrutura_reserva()
 
-            if self.verificacao_reservas:
+            if not self.verificacao_reservas:
                 cinema = sala_cinema()
                 print('A sala ainda esta vazia!')
             else:
                 print('Busca as informações da reserva')
-                cinema = ['<desconhecido>']
+                cinema = self.lista_reserva_sala_cinema
+                print('Sala já possui algumas reservas')
 
             while True:  # loop_03
                 # Inicia a verificação do cadastro.
@@ -449,7 +450,7 @@ class SalaCinema:
                     verificacao_reservas_cadeiras.append(valor_lista_arquivos.strip())
                     if verificacao_reservas_cadeiras == '--':
                         self.verificacao_reservas = False
-
+                self.lista_reserva_sala_cinema = [verificacao_reservas_cadeiras]
 
         # Menu principal
         while True:
