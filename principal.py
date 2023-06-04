@@ -283,15 +283,6 @@ class SalaCinema:
             cpf_confirma = False
             lendo_dados_arq_cliente_txt()
             verif_estrutura_reserva()
-
-            if not self.verificacao_reservas:
-                cinema = sala_cinema()
-                print('A sala ainda esta vazia!')
-            else:
-                print('Busca as informações da reserva')
-                cinema = self.lista_reserva_sala_cinema
-                print('Sala já possui algumas reservas')
-
             while True:  # loop_03
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
@@ -421,6 +412,12 @@ class SalaCinema:
                             self.estrutura_cinema = cinema
                             atualizando_estrutura_cinema()
                             break
+
+            if self.verificacao_reservas:
+                cinema = sala_cinema()
+            else:
+                print('Busca as informações da reserva')
+                cinema = self.lista_reserva_sala_cinema
 
         def atualizando_estrutura_cinema():
             abrindo_arq_reserva_restrutura = open(arq_estrutura_cadeiras_reserva_local, 'a')
