@@ -11,7 +11,7 @@ hora_atual = data.strftime('%H:%M:%S')
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
-arq_estrutura_cadeiras_reserva_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/ESTRUTURA_RESERVADO.txt'
+arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 
 
 class SalaCinema:
@@ -279,7 +279,8 @@ class SalaCinema:
             informações nas listas internas e joga na variável 'cinema'.
             :return:
             """
-            global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica, cinema
+            global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
+            cinema = list()
             cpf_confirma = False
             lendo_dados_arq_cliente_txt()
             verif_estrutura_reserva()
@@ -294,8 +295,8 @@ class SalaCinema:
                     print(self.linhas_aparencia)
                     print('- DESCULPE!!! '
                           '- Não encontramos nenhum registro no sistema. \n'
-                          '- Verifiquei se o bando de dados esta tudo certinho! \n'
-                          '- Caso o bano de dados esteja funcionando normalmente, verifique se você possui cadastro!')
+                          '- Verifique se o banco de dados esta tudo certinho! \n'
+                          '- Caso o banco de dados esteja funcionando normalmente, verifique se você possui cadastro!')
                     aperte_enter()
                     self.quebra_loop = False
                 #  for_002
@@ -420,7 +421,7 @@ class SalaCinema:
                 cinema = self.lista_reserva_sala_cinema
 
         def atualizando_estrutura_cinema():
-            abrindo_arq_reserva_restrutura = open(arq_estrutura_cadeiras_reserva_local, 'a')
+            abrindo_arq_reserva_restrutura = open(arq_cadeiras_reservadas, 'a')
             for valor_reservas in self.estrutura_cinema:
                 abrindo_arq_reserva_restrutura.write(f'{valor_reservas}\n')
             abrindo_arq_reserva_restrutura.close()
@@ -430,20 +431,30 @@ class SalaCinema:
 
             :return:
             """
-            global valor_limpo_2, arquivos, teste_2
+            global teste_2
             verificacao_reservas_cadeiras = list()
             lista_valor_arq = list()
-            abrindo_arq_restrutura = open(arq_estrutura_cadeiras_reserva_local, 'r')
-            valor_arq = abrindo_arq_restrutura
+            valor_arq = list()
+            try:
+                abrindo_arq_cadeiras_reservadas = open(arq_cadeiras_reservadas, 'r')
+                print(len(abrindo_arq_cadeiras_reservadas))
+                aperte_enter()
+                valor_arq = abrindo_arq_cadeiras_reservadas
+            except FileNotFoundError:
+                print('Arquivo que contem as informações dos lugares reservados não foram encontrados')
+            except UnboundLocalError:
+                print('Erro local não vinculado')
+            except ValueError:
+                print('Dados que foram adicionados não são compatíveis')
 
             for valor in valor_arq:
-                valor_limpo_1 = (valor.replace("'", '').replace('[', '').replace(']', ''))
-                valor_limpo_2 = valor_limpo_1.replace('\n', '').strip()
-                lista_valor_arq.append(valor_limpo_2)
+                valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
+                valor_formatado = valor_sem_caracteres_especial.replace('\n', '').strip()
+                lista_valor_arq.append(valor_formatado)
 
             for valor_descompactado in lista_valor_arq:
-                arquivos = valor_descompactado.split(',')
-                for valor_lista_arquivos in arquivos:
+                lista_arquivos = valor_descompactado.split(',')
+                for valor_lista_arquivos in lista_arquivos:
                     verificacao_reservas_cadeiras.append(valor_lista_arquivos.strip())
                     if verificacao_reservas_cadeiras == '--':
                         self.verificacao_reservas = False
