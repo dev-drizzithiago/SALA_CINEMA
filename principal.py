@@ -42,11 +42,10 @@ class SalaCinema:
             cadeiras_cinema_h = ['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9']
             cadeiras_cinema_i = ['I0', 'I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I9']
             cadeiras_cinema_j = ['J0', 'J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9']
-            cinema_sala = [cadeiras_cinema_a, cadeiras_cinema_b, cadeiras_cinema_c, cadeiras_cinema_d,
-                           cadeiras_cinema_e,
-                           cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
-                           cadeiras_cinema_j]
-            return cinema_sala
+            self.cinema_sala = [cadeiras_cinema_a, cadeiras_cinema_b, cadeiras_cinema_c, cadeiras_cinema_d,
+                                cadeiras_cinema_e,
+                                cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
+                                cadeiras_cinema_j]
 
         def aperte_enter():
             """
@@ -280,10 +279,16 @@ class SalaCinema:
             :return:
             """
             global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
-            cinema = list()
             cpf_confirma = False
             lendo_dados_arq_cliente_txt()
             verif_estrutura_reserva()
+            if not self.verificacao_reservas:
+                sala_cinema()
+                print('Arquivos novos')
+                cinema = self.cinema_sala
+            else:
+                print('Busca as informações da reserva')
+                cinema = self.lista_reserva_sala_cinema
             while True:  # loop_03
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
@@ -381,7 +386,7 @@ class SalaCinema:
                     else:  # Se o lugar estiver livre. Marca o local com o simbolo.
                         self.inf_reserva.append(cinema[valor_linha][valor_coluna])
                         cinema[valor_linha][valor_coluna] = str('--').strip()
-                except:
+                except TypeError:
                     print('OS Dados que você informou estão incorretos!')
 
                 # Vai jogar na variável os dados dos cliente e ser mostrado conforme a opção
@@ -391,7 +396,9 @@ class SalaCinema:
                         nome_reservado = dados_cliente[1]
                 if entrada == '999':
                     if len(self.inf_reserva) == 0:
-                        print('Você não reservou nenhuma poltrona!')
+                        print('Nenhuma paltrona foi reservada!')
+                        print(self.linhas_aparencia)
+                        aperte_enter()
                         break
                     else:
                         if len(self.inf_reserva) == 1:
@@ -399,9 +406,10 @@ class SalaCinema:
                             print(f'Sr(a). {nome_reservado} \n'
                                   f'Você reservou a poltrona: '
                                   f'{self.inf_reserva} \n')
+                            print(self.linhas_aparencia)
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
-                            self.estrutura_cinema = cinema
+                            self.cadeiras_reservadas = cinema
                             atualizando_estrutura_cinema()
                             break
                         else:
@@ -410,25 +418,24 @@ class SalaCinema:
                                   f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
-                            self.estrutura_cinema = cinema
+                            self.cadeiras_reservadas = cinema
                             atualizando_estrutura_cinema()
                             break
 
-            if self.verificacao_reservas:
-                cinema = sala_cinema()
-            else:
-                print('Busca as informações da reserva')
-                cinema = self.lista_reserva_sala_cinema
-
         def atualizando_estrutura_cinema():
-            abrindo_arq_reserva_restrutura = open(arq_cadeiras_reservadas, 'a')
-            for valor_reservas in self.estrutura_cinema:
-                abrindo_arq_reserva_restrutura.write(f'{valor_reservas}\n')
-            abrindo_arq_reserva_restrutura.close()
+            """
+            :param: gravando_arq_reserva_restrutura. É responsavel por registrar as cadeiras que foram reservadas.
+            Quando programa é fechado, as informações são retiradas da memória, então é precisa um registro em um
+            arquivo de texto, que fica localizado no computador.
+            :return:
+            """
+            gravando_arq_reserva_restrutura = open(arq_cadeiras_reservadas, 'a')
+            for valor_reservas in self.cadeiras_reservadas:
+                gravando_arq_reserva_restrutura.write(f'{valor_reservas}\n')
+            gravando_arq_reserva_restrutura.close()
 
         def verif_estrutura_reserva():
             """
-
             :return:
             """
             global teste_2
@@ -437,8 +444,6 @@ class SalaCinema:
             valor_arq = list()
             try:
                 abrindo_arq_cadeiras_reservadas = open(arq_cadeiras_reservadas, 'r')
-                print(len(abrindo_arq_cadeiras_reservadas))
-                aperte_enter()
                 valor_arq = abrindo_arq_cadeiras_reservadas
             except FileNotFoundError:
                 print('Arquivo que contem as informações dos lugares reservados não foram encontrados')
