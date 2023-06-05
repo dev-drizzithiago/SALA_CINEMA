@@ -42,10 +42,11 @@ class SalaCinema:
             cadeiras_cinema_h = ['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9']
             cadeiras_cinema_i = ['I0', 'I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I9']
             cadeiras_cinema_j = ['J0', 'J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9']
-            self.cinema_sala = [cadeiras_cinema_a, cadeiras_cinema_b, cadeiras_cinema_c, cadeiras_cinema_d,
+            cinema_sala = [cadeiras_cinema_a, cadeiras_cinema_b, cadeiras_cinema_c, cadeiras_cinema_d,
                                 cadeiras_cinema_e,
                                 cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
                                 cadeiras_cinema_j]
+            return cinema_sala
 
         def aperte_enter():
             """
@@ -414,7 +415,7 @@ class SalaCinema:
                             atualizando_estrutura_cinema()
                             break
 
-            self.cinema = self.cinema_sala
+        self.cinema = sala_cinema()
 
         def atualizando_estrutura_cinema():
             """
