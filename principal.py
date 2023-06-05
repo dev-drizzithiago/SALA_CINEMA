@@ -18,13 +18,40 @@ class SalaCinema:
 
     def __init__(self):
         self.quebra_loop = True
-        self.verificacao_reservas = True
+        self.verificacao_reservas = False
         self.info_reserva = None
         self.linhas_aparencia = '--' * 60
         self.inf_reserva = list()
         self.lista_reserva_cliente = list()
         self.lista_cpf_cliente = list()
         self.lista_dados_cliente = list()
+
+        def verif_estrutura_reserva():
+            """
+            :return:
+            """
+            global teste_2
+            verificacao_reservas_cadeiras = list()
+            lista_valor_arq = list()
+            valor_arq = list()
+            try:
+                abrindo_arq_cadeiras_reservadas = open(arq_cadeiras_reservadas, 'r')
+                valor_arq = abrindo_arq_cadeiras_reservadas
+            except:
+                print('Não foi possível abrir o arquivo')
+
+            for valor in valor_arq:
+                valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
+                valor_formatado = valor_sem_caracteres_especial.replace('\n', '').strip()
+                lista_valor_arq.append(valor_formatado)
+
+            for valor_descompactado in lista_valor_arq:
+                lista_arquivos = valor_descompactado.split(',')
+                for valor_lista_arquivos in lista_arquivos:
+                    verificacao_reservas_cadeiras.append(valor_lista_arquivos.strip())
+                    if verificacao_reservas_cadeiras == '--':
+                        self.verificacao_reservas = True
+                self.lista_reserva_sala_cinema = [verificacao_reservas_cadeiras]
 
         def sala_cinema():  # A montagem do programa
             """
@@ -43,9 +70,11 @@ class SalaCinema:
             cadeiras_cinema_i = ['I0', 'I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I9']
             cadeiras_cinema_j = ['J0', 'J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9']
             cinema_sala = [cadeiras_cinema_a, cadeiras_cinema_b, cadeiras_cinema_c, cadeiras_cinema_d,
-                                cadeiras_cinema_e,
-                                cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
-                                cadeiras_cinema_j]
+                           cadeiras_cinema_e,
+                           cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
+                           cadeiras_cinema_j]
+            verif_estrutura_reserva()
+            print(self.verificacao_reservas)
             return cinema_sala
 
         def aperte_enter():
@@ -341,7 +370,7 @@ class SalaCinema:
                 print(f'TELA'.center(80))
                 print(self.linhas_aparencia)
                 print()
-                for linhas in self.cinema:
+                for linhas in cinema:
                     print()
                     for coluna in linhas:
                         print(f'[{coluna}] ', end='   ')
@@ -373,12 +402,12 @@ class SalaCinema:
                         valor_linha = 9
 
                     # Verificar se o lugar está ocupado. Caso esteja, pede para reservar outro.
-                    if self.cinema[valor_linha][valor_coluna] == '--':
+                    if cinema[valor_linha][valor_coluna] == '--':
                         print('Não é possível reservar essa poltrona, reserve outra poltrona')
                         sleep(0.5)
                     else:  # Se o lugar estiver livre. Marca o local com o simbolo.
-                        self.inf_reserva.append(self.cinema[valor_linha][valor_coluna])
-                        self.cinema[valor_linha][valor_coluna] = str('--').strip()
+                        self.inf_reserva.append(cinema[valor_linha][valor_coluna])
+                        cinema[valor_linha][valor_coluna] = str('--').strip()
                 except TypeError:
                     print('OS Dados que você informou estão incorretos!')
 
@@ -402,7 +431,7 @@ class SalaCinema:
                             print(self.linhas_aparencia)
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
-                            self.cadeiras_reservadas = self.cinema
+                            self.cadeiras_reservadas = cinema
                             atualizando_estrutura_cinema()
                             break
                         else:
@@ -411,11 +440,11 @@ class SalaCinema:
                                   f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
-                            self.cadeiras_reservadas = self.cinema
+                            self.cadeiras_reservadas = cinema
                             atualizando_estrutura_cinema()
                             break
 
-        self.cinema = sala_cinema()
+        cinema = sala_cinema()
 
         def atualizando_estrutura_cinema():
             """
@@ -428,37 +457,6 @@ class SalaCinema:
             for valor_reservas in self.cadeiras_reservadas:
                 gravando_arq_reserva_restrutura.write(f'{valor_reservas}\n')
             gravando_arq_reserva_restrutura.close()
-
-        def verif_estrutura_reserva():
-            """
-            :return:
-            """
-            global teste_2
-            verificacao_reservas_cadeiras = list()
-            lista_valor_arq = list()
-            valor_arq = list()
-            try:
-                abrindo_arq_cadeiras_reservadas = open(arq_cadeiras_reservadas, 'r')
-                valor_arq = abrindo_arq_cadeiras_reservadas
-            except FileNotFoundError:
-                print('Arquivo que contem as informações dos lugares reservados não foram encontrados')
-            except UnboundLocalError:
-                print('Erro local não vinculado')
-            except ValueError:
-                print('Dados que foram adicionados não são compatíveis')
-
-            for valor in valor_arq:
-                valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
-                valor_formatado = valor_sem_caracteres_especial.replace('\n', '').strip()
-                lista_valor_arq.append(valor_formatado)
-
-            for valor_descompactado in lista_valor_arq:
-                lista_arquivos = valor_descompactado.split(',')
-                for valor_lista_arquivos in lista_arquivos:
-                    verificacao_reservas_cadeiras.append(valor_lista_arquivos.strip())
-                    if verificacao_reservas_cadeiras == '--':
-                        self.verificacao_reservas = False
-                self.lista_reserva_sala_cinema = [verificacao_reservas_cadeiras]
 
         # Menu principal
         while True:
