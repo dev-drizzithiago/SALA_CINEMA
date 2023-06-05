@@ -281,14 +281,6 @@ class SalaCinema:
             global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
             cpf_confirma = False
             lendo_dados_arq_cliente_txt()
-            verif_estrutura_reserva()
-            if not self.verificacao_reservas:
-                sala_cinema()
-                print('Arquivos novos')
-                cinema = self.cinema_sala
-            else:
-                print('Busca as informações da reserva')
-                cinema = self.lista_reserva_sala_cinema
             while True:  # loop_03
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
@@ -348,7 +340,7 @@ class SalaCinema:
                 print(f'TELA'.center(80))
                 print(self.linhas_aparencia)
                 print()
-                for linhas in cinema:
+                for linhas in self.cinema:
                     print()
                     for coluna in linhas:
                         print(f'[{coluna}] ', end='   ')
@@ -380,12 +372,12 @@ class SalaCinema:
                         valor_linha = 9
 
                     # Verificar se o lugar está ocupado. Caso esteja, pede para reservar outro.
-                    if cinema[valor_linha][valor_coluna] == '--':
+                    if self.cinema[valor_linha][valor_coluna] == '--':
                         print('Não é possível reservar essa poltrona, reserve outra poltrona')
                         sleep(0.5)
                     else:  # Se o lugar estiver livre. Marca o local com o simbolo.
-                        self.inf_reserva.append(cinema[valor_linha][valor_coluna])
-                        cinema[valor_linha][valor_coluna] = str('--').strip()
+                        self.inf_reserva.append(self.cinema[valor_linha][valor_coluna])
+                        self.cinema[valor_linha][valor_coluna] = str('--').strip()
                 except TypeError:
                     print('OS Dados que você informou estão incorretos!')
 
@@ -409,7 +401,7 @@ class SalaCinema:
                             print(self.linhas_aparencia)
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
-                            self.cadeiras_reservadas = cinema
+                            self.cadeiras_reservadas = self.cinema
                             atualizando_estrutura_cinema()
                             break
                         else:
@@ -418,9 +410,11 @@ class SalaCinema:
                                   f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             aperte_enter()
-                            self.cadeiras_reservadas = cinema
+                            self.cadeiras_reservadas = self.cinema
                             atualizando_estrutura_cinema()
                             break
+
+            self.cinema = self.cinema_sala
 
         def atualizando_estrutura_cinema():
             """
