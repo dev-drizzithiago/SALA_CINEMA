@@ -27,7 +27,7 @@ class SalaCinema:
         self.lista_dados_cliente = list()
 
         def verif_estrutura_reserva():
-            global teste_2
+            global verificacao_reservas
             verificacao_reservas_cadeiras = list()
             lista_valor_arq = list()
             valor_arq = list()
@@ -44,13 +44,16 @@ class SalaCinema:
 
             for valor_descompactado in lista_valor_arq:
                 lista_arquivos = valor_descompactado.split(',')
+                self.lista_reserva_sala_cinema = lista_arquivos
+                print(self.lista_reserva_sala_cinema)
                 for valor_lista_arquivos in lista_arquivos:
                     verificacao_reservas_cadeiras.append(valor_lista_arquivos.strip())
-                    if verificacao_reservas_cadeiras == '--':
+                    if valor_lista_arquivos == 'a1':
                         self.verificacao_reservas = True
-                self.lista_reserva_sala_cinema = [verificacao_reservas_cadeiras]
-            print(self.lista_reserva_sala_cinema)
-            return self.verificacao_reservas
+            if self.verificacao_reservas:
+                print('deu certo')
+            else:
+                print('não deu certo')
 
         def sala_cinema():  # A montagem do programa
             """
