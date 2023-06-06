@@ -49,6 +49,8 @@ class SalaCinema:
                     if verificacao_reservas_cadeiras == '--':
                         self.verificacao_reservas = True
                 self.lista_reserva_sala_cinema = [verificacao_reservas_cadeiras]
+            print(self.lista_reserva_sala_cinema)
+            return self.verificacao_reservas
 
         def sala_cinema():  # A montagem do programa
             """
@@ -70,7 +72,7 @@ class SalaCinema:
                            cadeiras_cinema_e,
                            cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
                            cadeiras_cinema_j]
-            verif_estrutura_reserva()
+            valor_verificacao = verif_estrutura_reserva()
             return cinema_sala
 
         def aperte_enter():
@@ -434,7 +436,7 @@ class SalaCinema:
                             atualizando_estrutura_cinema()
                             break
 
-        cinema = sala_cinema()  # Recebe os dados para estruturar as poltronas
+        cinema = sala_cinema()  # Recebe os dados para estruturar as poltronas é o primeiro passo quando abre o programa
 
         def atualizando_estrutura_cinema():
             """
