@@ -145,12 +145,6 @@ class SalaCinema:
 
         # Métodos
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
-            """
-            :param cpf:
-            :param nome:
-            :param idade:
-            :param email:
-            """
             try:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
                 gravando_dados.write(f'{cpf};{nome};{idade};{email}\n')
@@ -444,7 +438,7 @@ class SalaCinema:
                             atualizando_estrutura_cinema()
                             break
 
-        cinema = sala_cinema()
+        cinema = sala_cinema()  # Recebe os dados para estruturar as poltronas
 
         def atualizando_estrutura_cinema():
             """
