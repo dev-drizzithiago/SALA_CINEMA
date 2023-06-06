@@ -27,9 +27,6 @@ class SalaCinema:
         self.lista_dados_cliente = list()
 
         def verif_estrutura_reserva():
-            """
-            :return:
-            """
             global teste_2
             verificacao_reservas_cadeiras = list()
             lista_valor_arq = list()
@@ -74,7 +71,6 @@ class SalaCinema:
                            cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
                            cadeiras_cinema_j]
             verif_estrutura_reserva()
-            print(self.verificacao_reservas)
             return cinema_sala
 
         def aperte_enter():
