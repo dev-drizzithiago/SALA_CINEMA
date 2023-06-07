@@ -28,8 +28,11 @@ class SalaCinema:
 
         def verif_estrutura_reserva():
             global verificacao_reservas, valor_formatado
-            fila_a = ''
-            cont = 0
+            cadeiras_cinema_reservado = list()
+            cont_verificacao = 0
+            cont_cadeiras = 0
+            cont_variavel = 0
+
             verificacao_reservas_cadeiras = list()
             lista_valor_arq = list()
             valor_arq = list()
@@ -45,8 +48,13 @@ class SalaCinema:
                 print(valor_formatado)
                 lista_valor_arq.append(valor_formatado)
 
+            cadeiras_cinema_reservado = [lista_valor_arq[0], lista_valor_arq[1], lista_valor_arq[2], lista_valor_arq[3],
+                                         lista_valor_arq[4], lista_valor_arq[5], lista_valor_arq[6], lista_valor_arq[7],
+                                         lista_valor_arq[8], lista_valor_arq[9]]
+            print(cadeiras_cinema_reservado)
+
             while True:
-                fila_a = lista_valor_arq[cont]
+                fila_a = lista_valor_arq[cont_verificacao]
                 fila_a = fila_a.split()
                 for valor in fila_a:
                     valor_1 = str(valor)
@@ -55,8 +63,8 @@ class SalaCinema:
                         print('deu certo')
                         print(f'Valor com {len(valor_1)} Caracteres')
                         print(f'{valor_1}')
-                cont += 1
-                if cont == 9:
+                cont_verificacao += 1
+                if cont_verificacao == 9:
                     break
 
         def sala_cinema():  # A montagem do programa
