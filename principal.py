@@ -28,7 +28,8 @@ class SalaCinema:
 
         def verif_estrutura_reserva():
             global verificacao_reservas, valor_formatado
-            sala_cinema_com_reserva = list()
+            fila_a = ''
+            cont = 0
             verificacao_reservas_cadeiras = list()
             lista_valor_arq = list()
             valor_arq = list()
@@ -40,19 +41,23 @@ class SalaCinema:
 
             for valor in valor_arq:
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
-                valor_formatado = valor_sem_caracteres_especial.replace('\n', '').strip()
-            lista_valor_arq.append(valor_formatado)
-            sala_cinema_com_reserva.append(lista_valor_arq)
-            print(sala_cinema_com_reserva)
-            print(len(sala_cinema_com_reserva))
-            for valor_descompactado in lista_valor_arq:
-                valor_arquivo = valor_descompactado.strip().split(',')
-                print(valor_arquivo)
+                valor_formatado = valor_sem_caracteres_especial.replace('\n', '').replace(',', '')
+                print(valor_formatado)
+                lista_valor_arq.append(valor_formatado)
 
-            if self.verificacao_reservas:
-                print('deu certo')
-            else:
-                print('não deu certo')
+            while True:
+                fila_a = lista_valor_arq[cont]
+                fila_a = fila_a.split()
+                for valor in fila_a:
+                    valor_1 = str(valor)
+                    print(valor)
+                    print('Caracteres', len(valor))
+                    if valor == '--':
+                        print('deu certo')
+                        print(valor_1)
+                    else:
+                        print('não deu certo')
+                break
 
         def sala_cinema():  # A montagem do programa
             """
@@ -450,6 +455,7 @@ class SalaCinema:
             """
             gravando_arq_reserva_restrutura = open(arq_cadeiras_reservadas, 'a')
             for valor_reservas in self.cadeiras_reservadas:
+                valor_formatado = str(valor_reservas).strip()
                 gravando_arq_reserva_restrutura.write(f'{valor_reservas}\n')
             gravando_arq_reserva_restrutura.close()
 
