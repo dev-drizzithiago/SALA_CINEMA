@@ -27,7 +27,8 @@ class SalaCinema:
         self.lista_dados_cliente = list()
 
         def verif_estrutura_reserva():
-            global verificacao_reservas
+            global verificacao_reservas, valor_formatado
+            sala_cinema_com_reserva = list()
             verificacao_reservas_cadeiras = list()
             lista_valor_arq = list()
             valor_arq = list()
@@ -40,16 +41,14 @@ class SalaCinema:
             for valor in valor_arq:
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
                 valor_formatado = valor_sem_caracteres_especial.replace('\n', '').strip()
-                lista_valor_arq.append(valor_formatado)
-
+            lista_valor_arq.append(valor_formatado)
+            sala_cinema_com_reserva.append(lista_valor_arq)
+            print(sala_cinema_com_reserva)
+            print(len(sala_cinema_com_reserva))
             for valor_descompactado in lista_valor_arq:
-                lista_arquivos = valor_descompactado.split(',')
-                self.lista_reserva_sala_cinema = lista_arquivos
-                print(self.lista_reserva_sala_cinema)
-                for valor_lista_arquivos in lista_arquivos:
-                    verificacao_reservas_cadeiras.append(valor_lista_arquivos.strip())
-                    if valor_lista_arquivos == 'a1':
-                        self.verificacao_reservas = True
+                valor_arquivo = valor_descompactado.strip().split(',')
+                print(valor_arquivo)
+
             if self.verificacao_reservas:
                 print('deu certo')
             else:
@@ -75,7 +74,8 @@ class SalaCinema:
                            cadeiras_cinema_e,
                            cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
                            cadeiras_cinema_j]
-            valor_verificacao = verif_estrutura_reserva()
+            verif_estrutura_reserva()
+            valor_verificacao = self.verificacao_reservas
             return cinema_sala
 
         def aperte_enter():
