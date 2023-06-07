@@ -50,14 +50,14 @@ class SalaCinema:
                 fila_a = fila_a.split()
                 for valor in fila_a:
                     valor_1 = str(valor)
-                    print(valor)
-                    print('Caracteres', len(valor))
+
                     if valor == '--':
                         print('deu certo')
-                        print(valor_1)
-                    else:
-                        print('não deu certo')
-                break
+                        print(f'Valor com {len(valor_1)} Caracteres')
+                        print(f'{valor_1}')
+                cont += 1
+                if cont == 9:
+                    break
 
         def sala_cinema():  # A montagem do programa
             """
