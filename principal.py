@@ -353,6 +353,13 @@ class SalaCinema:
                     aperte_enter()
 
         def consultar_cadastro_cliente():
+            """
+            :param lendo_dados_arq_cliente_txt(): Quando chama a função "consultar_cadastro_cliente", ela vai primeiro
+            buscar as informações. Apos a informações serem adicionadas na lista "self.lista_dados_cliente", as
+            informações serão destribuidas no dicionário "self.dados_cliente_dict"
+
+            :return: depois das informações coletadas, os dados é impresso para o usuário.
+            """
             lendo_dados_arq_cliente_txt()
             for valor_consulta in self.lista_dados_cliente:
                 self.dados_cliente_dict = {'Nome:': valor_consulta[1],
