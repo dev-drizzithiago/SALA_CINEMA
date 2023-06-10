@@ -59,7 +59,7 @@ class SalaCinema:
 
             :return:
             """
-            global verificacao_reservas, valor_formatado, abrindo_arq_cadeiras_reservadas
+            global abrindo_arq_cadeiras_reservadas
             cadeiras_cinema_reservado = list()
             cont_verificacao = 0
             verificacao_reservas_cadeiras = list()
@@ -120,7 +120,7 @@ class SalaCinema:
             sendo reservada.
             :return: RETURN_2, se a verificação for falsa, então ele cria a 'PRIMEIRA ESTRUTURA DE CADEIRAS'.
             """
-            
+
             # PRIMEIRA ESTRUTURA DE CADEIRAS
             cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
             cadeiras_cinema_b = ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9']
@@ -152,6 +152,9 @@ class SalaCinema:
             input('Aperte ENTER para continuar!')
 
         def inicio_verif_arq_reserva():
+            """
+            Função para testes de threding
+            """
             sleep(0.1)
             if not verificando_arq_registro_reserva():
                 print('Estamos criando o arquivo para você')
@@ -163,6 +166,10 @@ class SalaCinema:
 
         # VERIFICAR SE POSSUI O ARQUIVO RESPONSÁVEL PELO CADASTRO DO CLIENTE.
         def verificar_arq_cadastro_cliente():
+            """
+            Realiza um leituro no caminho que contem o arquivo de texto, que contem o cadastro dos clientes.
+            :return: Se o valor for verdade, envia um False para a função "criando_arq_cadastro_cliente"
+            """
             try:
                 verificacao = open(arq_cadastro_cliente_local, 'r')
             except:
