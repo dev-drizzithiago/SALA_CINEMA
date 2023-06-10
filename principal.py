@@ -108,14 +108,20 @@ class SalaCinema:
 
         def sala_cinema():  # A montagem do programa
             """
-            Primeira estrutura para criação da sala de cinema. Aqui contem as filas, denominada por letras e as cadeiras
-            denominadas com números.
+            :param: "PRIMEIRA ESTRUTURA DE CADEIRAS", responsavel em criar a primeira estrutura de paoltronas. Quando a
+            primeira poltrona for reservada, essa estrutura esperara até a próxima atração.
+
             :param: "verificação de estrutura" essa condição serva para saber qual estrutura deve ser aprensentada no
             início do programa. Caso não tenha nenhuma cadeira reservada, seja a primeira vez que abre o programa, é
             preciso criar uma estrutura nova. Apos a verificação der FALSA,, passa a buscar as informações dentro
-            do arquivo de texto. 
-            :return:
+            do arquivo de texto.
+
+            :return: RETURN_1, caso a verificação seja verdadeira, então ele encaminha a estrutura que já está
+            sendo reservada.
+            :return: RETURN_2, se a verificação for falsa, então ele cria a 'PRIMEIRA ESTRUTURA DE CADEIRAS'.
             """
+            
+            # PRIMEIRA ESTRUTURA DE CADEIRAS
             cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
             cadeiras_cinema_b = ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9']
             cadeiras_cinema_c = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
@@ -135,9 +141,9 @@ class SalaCinema:
 
             # Verificação de estrutura
             if self.verificacao_reservas:
-                return self.cadeiras_cinema_reservado
+                return self.cadeiras_cinema_reservado  # RETURN_1
             else:
-                return cinema_sala
+                return cinema_sala  # RETURNO_2
 
         def aperte_enter():
             """
