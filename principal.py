@@ -29,9 +29,25 @@ class SalaCinema:
         def verif_estrutura_reserva():
             """
             :loop_01_verificação: visa em formatar a string adquirida pelo arquivo de texto.
+
+            :valor_sem_caracteres_especial: essa variavel recebe as informações sem os caracteres especiais; removendo os
+            caracteres "[", "]", "'". Como as informações foram gravadas em um bloco de notes do windows, quando solicitadas
+            elas vem com os caracteres, sem indenficar se é uma lista.
+
+            :valor_formatado_inicio: essa variavel recebe as informações um pouco mais limpa. Como existem espaços,
+            e o metodo "\n" precisar ser removido. Como você vêem utilizei o metodo "replace" que vai substituir os caracteres
+            que não fazem parte do conteúdo e vai trocá-los por outros. Nessa caso eu removi a "," e deixei sem nada
+            depois eu precisei trocar o "espeço pela vírgula ","
+
+            :valor_formatado_fim: nessa variavel, vamos transformar as informações da variavel valor_formatado_inicio
+            em uma lista; com o metodo "split" pegamos todas as informações que estão entre vírgulas "," assim conseguimos
+             seperar as informações e colocá-las uma lista.
+
+            :lista_valor_arq: agora que conseguimos colocar cada informação dentra da lista, vamos colocar
+            
             :return:
             """
-            global verificacao_reservas, valor_formatado
+            global verificacao_reservas, valor_formatado, abrindo_arq_cadeiras_reservadas
             cadeiras_cinema_reservado = list()
             cont_verificacao = 0
             verificacao_reservas_cadeiras = list()
@@ -42,11 +58,11 @@ class SalaCinema:
                 valor_arq = abrindo_arq_cadeiras_reservadas
             except:
                 print('Não foi possível abrir o arquivo')
-
+            print(type(abrindo_arq_cadeiras_reservadas))
+            print(type(valor_arq))
             for valor in valor_arq:  # Loop_01_verificação
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
-                valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ',
-                                                                                                                  ',')
+                valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ', ',')
                 valor_formatado_fim = valor_formatado_inicio.split(',')
                 lista_valor_arq.append(valor_formatado_fim)
             if len(lista_valor_arq) == 0:
