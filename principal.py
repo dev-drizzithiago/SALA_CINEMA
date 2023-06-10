@@ -324,6 +324,15 @@ class SalaCinema:
                 leitura.close()
 
         def lendo_dados_no_arq_reserva():
+            """
+            Função responsavel em realizar a leitura das informações de reserva.
+            :param leitura: Apos a função "gravando_reserva_cliente_txt" gravar as informações, depois da reserva,
+            é possivel verificar quem realizou as reservas. Juntos, mais para frente, quando um cliente solicitar uma
+            cadeira já reservada, aparecera as informações de quem realizou a reserva, caso não seja a mesma pessoa
+            que fez a reserva, uma negação aparecerá na tela, informando que os dados são confidenciais.
+            :return: Apos as informações serem lidas pela função, as informações eram inseridas no objeto
+            lista "self.lista_info_registro"
+            """
             self.lista_info_registro = list()
             try:
                 leitura = open(arq_cadastro_registro_local, 'r')
