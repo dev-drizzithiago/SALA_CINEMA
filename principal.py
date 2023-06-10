@@ -98,7 +98,6 @@ class SalaCinema:
             verif_estrutura_reserva()
             valor_verificacao = self.verificacao_reservas
             if self.verificacao_reservas:
-                print('O valor é veridadeiro')
                 return self.cadeiras_cinema_reservado
             else:
                 return cinema_sala
