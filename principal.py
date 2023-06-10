@@ -212,6 +212,11 @@ class SalaCinema:
                 return False
 
         def criando_arq_registro_reserva():
+            """
+            Após receber o valor FALSO da função "criando_arq_registro_reserva", ele ira criar o arquivo de
+            texto "criando_arq_registro_reserva"
+            :return: cria o arquivo de texto no local configurado pelo desenvolvedor.
+            """
             try:
                 criando_arq_registro_reserva_txt = open(arq_cadastro_registro_local, 'w')
             except:
