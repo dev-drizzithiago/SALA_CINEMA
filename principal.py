@@ -6,9 +6,8 @@ from datetime import datetime
 
 data = datetime.now()
 ano_atual = data.strftime('%Y')
-data_atual = data.strftime('%d/%m/%y')
+data_atual = data.strftime('%D/%M/%Y')
 hora_atual = data.strftime('%H:%M:%S')
-print(ano_atual)
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
@@ -481,11 +480,11 @@ class SalaCinema:
         # Menu principal
         while True:
             data_menu = datetime.now()
-            data_atual_menu = data_menu.strftime('%D/%M/%Y')
+            data_atual_menu = data_menu.strftime('%d/%m/%y')
             hora_atual_menu = data_menu.strftime('%H:%M:%S')
             print(
                 f'''
-        Hora certa: 
+            Hora certa
         {data_atual_menu} - {hora_atual_menu}
         {self.linhas_aparencia}
         [1] => Reservar uma Poltrona        
