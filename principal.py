@@ -198,6 +198,12 @@ class SalaCinema:
                 criando_arq_cliente.close()
 
         def verificando_arq_registro_reserva():
+            """
+            Igual à função "verificar_arq_cadastro_cliente". Essa função é responsavel por verificar se existe o arquivo
+            de texto "REGISTRO_RESERVAS.txt". Esse arquivo é responsavel por registrar todos os registros que os clientes
+            fizer, caso ele não existe, automaticamente ele é criado quando o cliente faz uma reserva.
+            :return: retorna o valor de falso para a função "criando_arq_registro_reserva".
+            """
             try:
                 verificacao_arq_reserva_txt = open(arq_cadastro_registro_local, 'r')
                 verificacao_arq_reserva_txt.close()
