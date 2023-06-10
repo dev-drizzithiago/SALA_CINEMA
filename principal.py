@@ -178,6 +178,10 @@ class SalaCinema:
 
         # CASO NÃO EXISTA O ARQUIVO. O PROGRAMA IRA CRIAR UM
         def criando_arq_cadastro_cliente():
+            """
+            Após receber a informação de que o arquivo não existe. Essa função cria o arquivo no caminho solicitado.
+            :return: Cria o arquivo de texto "CADASTRO_CLIENTE.txt"
+            """
             try:
                 criando_arq_cliente = open(arq_cadastro_cliente_local, 'w')
             except:
