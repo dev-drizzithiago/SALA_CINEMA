@@ -28,12 +28,13 @@ class SalaCinema:
         self.lista_dados_cliente = list()
 
         def verif_estrutura_reserva():
+            """
+            :loop_01_verificação: tem como objetivo em formatar a string que é adquirida pelo arquivo de texto. 
+            :return:
+            """
             global verificacao_reservas, valor_formatado
             cadeiras_cinema_reservado = list()
             cont_verificacao = 0
-            cont_cadeiras = 0
-            cont_variavel = 0
-
             verificacao_reservas_cadeiras = list()
             lista_valor_arq = list()
             valor_arq = list()
@@ -43,7 +44,7 @@ class SalaCinema:
             except:
                 print('Não foi possível abrir o arquivo')
 
-            for valor in valor_arq:
+            for valor in valor_arq:  # Loop_01_verificação
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
                 valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ',
                                                                                                                   ',')
@@ -65,11 +66,8 @@ class SalaCinema:
                 fila_a = lista_valor_arq[cont_verificacao]
                 for valor in fila_a:
                     valor_1 = str(valor)
-
                     if valor == '--':
-                        print('deu certo')
-                        print(f'Valor com {len(valor_1)} Caracteres')
-                        print(f'{valor_1}')
+                        self.verificacao_reservas = True
                 cont_verificacao += 1
                 if cont_verificacao == 9:
                     break
@@ -324,7 +322,6 @@ class SalaCinema:
             informações nas listas internas e joga na variável 'cinema'.
             :return:
             """
-            cinema = self.cadeiras_cinema_reservado
             global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
             cpf_confirma = False
             lendo_dados_arq_cliente_txt()
