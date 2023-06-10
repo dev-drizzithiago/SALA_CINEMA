@@ -28,23 +28,29 @@ class SalaCinema:
 
         def verif_estrutura_reserva():
             """
-            :loop_01_verificação: visa em formatar a string adquirida pelo arquivo de texto.
+            :param: loop_01_verificação, visa em formatar a string adquirida pelo arquivo de texto.
 
-            :valor_sem_caracteres_especial: essa variavel recebe as informações sem os caracteres especiais; removendo os
+            :param: Valor_sem_caracteres_especial: essa variavel recebe as informações sem os caracteres especiais; removendo os
             caracteres "[", "]", "'". Como as informações foram gravadas em um bloco de notes do windows, quando solicitadas
             elas vem com os caracteres, sem indenficar se é uma lista.
 
-            :valor_formatado_inicio: essa variavel recebe as informações um pouco mais limpa. Como existem espaços,
+            :param: valor_formatado_inicio, essa variavel recebe as informações um pouco mais limpa. Como existem espaços,
             e o metodo "\n" precisar ser removido. Como você vêem utilizei o metodo "replace" que vai substituir os caracteres
             que não fazem parte do conteúdo e vai trocá-los por outros. Nessa caso eu removi a "," e deixei sem nada
             depois eu precisei trocar o "espeço pela vírgula ","
 
-            :valor_formatado_fim: nessa variavel, vamos transformar as informações da variavel valor_formatado_inicio
+            :param: valor_formatado_fim: nessa variavel, vamos transformar as informações da variavel valor_formatado_inicio
             em uma lista; com o metodo "split" pegamos todas as informações que estão entre vírgulas "," assim conseguimos
              seperar as informações e colocá-las uma lista.
 
-            :lista_valor_arq: agora que conseguimos colocar cada informação dentra da lista, vamos colocar
-            
+            :param: lista_valor_arq, após ajustar as informações para uma lista, vamos adicioná-las realmente a uma lista
+            "lista_valor_arq". Nesta lista vamos colocar em cada loop do FOR uma fileira do cinema até completa o loop.
+            Depois que todas as informações estiverem na lista, segue-se a próxima linha.
+
+            :param: na próxima linha, sera feita uma verificação para saber se o arquivo possui informações. Sempre que
+            for aberto pela primeira vez o programa, o correto é sempre estava sem informações, como ele vai reconhecer
+            que não possui dados, ele vai retornar o objeto "self.verificacao_reserva" como FALSO.
+
             :return:
             """
             global verificacao_reservas, valor_formatado, abrindo_arq_cadeiras_reservadas
@@ -58,8 +64,6 @@ class SalaCinema:
                 valor_arq = abrindo_arq_cadeiras_reservadas
             except:
                 print('Não foi possível abrir o arquivo')
-            print(type(abrindo_arq_cadeiras_reservadas))
-            print(type(valor_arq))
             for valor in valor_arq:  # Loop_01_verificação
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
                 valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ', ',')
