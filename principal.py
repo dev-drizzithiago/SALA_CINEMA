@@ -5,9 +5,10 @@ from datetime import datetime
 # from threading import Thread
 
 data = datetime.now()
-ano_atual = data.strftime('%y')
+ano_atual = data.strftime('%Y')
 data_atual = data.strftime('%d/%m/%y')
 hora_atual = data.strftime('%H:%M:%S')
+print(ano_atual)
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
@@ -43,19 +44,31 @@ class SalaCinema:
                 print('Não foi possível abrir o arquivo')
 
             for valor in valor_arq:
+                print(f'Antes {valor.strip()}\n\bQuantidades de caracteres {len(valor)}\n\n')
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
-                valor_formatado = valor_sem_caracteres_especial.replace('\n', '').replace(',', '')
-                print(valor_formatado)
-                lista_valor_arq.append(valor_formatado)
+                valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ',
+                                                                                                                  ',')
+                valor_formatado_fim = valor_formatado_inicio.split(',')
+                print(f'Depois {valor_formatado_fim}\nQuantidade caracteres {len(valor_formatado_fim)}\n\n')
+                print()
+                lista_valor_arq.append(valor_formatado_fim)
 
-            cadeiras_cinema_reservado = [lista_valor_arq[0], lista_valor_arq[1], lista_valor_arq[2], lista_valor_arq[3],
-                                         lista_valor_arq[4], lista_valor_arq[5], lista_valor_arq[6], lista_valor_arq[7],
-                                         lista_valor_arq[8], lista_valor_arq[9]]
-            print(cadeiras_cinema_reservado)
+            fileira_a = lista_valor_arq[0]
+            fileira_b = lista_valor_arq[1]
+            fileira_c = lista_valor_arq[2]
+            fileira_d = lista_valor_arq[3]
+            fileira_e = lista_valor_arq[4]
+            fileira_f = lista_valor_arq[5]
+            fileira_g = lista_valor_arq[6]
+            fileira_h = lista_valor_arq[7]
+            fileira_i = lista_valor_arq[8]
+            fileira_j = lista_valor_arq[9]
 
+            self.cadeiras_cinema_reservado = [fileira_a, fileira_b, fileira_c, fileira_d, fileira_e,
+                                              fileira_f, fileira_g, fileira_h, fileira_i, fileira_j]
+            print(self.cadeiras_cinema_reservado)
             while True:
                 fila_a = lista_valor_arq[cont_verificacao]
-                fila_a = fila_a.split()
                 for valor in fila_a:
                     valor_1 = str(valor)
 
@@ -89,6 +102,7 @@ class SalaCinema:
                            cadeiras_cinema_j]
             verif_estrutura_reserva()
             valor_verificacao = self.verificacao_reservas
+            print(f'teste {len(cadeiras_cinema_a)}')
             return cinema_sala
 
         def aperte_enter():
@@ -316,6 +330,7 @@ class SalaCinema:
             informações nas listas internas e joga na variável 'cinema'.
             :return:
             """
+            cinema = self.cadeiras_cinema_reservado
             global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
             cpf_confirma = False
             lendo_dados_arq_cliente_txt()
