@@ -389,7 +389,8 @@ class SalaCinema:
 
             :param email_cadastro: o email, sera responsavel em encaminhar uma menssagem informando sobre a reserva feita
 
-            :return:
+            :return: Quando as informações estiverem completas, os dados serão encaminhados para a função
+            "gravando_dados_arq_cliente_txt"
             """
             while True:  # loop_02
                 nome_cadastro = input('Digite seu nome completo: ').title()
