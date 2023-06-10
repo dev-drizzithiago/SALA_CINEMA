@@ -21,7 +21,7 @@ class SalaCinema:
         self.quebra_loop = True
         self.verificacao_reservas = False
         self.info_reserva = None
-        self.linhas_aparencia = '--' * 60
+        self.linhas_aparencia = '--' * 40
         self.inf_reserva = list()
         self.lista_reserva_cliente = list()
         self.lista_cpf_cliente = list()
@@ -44,15 +44,11 @@ class SalaCinema:
                 print('Não foi possível abrir o arquivo')
 
             for valor in valor_arq:
-                print(f'Antes {valor.strip()}\n\bQuantidades de caracteres {len(valor)}\n\n')
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
                 valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ',
                                                                                                                   ',')
                 valor_formatado_fim = valor_formatado_inicio.split(',')
-                print(f'Depois {valor_formatado_fim}\nQuantidade caracteres {len(valor_formatado_fim)}\n\n')
-                print()
                 lista_valor_arq.append(valor_formatado_fim)
-
             fileira_a = lista_valor_arq[0]
             fileira_b = lista_valor_arq[1]
             fileira_c = lista_valor_arq[2]
@@ -63,10 +59,8 @@ class SalaCinema:
             fileira_h = lista_valor_arq[7]
             fileira_i = lista_valor_arq[8]
             fileira_j = lista_valor_arq[9]
-
             self.cadeiras_cinema_reservado = [fileira_a, fileira_b, fileira_c, fileira_d, fileira_e,
                                               fileira_f, fileira_g, fileira_h, fileira_i, fileira_j]
-            print(self.cadeiras_cinema_reservado)
             while True:
                 fila_a = lista_valor_arq[cont_verificacao]
                 for valor in fila_a:
@@ -79,7 +73,7 @@ class SalaCinema:
                 cont_verificacao += 1
                 if cont_verificacao == 9:
                     break
-
+                    
         def sala_cinema():  # A montagem do programa
             """
             Primeira estrutura para criação da sala de cinema. Aqui contem as filas, denominada por letras e as cadeiras
@@ -476,7 +470,7 @@ class SalaCinema:
             arquivo de texto, que fica localizado no computador.
             :return:
             """
-            gravando_arq_reserva_restrutura = open(arq_cadeiras_reservadas, 'a')
+            gravando_arq_reserva_restrutura = open(arq_cadeiras_reservadas, 'w')
             for valor_reservas in self.cadeiras_reservadas:
                 valor_formatado = str(valor_reservas).strip()
                 gravando_arq_reserva_restrutura.write(f'{valor_reservas}\n')
