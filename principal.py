@@ -270,9 +270,11 @@ class SalaCinema:
 
         def gravando_reserva_cliente_txt(nome_reserva, cpf_reserva):
             """
-            :param: valor_1: recebe o valor iterado da lista de cadeiras
+            Quando cliente realiza uma reserva, as informações como, nome e cpf do cliente são gravadas com
+            as cadeiras que foram solicitadas.
+            :param: valor_1: recebe o valor iterado da lista de cadeiras, reservadas pelo cliente.
             :param: “cont”: contador, responsável em buscar as informações iteradas na lista. Ex cont = 1 - lista[cont] = lista[1]
-            :param: gravando_reserva: salva os dados em um arquivo txt.
+            :param: gravando_reserva: salva os dados no arquivo de texto "REGISTRO_RESERVAS.txt".
             """
             try:
                 gravando_reserva = open(arq_cadastro_registro_local, 'a')
