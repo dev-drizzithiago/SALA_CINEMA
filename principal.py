@@ -295,11 +295,11 @@ class SalaCinema:
 
         def lendo_dados_arq_cliente_txt():
             """
-            Esta função serve para ler o arquivo de texto, que contem os cadastro do cliente.
+            Esta função é responsavel na leitura do arquivo de texto "CADASTRO_CLIENTE.txt", que contem os cadastro dso clientes.
             :return: A função sempre retorna dois objetos; self.lista_cpf_cliente e self.lista_dados_cliente.
-            :param: self.lista.cpf_cliente: possui apenas a informação do CPF do cliente; ele é geralmente utilizada na função
-            'reserva_cadeiras'
-            :param: self.lista_dados_cliente: variável recebe todas as informações do cadastro do cliente e utiliza em diversas
+                >> :param: self.lista.cpf_cliente: possui apenas a informação do CPF do cliente; ele é geralmente utilizada na função
+                'reserva_cadeiras'
+                >> :param: self.lista_dados_cliente: variável recebe todas as informações do cadastro do cliente e utiliza em diversas
             partes do programas
             """
             try:
