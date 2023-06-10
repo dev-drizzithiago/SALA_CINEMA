@@ -241,6 +241,21 @@ class SalaCinema:
 
         # Métodos
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
+            """
+            Essa função é responsavel por gravar as informações do cliente, criando um cadastro.
+            :param cpf: retorna o número do CPF, composta por 11 digitos. Parametro responsavel para localizar o cliente,
+            gerar nota fiscal, entre outros.
+
+            :param nome: retorna o nome do cliente, composta por caracteres de strings.
+
+            :param idade: retorna a idade do cliente, composta por número inteiro. Parametro responsavel para
+            classificação indicativa do filme.
+
+            :param email: retorna o e-mail do cliente, comporta por caracteres de strings. Parametro responsavel para
+            enviar promoções, informar a reserva, etc.
+
+            :return gravando_dados: Grava todas as informações dentro do arquivo de texto "CADASTRO_CLIENTE.txt"
+            """
             try:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
                 gravando_dados.write(f'{cpf};{nome};{idade};{email}\n')
