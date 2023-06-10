@@ -226,6 +226,12 @@ class SalaCinema:
 
         # Atributos
         def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
+            """
+            Essa função é responsavel por verificar se a entrada que os usuários informarem é um "número inteiro"
+            :param valor_int: Recebe o texto exibido para o usuário.
+            :return: Se o valor, digitado pelo usuário, for um número inteiro, ele retorna o valor como correto. Mas,
+            caso o valor não for um "número inteiro" a função pede para o usuário digitar o valor navamente.
+            """
             while True:  # loop_01
                 try:
                     valor_correto = int(input(valor_int))
