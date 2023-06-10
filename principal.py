@@ -29,7 +29,7 @@ class SalaCinema:
 
         def verif_estrutura_reserva():
             """
-            :loop_01_verificação: tem como objetivo em formatar a string que é adquirida pelo arquivo de texto. 
+            :loop_01_verificação: visa em formatar a string adquirida pelo arquivo de texto.
             :return:
             """
             global verificacao_reservas, valor_formatado
@@ -50,27 +50,30 @@ class SalaCinema:
                                                                                                                   ',')
                 valor_formatado_fim = valor_formatado_inicio.split(',')
                 lista_valor_arq.append(valor_formatado_fim)
-            fileira_a = lista_valor_arq[0]
-            fileira_b = lista_valor_arq[1]
-            fileira_c = lista_valor_arq[2]
-            fileira_d = lista_valor_arq[3]
-            fileira_e = lista_valor_arq[4]
-            fileira_f = lista_valor_arq[5]
-            fileira_g = lista_valor_arq[6]
-            fileira_h = lista_valor_arq[7]
-            fileira_i = lista_valor_arq[8]
-            fileira_j = lista_valor_arq[9]
-            self.cadeiras_cinema_reservado = [fileira_a, fileira_b, fileira_c, fileira_d, fileira_e,
-                                              fileira_f, fileira_g, fileira_h, fileira_i, fileira_j]
-            while True:
-                fila_a = lista_valor_arq[cont_verificacao]
-                for valor in fila_a:
-                    valor_1 = str(valor)
-                    if valor == '--':
-                        self.verificacao_reservas = True
-                cont_verificacao += 1
-                if cont_verificacao == 9:
-                    break
+            if len(lista_valor_arq) == 0:
+                self.verificacao_reservas = False
+            else:
+                fileira_a = lista_valor_arq[0]
+                fileira_b = lista_valor_arq[1]
+                fileira_c = lista_valor_arq[2]
+                fileira_d = lista_valor_arq[3]
+                fileira_e = lista_valor_arq[4]
+                fileira_f = lista_valor_arq[5]
+                fileira_g = lista_valor_arq[6]
+                fileira_h = lista_valor_arq[7]
+                fileira_i = lista_valor_arq[8]
+                fileira_j = lista_valor_arq[9]
+                self.cadeiras_cinema_reservado = [fileira_a, fileira_b, fileira_c, fileira_d, fileira_e,
+                                                  fileira_f, fileira_g, fileira_h, fileira_i, fileira_j]
+                while True:
+                    fila_a = lista_valor_arq[cont_verificacao]
+                    for valor in fila_a:
+                        valor_1 = str(valor)
+                        if valor == '--':
+                            self.verificacao_reservas = True
+                    cont_verificacao += 1
+                    if cont_verificacao == 9:
+                        break
 
         def sala_cinema():  # A montagem do programa
             """
@@ -94,8 +97,11 @@ class SalaCinema:
                            cadeiras_cinema_j]
             verif_estrutura_reserva()
             valor_verificacao = self.verificacao_reservas
-            print(f'teste {len(cadeiras_cinema_a)}')
-            return cinema_sala
+            if self.verificacao_reservas:
+                print('O valor é veridadeiro')
+                return self.cadeiras_cinema_reservado
+            else:
+                return cinema_sala
 
         def aperte_enter():
             """
