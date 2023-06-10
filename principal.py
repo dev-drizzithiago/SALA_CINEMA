@@ -372,6 +372,25 @@ class SalaCinema:
 
         # Manipulações
         def cadastro_cliente():
+            """
+            Função responsavel por cadastrar os clientes. São quatro parametros que são solicitadoas. Mais para frente,
+            serão solicitados mais informações, mas por hora são apenas esses.
+
+            :param nome_cadastro: Variavel que recebera o nome completo do cliente. Com o nome, ficara mais fácil para
+            indentificar o responsavel pela reserva.
+
+            :param cpf_cadastro: Variavel vai receber o número de CPF do cliente, mais para frente vou colcoar mais restrições
+            na hora do preenchimento, pois não pode ter "pontos" e nem o "troço" no final do cpf, mas considerarei
+            esses parametros.
+
+            :param idade_cadastro: A idade sera de extrema importancia nessa programa, pretendo usá-lo para classificar
+            a indicação do filme por idade. Essa campo é obrigatorio preencher, ainda não coloquei os parametros de
+            obrigação mais em breve irei adicionar.
+
+            :param email_cadastro: o email, sera responsavel em encaminhar uma menssagem informando sobre a reserva feita
+
+            :return:
+            """
             while True:  # loop_02
                 nome_cadastro = input('Digite seu nome completo: ').title()
                 cpf_cadastro = input('Digite seu CPF: ')
