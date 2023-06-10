@@ -47,9 +47,15 @@ class SalaCinema:
             "lista_valor_arq". Nesta lista vamos colocar em cada loop do FOR uma fileira do cinema até completa o loop.
             Depois que todas as informações estiverem na lista, segue-se a próxima linha.
 
-            :param: na próxima linha, sera feita uma verificação para saber se o arquivo possui informações. Sempre que
+            :param: na próxima linha, "verificação_de_conteu_falso", sera feita uma verificação para saber se o arquivo possui informações. Sempre que
             for aberto pela primeira vez o programa, o correto é sempre estava sem informações, como ele vai reconhecer
             que não possui dados, ele vai retornar o objeto "self.verificacao_reserva" como FALSO.
+
+            :param: na parte da "verificar_de_conteudo_verdadeiro", ele vai iterar as informações em listas seperados,
+            conforme a fileira. Perceba que a lista "lista_valor_arq" esta sendo iterada em cada variavel.
+
+            :param: "verificar_cadeiras_reservadas" esse loop serve para verificar em possui alguma poltrona reservada.
+            Caso tenha alguma, as informações que será apresentada na tela, contera as cadeiras reservadas.
 
             :return:
             """
@@ -69,8 +75,12 @@ class SalaCinema:
                 valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ', ',')
                 valor_formatado_fim = valor_formatado_inicio.split(',')
                 lista_valor_arq.append(valor_formatado_fim)
+
+            # Verificação_de_conteudo_falso
             if len(lista_valor_arq) == 0:
                 self.verificacao_reservas = False
+
+            # Verificação_de_conteudo_verdadeiro
             else:
                 fileira_a = lista_valor_arq[0]
                 fileira_b = lista_valor_arq[1]
@@ -84,6 +94,8 @@ class SalaCinema:
                 fileira_j = lista_valor_arq[9]
                 self.cadeiras_cinema_reservado = [fileira_a, fileira_b, fileira_c, fileira_d, fileira_e,
                                                   fileira_f, fileira_g, fileira_h, fileira_i, fileira_j]
+
+                # verificar_cadeiras_reservadas
                 while True:
                     fila_a = lista_valor_arq[cont_verificacao]
                     for valor in fila_a:
