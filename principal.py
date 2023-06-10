@@ -110,6 +110,10 @@ class SalaCinema:
             """
             Primeira estrutura para criação da sala de cinema. Aqui contem as filas, denominada por letras e as cadeiras
             denominadas com números.
+            :param: "verificação de estrutura" essa condição serva para saber qual estrutura deve ser aprensentada no
+            início do programa. Caso não tenha nenhuma cadeira reservada, seja a primeira vez que abre o programa, é
+            preciso criar uma estrutura nova. Apos a verificação der FALSA,, passa a buscar as informações dentro
+            do arquivo de texto. 
             :return:
             """
             cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
@@ -128,6 +132,8 @@ class SalaCinema:
                            cadeiras_cinema_j]
             verif_estrutura_reserva()
             valor_verificacao = self.verificacao_reservas
+
+            # Verificação de estrutura
             if self.verificacao_reservas:
                 return self.cadeiras_cinema_reservado
             else:
