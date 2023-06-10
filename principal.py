@@ -73,7 +73,7 @@ class SalaCinema:
                 cont_verificacao += 1
                 if cont_verificacao == 9:
                     break
-                    
+
         def sala_cinema():  # A montagem do programa
             """
             Primeira estrutura para criação da sala de cinema. Aqui contem as filas, denominada por letras e as cadeiras
