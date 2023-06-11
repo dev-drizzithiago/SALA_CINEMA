@@ -30,7 +30,6 @@ arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CI
 
 
 class SalaCinema:
-
     def __init__(self):
         self.linhas_aparencia = '--' * 40
         self.quebra_loop = True
@@ -40,6 +39,65 @@ class SalaCinema:
         self.lista_reserva_cliente = list()
         self.lista_cpf_cliente = list()
         self.lista_dados_cliente = list()
+
+        def aperte_enter():
+            """
+            :return: Retorna uma entrada de teclado, para dar uma pausa até o usuário decidir continuar
+            """
+            input('Aperte ENTER para continuar!')
+
+        def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
+            """
+            Essa função é responsavel por verificar se a entrada que os usuários informarem é um "número inteiro"
+            :param valor_int: Recebe o texto exibido para o usuário.
+            :return: Se o valor, digitado pelo usuário, for um número inteiro, ele retorna o valor como correto. Mas,
+            caso o valor não for um "número inteiro" a função pede para o usuário digitar o valor navamente.
+            """
+            while True:  # loop_01
+                try:
+                    valor_correto = int(input(valor_int))
+                    return valor_correto
+                except ValueError:
+                    print('Valor incorreto. Digite novamente.')
+
+        def sala_cinema():  # A montagem do programa
+            """
+            :param: "PRIMEIRA ESTRUTURA DE CADEIRAS", responsavel em criar a primeira estrutura de paoltronas. Quando a
+            primeira poltrona for reservada, essa estrutura esperara até a próxima atração.
+
+            :param: "verificação de estrutura" essa condição serva para saber qual estrutura deve ser aprensentada no
+            início do programa. Caso não tenha nenhuma cadeira reservada, seja a primeira vez que abre o programa, é
+            preciso criar uma estrutura nova. Apos a verificação der FALSA, passa a buscar as informações dentro
+            do arquivo de texto.
+
+            :return: RETURN_1, caso a verificação seja verdadeira, então ele encaminha a estrutura que já está
+            sendo reservada.
+            :return: RETURN_2, se a verificação for falsa, então ele cria a 'PRIMEIRA ESTRUTURA DE CADEIRAS'.
+            """
+
+            # PRIMEIRA ESTRUTURA DE CADEIRAS
+            cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
+            cadeiras_cinema_b = ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9']
+            cadeiras_cinema_c = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
+            cadeiras_cinema_d = ['D0', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9']
+            cadeiras_cinema_e = ['E0', 'E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8', 'E9']
+            cadeiras_cinema_f = ['F0', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9']
+            cadeiras_cinema_g = ['G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7', 'G8', 'G9']
+            cadeiras_cinema_h = ['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9']
+            cadeiras_cinema_i = ['I0', 'I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I9']
+            cadeiras_cinema_j = ['J0', 'J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9']
+            cinema_sala = [cadeiras_cinema_a, cadeiras_cinema_b, cadeiras_cinema_c, cadeiras_cinema_d,
+                           cadeiras_cinema_e,
+                           cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
+                           cadeiras_cinema_j]
+            verif_estrutura_reserva()
+            valor_verificacao = self.verificacao_reservas
+
+            # Verificação de estrutura
+            if self.verificacao_reservas:
+                return self.cadeiras_cinema_reservado  # RETURN_1
+            else:
+                return cinema_sala  # RETURNO_2
 
         def verif_estrutura_reserva():
             """
@@ -123,51 +181,6 @@ class SalaCinema:
                     if cont_verificacao == 9:
                         break
 
-        def sala_cinema():  # A montagem do programa
-            """
-            :param: "PRIMEIRA ESTRUTURA DE CADEIRAS", responsavel em criar a primeira estrutura de paoltronas. Quando a
-            primeira poltrona for reservada, essa estrutura esperara até a próxima atração.
-
-            :param: "verificação de estrutura" essa condição serva para saber qual estrutura deve ser aprensentada no
-            início do programa. Caso não tenha nenhuma cadeira reservada, seja a primeira vez que abre o programa, é
-            preciso criar uma estrutura nova. Apos a verificação der FALSA, passa a buscar as informações dentro
-            do arquivo de texto.
-
-            :return: RETURN_1, caso a verificação seja verdadeira, então ele encaminha a estrutura que já está
-            sendo reservada.
-            :return: RETURN_2, se a verificação for falsa, então ele cria a 'PRIMEIRA ESTRUTURA DE CADEIRAS'.
-            """
-
-            # PRIMEIRA ESTRUTURA DE CADEIRAS
-            cadeiras_cinema_a = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9']
-            cadeiras_cinema_b = ['B0', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9']
-            cadeiras_cinema_c = ['C0', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9']
-            cadeiras_cinema_d = ['D0', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9']
-            cadeiras_cinema_e = ['E0', 'E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8', 'E9']
-            cadeiras_cinema_f = ['F0', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9']
-            cadeiras_cinema_g = ['G0', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7', 'G8', 'G9']
-            cadeiras_cinema_h = ['H0', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8', 'H9']
-            cadeiras_cinema_i = ['I0', 'I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I9']
-            cadeiras_cinema_j = ['J0', 'J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9']
-            cinema_sala = [cadeiras_cinema_a, cadeiras_cinema_b, cadeiras_cinema_c, cadeiras_cinema_d,
-                           cadeiras_cinema_e,
-                           cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
-                           cadeiras_cinema_j]
-            verif_estrutura_reserva()
-            valor_verificacao = self.verificacao_reservas
-
-            # Verificação de estrutura
-            if self.verificacao_reservas:
-                return self.cadeiras_cinema_reservado  # RETURN_1
-            else:
-                return cinema_sala  # RETURNO_2
-
-        def aperte_enter():
-            """
-            :return: Retorna uma entrada de teclado, para dar uma pausa até o usuário decidir continuar
-            """
-            input('Aperte ENTER para continuar!')
-
         def inicio_verif_arq_reserva():
             """
             Função para testes de threding
@@ -184,7 +197,6 @@ class SalaCinema:
                 sleep(1)
                 print('Faça uma boa reserva!!')
 
-        # VERIFICAR SE POSSUI O ARQUIVO RESPONSÁVEL PELO CADASTRO DO CLIENTE.
         def verificar_arq_cadastro_cliente():
             """
             Realiza um leituro no caminho que contem o arquivo de texto, que contem o cadastro dos clientes.
@@ -196,7 +208,6 @@ class SalaCinema:
                 return False
             verificacao.close()
 
-        # CASO NÃO EXISTA O ARQUIVO. O PROGRAMA IRA CRIAR UM
         def criando_arq_cadastro_cliente():
             """
             Após receber a informação de que o arquivo não existe. Essa função cria o arquivo no caminho solicitado.
@@ -244,22 +255,6 @@ class SalaCinema:
             else:
                 criando_arq_registro_reserva_txt.close()
 
-        # Atributos
-        def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
-            """
-            Essa função é responsavel por verificar se a entrada que os usuários informarem é um "número inteiro"
-            :param valor_int: Recebe o texto exibido para o usuário.
-            :return: Se o valor, digitado pelo usuário, for um número inteiro, ele retorna o valor como correto. Mas,
-            caso o valor não for um "número inteiro" a função pede para o usuário digitar o valor navamente.
-            """
-            while True:  # loop_01
-                try:
-                    valor_correto = int(input(valor_int))
-                    return valor_correto
-                except ValueError:
-                    print('Valor incorreto. Digite novamente.')
-
-        # Métodos
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
             """
             Essa função é responsavel por gravar as informações do cliente, criando um cadastro.
@@ -385,7 +380,43 @@ class SalaCinema:
             self.linhas_aparencia
             aperte_enter()
 
-        # Manipulações
+        def consultar_registro_reserva():
+            """
+            Esta função ira mostrar as informações das reservadas feitas. Por enquanto ficar sincronizado com o arquivo
+            "CADEIRAS_RESERVADAS.txt", pois conforme as cadeiras estiverem reservadas, ninguem mais poderá reservar.
+            Em breve, irei adicionar uma função com os historicos de reservadas.
+
+            :param: lendo_dados_no_arq_reserva: buscas as informações na função de mesmo nome. Coloca na variável "self.lista_inf_registro".
+            :param: Self.lista_registro: objeto que possui informações sobre os dados das reservas.
+            :param: valor_bruto: Pega todas as informações das várias "self.lista_info_registro" e distribui nos variáveis.
+            :param: valor_limpo: responsável por separar as informações corretas e transferir para as variáveis referentes.
+            :param: valor_limpo_cpf: vai receber apenas os dados de CFP do cliente. O CFP sempre sera iterado na posição 0.
+            :param: valor_limpo_nome: recebe apenas os dados de Nome do cliente, o nome sempre sera iterado na posição 1.
+            :param: cadeiras_reservadas: mostra todas as cadeiras reservadas pelo cliente. Como as cadeiras ficam no meio da lista
+            é preciso "fatiar" usando as posições de 'cpf e nome, que fica no começo da lista' e 'data e hora que fica
+            no final da lista.'
+            :param: data_reserva: pega as informações do dia, mes e ano, realizado a reserva.
+            :param: hora_reserva: o mesmo que 'data_reserva', muda apenas a hora. Preferi deixar separado para poder manipular melhoras as informações.
+            Existem momentos que eu preciso apenas da hora, assim como exite momentos que preciso apenas da data.
+            :return: A função ira retornar de forma organizada as informações das reservas.
+            """
+            global valor_limpo, data_reserva, hora_reserva
+            lendo_dados_no_arq_reserva()
+            for valor_bruto in self.lista_info_registro:
+                valor_limpo = valor_bruto.split(';')
+                valor_limpo_cpf = valor_limpo[0]
+                valor_limpo_nome = valor_limpo[1]
+                cadeiras_reservadas = valor_limpo[2:-2]
+                data_reserva = valor_limpo[-2]
+                hora_reserva = valor_limpo[-1]
+                print(f'\n{self.linhas_aparencia}')
+                print(
+                    f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}, você reservou {len(cadeiras_reservadas)} cadeiras')
+                print('Cadeiras reservadas:', end='')
+                for valor in cadeiras_reservadas:
+                    print(f'[{valor}]', end=' ')
+                print(f'\nReserva feita na data: {data_reserva} - {hora_reserva} \n{self.linhas_aparencia}')
+
         def cadastro_cliente():
             """
             Função responsavel por cadastrar os clientes. São quatro parametros que são solicitadoas. Mais para frente,
@@ -423,44 +454,6 @@ class SalaCinema:
                 resp = input('Continuar cadastrando? [S/N]: ').upper()
                 if resp == 'N':
                     break
-
-        # Verificar o arq que contem os registros de reservas
-        def consultar_registro_reserva():
-            """
-            Esta função ira mostrar as informações das reservadas feitas. Por enquanto ficar sincronizado com o arquivo
-            "CADEIRAS_RESERVADAS.txt", pois conforme as cadeiras estiverem reservadas, ninguem mais poderá reservar.
-            Em breve, irei adicionar uma função com os historicos de reservadas.
-
-            :param: lendo_dados_no_arq_reserva: buscas as informações na função de mesmo nome. Coloca na variável "self.lista_inf_registro".
-            :param: Self.lista_registro: objeto que possui informações sobre os dados das reservas.
-            :param: valor_bruto: Pega todas as informações das várias "self.lista_info_registro" e distribui nos variáveis.
-            :param: valor_limpo: responsável por separar as informações corretas e transferir para as variáveis referentes.
-            :param: valor_limpo_cpf: vai receber apenas os dados de CFP do cliente. O CFP sempre sera iterado na posição 0.
-            :param: valor_limpo_nome: recebe apenas os dados de Nome do cliente, o nome sempre sera iterado na posição 1.
-            :param: cadeiras_reservadas: mostra todas as cadeiras reservadas pelo cliente. Como as cadeiras ficam no meio da lista
-            é preciso "fatiar" usando as posições de 'cpf e nome, que fica no começo da lista' e 'data e hora que fica
-            no final da lista.'
-            :param: data_reserva: pega as informações do dia, mes e ano, realizado a reserva.
-            :param: hora_reserva: o mesmo que 'data_reserva', muda apenas a hora. Preferi deixar separado para poder manipular melhoras as informações.
-            Existem momentos que eu preciso apenas da hora, assim como exite momentos que preciso apenas da data.
-            :return: A função ira retornar de forma organizada as informações das reservas.
-            """
-            global valor_limpo, data_reserva, hora_reserva
-            lendo_dados_no_arq_reserva()
-            for valor_bruto in self.lista_info_registro:
-                valor_limpo = valor_bruto.split(';')
-                valor_limpo_cpf = valor_limpo[0]
-                valor_limpo_nome = valor_limpo[1]
-                cadeiras_reservadas = valor_limpo[2:-2]
-                data_reserva = valor_limpo[-2]
-                hora_reserva = valor_limpo[-1]
-                print(f'\n{self.linhas_aparencia}')
-                print(
-                    f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}, você reservou {len(cadeiras_reservadas)} cadeiras')
-                print('Cadeiras reservadas:', end='')
-                for valor in cadeiras_reservadas:
-                    print(f'[{valor}]', end=' ')
-                print(f'\nReserva feita na data: {data_reserva} - {hora_reserva} \n{self.linhas_aparencia}')
 
         # Corpo do programa
         def reservar_cadeira():
@@ -660,10 +653,10 @@ class SalaCinema:
 
             elif resp_menu_principal == 3:
                 if len(self.lista_dados_cliente) == 0:
-                    self.linhas_aparencia
+                    print(self.linhas_aparencia)
                     print('-Não existe nenhum cliente cadastrado')
                     print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
-                    self.linhas_aparencia
+                    print(self.linhas_aparencia)
                     aperte_enter()
                 else:
                     print('teste')
@@ -673,10 +666,11 @@ class SalaCinema:
                 consultar_registro_reserva()
                 if len(self.lista_info_registro) == 0:
                     print(self.linhas_aparencia)
-                    print('Não encontrei nenhum registro no sistema.'
+                    print('Não encontrei nenhum registro no sistema. '
                           'Verifique se a sessão já terminou...')
                     aperte_enter()
             elif resp_menu_principal == 0:
+                print(self.linhas_aparencia)
                 print('Fechando o programa')
                 sleep(1)
                 break
