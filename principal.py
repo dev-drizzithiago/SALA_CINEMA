@@ -68,8 +68,9 @@ class SalaCinema:
             try:
                 abrindo_arq_cadeiras_reservadas = open(arq_cadeiras_reservadas, 'r')
                 valor_arq = abrindo_arq_cadeiras_reservadas
-            except:
-                print('Não foi possível abrir o arquivo')
+            except FileNotFoundError:
+                criando_arq_cadeiras_reserva = open(arq_cadeiras_reservadas, 'w')
+                criando_arq_cadeiras_reserva.close()
             for valor in valor_arq:  # Loop_01_verificação
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
                 valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ', ',')
@@ -159,10 +160,13 @@ class SalaCinema:
             if not verificando_arq_registro_reserva():
                 print('Estamos criando o arquivo para você')
                 sleep(1)
+                print('Aguarde...!!')
+                sleep(2)
                 criando_arq_registro_reserva()
                 sleep(1)
-                print('Pronto, conseguimos criar o arquivo.\n'
-                      'tenha uma boa reserva!!')
+                print('Pronto, conseguimos criar o arquivo.')
+                sleep(1)
+                print('Faça uma boa reserva!!')
 
         # VERIFICAR SE POSSUI O ARQUIVO RESPONSÁVEL PELO CADASTRO DO CLIENTE.
         def verificar_arq_cadastro_cliente():
@@ -471,6 +475,7 @@ class SalaCinema:
                           '- Não encontramos nenhum registro no sistema. \n'
                           '- Verifique se o banco de dados esta tudo certinho! \n'
                           '- Caso o banco de dados esteja funcionando normalmente, verifique se você possui cadastro!')
+                    print(self.linhas_aparencia)
                     aperte_enter()
                     self.quebra_loop = False
                 #  for_002
@@ -487,14 +492,13 @@ class SalaCinema:
                     self.linhas_aparencia
                     print('Verificando o banco de dados, aguarde...!')
                     sleep(1)
-                    print('Encontramos seu cadastro!')  # Avisa que encontro o cadastro
-                    sleep(0.5)
+                    print('Conseguimos encontrar seu cadastro... !', end='')  # Avisa que encontro o cadastro
+                    sleep(1)
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     self.linhas_aparencia
-                    print('Boa reservar!')
                     aperte_enter()
                 else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
-                    sleep(0.5)
+                    sleep(1)
                     self.linhas_aparencia
                     print(f'O cadastro com o CPF:{cpf_cliente_reserva}, não foi encontrado!!\n'
                           f'Caso ainda não tenha feito um cadastro, sugerimos que crie um no menu principal')
