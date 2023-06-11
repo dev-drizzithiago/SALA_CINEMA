@@ -24,7 +24,6 @@ if dia >= 8 and mes >= 11:
 else:
     print(ano - 1982 - 1)
 
-
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
@@ -89,7 +88,8 @@ class SalaCinema:
                 criando_arq_cadeiras_reserva.close()
             for valor in valor_arq:  # Loop_01_verificação
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
-                valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ', ',')
+                valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ',
+                                                                                                                  ',')
                 valor_formatado_fim = valor_formatado_inicio.split(',')
                 lista_valor_arq.append(valor_formatado_fim)
 
@@ -477,7 +477,7 @@ class SalaCinema:
             """
             global valor_linha, valor_coluna, nome_cliente, nome_reservado, cpf_reservado, cpf_sistema_verifica
             cpf_confirma = False
-            lendo_dados_arq_cliente_txt()
+
             while True:  # loop_03
                 # Inicia a verificação do cadastro.
                 self.quebra_loop = True
@@ -487,6 +487,7 @@ class SalaCinema:
                 print(self.linhas_aparencia)
                 print('Verificando o bando de dados...!')
                 print(self.linhas_aparencia)
+
                 # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
                 if len(self.lista_cpf_cliente) == 0:
                     sleep(2)
@@ -613,6 +614,7 @@ class SalaCinema:
                             break
 
         cinema = sala_cinema()  # Recebe os dados para estruturar as poltronas é o primeiro passo quando abre o programa
+        lendo_dados_arq_cliente_txt()
 
         def atualizando_estrutura_cinema():
             """
@@ -650,7 +652,6 @@ class SalaCinema:
                 cadastro_cliente()
             elif resp_menu_principal == 3:
                 consultar_cadastro_cliente()
-                self.dados_cliente_dict.clear()
             elif resp_menu_principal == 4:
                 consultar_registro_reserva()
             elif resp_menu_principal == 0:
