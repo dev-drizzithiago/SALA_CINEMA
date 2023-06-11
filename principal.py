@@ -415,7 +415,7 @@ class SalaCinema:
             Esta função ira mostrar as informações das reservadas feitas. Por enquanto ficar sincronizado com o arquivo
             "CADEIRAS_RESERVADAS.txt", pois conforme as cadeiras estiverem reservadas, ninguem mais poderá reservar.
             Em breve, irei adicionar uma função com os historicos de reservadas.
-            
+
             :param: lendo_dados_no_arq_reserva: buscas as informações na função de mesmo nome. Coloca na variável "self.lista_inf_registro".
             :param: Self.lista_registro: objeto que possui informações sobre os dados das reservas.
             :param: valor_bruto: Pega todas as informações das várias "self.lista_info_registro" e distribui nos variáveis.
