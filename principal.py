@@ -20,7 +20,7 @@ class SalaCinema:
         self.linhas_aparencia = '--' * 40
         self.quebra_loop = True
         self.verificacao_reservas = False
-        self.info_reserva = None        
+        self.info_reserva = None
         self.inf_reserva = list()
         self.lista_reserva_cliente = list()
         self.lista_cpf_cliente = list()
@@ -500,10 +500,10 @@ class SalaCinema:
                     aperte_enter()
                 else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
                     sleep(1)
-                    self.linhas_aparencia
+                    print(self.linhas_aparencia)
                     print(f'O cadastro com o CPF:{cpf_cliente_reserva}, não foi encontrado!!\n'
                           f'Caso ainda não tenha feito um cadastro, sugerimos que crie um no menu principal')
-                    self.linhas_aparencia
+                    print(self.linhas_aparencia)
                     aperte_enter()
                     self.quebra_loop = False
 
