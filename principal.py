@@ -99,6 +99,22 @@ class SalaCinema:
             else:
                 return cinema_sala  # RETURNO_2
 
+        def inicio_verif_arq_reserva():
+            """
+            Função para testes de threding
+            """
+            sleep(0.1)
+            if not verificando_arq_registro_reserva():
+                print('Estamos criando o arquivo para você')
+                sleep(1)
+                print('Aguarde...!!')
+                sleep(2)
+                criando_arq_registro_reserva()
+                sleep(1)
+                print('Pronto, conseguimos criar o arquivo.')
+                sleep(1)
+                print('Faça uma boa reserva!!')
+
         def verif_estrutura_reserva():
             """
             :param: loop_01_verificação, visa em formatar a string adquirida pelo arquivo de texto.
@@ -181,22 +197,6 @@ class SalaCinema:
                     if cont_verificacao == 9:
                         break
 
-        def inicio_verif_arq_reserva():
-            """
-            Função para testes de threding
-            """
-            sleep(0.1)
-            if not verificando_arq_registro_reserva():
-                print('Estamos criando o arquivo para você')
-                sleep(1)
-                print('Aguarde...!!')
-                sleep(2)
-                criando_arq_registro_reserva()
-                sleep(1)
-                print('Pronto, conseguimos criar o arquivo.')
-                sleep(1)
-                print('Faça uma boa reserva!!')
-
         def verificar_arq_cadastro_cliente():
             """
             Realiza um leituro no caminho que contem o arquivo de texto, que contem o cadastro dos clientes.
@@ -208,6 +208,20 @@ class SalaCinema:
                 return False
             verificacao.close()
 
+        def verificando_arq_registro_reserva():
+            """
+            Igual à função "verificar_arq_cadastro_cliente". Essa função é responsavel por verificar se existe o arquivo
+            de texto "REGISTRO_RESERVAS.txt". Esse arquivo é responsavel por registrar todos os registros que os clientes
+            fizer, caso ele não existe, automaticamente ele é criado quando o cliente faz uma reserva.
+            :return: retorna o valor de falso para a função "criando_arq_registro_reserva".
+            """
+            try:
+                verificacao_arq_reserva_txt = open(arq_cadastro_registro_local, 'r')
+                verificacao_arq_reserva_txt.close()
+                return True
+            except:
+                return False
+                
         def criando_arq_cadastro_cliente():
             """
             Após receber a informação de que o arquivo não existe. Essa função cria o arquivo no caminho solicitado.
@@ -227,20 +241,6 @@ class SalaCinema:
                 print('Realize seu cadastro e boa reserva!!')
                 sleep(1)
                 criando_arq_cliente.close()
-
-        def verificando_arq_registro_reserva():
-            """
-            Igual à função "verificar_arq_cadastro_cliente". Essa função é responsavel por verificar se existe o arquivo
-            de texto "REGISTRO_RESERVAS.txt". Esse arquivo é responsavel por registrar todos os registros que os clientes
-            fizer, caso ele não existe, automaticamente ele é criado quando o cliente faz uma reserva.
-            :return: retorna o valor de falso para a função "criando_arq_registro_reserva".
-            """
-            try:
-                verificacao_arq_reserva_txt = open(arq_cadastro_registro_local, 'r')
-                verificacao_arq_reserva_txt.close()
-                return True
-            except:
-                return False
 
         def criando_arq_registro_reserva():
             """
