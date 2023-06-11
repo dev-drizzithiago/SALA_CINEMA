@@ -375,22 +375,15 @@ class SalaCinema:
 
             :return: depois das informações coletadas, os dados é impresso para o usuário.
             """
-            if self.lista_dados_cliente == 0:
-                self.linhas_aparencia
-                print('-Não existe nenhum cliente cadastrado')
-                print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
-                self.linhas_aparencia
-                aperte_enter()
-            else:
-                for valor_consulta in self.lista_dados_cliente:
-                    self.dados_cliente_dict = {'Nome:': valor_consulta[1],
-                                               'CPF:': valor_consulta[0],
-                                               'Idade:': valor_consulta[2],
-                                               'E-mail:': valor_consulta[3]}
-                    for chave, valor in self.dados_cliente_dict.items():
-                        print(f'{chave} {valor}')
-                self.linhas_aparencia
-                aperte_enter()
+            for valor_consulta in self.lista_dados_cliente:
+                self.dados_cliente_dict = {'Nome:': valor_consulta[1],
+                                           'CPF:': valor_consulta[0],
+                                           'Idade:': valor_consulta[2],
+                                           'E-mail:': valor_consulta[3]}
+                for chave, valor in self.dados_cliente_dict.items():
+                    print(f'{chave} {valor}')
+            self.linhas_aparencia
+            aperte_enter()
 
         # Manipulações
         def cadastro_cliente():
@@ -663,7 +656,14 @@ class SalaCinema:
             elif resp_menu_principal == 2:
                 cadastro_cliente()
             elif resp_menu_principal == 3:
-                consultar_cadastro_cliente()
+                if self.lista_dados_cliente == 0:
+                    self.linhas_aparencia
+                    print('-Não existe nenhum cliente cadastrado')
+                    print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
+                    self.linhas_aparencia
+                    aperte_enter()
+                else:
+                    consultar_cadastro_cliente()
             elif resp_menu_principal == 4:
                 consultar_registro_reserva()
                 if len(self.lista_info_registro) == 0:
