@@ -651,19 +651,24 @@ class SalaCinema:
         [0] =====> Sair
         {self.linhas_aparencia} ''')
             resp_menu_principal = leiaInt('        Escolha uma opção: ')
+
             if resp_menu_principal == 1:
                 reservar_cadeira()
+
             elif resp_menu_principal == 2:
                 cadastro_cliente()
+
             elif resp_menu_principal == 3:
-                if self.lista_dados_cliente == 0:
+                if len(self.lista_dados_cliente) == 0:
                     self.linhas_aparencia
                     print('-Não existe nenhum cliente cadastrado')
                     print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
                     self.linhas_aparencia
                     aperte_enter()
                 else:
+                    print('teste')
                     consultar_cadastro_cliente()
+
             elif resp_menu_principal == 4:
                 consultar_registro_reserva()
                 if len(self.lista_info_registro) == 0:
