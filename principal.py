@@ -323,15 +323,7 @@ class SalaCinema:
             partes do programas
             """
             try:
-                leitura = open(arq_cadastro_cliente_local, 'r')
-                for linha in leitura:
-                    dados = linha.split(';')
-                    cpf_read = int(dados[0])
-                    nome_read = str(dados[1])
-                    idade_read = int(dados[2])
-                    email_read = str(dados[3])
-                    self.lista_cpf_cliente.append(cpf_read)
-                    self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
+                leitura = open(arq_cadastro_cliente_local, 'r')                
             except:
                 print('-Erro ao abrir o arquivo de cadastro\n'
                       '-Arquivo pode estar corrompido ou...\n'
@@ -340,6 +332,15 @@ class SalaCinema:
                 if not verificar_arq_cadastro_cliente():
                     criando_arq_cadastro_cliente()
             else:
+                for linha in leitura:
+                    dados = linha.split(';')
+                    cpf_read = int(dados[0])
+                    nome_read = str(dados[1])
+                    idade_read = int(dados[2])
+                    email_read = str(dados[3])
+                    len(cpf_read)
+                    self.lista_cpf_cliente.append(cpf_read)
+                    self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
                 leitura.close()
 
         def lendo_dados_no_arq_reserva():
@@ -367,8 +368,8 @@ class SalaCinema:
                     self.lista_info_registro.append(valor_limpo)
                 if len(self.lista_info_registro) == 0:
                     print(self.linhas_aparencia)
-                    print('Não encontrei nenhum registro no sistema. '
-                          'Verifique se a sessão já terminou')
+                    print('Não encontrei nenhum registro no sistema.'
+                          'Verifique se a sessão já terminou...')
                     aperte_enter()
 
         def consultar_cadastro_cliente():
@@ -619,8 +620,18 @@ class SalaCinema:
                             atualizando_estrutura_cinema()
                             break
 
-        cinema = sala_cinema()  # Recebe os dados para estruturar as poltronas é o primeiro passo quando abre o programa
+        """
+        Vejas as linhas abaixo do texto.
+        :param cinema: Pega as informações na função "sala_cinema" para criar a estrutura que o usuário ira visualizar.
+        :param lendo_dados_arq_cliente_txt: Quando o programa abrir, ele vai pegar as informações do cliente no banco de 
+        dados e deixa-lo disponivel para o sistema utilizar conforme necessidade. 
+        :param lendo_dados_no_arq_reserva: Depois que as informações do cliente estiverem disponivel, sera preciso colocar
+        as informações de reservas, como, nome e cpf do cliente que reservou, quais as cadeiras reservadas, etc. Essas 
+        informações serão necessarias para saber quem reservou as cadeiras.
+        """
+        cinema = sala_cinema()
         lendo_dados_arq_cliente_txt()
+        lendo_dados_no_arq_reserva()
 
         def atualizando_estrutura_cinema():
             """
