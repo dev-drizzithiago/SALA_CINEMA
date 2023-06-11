@@ -8,6 +8,8 @@ data = datetime.now()
 ano_atual = data.strftime('%Y')
 data_atual = data.strftime('%D/%M/%Y')
 hora_atual = data.strftime('%H:%M:%S')
+ano = int(ano_atual)
+print(ano - 1982)
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
