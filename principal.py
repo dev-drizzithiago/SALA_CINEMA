@@ -324,15 +324,6 @@ class SalaCinema:
             """
             try:
                 leitura = open(arq_cadastro_cliente_local, 'r')
-            except:
-                print('Erro ao abrir o arquivo de cadastro\n'
-                      'Arquivo pode estar corrompido ou...\n'
-                      'Arquivo não existe')
-                sleep(1)
-                if not verificar_arq_cadastro_cliente():
-                    criando_arq_cadastro_cliente()
-            else:
-                # for_001
                 for linha in leitura:
                     dados = linha.split(';')
                     cpf_read = int(dados[0])
@@ -341,6 +332,14 @@ class SalaCinema:
                     email_read = str(dados[3])
                     self.lista_cpf_cliente.append(cpf_read)
                     self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
+            except:
+                print('-Erro ao abrir o arquivo de cadastro\n'
+                      '-Arquivo pode estar corrompido ou...\n'
+                      '-Arquivo não existe')
+                sleep(1)
+                if not verificar_arq_cadastro_cliente():
+                    criando_arq_cadastro_cliente()
+            else:
                 leitura.close()
 
         def lendo_dados_no_arq_reserva():
@@ -380,15 +379,22 @@ class SalaCinema:
 
             :return: depois das informações coletadas, os dados é impresso para o usuário.
             """
-            lendo_dados_arq_cliente_txt()
-            for valor_consulta in self.lista_dados_cliente:
-                self.dados_cliente_dict = {'Nome:': valor_consulta[1],
-                                           'CPF:': valor_consulta[0],
-                                           'Idade:': valor_consulta[2],
-                                           'E-mail:': valor_consulta[3]}
-                for chave, valor in self.dados_cliente_dict.items():
-                    print(f'{chave} {valor}')
-            aperte_enter()
+            if self.lista_dados_cliente == 0:
+                self.linhas_aparencia
+                print('-Não existe nenhum cliente cadastrado')
+                print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
+                self.linhas_aparencia
+                aperte_enter()
+            else:
+                for valor_consulta in self.lista_dados_cliente:
+                    self.dados_cliente_dict = {'Nome:': valor_consulta[1],
+                                               'CPF:': valor_consulta[0],
+                                               'Idade:': valor_consulta[2],
+                                               'E-mail:': valor_consulta[3]}
+                    for chave, valor in self.dados_cliente_dict.items():
+                        print(f'{chave} {valor}')
+                self.linhas_aparencia
+                aperte_enter()
 
         # Manipulações
         def cadastro_cliente():
