@@ -323,7 +323,7 @@ class SalaCinema:
             partes do programas
             """
             try:
-                leitura = open(arq_cadastro_cliente_local, 'r')                
+                leitura = open(arq_cadastro_cliente_local, 'r')
             except:
                 print('-Erro ao abrir o arquivo de cadastro\n'
                       '-Arquivo pode estar corrompido ou...\n'
@@ -366,11 +366,6 @@ class SalaCinema:
                 for valor_bruto in leitura:
                     valor_limpo = valor_bruto.strip()
                     self.lista_info_registro.append(valor_limpo)
-                if len(self.lista_info_registro) == 0:
-                    print(self.linhas_aparencia)
-                    print('Não encontrei nenhum registro no sistema.'
-                          'Verifique se a sessão já terminou...')
-                    aperte_enter()
 
         def consultar_cadastro_cliente():
             """
@@ -671,6 +666,11 @@ class SalaCinema:
                 consultar_cadastro_cliente()
             elif resp_menu_principal == 4:
                 consultar_registro_reserva()
+                if len(self.lista_info_registro) == 0:
+                    print(self.linhas_aparencia)
+                    print('Não encontrei nenhum registro no sistema.'
+                          'Verifique se a sessão já terminou...')
+                    aperte_enter()
             elif resp_menu_principal == 0:
                 print('Fechando o programa')
                 sleep(1)
