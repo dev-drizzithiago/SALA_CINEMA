@@ -6,10 +6,24 @@ from datetime import datetime
 
 data = datetime.now()
 ano_atual = data.strftime('%Y')
-data_atual = data.strftime('%D/%M/%Y')
+data_atual = data.strftime('%d/%m/%Y')
 hora_atual = data.strftime('%H:%M:%S')
-ano = int(ano_atual)
-print(ano - 1982)
+
+ano_formatado_inicio = str(data_atual).replace('/', ',')
+ano_formatado_meio = ano_formatado_inicio.split(',')
+ano_formatado_fim = [ano_formatado_meio]
+for valor_formatado in ano_formatado_fim:
+    # dia = int(valor_formatado[0])
+    # mes = int(valor_formatado[1])
+    dia = 10
+    mes = 12
+    ano = int(valor_formatado[2])
+print(ano)
+if dia >= 8 and mes >= 11:
+    print(ano - 1982)
+else:
+    print(ano - 1982 - 1)
+
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
