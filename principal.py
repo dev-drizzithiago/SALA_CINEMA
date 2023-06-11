@@ -471,6 +471,7 @@ class SalaCinema:
                           '- Não encontramos nenhum registro no sistema. \n'
                           '- Verifique se o banco de dados esta tudo certinho! \n'
                           '- Caso o banco de dados esteja funcionando normalmente, verifique se você possui cadastro!')
+                    print(self.linhas_aparencia)
                     aperte_enter()
                     self.quebra_loop = False
                 #  for_002
@@ -613,8 +614,8 @@ class SalaCinema:
             hora_atual_menu = data_menu.strftime('%H:%M:%S')
             print(
                 f'''
-            Hora certa
-        {data_atual_menu} - {hora_atual_menu}
+        Hora certa
+        [{data_atual_menu}] - [{hora_atual_menu}]
         {self.linhas_aparencia}
         [1] => Reservar uma Poltrona        
         [2] ==> Cadastrar um usuário
