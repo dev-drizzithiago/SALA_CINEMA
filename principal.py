@@ -17,10 +17,10 @@ arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CI
 class SalaCinema:
 
     def __init__(self):
+        self.linhas_aparencia = '--' * 40
         self.quebra_loop = True
         self.verificacao_reservas = False
-        self.info_reserva = None
-        self.linhas_aparencia = '--' * 40
+        self.info_reserva = None        
         self.inf_reserva = list()
         self.lista_reserva_cliente = list()
         self.lista_cpf_cliente = list()
@@ -114,7 +114,7 @@ class SalaCinema:
 
             :param: "verificação de estrutura" essa condição serva para saber qual estrutura deve ser aprensentada no
             início do programa. Caso não tenha nenhuma cadeira reservada, seja a primeira vez que abre o programa, é
-            preciso criar uma estrutura nova. Apos a verificação der FALSA,, passa a buscar as informações dentro
+            preciso criar uma estrutura nova. Apos a verificação der FALSA, passa a buscar as informações dentro
             do arquivo de texto.
 
             :return: RETURN_1, caso a verificação seja verdadeira, então ele encaminha a estrutura que já está
@@ -468,9 +468,12 @@ class SalaCinema:
                 print(self.linhas_aparencia)
                 print('Preciso que entre com o seu CPF para que possemos reservar uma poltrona.')
                 cpf_cliente_reserva = leiaInt('Digite seu CPF: ')
+                print(self.linhas_aparencia)
+                print('Verificando o bando de dados...!')
+                print(self.linhas_aparencia)
                 # CASO NÃO EXISTE NENHUM CADASTRO, PROGRAMA NÃO CONTINUA
                 if len(self.lista_cpf_cliente) == 0:
-                    print(self.linhas_aparencia)
+                    sleep(2)
                     print('- DESCULPE!!! '
                           '- Não encontramos nenhum registro no sistema. \n'
                           '- Verifique se o banco de dados esta tudo certinho! \n'
@@ -489,10 +492,8 @@ class SalaCinema:
                                     # Busco na lista de cadastro o nome referente ao cpf
                                 nome_cliente = valor_nome[1]  # após encontrar, joga na variável
                 if cpf_confirma:  # Se a busca pelo CPF foi verdadeira...
-                    self.linhas_aparencia
-                    print('Verificando o banco de dados, aguarde...!')
                     sleep(1)
-                    print('Conseguimos encontrar seu cadastro... !', end='')  # Avisa que encontro o cadastro
+                    print('Encontramos seu cadastro... !', end='')  # Avisa que encontro o cadastro
                     sleep(1)
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     self.linhas_aparencia
