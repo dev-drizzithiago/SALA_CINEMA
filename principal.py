@@ -1,6 +1,6 @@
 import threading
-from time import sleep
 from datetime import datetime
+from time import sleep
 
 # from threading import Thread
 
@@ -105,6 +105,7 @@ class SalaCinema:
             """
             sleep(0.1)
             if not verificando_arq_registro_reserva():
+                print(self.linhas_aparencia)
                 print('Estamos criando o arquivo para você')
                 sleep(1)
                 print('Aguarde...!!')
@@ -114,6 +115,7 @@ class SalaCinema:
                 print('Pronto, conseguimos criar o arquivo.')
                 sleep(1)
                 print('Faça uma boa reserva!!')
+                print(self.linhas_aparencia)
 
         def verif_estrutura_reserva():
             """
@@ -230,6 +232,7 @@ class SalaCinema:
             try:
                 criando_arq_cliente = open(arq_cadastro_cliente_local, 'w')
             except:
+                print(self.linhas_aparencia)
                 print('Não foi possível criar um arquivo para guardar seus cadastros')
             else:
                 print('Não se preocupe, irei criar um cadastro para você')
@@ -239,6 +242,7 @@ class SalaCinema:
                 print('Arquivo para cadastro foi criado!!')
                 sleep(1)
                 print('Realize seu cadastro e boa reserva!!')
+                print(self.linhas_aparencia)
                 sleep(1)
                 criando_arq_cliente.close()
 
@@ -251,7 +255,9 @@ class SalaCinema:
             try:
                 criando_arq_registro_reserva_txt = open(arq_cadastro_registro_local, 'w')
             except:
+                print(self.linhas_aparencia)
                 print('Não foi possível criar o arquivo para registrar suas reservas')
+                aperte_enter()
             else:
                 criando_arq_registro_reserva_txt.close()
 
@@ -274,6 +280,7 @@ class SalaCinema:
             try:
                 gravando_dados = open(arq_cadastro_cliente_local, 'a')
                 gravando_dados.write(f'{cpf};{nome};{idade};{email}\n')
+                print(self.linhas_aparencia)
                 print('Cadastro realizado com sucesso!!')
                 sleep(1)
             except:
@@ -302,6 +309,7 @@ class SalaCinema:
                     if cont == len(self.inf_reserva):
                         break
                 gravando_reserva.write(f'{data_atual};{hora_atual}\n')
+                print(self.linhas_aparencia)
                 print('Seu reserva foi concluída!')
                 sleep(2)
                 gravando_reserva.close()
@@ -320,9 +328,11 @@ class SalaCinema:
             try:
                 leitura = open(arq_cadastro_cliente_local, 'r')
             except:
+                print(self.linhas_aparencia)
                 print('-Erro ao abrir o arquivo de cadastro\n'
                       '-Arquivo pode estar corrompido ou...\n'
                       '-Arquivo não existe')
+                print(self.linhas_aparencia)
                 sleep(1)
                 if not verificar_arq_cadastro_cliente():
                     criando_arq_cadastro_cliente()
@@ -386,17 +396,19 @@ class SalaCinema:
             "CADEIRAS_RESERVADAS.txt", pois conforme as cadeiras estiverem reservadas, ninguem mais poderá reservar.
             Em breve, irei adicionar uma função com os historicos de reservadas.
 
-            :param: lendo_dados_no_arq_reserva: buscas as informações na função de mesmo nome. Coloca na variável "self.lista_inf_registro".
+            :param: lendo_dados_no_arq_reserva: buscas as informações na função de mesmo nome. Coloca na variável
+            "self.lista_inf_registro".
             :param: Self.lista_registro: objeto que possui informações sobre os dados das reservas.
             :param: valor_bruto: Pega todas as informações das várias "self.lista_info_registro" e distribui nos variáveis.
             :param: valor_limpo: responsável por separar as informações corretas e transferir para as variáveis referentes.
             :param: valor_limpo_cpf: vai receber apenas os dados de CFP do cliente. O CFP sempre sera iterado na posição 0.
             :param: valor_limpo_nome: recebe apenas os dados de Nome do cliente, o nome sempre sera iterado na posição 1.
-            :param: cadeiras_reservadas: mostra todas as cadeiras reservadas pelo cliente. Como as cadeiras ficam no meio da lista
-            é preciso "fatiar" usando as posições de 'cpf e nome, que fica no começo da lista' e 'data e hora que fica
-            no final da lista.'
+            :param: cadeiras_reservadas: mostra todas as cadeiras reservadas pelo cliente. Como as cadeiras ficam no
+            meio da lista é preciso "fatiar" usando as posições de 'cpf e nome, que fica no começo da lista' e
+            'data e hora que fica no final da lista.'
             :param: data_reserva: pega as informações do dia, mes e ano, realizado a reserva.
-            :param: hora_reserva: o mesmo que 'data_reserva', muda apenas a hora. Preferi deixar separado para poder manipular melhoras as informações.
+            :param: hora_reserva: o mesmo que 'data_reserva', muda apenas a hora. Preferi deixar separado para poder
+            manipular melhoras as informações.
             Existem momentos que eu preciso apenas da hora, assim como exite momentos que preciso apenas da data.
             :return: A função ira retornar de forma organizada as informações das reservas.
             """
@@ -410,8 +422,7 @@ class SalaCinema:
                 data_reserva = valor_limpo[-2]
                 hora_reserva = valor_limpo[-1]
                 print(f'\n{self.linhas_aparencia}')
-                print(
-                    f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}, você reservou {len(cadeiras_reservadas)} cadeiras')
+                print(f'\nNome: {valor_limpo_nome} CPF: {valor_limpo_cpf}, você reservou {len(cadeiras_reservadas)} cadeiras')
                 print('Cadeiras reservadas:', end='')
                 for valor in cadeiras_reservadas:
                     print(f'[{valor}]', end=' ')
@@ -638,14 +649,16 @@ class SalaCinema:
             hora_atual_menu = data_menu.strftime('%H:%M:%S')
             print(
                 f'''
-        Hora certa
-        [{data_atual_menu}] - [{hora_atual_menu}]
+                      Hora certa
+        |                                     |
+        |         {data_atual_menu} - {hora_atual_menu}         |
+        |_____________________________________|
         {self.linhas_aparencia}
-        [1] => Reservar uma Poltrona        
-        [2] ==> Cadastrar um usuário
-        [3] ===> Consultar Cadastro de cliente
-        [4] ====> Veja suas reservas
-        [0] =====> Sair
+        |[1]| => Reservar uma Poltrona        
+        |[2]| ==> Cadastrar um usuário
+        |[3]| ===> Consultar Cadastro de cliente
+        |[4]| ====> Veja suas reservas
+        |[0]| =====> Sair
         {self.linhas_aparencia} ''')
             resp_menu_principal = leiaInt('        Escolha uma opção: ')
 
