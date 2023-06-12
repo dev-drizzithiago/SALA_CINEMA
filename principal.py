@@ -444,14 +444,17 @@ class SalaCinema:
                 idade_cadastro = leiaInt('Digite sua idade: ')
                 email_cadastro = input('Digite seu e-mail: ')
 
+                print(self.linhas_aparencia)
                 print(f'Os dados que serão cadastrados são: \n'
                       f'Nome: {nome_cadastro}\n'
                       f'CPF: {cpf_cadastro}\n'
                       f'Idade: {idade_cadastro}\n'
                       f'Email: {email_cadastro}\n')
+                print(self.linhas_aparencia)
+
                 aperte_enter()
                 gravando_dados_arq_cliente_txt(cpf_cadastro, nome_cadastro, idade_cadastro, email_cadastro)
-                resp = input('Continuar cadastrando? [S/N]: ').upper()
+                resp = input('Realizar outro cadastro? [S/N]: ').upper()
                 if resp == 'N':
                     break
 
@@ -486,6 +489,7 @@ class SalaCinema:
                     print(self.linhas_aparencia)
                     aperte_enter()
                     self.quebra_loop = False
+                    break
                 #  for_002
                 #  Pega todos os cpf registrados e verifica com o informado pelo cliente
                 for cpf_sistema_verifica in self.lista_cpf_cliente:
