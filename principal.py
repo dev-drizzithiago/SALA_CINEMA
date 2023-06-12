@@ -343,7 +343,6 @@ class SalaCinema:
                     nome_read = str(dados[1])
                     idade_read = int(dados[2])
                     email_read = str(dados[3])
-                    len(cpf_read)
                     self.lista_cpf_cliente.append(cpf_read)
                     self.lista_dados_cliente.append([cpf_read, nome_read, idade_read, email_read])
                 leitura.close()
@@ -450,17 +449,18 @@ class SalaCinema:
             "gravando_dados_arq_cliente_txt"
             """
             while True:  # loop_02
+                print(self.linhas_aparencia)
                 nome_cadastro = input('Digite seu nome completo: ').title()
                 cpf_cadastro = input('Digite seu CPF: ')
                 idade_cadastro = leiaInt('Digite sua idade: ')
                 email_cadastro = input('Digite seu e-mail: ')
 
                 print(self.linhas_aparencia)
-                print(f'Os dados que serão cadastrados são: \n'
+                print(f'Os dados que serão cadastrados são: \n\n'
                       f'Nome: {nome_cadastro}\n'
                       f'CPF: {cpf_cadastro}\n'
                       f'Idade: {idade_cadastro}\n'
-                      f'Email: {email_cadastro}\n')
+                      f'Email: {email_cadastro}')
                 print(self.linhas_aparencia)
 
                 aperte_enter()
@@ -662,12 +662,15 @@ class SalaCinema:
         {self.linhas_aparencia} ''')
             resp_menu_principal = leiaInt('        Escolha uma opção: ')
 
+            # OPÇÃO RESERVAR CADEIRAS
             if resp_menu_principal == 1:
                 reservar_cadeira()
 
+            # OPÇÃO CADASTRAR CLIENTE
             elif resp_menu_principal == 2:
                 cadastro_cliente()
 
+            # OPÇÃO CONSULTAR CADASTRO CLIENTE
             elif resp_menu_principal == 3:
                 if len(self.lista_dados_cliente) == 0:
                     print(self.linhas_aparencia)
@@ -676,9 +679,8 @@ class SalaCinema:
                     print(self.linhas_aparencia)
                     aperte_enter()
                 else:
-                    print('teste')
                     consultar_cadastro_cliente()
-
+            # OPÇÃO REGISTRO RESERVA
             elif resp_menu_principal == 4:
                 consultar_registro_reserva()
                 if len(self.lista_info_registro) == 0:
@@ -686,6 +688,7 @@ class SalaCinema:
                     print('Não encontrei nenhum registro no sistema. '
                           'Verifique se a sessão já terminou...')
                     aperte_enter()
+            # OPÇÃO SAIR
             elif resp_menu_principal == 0:
                 print(self.linhas_aparencia)
                 print('Fechando o programa')
