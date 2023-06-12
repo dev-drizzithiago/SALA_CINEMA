@@ -18,11 +18,11 @@ for valor_formatado in ano_formatado_fim:
     dia = 10
     mes = 12
     ano = int(valor_formatado[2])
-print(ano)
-if dia >= 8 and mes >= 11:
-    print(ano - 1982)
-else:
-    print(ano - 1982 - 1)
+#print(ano)
+#if dia >= 8 and mes >= 11:
+#    print(ano - 1982)
+#else:
+#    print(ano - 1982 - 1)
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
@@ -380,6 +380,7 @@ class SalaCinema:
             :return: depois das informações coletadas, os dados é impresso para o usuário.
             """
             for valor_consulta in self.lista_dados_cliente:
+                print(f'\n{self.linhas_aparencia}')
                 self.dados_cliente_dict = {'Nome:': valor_consulta[1],
                                            'CPF:': valor_consulta[0],
                                            'Idade:': valor_consulta[2],
@@ -467,6 +468,7 @@ class SalaCinema:
                 gravando_dados_arq_cliente_txt(cpf_cadastro, nome_cadastro, idade_cadastro, email_cadastro)
                 resp = input('Realizar outro cadastro? [S/N]: ').upper()
                 if resp == 'N':
+                    lendo_dados_arq_cliente_txt()
                     break
 
         # Corpo do programa
