@@ -515,7 +515,7 @@ class SalaCinema:
                                 nome_cliente = valor_nome[1]  # após encontrar, joga na variável
                 if cpf_confirma:  # Se a busca pelo CPF foi verdadeira...
                     sleep(1)
-                    print('Encontramos seu cadastro... !', end='')  # Avisa que encontro o cadastro
+                    print('Encontramos seu cadastro... !', end=' ')  # Avisa que encontro o cadastro
                     sleep(1)
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     self.linhas_aparencia
