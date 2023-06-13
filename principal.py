@@ -659,11 +659,11 @@ class SalaCinema:
         |         {data_atual_menu} - {hora_atual_menu}         |
         |_____________________________________|
         {self.linhas_aparencia}
-        |[1]| => Reservar uma Poltrona        
-        |[2]| ==> Cadastrar um usuário
-        |[3]| ===> Consultar Cadastro de cliente
-        |[4]| ====> Veja suas reservas
-        |[0]| =====> Sair
+        | [1] | => Reservar uma Poltrona        
+        | [2] | ==> Cadastrar um usuário
+        | [3] | ===> Consultar Cadastro de cliente
+        | [4] | ====> Veja suas reservas
+        | [0] | =====> Sair
         {self.linhas_aparencia} ''')
             resp_menu_principal = leiaInt('        Escolha uma opção: ')
 
