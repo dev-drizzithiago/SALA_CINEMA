@@ -475,6 +475,9 @@ class SalaCinema:
         # Corpo do programa
         def reservar_cadeira():
             """
+            criar uma lista com os filmes em cartazes, com as informações disponivel, como sinopse, classificação
+            inficativa; futuramento usar a internet para buscar essas informações.
+
             :param: 'lendo_dados_arq_cliente_txt' é preciso ativar a função para as variáveis serem preenchidas com os dados.
             :param: 'cinema' variável que recebe as informações para estruturar a sala de cinema; 'sala_cinema()' busca as
             informações nas listas internas e joga na variável 'cinema'.
@@ -578,6 +581,13 @@ class SalaCinema:
 
                     # Verificar se o lugar está ocupado. Caso esteja, pede para reservar outro.
                     if cinema[valor_linha][valor_coluna] == '--':
+                        for valores in self.lista_info_registro:
+                            valores_formatado = valores.split(';')
+                            valor_cadeiras_reservadas = valores_formatado[2:-2]
+                            print(valor_cadeiras_reservadas)
+                            if entrada == valor_cadeiras_reservadas:
+                                print('deu certo')
+
                         print()
                         print('Essa poltrona já foi reservada, reserve outra poltrona')
                         print(self.linhas_aparencia)
@@ -623,7 +633,7 @@ class SalaCinema:
                             break
 
         """
-        Vejas as linhas abaixo do texto.
+        Sobre as variaveis abaixo do texto.
         :param cinema: Pega as informações na função "sala_cinema" para criar a estrutura que o usuário ira visualizar.
         :param lendo_dados_arq_cliente_txt: Quando o programa abrir, ele vai pegar as informações do cliente no banco de 
         dados e deixa-lo disponivel para o sistema utilizar conforme necessidade. 
