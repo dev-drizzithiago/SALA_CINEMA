@@ -380,14 +380,14 @@ class SalaCinema:
             :return: depois das informações coletadas, os dados é impresso para o usuário.
             """
             for valor_consulta in self.lista_dados_cliente:
-                print(f'\n{self.linhas_aparencia}')
+                print(f'{self.linhas_aparencia}\n')
                 self.dados_cliente_dict = {'Nome:': valor_consulta[1],
                                            'CPF:': valor_consulta[0],
                                            'Idade:': valor_consulta[2],
                                            'E-mail:': valor_consulta[3]}
                 for chave, valor in self.dados_cliente_dict.items():
                     print(f'{chave} {valor}')
-            self.linhas_aparencia
+            print(self.linhas_aparencia)
             aperte_enter()
 
         def consultar_registro_reserva():
