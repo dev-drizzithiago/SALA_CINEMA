@@ -577,19 +577,23 @@ class SalaCinema:
 
                     # Verificar se o lugar está ocupado. Caso esteja, pede para reservar outro.
                     if cinema[valor_linha][valor_coluna] == '--':
-                        print('Não é possível reservar essa poltrona, reserve outra poltrona')
-                        sleep(0.5)
+                        print()
+                        print('Essa poltrona já foi reservada, reserve outra poltrona')
+                        print(self.linhas_aparencia)
+                        aperte_enter()
+                        print()
                     else:  # Se o lugar estiver livre. Marca o local com o simbolo.
                         self.inf_reserva.append(cinema[valor_linha][valor_coluna])
                         cinema[valor_linha][valor_coluna] = str('--').strip()
                 except TypeError:
-                    print('OS Dados que você informou estão incorretos!')
+                    print('Opção incorreta!')
 
                 # Vai jogar na variável os dados dos cliente e ser mostrado conforme a opção
                 for dados_cliente in self.lista_dados_cliente:
                     if dados_cliente[0] == self.confirmado_cpf_no_cadastro:
                         cpf_reservado = dados_cliente[0]
                         nome_reservado = dados_cliente[1]
+
                 if entrada == '999':
                     if len(self.inf_reserva) == 0:
                         print('Nenhuma paltrona foi reservada!')
@@ -598,7 +602,6 @@ class SalaCinema:
                         break
                     else:
                         if len(self.inf_reserva) == 1:
-                            print(self.linhas_aparencia)
                             print(f'Sr(a). {nome_reservado} \n'
                                   f'Você reservou a poltrona: '
                                   f'{self.inf_reserva} \n')
@@ -609,10 +612,10 @@ class SalaCinema:
                             atualizando_estrutura_cinema()
                             break
                         else:
-                            print(self.linhas_aparencia)
                             print(f"Sr(a). {nome_reservado}\n"
                                   f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
+                            print(self.linhas_aparencia)
                             aperte_enter()
                             self.cadeiras_reservadas = cinema
                             atualizando_estrutura_cinema()
