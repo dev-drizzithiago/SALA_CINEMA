@@ -553,11 +553,11 @@ class SalaCinema:
                     for coluna in linhas:
                         print(f'[{coluna}] ', end='   ')
                 print(f'\n{self.linhas_aparencia}')
-                entrada = str(input('Escolha uma Poltrona (999 para Confirmar): ').upper())
+                escolha_cliente = str(input('Escolha uma Poltrona (999 para Confirmar): ').upper())
 
                 try:
-                    valor_linha = entrada[0]
-                    valor_coluna = int(entrada[1])
+                    valor_linha = escolha_cliente[0]
+                    valor_coluna = int(escolha_cliente[1])
                     if valor_linha == 'A':
                         valor_linha = 0
                     elif valor_linha == 'B':
@@ -581,12 +581,8 @@ class SalaCinema:
 
                     # Verificar se o lugar está ocupado. Caso esteja, pede para reservar outro.
                     if cinema[valor_linha][valor_coluna] == '--':
-                        for valores in self.lista_info_registro:
-                            valores_formatado = valores.split(';')
-                            valor_cadeiras_reservadas = valores_formatado[2:-2]
-                            print(valor_cadeiras_reservadas)
-                            if entrada == valor_cadeiras_reservadas:
-                                print('deu certo')
+                        informacoes_reserva = consultar_registro_reserva()
+
 
                         print()
                         print('Essa poltrona já foi reservada, reserve outra poltrona')
@@ -605,7 +601,7 @@ class SalaCinema:
                         cpf_reservado = dados_cliente[0]
                         nome_reservado = dados_cliente[1]
 
-                if entrada == '999':
+                if escolha_cliente == '999':
                     if len(self.inf_reserva) == 0:
                         print('Nenhuma paltrona foi reservada!')
                         print(self.linhas_aparencia)
