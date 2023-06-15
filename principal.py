@@ -588,7 +588,10 @@ class SalaCinema:
                         for valores_reserva in self.lista_info_registro:
                             valores_reserva_1 = str(valores_reserva).split(';')
                             valores_reserva_cadeiras = valores_reserva_1[2:-2]
-                            print(valores_reserva_cadeiras)
+                            nome_cliente_reserva_cadeiras = valores_reserva_1[1]
+                            for confir_cadeiras in valores_reserva_cadeiras:
+                                if escolha_cliente == confir_cadeiras:
+                                    print(nome_cliente_reserva_cadeiras)
 
                         print()
                         print('Essa poltrona já foi reservada, reserve outra poltrona')
