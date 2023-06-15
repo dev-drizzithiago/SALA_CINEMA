@@ -18,10 +18,10 @@ for valor_formatado in ano_formatado_fim:
     dia = 10
     mes = 12
     ano = int(valor_formatado[2])
-#print(ano)
-#if dia >= 8 and mes >= 11:
+# print(ano)
+# if dia >= 8 and mes >= 11:
 #    print(ano - 1982)
-#else:
+# else:
 #    print(ano - 1982 - 1)
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
@@ -223,7 +223,7 @@ class SalaCinema:
                 return True
             except:
                 return False
-                
+
         def criando_arq_cadastro_cliente():
             """
             Após receber a informação de que o arquivo não existe. Essa função cria o arquivo no caminho solicitado.
@@ -581,8 +581,10 @@ class SalaCinema:
 
                     # Verificar se o lugar está ocupado. Caso esteja, pede para reservar outro.
                     if cinema[valor_linha][valor_coluna] == '--':
-                        informacoes_reserva = consultar_registro_reserva()
-
+                        for valores_reserva in self.lista_info_registro:
+                            valores_reserva_1 = str(valores_reserva).split(';')
+                            valores_reserva_cadeiras = valores_reserva_1[2:-2]
+                            print(valores_reserva_cadeiras)
 
                         print()
                         print('Essa poltrona já foi reservada, reserve outra poltrona')
