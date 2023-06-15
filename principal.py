@@ -313,6 +313,7 @@ class SalaCinema:
                     if cont == len(self.inf_reserva):
                         break
                 gravando_reserva.write(f'{data_atual};{hora_atual}\n')
+                self.inf_reserva.clear()
                 print(self.linhas_aparencia)
                 print('Seu reserva foi concluída!')
                 sleep(2)
@@ -557,7 +558,12 @@ class SalaCinema:
                     for coluna in linhas:
                         print(f'[{coluna}] ', end='   ')
                 print(f'\n{self.linhas_aparencia}')
-                escolha_cliente = str(input('Escolha uma Poltrona (999 para Confirmar): ').upper())
+                while True:
+                    escolha_cliente = str(input('Escolha uma Poltrona (999 para Confirmar): ').upper())
+                    if len(escolha_cliente) == 2:
+                        break
+                    elif escolha_cliente == '999':
+                        break
 
                 try:
                     valor_linha = escolha_cliente[0]
@@ -584,17 +590,29 @@ class SalaCinema:
                         valor_linha = 9
 
                     # Verificar se o lugar está ocupado. Caso esteja, pede para reservar outro.
+                    """
+                    :param valores_reserva_1: recebe os valores da reserva em forme de lista. 
+                    :param valores_reserva_cadeiras: recebe apenas as informações das cadeiras.
+                    :param nome_cliente_reserva_cadeiras: recebe apenas os nome dos cliente.
+                    :param loop confirmação das reservas: esse ação verifica quem foi o responsavel pela reserva. Casa
+                    a verificação seja verdadeira, mostra o nome do cliente que reservou a cadeira. 
+                    """
+
                     if cinema[valor_linha][valor_coluna] == '--':
                         for valores_reserva in self.lista_info_registro:
                             valores_reserva_1 = str(valores_reserva).split(';')
                             valores_reserva_cadeiras = valores_reserva_1[2:-2]
                             nome_cliente_reserva_cadeiras = valores_reserva_1[1]
+
+                            # loop confirmação das reservas
                             for confir_cadeiras in valores_reserva_cadeiras:
                                 if escolha_cliente == confir_cadeiras:
-                                    print(nome_cliente_reserva_cadeiras)
-
-                        print()
-                        print('Essa poltrona já foi reservada, reserve outra poltrona')
+                                    print(self.linhas_aparencia)
+                                    if nome_cliente == nome_cliente_reserva_cadeiras:
+                                        print(f'Essa cadeira já esta reservada para sr. {nome_cliente}')
+                                    else:
+                                        print(
+                                            f'Essa cadeira já foi reservada para o/a Sr(a).{nome_cliente_reserva_cadeiras}')
                         print(self.linhas_aparencia)
                         aperte_enter()
                         print()
@@ -629,26 +647,14 @@ class SalaCinema:
                             break
                         else:
                             print(f"Sr(a). {nome_reservado}\n"
-                                  f"Você reservou as seguintes poltronas ==> {self.inf_reserva}")
+                                  f"Você reservou as seguintes"
+                                  f" poltronas ==> {self.inf_reserva}")
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             print(self.linhas_aparencia)
                             aperte_enter()
                             self.cadeiras_reservadas = cinema
                             atualizando_estrutura_cinema()
                             break
-
-        """
-        Sobre as variaveis abaixo do texto.
-        :param cinema: Pega as informações na função "sala_cinema" para criar a estrutura que o usuário ira visualizar.
-        :param lendo_dados_arq_cliente_txt: Quando o programa abrir, ele vai pegar as informações do cliente no banco de 
-        dados e deixa-lo disponivel para o sistema utilizar conforme necessidade. 
-        :param lendo_dados_no_arq_reserva: Depois que as informações do cliente estiverem disponivel, sera preciso colocar
-        as informações de reservas, como, nome e cpf do cliente que reservou, quais as cadeiras reservadas, etc. Essas 
-        informações serão necessarias para saber quem reservou as cadeiras.
-        """
-        cinema = sala_cinema()
-        lendo_dados_arq_cliente_txt()
-        lendo_dados_no_arq_reserva()
 
         def atualizando_estrutura_cinema():
             """
@@ -662,6 +668,19 @@ class SalaCinema:
                 valor_formatado = str(valor_reservas).strip()
                 gravando_arq_reserva_restrutura.write(f'{valor_reservas}\n')
             gravando_arq_reserva_restrutura.close()
+
+        """
+        Sobre as variaveis abaixo do texto.
+        :param cinema: Pega as informações na função "sala_cinema" para criar a estrutura que o usuário ira visualizar.
+        :param lendo_dados_arq_cliente_txt: Quando o programa abrir, ele vai pegar as informações do cliente no banco de 
+        dados e deixa-lo disponivel para o sistema utilizar conforme necessidade. 
+        :param lendo_dados_no_arq_reserva: Depois que as informações do cliente estiverem disponivel, sera preciso colocar
+        as informações de reservas, como, nome e cpf do cliente que reservou, quais as cadeiras reservadas, etc. Essas 
+        informações serão necessarias para saber quem reservou as cadeiras.
+        """
+        cinema = sala_cinema()
+        lendo_dados_arq_cliente_txt()
+        lendo_dados_no_arq_reserva()
 
         # Menu principal
         while True:
