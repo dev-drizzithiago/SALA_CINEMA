@@ -138,15 +138,19 @@ class SalaCinema:
             "lista_valor_arq". Nesta lista vamos colocar em cada loop do FOR uma fileira do cinema até completa o loop.
             Depois que todas as informações estiverem na lista, segue-se a próxima linha.
 
-            :param: na próxima linha, "verificação_de_conteu_falso", sera feita uma verificação para saber se o arquivo possui informações. Sempre que
-            for aberto pela primeira vez o programa, o correto é sempre estava sem informações, como ele vai reconhecer
-            que não possui dados, ele vai retornar o objeto "self.verificacao_reserva" como FALSO.
+            :param: na próxima linha, "verificação_de_conteu_falso", sera feita uma verificação para saber se o arquivo
+            possui informações. Sempre que for aberto pela primeira vez o programa, o correto é sempre estava sem
+            informações, como ele vai reconhecer que não possui dados, ele vai retornar o objeto
+            "self.verificacao_reserva" como FALSO.
 
             :param: na parte da "verificar_de_conteudo_verdadeiro", ele vai iterar as informações em listas seperados,
             conforme a fileira. Perceba que a lista "lista_valor_arq" esta sendo iterada em cada variavel.
 
             :param: "verificar_cadeiras_reservadas" esse loop serve para verificar em possui alguma poltrona reservada.
             Caso tenha alguma, as informações que será apresentada na tela, contera as cadeiras reservadas.
+
+            :param self.verificacao_reservas: Quando o valor da reserva for VERDADEIRO, significa que existe uma cadeira
+            reserva, então ele precisa carregar a estrutura já configurada com a reserva.
 
             :return:
             """
