@@ -432,7 +432,7 @@ class SalaCinema:
                 print('Cadeiras reservadas são:', end='')
                 for valor in cadeiras_reservadas:
                     print(f'[{valor}]', end=' ')
-                print(f'\nReserva feita na data: {data_reserva} - {hora_reserva} \n{self.linhas_aparencia}')
+                print(f'\nReserva feita na data: {data_reserva} - {hora_reserva}')
             print(self.linhas_aparencia)
             aperte_enter()
 
