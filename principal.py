@@ -40,6 +40,9 @@ class SalaCinema:
         self.lista_cpf_cliente = list()
         self.lista_dados_cliente = list()
 
+        def lista_filmes():
+            
+
         def aperte_enter():
             """
             :return: Retorna uma entrada de teclado, para dar uma pausa até o usuário decidir continuar
@@ -706,6 +709,7 @@ class SalaCinema:
 
             # OPÇÃO RESERVAR CADEIRAS
             if resp_menu_principal == 1:
+                opcao_filmes = lista_filmes()
                 reservar_cadeira()
 
             # OPÇÃO CADASTRAR CLIENTE
