@@ -39,11 +39,30 @@ class SalaCinema:
         self.lista_reserva_cliente = list()
         self.lista_cpf_cliente = list()
         self.lista_dados_cliente = list()
+        self.lista_de_filmes_cadastrados = list()
+
+        def logo_cinema(texto_exibicao):
+            print(self.linhas_aparencia)
+            print(f'{texto_exibicao}'.center(80))
+            print(self.linhas_aparencia)
 
         def lista_filmes():
-            print(self.linhas_aparencia)
-            print('FILMES EM CARTAZES')
-            print(self.linhas_aparencia)
+
+            logo_cinema('FILMES EM CARTAZ')
+            print("""
+            [1] Transformers: O Despertar das Feras
+            [2] The Flash
+            [3] Super Mario Bros.
+            [4] Guardiões da Galáxia Vol. 3
+            [5] Velozes & Furiosos 10       
+            [0] Sair     
+            """)
+            escolha_filme = leiaInt('Esolha um filme: ')
+            if escolha_filme == 1:
+                print('<desenvolvimento>')
+
+        def cadastro_filmes():
+            print('<desenvolvimento>')
 
         def aperte_enter():
             """
