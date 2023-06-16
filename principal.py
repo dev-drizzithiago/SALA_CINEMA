@@ -525,7 +525,7 @@ class SalaCinema:
                 if cpf_confirma:  # Se a busca pelo CPF foi verdadeira...
                     sleep(1)
                     print('Encontramos seu cadastro... !', end=' ')  # Avisa que encontro o cadastro
-                    sleep(1)
+                    sleep(0.5)
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     self.linhas_aparencia
                     aperte_enter()
@@ -609,7 +609,7 @@ class SalaCinema:
                                 if escolha_cliente == confir_cadeiras:
                                     print(self.linhas_aparencia)
                                     if nome_cliente == nome_cliente_reserva_cadeiras:
-                                        print(f'Essa cadeira já esta reservada para sr. {nome_cliente}')
+                                        print(f'Você reservou essa poltrona, sr. {nome_cliente}')
                                     else:
                                         print(
                                             f'Essa cadeira já foi reservada para o/a Sr(a).{nome_cliente_reserva_cadeiras}')
