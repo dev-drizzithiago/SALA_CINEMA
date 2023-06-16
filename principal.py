@@ -41,7 +41,9 @@ class SalaCinema:
         self.lista_dados_cliente = list()
 
         def lista_filmes():
-            
+            print(self.linhas_aparencia)
+            print('FILMES EM CARTAZES')
+            print(self.linhas_aparencia)
 
         def aperte_enter():
             """
