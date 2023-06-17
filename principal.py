@@ -714,8 +714,7 @@ class SalaCinema:
         | [1] | Consultar cadastro cliente
         | [2] | Cadastrar Filmes
         | [3] | Colocar filme em cartaz
-        | [4] | Consultar todas as reservas
-        
+        | [4] | Consultar todas as reservas        
         | [5] | Cadastrar um cliente
         | [6] | Consultar cadeiras disponiveis
         | [0] | Voltar ao menu principal
