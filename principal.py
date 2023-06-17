@@ -707,8 +707,19 @@ class SalaCinema:
             | [2] | Cadastrar Filmes
             | [3] | Consultar todas as reservas
             | [4] | Colocar filme em cartaz
+            | [5] | Cadastrar um cliente
             | [0] | Voltar ao menu principal
             """)
+            resp_admin = leiaInt('Escolha uma opção: ')
+            if resp_admin == 1:
+                if len(self.lista_dados_cliente) == 0:
+                    print(self.linhas_aparencia)
+                    print('-Não existe nenhum cliente cadastrado')
+                    print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
+                    print(self.linhas_aparencia)
+                    aperte_enter()
+                else:
+                    consultar_cadastro_cliente()
 
         def area_cliente():
             print(
@@ -760,22 +771,15 @@ class SalaCinema:
 
             # OPÇÃO RESERVAR CADEIRAS
             if resp_menu_principal == 1:
-                reservar_cadeira()
+                area_cliente()
 
             # OPÇÃO CADASTRAR CLIENTE
             elif resp_menu_principal == 2:
-                cadastro_cliente()
+                area_admin()
 
             # OPÇÃO CONSULTAR CADASTRO CLIENTE
             elif resp_menu_principal == 3:
-                if len(self.lista_dados_cliente) == 0:
-                    print(self.linhas_aparencia)
-                    print('-Não existe nenhum cliente cadastrado')
-                    print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
-                    print(self.linhas_aparencia)
-                    aperte_enter()
-                else:
-                    consultar_cadastro_cliente()
+
 
             # OPÇÃO REGISTRO RESERVA
             elif resp_menu_principal == 4:
@@ -785,12 +789,6 @@ class SalaCinema:
                     print('Não encontrei nenhum registro no sistema. '
                           'Verifique se a sessão já terminou...')
                     aperte_enter()
-
-            elif resp_menu_principal == 5:
-                cadastro_filmes()
-
-            elif resp_menu_principal == 6:
-                area_admin()
 
             # OPÇÃO SAIR
             elif resp_menu_principal == 0:
