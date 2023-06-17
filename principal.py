@@ -558,6 +558,7 @@ class SalaCinema:
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     self.linhas_aparencia
                     aperte_enter()
+                    lista_filmes()
                 else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
                     sleep(1)
                     print(self.linhas_aparencia)
@@ -576,8 +577,6 @@ class SalaCinema:
                 # Caso não encontre o CPF informado pelo cliente
                 if not self.quebra_loop:  # Recebe a posição do for_002, se for falso. Quebra o loop_03. Final da fila, recebe o break.
                     break  # Volta para o menu principal, onde o cliente deve fazer um cadastro.
-
-                lista_filmes()
 
                 # Estruturando a sala de cinema para que o cliente visualize as poltronas livres e reservadas
                 print(self.linhas_aparencia)
@@ -700,6 +699,34 @@ class SalaCinema:
                 gravando_arq_reserva_restrutura.write(f'{valor_reservas}\n')
             gravando_arq_reserva_restrutura.close()
 
+        def area_admin():
+            import getpass
+            logo_cinema('Area do Administração')
+            print("""
+            | [1] | Consultar cadastro cliente
+            | [2] | Cadastrar Filmes
+            | [3] | Consultar todas as reservas
+            | [4] | Colocar filme em cartaz
+            | [0] | Voltar ao menu principal
+            """)
+
+        def area_cliente():
+            print(
+                f"""
+                      Hora certa
+        |                                     |
+        |         {data_atual_menu} - {hora_atual_menu}         |
+        |_____________________________________|
+        {self.linhas_aparencia}            
+        | [1] | Escolha um filme
+        | [2] | Cadastrar USUÁRIO
+        | [3] | Consultar sua reserva
+        | [0] | Sair 
+        {self.linhas_aparencia}""")
+            resp_cliente = leiaInt('Escolha uma opção: ')
+            if resp_cliente == 1:
+                reservar_cadeira()
+
         """
         Sobre as variaveis abaixo do texto.
         :param cinema: Pega as informações na função "sala_cinema" para criar a estrutura que o usuário ira visualizar.
@@ -725,17 +752,14 @@ class SalaCinema:
         |         {data_atual_menu} - {hora_atual_menu}         |
         |_____________________________________|
         {self.linhas_aparencia}
-        | [1] | => Reservar uma Poltrona        
-        | [2] | ==> Cadastrar um usuário
-        | [3] | ===> Consultar Cadastro de cliente
-        | [4] | ====> Veja suas reservas
-        | [0] | =====> Sair
+        | [1] |  Area do CLIENTE      
+        | [2] |  Area da administração
+        | [0] |  Sair
         {self.linhas_aparencia} ''')
             resp_menu_principal = leiaInt('        Escolha uma opção: ')
 
             # OPÇÃO RESERVAR CADEIRAS
             if resp_menu_principal == 1:
-                opcao_filmes = lista_filmes()
                 reservar_cadeira()
 
             # OPÇÃO CADASTRAR CLIENTE
@@ -752,6 +776,7 @@ class SalaCinema:
                     aperte_enter()
                 else:
                     consultar_cadastro_cliente()
+
             # OPÇÃO REGISTRO RESERVA
             elif resp_menu_principal == 4:
                 consultar_registro_reserva()
@@ -760,6 +785,13 @@ class SalaCinema:
                     print('Não encontrei nenhum registro no sistema. '
                           'Verifique se a sessão já terminou...')
                     aperte_enter()
+
+            elif resp_menu_principal == 5:
+                cadastro_filmes()
+
+            elif resp_menu_principal == 6:
+                area_admin()
+
             # OPÇÃO SAIR
             elif resp_menu_principal == 0:
                 print(self.linhas_aparencia)
