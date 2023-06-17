@@ -701,25 +701,60 @@ class SalaCinema:
 
         def area_admin():
             import getpass
-            logo_cinema('Area do Administração')
-            print("""
-            | [1] | Consultar cadastro cliente
-            | [2] | Cadastrar Filmes
-            | [3] | Consultar todas as reservas
-            | [4] | Colocar filme em cartaz
-            | [5] | Cadastrar um cliente
-            | [0] | Voltar ao menu principal
-            """)
-            resp_admin = leiaInt('Escolha uma opção: ')
-            if resp_admin == 1:
-                if len(self.lista_dados_cliente) == 0:
-                    print(self.linhas_aparencia)
-                    print('-Não existe nenhum cliente cadastrado')
-                    print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
-                    print(self.linhas_aparencia)
+            while True:
+
+                logo_cinema('Area do Administração')
+                print(
+                    f"""
+                      Hora certa
+        |                                     |
+        |         {data_atual_menu} - {hora_atual_menu}         |
+        |_____________________________________|
+        {self.linhas_aparencia}      
+        | [1] | Consultar cadastro cliente
+        | [2] | Cadastrar Filmes
+        | [3] | Colocar filme em cartaz
+        | [4] | Consultar todas as reservas
+        
+        | [5] | Cadastrar um cliente
+        | [6] | Consultar cadeiras disponiveis
+        | [0] | Voltar ao menu principal
+        {self.linhas_aparencia}""")
+                resp_admin = leiaInt('Escolha uma opção: ')
+                if resp_admin == 1:
+                    if len(self.lista_dados_cliente) == 0:
+                        print(self.linhas_aparencia)
+                        print('-Não existe nenhum cliente cadastrado')
+                        print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
+                        print(self.linhas_aparencia)
+                        aperte_enter()
+                    else:
+                        consultar_cadastro_cliente()
+
+                elif resp_admin == 2:
+                    cadastro_filmes()
+
+                elif resp_admin == 3:
+                    print('<desenvolvimento>')
+
+                    # OPÇÃO REGISTRO RESERVA
+                elif resp_admin == 4:
+                    consultar_registro_reserva()
+                    if len(self.lista_info_registro) == 0:
+                        print(self.linhas_aparencia)
+                        print('Não encontrei nenhum registro no sistema. '
+                              'Verifique se a sessão já terminou...')
                     aperte_enter()
-                else:
-                    consultar_cadastro_cliente()
+
+                elif resp_admin == 5:
+                    print('<desenvolvimento>')
+
+                elif resp_admin == 6:
+                    print('<desenvolvimento>')
+
+                elif resp_admin == 0:
+                    print('<desenvolvimento>')
+                    break
 
         def area_cliente():
             print(
@@ -777,18 +812,7 @@ class SalaCinema:
             elif resp_menu_principal == 2:
                 area_admin()
 
-            # OPÇÃO CONSULTAR CADASTRO CLIENTE
-            elif resp_menu_principal == 3:
 
-
-            # OPÇÃO REGISTRO RESERVA
-            elif resp_menu_principal == 4:
-                consultar_registro_reserva()
-                if len(self.lista_info_registro) == 0:
-                    print(self.linhas_aparencia)
-                    print('Não encontrei nenhum registro no sistema. '
-                          'Verifique se a sessão já terminou...')
-                    aperte_enter()
 
             # OPÇÃO SAIR
             elif resp_menu_principal == 0:
