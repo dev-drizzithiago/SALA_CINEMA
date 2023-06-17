@@ -47,7 +47,10 @@ class SalaCinema:
             print(self.linhas_aparencia)
 
         def lista_filmes():
-
+            """
+            https://www.cineart.com.br/em-cartaz
+            :return:
+            """
             logo_cinema('FILMES EM CARTAZ')
             print("""
             [1] Transformers: O Despertar das Feras
@@ -573,6 +576,8 @@ class SalaCinema:
                 # Caso não encontre o CPF informado pelo cliente
                 if not self.quebra_loop:  # Recebe a posição do for_002, se for falso. Quebra o loop_03. Final da fila, recebe o break.
                     break  # Volta para o menu principal, onde o cliente deve fazer um cadastro.
+
+                lista_filmes()
 
                 # Estruturando a sala de cinema para que o cliente visualize as poltronas livres e reservadas
                 print(self.linhas_aparencia)
