@@ -52,29 +52,19 @@ class SalaCinema:
             cont = 0
             try:
                 abrindo_arq_filmes_txt = open(arq_cadastrp_filmes_local_txt, 'r')
-
+                lista_arq_filmes = abrindo_arq_filmes_txt.readlines()
             except FileNotFoundError:
                 print('Arquivo que possui os registro dos filmes, não foi encontrado')
             else:
-                for valores in abrindo_arq_filmes_txt:
+                for valores in lista_arq_filmes:
                     if len(valores) == 0:
                         print('Não possui nenhum filme em cartaz...!!')
                     else:
-                        valores_cadastro = valores.split(';')
-                        while True:
-                            titulo_cartaz = valores_cadastro[0]
-                            genero_cartaz = valores_cadastro[1]
-                            duracao_cartaz = valores_cadastro[2]
-                            classificacao_cartaz = valores_cadastro[3]
-                            sinopse_cartaz = valores_cadastro[4]
-                            arq_cartaz_txt = arq_filmes_em_cartazes_local_pasta + titulo_cartaz + '.txt'
-                            gravando_filme_no_cartaz = open(arq_cartaz_txt, 'w')
-                            gravando_filme_no_cartaz.write(f'{titulo_cartaz};{genero_cartaz};'
-                                                           f'{duracao_cartaz};{classificacao_cartaz}'
-                                                           f'{sinopse_cartaz}')
-                            cont += 1
-                            if cont == 5:
-                                break
+                        for valor_filmes in lista_arq_filmes:
+                            print(valor_filmes)
+
+
+
                 aperte_enter()
 
         def cadastrando_filmes():
@@ -92,7 +82,7 @@ class SalaCinema:
                     sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
                     abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
                                                   f'{duracao_filme_cadastro};{classificacao_filme_cadastro};'
-                                                  f'{sinopse_filme_cadastro}')
+                                                  f'{sinopse_filme_cadastro} \n')
                     print('Filme cadastrado com sucesso')
                     print(self.linhas_aparencia)
                     aperte_enter()
