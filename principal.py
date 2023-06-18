@@ -66,23 +66,32 @@ class SalaCinema:
                 print('<desenvolvimento>')
 
         def cadastro_filmes():
-            try:
-                abrindo_cadastro_filmes = open(arq_cadastrp_filmes_local_txt, 'a')
-            except FileNotFoundError:
-                criando_arq_cadastro_filmes_txt = open(arq_cadastrp_filmes_local_txt, 'w')
-            else:
-                logo_cinema('AREA DE CADASTRO DE FILMES')
-                nome_filme_cadastro = input('Titulo: ')
-                genero_filme_cadastro = input('Genero: ')
-                duracao_filme_cadastro = input('Duração: ')
-                classificacao_indicativa_cadastro = leiaInt('Classificação: ')
-                abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
-                                              f'{duracao_filme_cadastro};{classificacao_indicativa_cadastro}')
-                print('Filme cadastrado com sucesso')
-                aperte_enter()
+            """
+            
+            :return:
+            """
+            while True:
+                try:
+                    abrindo_cadastro_filmes = open(arq_cadastrp_filmes_local_txt, 'a')
+                except FileNotFoundError:
+                    criando_arq_cadastro_filmes_txt = open(arq_cadastrp_filmes_local_txt, 'w')
+                else:
+                    logo_cinema('AREA DE CADASTRO DE FILMES')
+                    nome_filme_cadastro = input('Titulo: ')
+                    genero_filme_cadastro = input('Genero: ')
+                    duracao_filme_cadastro = input('Duração: ')
+                    classificacao_filme_cadastro = leiaInt('Classificação: ')
+                    abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
+                                                  f'{duracao_filme_cadastro};{classificacao_filme_cadastro}')
+                    print('Filme cadastrado com sucesso')
+                    print(self.linhas_aparencia)
+                    aperte_enter()
                 abrindo_cadastro_filmes.close()
-
-
+                resp_cadastro_filme = input('Cadastrar outro filme? [S/N]: ').upper()
+                if resp_cadastro_filme == 'N':
+                    print('Voltando ao menu principal...')
+                    sleep(1)
+                    break
 
         def aperte_enter():
             """
