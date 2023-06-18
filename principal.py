@@ -59,7 +59,7 @@ class SalaCinema:
                     else:
                         print(valores)
 
-        def cadastro_filmes():
+        def cadastrando_filmes():
             """
 
             :return:
@@ -79,7 +79,6 @@ class SalaCinema:
                     abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
                                                   f'{duracao_filme_cadastro};{classificacao_filme_cadastro};'
                                                   f'{sinopse_filme_cadastro}')
-                    
                     print('Filme cadastrado com sucesso')
                     print(self.linhas_aparencia)
                     aperte_enter()
@@ -745,6 +744,8 @@ class SalaCinema:
         | [0] | Voltar ao menu principal
         {self.linhas_aparencia}""")
                 resp_admin = leiaInt('Escolha uma opção: ')
+
+                # Consultando cadastro dos clientes.
                 if resp_admin == 1:
                     if len(self.lista_dados_cliente) == 0:
                         print(self.linhas_aparencia)
@@ -755,9 +756,11 @@ class SalaCinema:
                     else:
                         consultar_cadastro_cliente()
 
+                # Cadastrando um filme no sistema.
                 elif resp_admin == 2:
-                    cadastro_filmes()
+                    cadastrando_filmes()
 
+                # Colocar um filme em cartaz.
                 elif resp_admin == 3:
                     lista_filmes_em_cartaz()
 
