@@ -59,7 +59,6 @@ class SalaCinema:
                     else:
                         print(valores)
 
-
         def cadastro_filmes():
             """
 
@@ -80,6 +79,7 @@ class SalaCinema:
                     abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
                                                   f'{duracao_filme_cadastro};{classificacao_filme_cadastro};'
                                                   f'{sinopse_filme_cadastro}')
+                    
                     print('Filme cadastrado com sucesso')
                     print(self.linhas_aparencia)
                     aperte_enter()
@@ -581,7 +581,7 @@ class SalaCinema:
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     self.linhas_aparencia
                     aperte_enter()
-                    lista_filmes()
+                    lista_filmes_em_cartaz()
                 else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
                     sleep(1)
                     print(self.linhas_aparencia)
