@@ -51,6 +51,7 @@ class SalaCinema:
         def lista_filmes_em_cartaz():
             try:
                 abrindo_arq_filmes_txt = open(arq_cadastrp_filmes_local_txt, 'r')
+
             except FileNotFoundError:
                 print('Arquivo que possui os registro dos filmes, não foi encontrado')
             else:
@@ -59,6 +60,9 @@ class SalaCinema:
                         print('Não possui nenhum filme em cartaz...!!')
                     else:
                         valores_cadastro = valores.split(';')
+                        titulo_cartaz = valores_cadastro[0]
+                        try:
+                            gravando_filme_no_cartaz = open(arq_filmes_em_cartazes_local_txt + )
 
                 aperte_enter()
 
