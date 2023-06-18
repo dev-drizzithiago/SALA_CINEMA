@@ -28,6 +28,7 @@ arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastrp_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
+arq_filmes_em_cartazes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES/'
 
 
 class SalaCinema:
@@ -57,13 +58,11 @@ class SalaCinema:
                     if len(valores) == 0:
                         print('Não possui nenhum filme em cartaz...!!')
                     else:
-                        print(valores)
+                        valores_cadastro = valores.split(';')
+
+                aperte_enter()
 
         def cadastrando_filmes():
-            """
-
-            :return:
-            """
             while True:
                 try:
                     abrindo_cadastro_filmes = open(arq_cadastrp_filmes_local_txt, 'a')
@@ -738,7 +737,7 @@ class SalaCinema:
         | [1] | Consultar cadastro cliente
         | [2] | Cadastrar Filmes no sistema
         | [3] | Colocar filme em cartaz
-        | [4] | Consultar todas as reservas        
+        | [4] | Consultar todas as reservas no sistema       
         | [5] | Cadastrar um cliente
         | [6] | Consultar cadeiras disponiveis
         | [0] | Voltar ao menu principal
@@ -764,7 +763,7 @@ class SalaCinema:
                 elif resp_admin == 3:
                     lista_filmes_em_cartaz()
 
-                    # OPÇÃO REGISTRO RESERVA
+                # Consultar todas as reservas no sistema
                 elif resp_admin == 4:
                     consultar_registro_reserva()
                     if len(self.lista_info_registro) == 0:
