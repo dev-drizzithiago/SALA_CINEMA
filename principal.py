@@ -38,7 +38,6 @@ class SalaCinema:
         self.verificacao_reservas = False
         self.info_reserva = None
         self.inf_reserva = list()
-        self.lista_reserva_cliente = list()
         self.lista_cpf_cliente = list()
         self.lista_dados_cliente = list()
         self.lista_de_filmes_cadastrados = list()
@@ -51,6 +50,7 @@ class SalaCinema:
 
         def lista_filmes_em_cartaz():
             lendo_dados_no_arq_filmes_txt()
+            print(self.lista_filme_cadastrado)
 
         def cadastrando_filmes():
             while True:
@@ -428,8 +428,7 @@ class SalaCinema:
                     lendo_dados_classificacao = valor_arq_formatado[3]
                     lendo_dados_sinopse = valor_arq_formatado[4]
                     self.lista_filme_cadastrado.append([lendo_dados_titulo, lendo_dados_genero, lendo_dados_duracao,
-                                                       lendo_dados_classificacao, lendo_dados_sinopse])
-
+                                                        lendo_dados_classificacao, lendo_dados_sinopse])
 
         def consultar_cadastro_cliente():
             """
@@ -807,8 +806,26 @@ class SalaCinema:
             | [0] | Sair 
             {self.linhas_aparencia}""")
                 resp_cliente = leiaInt('Escolha uma opção: ')
+
                 if resp_cliente == 1:
                     reservar_cadeira()
+
+                elif resp_cliente == 2:
+                    cadastro_cliente()
+
+                elif resp_cliente == 3:
+                    lendo_dados_no_arq_reserva()
+                    lendo_dados_arq_cliente_txt()
+                    self.lista_cpf_cliente
+                    self.lista_info_registro
+                    lendo_cpf_cliente = leiaInt('Digite seu cpf: ')
+                    
+
+                elif resp_cliente == 0:
+                    print(self.linhas_aparencia)
+                    print('Voltando ao menu principal...')
+                    sleep(1)
+                    break
 
         """
         Sobre as variaveis abaixo do texto.
