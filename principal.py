@@ -28,7 +28,7 @@ arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastrp_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
-arq_filmes_em_cartazes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES/'
+arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES/'
 
 
 class SalaCinema:
@@ -67,7 +67,11 @@ class SalaCinema:
                             duracao_cartaz = valores_cadastro[2]
                             classificacao_cartaz = valores_cadastro[3]
                             sinopse_cartaz = valores_cadastro[4]
-                            gravando_filme_no_cartaz = open(arq_filmes_em_cartazes_local_txt + titulo_cartaz, 'w')
+                            arq_cartaz_txt = arq_filmes_em_cartazes_local_pasta + titulo_cartaz + '.txt'
+                            gravando_filme_no_cartaz = open(arq_cartaz_txt, 'w')
+                            gravando_filme_no_cartaz.write(f'{titulo_cartaz};{genero_cartaz};'
+                                                           f'{duracao_cartaz};{classificacao_cartaz}'
+                                                           f'{sinopse_cartaz}')
                             cont += 1
                             if cont == 5:
                                 break
