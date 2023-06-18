@@ -56,11 +56,12 @@ class SalaCinema:
                 print('Arquivo que possui os registro dos filmes, não foi encontrado')
             else:
                 for valores in abrindo_arq_filmes_txt:
+                    valor_formatado_cartaz_1 = valores.split(';')
                     if len(valores) == 0:
                         print('Não possui nenhum filme em cartaz...!!')
                     else:
-                        print(len(valores))
-                        print(valores)
+                        print(len(valor_formatado_cartaz_1))
+                        print(valor_formatado_cartaz_1)
 
                 aperte_enter()
 
