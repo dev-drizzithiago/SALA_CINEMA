@@ -89,7 +89,7 @@ class SalaCinema:
                 abrindo_cadastro_filmes.close()
                 resp_cadastro_filme = input('Cadastrar outro filme? [S/N]: ').upper()
                 if resp_cadastro_filme == 'N':
-                    print('Voltando ao menu principal...')
+                    print('Voltando ao menu...')
                     sleep(1)
                     break
 
