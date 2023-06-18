@@ -47,27 +47,20 @@ class SalaCinema:
             print(f'{texto_exibicao}'.center(80))
             print(self.linhas_aparencia)
 
-        def lista_filmes():
-            """
-            https://www.cineart.com.br/em-cartaz
-            :return:
-            """
-            logo_cinema('FILMES EM CARTAZ')
-            print("""
-            [1] Transformers: O Despertar das Feras
-            [2] The Flash
-            [3] Super Mario Bros.
-            [4] Guardiões da Galáxia Vol. 3
-            [5] Velozes & Furiosos 10       
-            [0] Sair     
-            """)
-            escolha_filme = leiaInt('Esolha um filme: ')
-            if escolha_filme == 1:
-                print('<desenvolvimento>')
+        def lista_filmes_em_cartaz():
+            try:
+                abrindo_arq_filmes_txt = open(arq_cadastrp_filmes_local_txt, 'r')
+            except FileNotFoundError:
+                print('Arquivo que possui os registro dos filmes, não foi encontrado')
+            else:
+                for valores in abrindo_arq_filmes_txt:
+                    if len(valores) == 0:
+                        print('Não possui nenhum filme em cartaz...!!')
+
 
         def cadastro_filmes():
             """
-            
+
             :return:
             """
             while True:
