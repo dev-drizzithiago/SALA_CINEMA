@@ -700,7 +700,9 @@ class SalaCinema:
             gravando_arq_reserva_restrutura.close()
 
         def area_admin():
-            import getpass
+            data_menu = datetime.now()
+            data_atual_menu = data_menu.strftime('%d/%m/%y')
+            hora_atual_menu = data_menu.strftime('%H:%M:%S')
             while True:
 
                 logo_cinema('Area do Administração')
@@ -756,21 +758,25 @@ class SalaCinema:
                     break
 
         def area_cliente():
-            print(
-                f"""
-                      Hora certa
-        |                                     |
-        |         {data_atual_menu} - {hora_atual_menu}         |
-        |_____________________________________|
-        {self.linhas_aparencia}            
-        | [1] | Escolha um filme
-        | [2] | Cadastrar USUÁRIO
-        | [3] | Consultar sua reserva
-        | [0] | Sair 
-        {self.linhas_aparencia}""")
-            resp_cliente = leiaInt('Escolha uma opção: ')
-            if resp_cliente == 1:
-                reservar_cadeira()
+            data_menu = datetime.now()
+            data_atual_menu = data_menu.strftime('%d/%m/%y')
+            hora_atual_menu = data_menu.strftime('%H:%M:%S')
+            while True:
+                print(
+                    f"""
+                          Hora certa
+            |                                     |
+            |         {data_atual_menu} - {hora_atual_menu}         |
+            |_____________________________________|
+            {self.linhas_aparencia}            
+            | [1] | Escolha um filme
+            | [2] | Cadastrar USUÁRIO
+            | [3] | Consultar sua reserva
+            | [0] | Sair 
+            {self.linhas_aparencia}""")
+                resp_cliente = leiaInt('Escolha uma opção: ')
+                if resp_cliente == 1:
+                    reservar_cadeira()
 
         """
         Sobre as variaveis abaixo do texto.
@@ -803,15 +809,13 @@ class SalaCinema:
         {self.linhas_aparencia} ''')
             resp_menu_principal = leiaInt('        Escolha uma opção: ')
 
-            # OPÇÃO RESERVAR CADEIRAS
+            # Menu clientes
             if resp_menu_principal == 1:
                 area_cliente()
 
-            # OPÇÃO CADASTRAR CLIENTE
+            # Menu administração
             elif resp_menu_principal == 2:
                 area_admin()
-
-
 
             # OPÇÃO SAIR
             elif resp_menu_principal == 0:
