@@ -42,6 +42,7 @@ class SalaCinema:
         self.lista_dados_cliente = list()
         self.lista_de_filmes_cadastrados = list()
         self.lista_filme_cadastrado = list()
+        self.lista_info_registro = list()
 
         def logo_cinema(texto_exibicao):
             print(self.linhas_aparencia)
@@ -815,11 +816,12 @@ class SalaCinema:
 
                 elif resp_cliente == 3:
                     lendo_dados_no_arq_reserva()
-                    lendo_dados_arq_cliente_txt()
-                    self.lista_cpf_cliente
                     self.lista_info_registro
                     lendo_cpf_cliente = leiaInt('Digite seu cpf: ')
-                    
+                    for valor_cpf in self.lista_info_registro:
+                        if valor_cpf == lendo_cpf_cliente:
+                            print(f'{valor_cpf[2:-2]}')
+
 
                 elif resp_cliente == 0:
                     print(self.linhas_aparencia)
