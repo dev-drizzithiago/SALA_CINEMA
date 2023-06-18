@@ -76,6 +76,11 @@ class SalaCinema:
                 genero_filme_cadastro = input('Genero: ')
                 duracao_filme_cadastro = input('Duração: ')
                 classificacao_indicativa_cadastro = leiaInt('Classificação: ')
+                abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
+                                              f'{duracao_filme_cadastro};{classificacao_indicativa_cadastro}')
+                print('Filme cadastrado com sucesso')
+                aperte_enter()
+                abrindo_cadastro_filmes.close()
 
 
 
