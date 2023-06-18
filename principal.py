@@ -27,6 +27,7 @@ for valor_formatado in ano_formatado_fim:
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
+arq_cadastrp_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 
 
 class SalaCinema:
@@ -65,7 +66,18 @@ class SalaCinema:
                 print('<desenvolvimento>')
 
         def cadastro_filmes():
-            print('<desenvolvimento>')
+            try:
+                abrindo_cadastro_filmes = open(arq_cadastrp_filmes_local_txt, 'a')
+            except FileNotFoundError:
+                criando_arq_cadastro_filmes_txt = open(arq_cadastrp_filmes_local_txt, 'w')
+            else:
+                logo_cinema('AREA DE CADASTRO DE FILMES')
+                nome_filme_cadastro = input('Titulo: ')
+                genero_filme_cadastro = input('Genero: ')
+                duracao_filme_cadastro = input('Duração: ')
+                classificacao_indicativa_cadastro = leiaInt('Classificação: ')
+
+
 
         def aperte_enter():
             """
