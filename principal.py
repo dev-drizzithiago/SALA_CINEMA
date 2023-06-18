@@ -56,12 +56,13 @@ class SalaCinema:
             except FileNotFoundError:
                 print('Arquivo que possui os registro dos filmes, não foi encontrado')
             else:
+                valor_formatado_carta_1 = str(lista_arq_filmes)
+                print(valor_formatado_carta_1)
                 for valores in lista_arq_filmes:
                     if len(valores) == 0:
                         print('Não possui nenhum filme em cartaz...!!')
-                    else:
-                        for valor_filmes in lista_arq_filmes:
-                            print(valor_filmes)
+
+
 
 
 
