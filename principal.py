@@ -49,6 +49,7 @@ class SalaCinema:
             print(self.linhas_aparencia)
 
         def lista_filmes_em_cartaz():
+            cont = 0
             try:
                 abrindo_arq_filmes_txt = open(arq_cadastrp_filmes_local_txt, 'r')
 
@@ -60,10 +61,16 @@ class SalaCinema:
                         print('Não possui nenhum filme em cartaz...!!')
                     else:
                         valores_cadastro = valores.split(';')
-                        titulo_cartaz = valores_cadastro[0]
-                        try:
-                            gravando_filme_no_cartaz = open(arq_filmes_em_cartazes_local_txt + )
-
+                        while True:
+                            titulo_cartaz = valores_cadastro[0]
+                            genero_cartaz = valores_cadastro[1]
+                            duracao_cartaz = valores_cadastro[2]
+                            classificacao_cartaz = valores_cadastro[3]
+                            sinopse_cartaz = valores_cadastro[4]
+                            gravando_filme_no_cartaz = open(arq_filmes_em_cartazes_local_txt + titulo_cartaz, 'w')
+                            cont += 1
+                            if cont == 5:
+                                break
                 aperte_enter()
 
         def cadastrando_filmes():
