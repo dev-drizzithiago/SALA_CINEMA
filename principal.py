@@ -27,7 +27,7 @@ for valor_formatado in ano_formatado_fim:
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
-arq_cadastrp_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
+arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
 arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES/'
 
 
@@ -49,28 +49,14 @@ class SalaCinema:
             print(self.linhas_aparencia)
 
         def lista_filmes_em_cartaz():
-            cont = 0
-            try:
-                abrindo_arq_filmes_txt = open(arq_cadastrp_filmes_local_txt, 'r')
-            except FileNotFoundError:
-                print('Arquivo que possui os registro dos filmes, não foi encontrado')
-            else:
-                for valores in abrindo_arq_filmes_txt:
-                    valor_formatado_cartaz_1 = valores.split(';')
-                    if len(valores) == 0:
-                        print('Não possui nenhum filme em cartaz...!!')
-                    else:
-                        print(len(valor_formatado_cartaz_1))
-                        print(valor_formatado_cartaz_1)
-
-                aperte_enter()
+            print('teste')
 
         def cadastrando_filmes():
             while True:
                 try:
-                    abrindo_cadastro_filmes = open(arq_cadastrp_filmes_local_txt, 'a')
+                    abrindo_cadastro_filmes = open(arq_cadastro_filmes_local_txt, 'a')
                 except FileNotFoundError:
-                    criando_arq_cadastro_filmes_txt = open(arq_cadastrp_filmes_local_txt, 'w')
+                    criando_arq_cadastro_filmes_txt = open(arq_cadastro_filmes_local_txt, 'w')
                 else:
                     logo_cinema('AREA DE CADASTRO DE FILMES')
                     nome_filme_cadastro = input('Titulo: ')
@@ -426,6 +412,12 @@ class SalaCinema:
                 for valor_bruto in leitura:
                     valor_limpo = valor_bruto.strip()
                     self.lista_info_registro.append(valor_limpo)
+
+        def lendo_arq_lista_filmes_txt():
+            try:
+                lendo_arq_lista_filmes = open(arq_cadastro_filmes_local_txt)
+            except FileNotFoundError:
+                print('Arquivo de texto não existe.')
 
         def consultar_cadastro_cliente():
             """
