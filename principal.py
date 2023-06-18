@@ -42,6 +42,7 @@ class SalaCinema:
         self.lista_cpf_cliente = list()
         self.lista_dados_cliente = list()
         self.lista_de_filmes_cadastrados = list()
+        self.lista_filme_cadastrado = list()
 
         def logo_cinema(texto_exibicao):
             print(self.linhas_aparencia)
@@ -49,7 +50,7 @@ class SalaCinema:
             print(self.linhas_aparencia)
 
         def lista_filmes_em_cartaz():
-            print('teste')
+            lendo_dados_no_arq_filmes_txt()
 
         def cadastrando_filmes():
             while True:
@@ -413,11 +414,22 @@ class SalaCinema:
                     valor_limpo = valor_bruto.strip()
                     self.lista_info_registro.append(valor_limpo)
 
-        def lendo_arq_lista_filmes_txt():
+        def lendo_dados_no_arq_filmes_txt():
             try:
-                lendo_arq_lista_filmes = open(arq_cadastro_filmes_local_txt)
+                lendo_arq_cadastro_de_filmes = open(arq_cadastro_filmes_local_txt)
             except FileNotFoundError:
                 print('Arquivo de texto não existe.')
+            else:
+                for valor_lendo_arq in lendo_arq_cadastro_de_filmes:
+                    valor_arq_formatado = valor_lendo_arq.split(';')
+                    lendo_dados_titulo = valor_arq_formatado[0]
+                    lendo_dados_genero = valor_arq_formatado[1]
+                    lendo_dados_duracao = valor_arq_formatado[2]
+                    lendo_dados_classificacao = valor_arq_formatado[3]
+                    lendo_dados_sinopse = valor_arq_formatado[4]
+                    self.lista_filme_cadastrado.append([lendo_dados_titulo, lendo_dados_genero, lendo_dados_duracao,
+                                                       lendo_dados_classificacao, lendo_dados_sinopse])
+
 
         def consultar_cadastro_cliente():
             """
