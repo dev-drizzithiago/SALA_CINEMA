@@ -828,17 +828,17 @@ class SalaCinema:
                             cadeiras_cliente = valor_format[2:-2]
                             if cpf_cliente_int == lendo_cpf_cliente:
                                 print(f'Bem vindo Sr(a) {nome_cliente_txt} \n'
-                                      f'Você reservou as seguintes poltronas: ', end=)
+                                      f'Você reservou as seguintes poltronas: ', end=' ')
                                 for valor_cadeiras in cadeiras_cliente:
-                                    print(f'{valor_cadeiras}', end=' ')
+                                    print(f'[{valor_cadeiras}]', end=' ')
                             else:
                                 print(f'Com o CPF {lendo_cpf_cliente}, não encontramos nenhuma reserva.')
-                        resp_consulta = str(input('Realizado outra consulta? [S/N]: ')).upper()
+                        print(self.linhas_aparencia)
+                        resp_consulta = str(input('\nRealizado outra consulta? [S/N]: ')).upper()
                         if resp_consulta == 'N':
                             print('Voltando para o menu...!')
                             sleep(1)
                             break
-
 
                 elif resp_cliente == 0:
                     print(self.linhas_aparencia)
