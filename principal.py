@@ -4,25 +4,8 @@ from time import sleep
 
 # from threading import Thread
 
-data = datetime.now()
-ano_atual = data.strftime('%Y')
-data_atual = data.strftime('%d/%m/%Y')
-hora_atual = data.strftime('%H:%M:%S')
 
-ano_formatado_inicio = str(data_atual).replace('/', ',')
-ano_formatado_meio = ano_formatado_inicio.split(',')
-ano_formatado_fim = [ano_formatado_meio]
-for valor_formatado in ano_formatado_fim:
-    # dia = int(valor_formatado[0])
-    # mes = int(valor_formatado[1])
-    dia = 10
-    mes = 12
-    ano = int(valor_formatado[2])
-# print(ano)
-# if dia >= 8 and mes >= 11:
-#    print(ano - 1982)
-# else:
-#    print(ano - 1982 - 1)
+
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
@@ -43,6 +26,12 @@ class SalaCinema:
         self.lista_de_filmes_cadastrados = list()
         self.lista_filme_cadastrado = list()
         self.lista_info_registro = list()
+
+        def data_atual():
+            data = datetime.now()
+            self.ano_atual = data.strftime('%Y')
+            self.data_atual = data.strftime('%d/%m/%y')
+            self.hora_atual = data.strftime('%H:%M:%S')
 
         def logo_cinema(texto_exibicao):
             print(self.linhas_aparencia)
@@ -351,7 +340,7 @@ class SalaCinema:
                     gravando_reserva.write(f'{valor_1};')
                     if cont == len(self.inf_reserva):
                         break
-                gravando_reserva.write(f'{data_atual};{hora_atual}\n')
+                gravando_reserva.write(f'{self.data_atual};{self.hora_atual}\n')
                 self.inf_reserva.clear()
                 print(self.linhas_aparencia)
                 print('Seu reserva foi concluída!')
@@ -728,9 +717,7 @@ class SalaCinema:
             gravando_arq_reserva_restrutura.close()
 
         def area_admin():
-            data_menu = datetime.now()
-            data_atual_menu = data_menu.strftime('%d/%m/%y')
-            hora_atual_menu = data_menu.strftime('%H:%M:%S')
+            data_atual()
             while True:
 
                 logo_cinema('Area do Administração')
@@ -738,7 +725,7 @@ class SalaCinema:
                     f"""
                       Hora certa
         |                                     |
-        |         {data_atual_menu} - {hora_atual_menu}         |
+        |         {self.data_atual} - {self.hora_atual}         |
         |_____________________________________|
         {self.linhas_aparencia}      
         | [1] | Consultar cadastro cliente
@@ -777,7 +764,6 @@ class SalaCinema:
                         print(self.linhas_aparencia)
                         print('Não encontrei nenhum registro no sistema. '
                               'Verifique se a sessão já terminou...')
-                    aperte_enter()
 
                 elif resp_admin == 5:
                     print('<desenvolvimento>')
@@ -790,15 +776,13 @@ class SalaCinema:
                     break
 
         def area_cliente():
-            data_menu = datetime.now()
-            data_atual_menu = data_menu.strftime('%d/%m/%y')
-            hora_atual_menu = data_menu.strftime('%H:%M:%S')
+            data_atual()
             while True:
                 print(
                     f"""
                           Hora certa
             |                                     |
-            |         {data_atual_menu} - {hora_atual_menu}         |
+            |         {self.data_atual} - {self.hora_atual}         |
             |_____________________________________|
             {self.linhas_aparencia}            
             | [1] | Escolha um filme
@@ -863,14 +847,12 @@ class SalaCinema:
 
         # Menu principal
         while True:
-            data_menu = datetime.now()
-            data_atual_menu = data_menu.strftime('%d/%m/%y')
-            hora_atual_menu = data_menu.strftime('%H:%M:%S')
+            data_atual()
             print(
                 f'''
                       Hora certa
         |                                     |
-        |         {data_atual_menu} - {hora_atual_menu}         |
+        |         {self.data_atual} - {self.hora_atual}         |
         |_____________________________________|
         {self.linhas_aparencia}
         | [1] |  Area do CLIENTE      
