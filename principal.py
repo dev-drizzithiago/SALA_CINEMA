@@ -817,10 +817,27 @@ class SalaCinema:
                 elif resp_cliente == 3:
                     lendo_dados_no_arq_reserva()
                     self.lista_info_registro
-                    lendo_cpf_cliente = leiaInt('Digite seu cpf: ')
-                    for valor_cpf in self.lista_info_registro:
-                        if valor_cpf == lendo_cpf_cliente:
-                            print(f'{valor_cpf[2:-2]}')
+                    while True:
+                        print(self.linhas_aparencia)
+                        lendo_cpf_cliente = leiaInt('Digite seu cpf: ')
+                        for valor_cpf in self.lista_info_registro:
+                            valor_format = str(valor_cpf).split(';')
+                            cpf_cliente_txt = valor_format[0].strip()
+                            nome_cliente_txt = valor_format[1].strip().title()
+                            cpf_cliente_int = int(cpf_cliente_txt)
+                            cadeiras_cliente = valor_format[2:-2]
+                            if cpf_cliente_int == lendo_cpf_cliente:
+                                print(f'Bem vindo Sr(a) {nome_cliente_txt} \n'
+                                      f'Você reservou as seguintes poltronas: ', end=)
+                                for valor_cadeiras in cadeiras_cliente:
+                                    print(f'{valor_cadeiras}', end=' ')
+                            else:
+                                print(f'Com o CPF {lendo_cpf_cliente}, não encontramos nenhuma reserva.')
+                        resp_consulta = str(input('Realizado outra consulta? [S/N]: ')).upper()
+                        if resp_consulta == 'N':
+                            print('Voltando para o menu...!')
+                            sleep(1)
+                            break
 
 
                 elif resp_cliente == 0:
@@ -828,6 +845,8 @@ class SalaCinema:
                     print('Voltando ao menu principal...')
                     sleep(1)
                     break
+                else:
+                    print('Voce entrou com uma opção errada!')
 
         """
         Sobre as variaveis abaixo do texto.
