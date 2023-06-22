@@ -817,7 +817,7 @@ class SalaCinema:
                                     print(f'[{valor_cadeiras}]', end=' ')
                             else:
                                 print(f'Com o CPF {lendo_cpf_cliente}, não encontramos nenhuma reserva.')
-                        print(self.linhas_aparencia)
+                        print(f'\n{self.linhas_aparencia}')
                         resp_consulta = str(input('\nRealizado outra consulta? [S/N]: ')).upper()
                         if resp_consulta == 'N':
                             print('Voltando para o menu...!')
