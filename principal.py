@@ -420,13 +420,14 @@ class SalaCinema:
             else:
                 for valor_lendo_arq in lendo_arq_cadastro_de_filmes:
                     valor_arq_formatado = valor_lendo_arq.split(';')
-                    lendo_dados_titulo = valor_arq_formatado[0]
-                    lendo_dados_genero = valor_arq_formatado[1]
-                    lendo_dados_duracao = valor_arq_formatado[2]
-                    lendo_dados_classificacao = valor_arq_formatado[3]
-                    lendo_dados_sinopse = valor_arq_formatado[4]
-                    self.lista_filme_cadastrado.append([lendo_dados_titulo, lendo_dados_genero, lendo_dados_duracao,
-                                                        lendo_dados_classificacao, lendo_dados_sinopse])
+                    lendo_dados_registro = valor_arq_formatado[0]
+                    lendo_dados_titulo = valor_arq_formatado[1]
+                    lendo_dados_genero = valor_arq_formatado[2]
+                    lendo_dados_duracao = valor_arq_formatado[3]
+                    lendo_dados_classificacao = valor_arq_formatado[4]
+                    lendo_dados_sinopse = valor_arq_formatado[5]
+                    self.lista_filme_cadastrado.append([lendo_dados_registro, lendo_dados_titulo, lendo_dados_genero,
+                                                        lendo_dados_duracao, lendo_dados_classificacao, lendo_dados_sinopse])
 
         def consultar_cadastro_cliente():
             """
@@ -583,7 +584,7 @@ class SalaCinema:
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     self.linhas_aparencia
                     aperte_enter()
-                    lista_filmes_em_cartaz()
+                    gravando_filmes_em_cartaz()
                 else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
                     sleep(1)
                     print(self.linhas_aparencia)
