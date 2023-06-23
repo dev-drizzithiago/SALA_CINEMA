@@ -36,7 +36,7 @@ class SalaCinema:
             print(f'{texto_exibicao}'.center(80))
             print(self.linhas_aparencia)
 
-        def lista_filmes_em_cartaz():
+        def gravando_filmes_em_cartaz():
             lendo_dados_no_arq_filmes_txt()
             for lista_filmes in self.lista_filme_cadastrado:
                 print(lista_filmes)
@@ -763,7 +763,7 @@ class SalaCinema:
 
                 # Colocar um filme em cartaz.
                 elif resp_admin == 3:
-                    lista_filmes_em_cartaz()
+                    gravando_filmes_em_cartaz()
 
                 # Consultar todas as reservas no sistema
                 elif resp_admin == 4:
