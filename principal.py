@@ -40,11 +40,14 @@ class SalaCinema:
             lendo_dados_no_arq_filmes_txt()
             for lista_filmes in self.lista_filme_cadastrado:
                 print(f'Registro: {lista_filmes[0]} \n'
-                      f'Titulo: {lista_filmes[2]} \n'
-                      f'Genero: {lista_filmes[3]} \n'
-                      f'Duração: {lista_filmes[4]} minutos \n'
-                      f'Classificação indicativa: {lista_filmes[5]} \n'
-                      f'Sinopse: {lista_filmes[6]} \n')
+                      f'Titulo: {lista_filmes[1]} \n'
+                      f'Genero: {lista_filmes[2]} \n'
+                      f'Duração: {lista_filmes[3]} minutos \n'
+                      f'Classificação indicativa: {lista_filmes[4]} \n')
+
+                for valor_sinopse in str(lista_filmes[5]):
+                    valor_format_sinopse = valor_sinopse
+                    print(f'Sinopse: {valor_format_sinopse} \n')
 
 
             aperte_enter()
