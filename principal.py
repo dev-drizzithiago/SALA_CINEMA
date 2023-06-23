@@ -39,8 +39,13 @@ class SalaCinema:
         def gravando_filmes_em_cartaz():
             lendo_dados_no_arq_filmes_txt()
             for lista_filmes in self.lista_filme_cadastrado:
-                for filme in lista_filmes:
-                    print(filme)
+                print(f'Registro: {lista_filmes[0]} \n'
+                      f'Titulo: {lista_filmes[2]} \n'
+                      f'Genero: {lista_filmes[3]} \n'
+                      f'Duração: {lista_filmes[4]} minutos \n'
+                      f'Classificação indicativa: {lista_filmes[5]} \n'
+                      f'Sinopse: {lista_filmes[6]} \n')
+
 
             aperte_enter()
 
