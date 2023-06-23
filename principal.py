@@ -40,7 +40,10 @@ class SalaCinema:
 
         def lista_filmes_em_cartaz():
             lendo_dados_no_arq_filmes_txt()
-            print(self.lista_filme_cadastrado)
+            for lista_filmes in self.lista_filme_cadastrado:
+                print(lista_filmes)
+
+            aperte_enter()
 
         def cadastrando_filmes():
             while True:
@@ -48,8 +51,15 @@ class SalaCinema:
                     abrindo_cadastro_filmes = open(arq_cadastro_filmes_local_txt, 'a')
                 except FileNotFoundError:
                     criando_arq_cadastro_filmes_txt = open(arq_cadastro_filmes_local_txt, 'w')
+                    criando_arq_cadastro_filmes_txt.close()
                 else:
                     logo_cinema('AREA DE CADASTRO DE FILMES')
+                    while True:
+                        registro_filme = str('Número de registro: ')
+                        if len(registro_filme) != 4:
+                            print('Registro fora padrão. Digite o correto!')
+                        else:
+                            break
                     nome_filme_cadastro = input('Titulo: ')
                     genero_filme_cadastro = input('Genero: ')
                     duracao_filme_cadastro = input('Duração: ')
