@@ -42,8 +42,6 @@ class SalaCinema:
                 for filme in lista_filmes:
                     print(filme)
 
-
-
             aperte_enter()
 
         def cadastrando_filmes():
@@ -430,7 +428,8 @@ class SalaCinema:
                     lendo_dados_classificacao = valor_arq_formatado[4]
                     lendo_dados_sinopse = valor_arq_formatado[5]
                     self.lista_filme_cadastrado.append([lendo_dados_registro, lendo_dados_titulo, lendo_dados_genero,
-                                                        lendo_dados_duracao, lendo_dados_classificacao, lendo_dados_sinopse])
+                                                        lendo_dados_duracao, lendo_dados_classificacao,
+                                                        lendo_dados_sinopse])
 
         def consultar_cadastro_cliente():
             """
