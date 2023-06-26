@@ -59,9 +59,10 @@ class SalaCinema:
             cod_filme = leiaInt('Cod:')
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
-                    print(f'Você adicionou o seguinte filme em cartaz:\n'
+                    print(f'Você colocou em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
                     break
+            print(self.linhas_aparencia)
             aperte_enter()
 
         def cadastrando_filmes():
