@@ -58,9 +58,11 @@ class SalaCinema:
             print('Digite o código do filme para reserva-lo')
             cod_filme = leiaInt('Cod:')
             for codigo in self.lista_filme_cadastrado:
-                codigo_filme_txt = str(codigo[0])
-                print(codigo_filme_txt)
-
+                if cod_filme == codigo[0]:
+                    print('deu certo')
+                    break
+                else:
+                    print('não deu certo')
             aperte_enter()
 
         def cadastrando_filmes():
