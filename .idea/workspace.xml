@@ -39,10 +39,10 @@
     "git-widget-placeholder": "tempo__cartaz__filmes",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Estudos/Python/Meus_Projetos",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.principal">
+  <component name="RunManager">
     <configuration name="principal" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Sala_Cinema" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -51,7 +51,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\Penso\AppData\Local\Programs\Python\Python311\python.exe" />
-      <option name="SDK_NAME" value="Python 3.11" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -73,11 +72,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\th_gr\AppData\Local\Programs\Python\Python310\python.exe" />
-      <option name="WORKING_DIRECTORY" value="G:/Meu Drive/Estudos/Python/Projetos Abandonados/Projeto_Youtube.old.v1.01" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Python/Projetos Abandonados/Projeto_Youtube.old.v1.01" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="G:/Meu Drive/Estudos/Python/Projetos Abandonados/Projeto_Youtube.old.v1.01/youtube.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Python/Projetos Abandonados/Projeto_Youtube.old.v1.01/youtube.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -117,22 +116,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>22</line>
+          <line>20</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>545</line>
+          <line>564</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>38</line>
+          <line>36</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>775</line>
+          <line>794</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
