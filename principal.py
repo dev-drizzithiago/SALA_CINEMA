@@ -42,36 +42,40 @@ class SalaCinema:
             :return:
             """
             lendo_dados_no_arq_filmes_txt()
-            gravando_filme_em_cartaz = open(arq_filmes_em_cartazes_local_pasta, 'a')
-            for lista_filmes in self.lista_filme_cadastrado:
+            try:
+                gravando_filme_em_cartaz = open(arq_filmes_em_cartazes_local_pasta, 'w')
+            except:
+                print('teste')
+            else:
+                for lista_filmes in self.lista_filme_cadastrado:
+                    print(self.linhas_aparencia)
+                    print(
+                        f'Registro: {lista_filmes[0]} \n'
+                        f'Titulo: {lista_filmes[1]} \n'
+                        f'Genero: {lista_filmes[2]} \n'
+                        f'Duração: {lista_filmes[3]} minutos \n'
+                        f'Classificação: {lista_filmes[4]} \n'
+                        f'Sinopse:')
+                    for valor_sinopse in lista_filmes[5]:
+                        if valor_sinopse != '.':
+                            valor_str = str(valor_sinopse).title()
+                            print(f'{valor_str}', end='')
+                        else:
+                            print(f'')
                 print(self.linhas_aparencia)
-                print(
-                    f'Registro: {lista_filmes[0]} \n'
-                    f'Titulo: {lista_filmes[1]} \n'
-                    f'Genero: {lista_filmes[2]} \n'
-                    f'Duração: {lista_filmes[3]} minutos \n'
-                    f'Classificação: {lista_filmes[4]} \n'
-                    f'Sinopse:')
-                for valor_sinopse in lista_filmes[5]:
-                    if valor_sinopse != '.':
-                        valor_str = str(valor_sinopse).title()
-                        print(f'{valor_str}', end='')
-                    else:
-                        print(f'')
-            print(self.linhas_aparencia)
-            print()
-            print('Digite o código do filme para reserva-lo')
-            cod_filme = leiaInt('Cod:')
-            for codigo in self.lista_filme_cadastrado:
-                if cod_filme == int(codigo[0]):
-                    print(f'Você colocou em cartaz o seguinte filme:\n'
-                          f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    gravando_filme_em_cartaz.write(f'{codigo[0]};{codigo[1]};{codigo[2]};'
-                                                   f'{codigo[3]};{codigo[4]};{codigo[5]}\n')
-                    gravando_filme_em_cartaz.close()
-                    break
-            print(self.linhas_aparencia)
-            aperte_enter()
+                print()
+                print('Digite o código do filme para reserva-lo')
+                cod_filme = leiaInt('Cod:')
+                for codigo in self.lista_filme_cadastrado:
+                    if cod_filme == int(codigo[0]):
+                        print(f'Você colocou em cartaz o seguinte filme:\n'
+                              f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
+                        gravando_filme_em_cartaz.write(f'{codigo[0]};{codigo[1]};{codigo[2]};'
+                                                       f'{codigo[3]};{codigo[4]};{codigo[5]}\n')
+                        gravando_filme_em_cartaz.close()
+                        break
+                print(self.linhas_aparencia)
+                aperte_enter()
 
         def cadastrando_filmes():
             global abrindo_cadastro_filmes
