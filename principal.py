@@ -65,10 +65,21 @@ class SalaCinema:
                 if cod_filme == int(codigo[0]):
                     print(f'Você colocou em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    gravando_filme_em_cartaz.write(f'{codigo[0]};{codigo[1]};{codigo[2]};'
-                                                   f'{codigo[3]};{codigo[4]};{codigo[5]}\n')
-                    gravando_filme_em_cartaz.close()
-                    break
+                    arq_cartaz_filme = self.data_atual + arq_filmes_em_cartazes_local_pasta + codigo[1]
+                    try:
+                        verif_arq_cartaz = open(arq_cartaz_filme, 'r')
+                        verif_arq_cartaz.close()
+                    except FileNotFoundError:
+                        try:
+                            gravando_filme_em_cartaz = open(arq_cartaz_filme, 'w')
+                        except:
+                            print(self.linhas_aparencia)
+                            print('Arquivo ao criar o arquivo para registrar os filmes em cartezes')
+                        else:
+                            gravando_filme_em_cartaz.write(f'{codigo[0]};{codigo[1]};{codigo[2]};'
+                                                           f'{codigo[3]};{codigo[4]};{codigo[5]}\n')
+                            gravando_filme_em_cartaz.close()
+                        break
             print(self.linhas_aparencia)
             aperte_enter()
 
