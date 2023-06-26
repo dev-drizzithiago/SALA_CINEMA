@@ -37,7 +37,12 @@ class SalaCinema:
             print(self.linhas_aparencia)
 
         def gravando_filmes_em_cartaz():
+            """
+            Area destinada a gravar os filmes que ficaram em cartaz.
+            :return:
+            """
             lendo_dados_no_arq_filmes_txt()
+            gravando_filme_em_cartaz = open(arq_filmes_em_cartazes_local_pasta, 'a')
             for lista_filmes in self.lista_filme_cadastrado:
                 print(self.linhas_aparencia)
                 print(
@@ -61,6 +66,8 @@ class SalaCinema:
                 if cod_filme == int(codigo[0]):
                     print(f'Você colocou em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
+                    gravando_filme_em_cartaz.write(f'{codigo[0]};{codigo[1]};{codigo[2]};'
+                                                   f'{codigo[3]};{codigo[4]};{codigo[5]}\n')
                     break
             print(self.linhas_aparencia)
             aperte_enter()
@@ -727,8 +734,8 @@ class SalaCinema:
                             break
                         else:
                             print(f"Sr(a). {nome_reservado}\n"
-                                  f"Você reservou as seguintes"
-                                  f" poltronas ==> {self.inf_reserva}")
+                                  f"Você reservou as seguintes "
+                                  f"poltronas ==> {self.inf_reserva}")
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             print(self.linhas_aparencia)
                             aperte_enter()
@@ -775,8 +782,8 @@ class SalaCinema:
                 if resp_admin == 1:
                     if len(self.lista_dados_cliente) == 0:
                         print(self.linhas_aparencia)
-                        print('-Não existe nenhum cliente cadastrado')
-                        print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
+                        print('• Não existe nenhum cliente cadastrado')
+                        print('• Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
                         print(self.linhas_aparencia)
                         aperte_enter()
                     else:
@@ -868,9 +875,9 @@ class SalaCinema:
         """
         Sobre as variaveis abaixo do texto.
         :param cinema: Pega as informações na função "sala_cinema" para criar a estrutura que o usuário ira visualizar.
-        :param lendo_dados_arq_cliente_txt: Quando o programa abrir, ele vai pegar as informações do cliente no banco de 
-        dados e deixa-lo disponivel para o sistema utilizar conforme necessidade. 
-        :param lendo_dados_no_arq_reserva: Depois que as informações do cliente estiverem disponivel, sera preciso colocar
+        :param lendo_dados_arq_cliente_txt: quando o programa abrir, ele vai pegar as informações do cliente no banco de 
+        dados e deixá-lo disponivel para o sistema utilizar conforme necessidade. 
+        :param lendo_dados_no_arq_reserva: depois que as informações do cliente estiverem disponivel, sera preciso colocar
         as informações de reservas, como, nome e cpf do cliente que reservou, quais as cadeiras reservadas, etc. Essas 
         informações serão necessarias para saber quem reservou as cadeiras.
         """
