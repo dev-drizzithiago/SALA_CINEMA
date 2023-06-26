@@ -50,8 +50,8 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\th_gr\AppData\Local\Programs\Python\Python310\python.exe" />
-      <option name="SDK_NAME" value="Python 3.10" />
+      <option name="SDK_HOME" value="G:\Meu Drive\Estudos\GIT_PENSO\SALA_CINEMA\venv\Scripts\python.exe" />
+      <option name="SDK_NAME" value="Python 3.11 (SALA_CINEMA)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -73,11 +73,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\th_gr\AppData\Local\Programs\Python\Python310\python.exe" />
-      <option name="WORKING_DIRECTORY" value="G:/Meu Drive/Estudos/Python/Projetos Abandonados/Projeto_Youtube.old.v1.01" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../Python/Projetos Abandonados/Projeto_Youtube.old.v1.01" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="G:/Meu Drive/Estudos/Python/Projetos Abandonados/Projeto_Youtube.old.v1.01/youtube.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../Python/Projetos Abandonados/Projeto_Youtube.old.v1.01/youtube.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -117,28 +117,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>777</line>
-          <option name="timeStamp" value="13" />
+          <line>586</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>718</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>40</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>44</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>441</line>
-          <option name="timeStamp" value="20" />
+          <line>38</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
