@@ -46,9 +46,8 @@ class SalaCinema:
                       f'Classificação indicativa: {lista_filmes[4]} \n'
                       f'Sinopse: ', end='')
 
-                for valor_sinopse in str(lista_filmes[5]):
-                    valor_format_sinopse = valor_sinopse
-                    print(f'{valor_format_sinopse}', end="")
+                for valor_sinopse in lista_filmes[5]:
+                    print(valor_sinopse, end='')
 
 
             aperte_enter()
