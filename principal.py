@@ -68,6 +68,7 @@ class SalaCinema:
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
                     gravando_filme_em_cartaz.write(f'{codigo[0]};{codigo[1]};{codigo[2]};'
                                                    f'{codigo[3]};{codigo[4]};{codigo[5]}\n')
+                    gravando_filme_em_cartaz.close()
                     break
             print(self.linhas_aparencia)
             aperte_enter()
