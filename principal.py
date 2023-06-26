@@ -43,11 +43,12 @@ class SalaCinema:
                       f'Titulo: {lista_filmes[1]} \n'
                       f'Genero: {lista_filmes[2]} \n'
                       f'Duração: {lista_filmes[3]} minutos \n'
-                      f'Classificação indicativa: {lista_filmes[4]} \n')
+                      f'Classificação indicativa: {lista_filmes[4]} \n'
+                      f'Sinopse: ', end='')
 
                 for valor_sinopse in str(lista_filmes[5]):
                     valor_format_sinopse = valor_sinopse
-                    print(f'Sinopse: {valor_format_sinopse} \n')
+                    print(f'{valor_format_sinopse}', end="")
 
 
             aperte_enter()

@@ -7,7 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="459e2557-b1c3-4ebb-85bc-678f4afc1f39" name="Changes" comment="" />
+    <list default="true" id="459e2557-b1c3-4ebb-85bc-678f4afc1f39" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/principal.py" beforeDir="false" afterPath="$PROJECT_DIR$/principal.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,10 +42,10 @@
     "git-widget-placeholder": "tempo__cartaz__filmes",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Estudos/Python/Meus_Projetos",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.principal">
     <configuration name="principal" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Sala_Cinema" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -50,7 +53,8 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Penso\AppData\Local\Programs\Python\Python311\python.exe" />
+      <option name="SDK_HOME" value="G:\Meu Drive\Estudos\GIT_PENSO\SALA_CINEMA\venv\Scripts\python.exe" />
+      <option name="SDK_NAME" value="Python 3.11 (SALA_CINEMA)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -116,12 +120,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>20</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>564</line>
+          <line>565</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -131,7 +130,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/principal.py</url>
-          <line>794</line>
+          <line>795</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
