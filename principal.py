@@ -39,20 +39,22 @@ class SalaCinema:
         def gravando_filmes_em_cartaz():
             lendo_dados_no_arq_filmes_txt()
             for lista_filmes in self.lista_filme_cadastrado:
+                print(self.linhas_aparencia)
                 print(f'Registro: {lista_filmes[0]} \n'
                       f'Titulo: {lista_filmes[1]} \n'
                       f'Genero: {lista_filmes[2]} \n'
                       f'Duração: {lista_filmes[3]} minutos \n'
                       f'Classificação indicativa: {lista_filmes[4]} \n'
-                      f'Sinopse: ', end='')
-
+                      f'Sinopse:')
                 for valor_sinopse in lista_filmes[5]:
                     print(valor_sinopse, end='')
-
-
+                    if valor_sinopse == '.':
+                        print(f'')
+            print(self.linhas_aparencia)
             aperte_enter()
 
         def cadastrando_filmes():
+            global abrindo_cadastro_filmes
             while True:
                 try:
                     abrindo_cadastro_filmes = open(arq_cadastro_filmes_local_txt, 'a')
