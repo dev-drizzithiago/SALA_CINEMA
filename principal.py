@@ -74,7 +74,7 @@ class SalaCinema:
                             gravando_filme_em_cartaz = open(arq_cartaz_filme, 'w')
                         except:
                             print(self.linhas_aparencia)
-                            print('Arquivo ao criar o arquivo para registrar os filmes em cartezes')
+                            print('ERRO ao criar o arquivo de registro do filme selecionado!')
                         else:
                             gravando_filme_em_cartaz.write(f'{codigo[0]};{codigo[1]};{codigo[2]};'
                                                            f'{codigo[3]};{codigo[4]};{codigo[5]}\n')
