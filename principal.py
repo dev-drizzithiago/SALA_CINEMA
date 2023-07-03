@@ -1,6 +1,7 @@
 import threading
 from datetime import datetime
 from time import sleep
+from os import listdir
 
 # from threading import Thread
 
@@ -35,6 +36,12 @@ class SalaCinema:
             print(self.linhas_aparencia)
             print(f'{texto_exibicao}'.center(80))
             print(self.linhas_aparencia)
+
+        def listando_pasta_cartaz():
+            filmes_em_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
+            print(f'{type(filmes_em_cartaz)}')
+            print(self.linhas_aparencia)
+            aperte_enter()
 
         def gravando_filmes_em_cartaz():
             """
@@ -782,9 +789,12 @@ class SalaCinema:
         | [1] | Consultar cadastro cliente
         | [2] | Cadastrar Filmes no sistema
         | [3] | Colocar filme em cartaz
-        | [4] | Consultar todas as reservas no sistema       
+        | [4] | Consultar todas as reservas no sistema 
         | [5] | Cadastrar um cliente
         | [6] | Consultar cadeiras disponiveis
+        | [5] | Filmes em cartaz
+        | [6] | Consultar cadeiras disponiveis
+        | [7] | Cadastrar um cliente
         | [0] | Voltar ao menu principal
         {self.linhas_aparencia}""")
                 resp_admin = leiaInt('Escolha uma opção: ')
@@ -817,7 +827,7 @@ class SalaCinema:
                               'Verifique se a sessão já terminou...')
 
                 elif resp_admin == 5:
-                    print('<desenvolvimento>')
+                    listando_pasta_cartaz()
 
                 elif resp_admin == 6:
                     print('<desenvolvimento>')
