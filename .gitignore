@@ -7,3 +7,4 @@ principal.py~
 *.xml
 *.xml
 .idea/workspace.xml
+*.xml
