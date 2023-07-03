@@ -81,6 +81,8 @@ class SalaCinema:
                         print('Esse filme ainda não está cartaz!')
                     try:
                         gravando_filme_cartaz = open(arq_cartaz_filme, 'w')
+                        gravando_filme_cartaz.write(f'{arq_cartaz_filme} \n')
+                        print('Filme registrado com sucesso!!')
                     except:
                         print('teste')
 
