@@ -28,7 +28,7 @@ class SalaCinema:
         def data_atual():
             data = datetime.now()
             self.ano_atual = data.strftime('%Y')
-            self.data_atual = data.strftime('%d/%m/%y')
+            self.data_atual = data.strftime('%d-%m-%y')
             self.hora_atual = data.strftime('%H:%M:%S')
 
         def logo_cinema(texto_exibicao):
@@ -66,6 +66,8 @@ class SalaCinema:
                     print(f'Você colocou em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
                     arq_cartaz_filme = self.data_atual + arq_filmes_em_cartazes_local_pasta + codigo[1]
+                    print(arq_cartaz_filme)
+                    aperte_enter()
                     try:
                         verif_arq_cartaz = open(arq_cartaz_filme, 'r')
                         verif_arq_cartaz.close()
