@@ -66,27 +66,34 @@ class SalaCinema:
             fim_cartaz = dias_cartaz
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
+                    print(self.linhas_aparencia)
                     print(f'Você colocou em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    arq_formatado = str(codigo[0] + ' - ' + \
-                                       '(' + self.data_atual + ')' + ' - ' + codigo[1] + '.txt')
+                    arq_formatado = str(codigo[0] + '-' + \
+                                       '(' + self.data_atual + ')' + '-' + codigo[1] + '.txt')
                     arq_cartaz_filme = arq_formatado
-                    print(arq_cartaz_filme)
+                    print(self.linhas_aparencia)
                     aperte_enter()
                     try:
-                        verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_formatado, 'r')
+                        verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_cartaz_filme, 'r')
+                        print(self.linhas_aparencia)
                         print(f'O filme {codigo[1]} vai ficar em cartaz por {fim_cartaz} dias')
+                        self.linhas_aparencia
                         aperte_enter()
                         verif_arq_cartaz.close()
-                    except:
+                    except FileNotFoundError:
+                        print(self.linhas_aparencia)
+                        print(f'O filme {codigo[1]} ainda não foi reservado para cartaz!!')
+                        print(self.linhas_aparencia)
+                        aperte_enter()
                         try:
-                            gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + codigo[0] + '-' + \
-                                       '(' + self.data_atual + ')' + '-' + codigo[1] + '.txt', 'w')
+                            gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_cartaz_filme, 'a')
                             gravando_filme_cartaz.write(f'{codigo[1]} - {codigo[3]} \n')
                             print('Filme registrado com sucesso!!')
-                        except:
-                            print('Não foi possível criar o arquivo ')
-
+                            print(self.linhas_aparencia)
+                            aperte_enter()
+                        except FileNotFoundError:
+                            print(f'Não foi possível criar o arquivo para o filme {codigo[1]}')
             print(self.linhas_aparencia)
             aperte_enter()
 
