@@ -1,7 +1,6 @@
 import threading
 from datetime import datetime
 from time import sleep
-from os import listdir
 
 # from threading import Thread
 
@@ -10,7 +9,7 @@ arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
-arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/'
+arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES'
 
 
 class SalaCinema:
@@ -29,19 +28,13 @@ class SalaCinema:
         def data_atual():
             data = datetime.now()
             self.ano_atual = data.strftime('%Y')
-            self.data_atual = data.strftime('%d/%m/%y')
+            self.data_atual = data.strftime('%d-%m-%y')
             self.hora_atual = data.strftime('%H:%M:%S')
 
         def logo_cinema(texto_exibicao):
             print(self.linhas_aparencia)
             print(f'{texto_exibicao}'.center(80))
             print(self.linhas_aparencia)
-
-        def listando_pasta_cartaz():
-            filmes_em_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
-            print(f'{type(filmes_em_cartaz)}')
-            print(self.linhas_aparencia)
-            aperte_enter()
 
         def gravando_filmes_em_cartaz():
             """
@@ -68,25 +61,33 @@ class SalaCinema:
             print()
             print('Digite o código do filme para reserva-lo')
             cod_filme = leiaInt('Cod:')
+            print(self.linhas_aparencia)
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
-                    print(f'Você colocou em cartaz o seguinte filme:\n'
+                    print(self.linhas_aparencia)
+                    print(f'Você ira colocar em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    arq_cartaz_filme = self.data_atual + arq_filmes_em_cartazes_local_pasta + codigo[1]
+                    dias_cartaz = str(input('Periodo do filme(Em dias): '))
+                    fim_cartaz = dias_cartaz
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + \
+                                       '(' + self.data_atual + ')' + ' - ' + codigo[1] + '.txt')
+                    aperte_enter()
                     try:
-                        verif_arq_cartaz = open(arq_cartaz_filme, 'r')
+                        verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
+                        print(self.linhas_aparencia)
+                        print(f'O filme [{codigo[1]}] vai ficar em cartaz por [{fim_cartaz}] dias')
                         verif_arq_cartaz.close()
                     except FileNotFoundError:
+                        print(self.linhas_aparencia)
+                        print(f'O filme [{codigo[1]}] ainda não foi reservado para cartaz!!')
                         try:
-                            gravando_filme_em_cartaz = open(arq_cartaz_filme, 'w')
+                            gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
+                            gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]} \n')
+                            sleep(1)
+                            print('Filme registrado com sucesso!!')
                         except:
-                            print(self.linhas_aparencia)
-                            print('ERRO ao criar o arquivo de registro do filme selecionado!')
-                        else:
-                            gravando_filme_em_cartaz.write(f'{codigo[0]};{codigo[1]};{codigo[2]};'
-                                                           f'{codigo[3]};{codigo[4]};{codigo[5]}\n')
-                            gravando_filme_em_cartaz.close()
-                        break
+                            sleep(2)
+                            print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
             print(self.linhas_aparencia)
             aperte_enter()
 
@@ -789,12 +790,9 @@ class SalaCinema:
         | [1] | Consultar cadastro cliente
         | [2] | Cadastrar Filmes no sistema
         | [3] | Colocar filme em cartaz
-        | [4] | Consultar todas as reservas no sistema 
+        | [4] | Consultar todas as reservas no sistema       
         | [5] | Cadastrar um cliente
         | [6] | Consultar cadeiras disponiveis
-        | [5] | Filmes em cartaz
-        | [6] | Consultar cadeiras disponiveis
-        | [7] | Cadastrar um cliente
         | [0] | Voltar ao menu principal
         {self.linhas_aparencia}""")
                 resp_admin = leiaInt('Escolha uma opção: ')
@@ -827,7 +825,7 @@ class SalaCinema:
                               'Verifique se a sessão já terminou...')
 
                 elif resp_admin == 5:
-                    listando_pasta_cartaz()
+                    print('<desenvolvimento>')
 
                 elif resp_admin == 6:
                     print('<desenvolvimento>')
