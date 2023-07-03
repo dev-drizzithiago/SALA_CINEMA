@@ -69,28 +69,23 @@ class SalaCinema:
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
                     dias_cartaz = str(input('Periodo do filme(Em dias): '))
                     fim_cartaz = dias_cartaz
-                    arq_formatado = str(codigo[0] + '/-' + \
-                                       '(' + self.data_atual + ')' + '-' + codigo[1] + '.txt')
-                    arq_cartaz_filme = arq_formatado
-                    print(self.linhas_aparencia)
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + \
+                                       '(' + self.data_atual + ')' + ' - ' + codigo[1] + '.txt')
                     aperte_enter()
                     try:
-                        verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_cartaz_filme, 'r')
+                        verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
                         print(self.linhas_aparencia)
                         print(f'O filme [{codigo[1]}] vai ficar em cartaz por [{fim_cartaz}] dias')
-                        self.linhas_aparencia
-                        aperte_enter()
                         verif_arq_cartaz.close()
                     except FileNotFoundError:
                         print(self.linhas_aparencia)
                         print(f'O filme [{codigo[1]}] ainda não foi reservado para cartaz!!')
                         try:
-                            gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_cartaz_filme, 'w')
-                            gravando_filme_cartaz.write(f'{codigo[1]} - {codigo[3]} \n')
+                            gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
+                            gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]} \n')
+                            sleep(1)
                             print('Filme registrado com sucesso!!')
-                            print(self.linhas_aparencia)
-                            aperte_enter()
-                        except FileNotFoundError:
+                        except:
                             sleep(2)
                             print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
             print(self.linhas_aparencia)
