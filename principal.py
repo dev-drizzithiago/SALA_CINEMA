@@ -84,7 +84,7 @@ class SalaCinema:
                         gravando_filme_cartaz.write(f'{arq_cartaz_filme} \n')
                         print('Filme registrado com sucesso!!')
                     except:
-                        print('teste')
+                        print(f'Não foi possivel registrar o filme {codigo[1]}')
 
 
             print(self.linhas_aparencia)
