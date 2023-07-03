@@ -9,7 +9,7 @@ arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
-arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES/'
+arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES'
 
 
 class SalaCinema:
@@ -62,14 +62,14 @@ class SalaCinema:
             print('Digite o código do filme para reserva-lo')
             cod_filme = leiaInt('Cod:')
             print(self.linhas_aparencia)
-            dias_cartaz = str(input('Periodo do filme(Em dias): '))
-            fim_cartaz = dias_cartaz
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
                     print(self.linhas_aparencia)
-                    print(f'Você colocou em cartaz o seguinte filme:\n'
+                    print(f'Você ira colocar em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    arq_formatado = str(codigo[0] + '-' + \
+                    dias_cartaz = str(input('Periodo do filme(Em dias): '))
+                    fim_cartaz = dias_cartaz
+                    arq_formatado = str(codigo[0] + '/-' + \
                                        '(' + self.data_atual + ')' + '-' + codigo[1] + '.txt')
                     arq_cartaz_filme = arq_formatado
                     print(self.linhas_aparencia)
@@ -77,23 +77,22 @@ class SalaCinema:
                     try:
                         verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_cartaz_filme, 'r')
                         print(self.linhas_aparencia)
-                        print(f'O filme {codigo[1]} vai ficar em cartaz por {fim_cartaz} dias')
+                        print(f'O filme [{codigo[1]}] vai ficar em cartaz por [{fim_cartaz}] dias')
                         self.linhas_aparencia
                         aperte_enter()
                         verif_arq_cartaz.close()
                     except FileNotFoundError:
                         print(self.linhas_aparencia)
-                        print(f'O filme {codigo[1]} ainda não foi reservado para cartaz!!')
-                        print(self.linhas_aparencia)
-                        aperte_enter()
+                        print(f'O filme [{codigo[1]}] ainda não foi reservado para cartaz!!')
                         try:
-                            gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_cartaz_filme, 'a')
+                            gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_cartaz_filme, 'w')
                             gravando_filme_cartaz.write(f'{codigo[1]} - {codigo[3]} \n')
                             print('Filme registrado com sucesso!!')
                             print(self.linhas_aparencia)
                             aperte_enter()
                         except FileNotFoundError:
-                            print(f'Não foi possível criar o arquivo para o filme {codigo[1]}')
+                            sleep(2)
+                            print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
             print(self.linhas_aparencia)
             aperte_enter()
 
