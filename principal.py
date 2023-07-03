@@ -70,7 +70,7 @@ class SalaCinema:
                     dias_cartaz = str(input('Periodo do filme(Em dias): '))
                     fim_cartaz = dias_cartaz
                     arq_filme_txt = str('/' + codigo[0] + ' - ' + \
-                                       '(' + self.data_atual + ')' + ' - ' + codigo[1] + '.txt')
+                                        '(' + self.data_atual + ')' + ' - ' + codigo[1] + '.txt')
                     aperte_enter()
                     try:
                         verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
