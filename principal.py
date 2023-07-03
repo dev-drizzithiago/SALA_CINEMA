@@ -68,8 +68,9 @@ class SalaCinema:
                 if cod_filme == int(codigo[0]):
                     print(f'Você colocou em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    arq_cartaz_filme = str(arq_filmes_em_cartazes_local_pasta + codigo[0] + ' - ' + \
+                    arq_formatado = str(arq_filmes_em_cartazes_local_pasta + codigo[0] + ' - ' + \
                                        '(' + self.data_atual + ')' + ' - ' + codigo[1] + '.txt')
+                    arq_cartaz_filme = arq_formatado
                     print(arq_cartaz_filme)
                     aperte_enter()
                     try:
@@ -77,11 +78,14 @@ class SalaCinema:
                         print(f'O filme {codigo[1]} vai ficar em cartaz por {fim_cartaz} dias')
                         aperte_enter()
                         verif_arq_cartaz.close()
-                    except FileNotFoundError:
-                        print('Esse filme ainda não está cartaz!')
-                        gravando_filme_cartaz = open(arq_cartaz_filme, 'w')
-                        gravando_filme_cartaz.write(f'{arq_cartaz_filme} \n')
-                        print('Filme registrado com sucesso!!')
+                    except:
+                        try:
+                            gravando_filme_cartaz = open(arq_cartaz_filme, 'w')
+                            gravando_filme_cartaz.write(f'{arq_cartaz_filme} \n')
+                            print('Filme registrado com sucesso!!')
+                        except:
+                            print('teste')
+
             print(self.linhas_aparencia)
             aperte_enter()
 
