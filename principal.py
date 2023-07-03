@@ -65,7 +65,8 @@ class SalaCinema:
                 if cod_filme == int(codigo[0]):
                     print(f'Você colocou em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    arq_cartaz_filme = self.data_atual + arq_filmes_em_cartazes_local_pasta + codigo[1]
+                    arq_cartaz_filme = arq_filmes_em_cartazes_local_pasta + '(' + self.data_atual + ')' \
+                                       + codigo[1] + '-' + codigo[0] + '.txt'
                     print(arq_cartaz_filme)
                     aperte_enter()
                     try:
