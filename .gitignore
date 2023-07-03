@@ -7,8 +7,3 @@ principal.py~
 *.xml
 *.xml
 .idea/workspace.xml
-*.xml
-.idea/workspace.xml
-.idea/workspace.xml
-*.tmp
-*.xml
