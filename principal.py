@@ -5,13 +5,11 @@ from time import sleep
 # from threading import Thread
 
 
-
-
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
-arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES/'
+arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/'
 
 
 class SalaCinema:
@@ -38,18 +36,69 @@ class SalaCinema:
             print(f'{texto_exibicao}'.center(80))
             print(self.linhas_aparencia)
 
-        def lista_filmes_em_cartaz():
+        def gravando_filmes_em_cartaz():
+            """
+            Area destinada a gravar os filmes que ficaram em cartaz.
+            :return:
+            """
             lendo_dados_no_arq_filmes_txt()
-            print(self.lista_filme_cadastrado)
+            for lista_filmes in self.lista_filme_cadastrado:
+                print(self.linhas_aparencia)
+                print(
+                    f'Registro: {lista_filmes[0]} \n'
+                    f'Titulo: {lista_filmes[1]} \n'
+                    f'Genero: {lista_filmes[2]} \n'
+                    f'Duração: {lista_filmes[3]} minutos \n'
+                    f'Classificação: {lista_filmes[4]} \n'
+                    f'Sinopse:')
+                for valor_sinopse in lista_filmes[5]:
+                    if valor_sinopse != '.':
+                        valor_str = str(valor_sinopse).title()
+                        print(f'{valor_str}', end='')
+                    else:
+                        print(f'')
+            print(self.linhas_aparencia)
+            print()
+            print('Digite o código do filme para reserva-lo')
+            cod_filme = leiaInt('Cod:')
+            for codigo in self.lista_filme_cadastrado:
+                if cod_filme == int(codigo[0]):
+                    print(f'Você colocou em cartaz o seguinte filme:\n'
+                          f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
+                    arq_cartaz_filme = self.data_atual + arq_filmes_em_cartazes_local_pasta + codigo[1]
+                    try:
+                        verif_arq_cartaz = open(arq_cartaz_filme, 'r')
+                        verif_arq_cartaz.close()
+                    except FileNotFoundError:
+                        try:
+                            gravando_filme_em_cartaz = open(arq_cartaz_filme, 'w')
+                        except:
+                            print(self.linhas_aparencia)
+                            print('ERRO ao criar o arquivo de registro do filme selecionado!')
+                        else:
+                            gravando_filme_em_cartaz.write(f'{codigo[0]};{codigo[1]};{codigo[2]};'
+                                                           f'{codigo[3]};{codigo[4]};{codigo[5]}\n')
+                            gravando_filme_em_cartaz.close()
+                        break
+            print(self.linhas_aparencia)
+            aperte_enter()
 
         def cadastrando_filmes():
+            global abrindo_cadastro_filmes
             while True:
                 try:
                     abrindo_cadastro_filmes = open(arq_cadastro_filmes_local_txt, 'a')
                 except FileNotFoundError:
                     criando_arq_cadastro_filmes_txt = open(arq_cadastro_filmes_local_txt, 'w')
+                    criando_arq_cadastro_filmes_txt.close()
                 else:
                     logo_cinema('AREA DE CADASTRO DE FILMES')
+                    while True:
+                        registro_filme = str('Número de registro: ')
+                        if len(registro_filme) != 4:
+                            print('Registro fora padrão. Digite o correto!')
+                        else:
+                            break
                     nome_filme_cadastro = input('Titulo: ')
                     genero_filme_cadastro = input('Genero: ')
                     duracao_filme_cadastro = input('Duração: ')
@@ -412,13 +461,15 @@ class SalaCinema:
             else:
                 for valor_lendo_arq in lendo_arq_cadastro_de_filmes:
                     valor_arq_formatado = valor_lendo_arq.split(';')
-                    lendo_dados_titulo = valor_arq_formatado[0]
-                    lendo_dados_genero = valor_arq_formatado[1]
-                    lendo_dados_duracao = valor_arq_formatado[2]
-                    lendo_dados_classificacao = valor_arq_formatado[3]
-                    lendo_dados_sinopse = valor_arq_formatado[4]
-                    self.lista_filme_cadastrado.append([lendo_dados_titulo, lendo_dados_genero, lendo_dados_duracao,
-                                                        lendo_dados_classificacao, lendo_dados_sinopse])
+                    lendo_dados_registro = valor_arq_formatado[0]
+                    lendo_dados_titulo = valor_arq_formatado[1]
+                    lendo_dados_genero = valor_arq_formatado[2]
+                    lendo_dados_duracao = valor_arq_formatado[3]
+                    lendo_dados_classificacao = valor_arq_formatado[4]
+                    lendo_dados_sinopse = valor_arq_formatado[5]
+                    self.lista_filme_cadastrado.append([lendo_dados_registro, lendo_dados_titulo, lendo_dados_genero,
+                                                        lendo_dados_duracao, lendo_dados_classificacao,
+                                                        lendo_dados_sinopse])
 
         def consultar_cadastro_cliente():
             """
@@ -575,7 +626,7 @@ class SalaCinema:
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     self.linhas_aparencia
                     aperte_enter()
-                    lista_filmes_em_cartaz()
+                    gravando_filmes_em_cartaz()
                 else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
                     sleep(1)
                     print(self.linhas_aparencia)
@@ -694,8 +745,8 @@ class SalaCinema:
                             break
                         else:
                             print(f"Sr(a). {nome_reservado}\n"
-                                  f"Você reservou as seguintes"
-                                  f" poltronas ==> {self.inf_reserva}")
+                                  f"Você reservou as seguintes "
+                                  f"poltronas ==> {self.inf_reserva}")
                             gravando_reserva_cliente_txt(nome_reservado, cpf_reservado)
                             print(self.linhas_aparencia)
                             aperte_enter()
@@ -742,8 +793,8 @@ class SalaCinema:
                 if resp_admin == 1:
                     if len(self.lista_dados_cliente) == 0:
                         print(self.linhas_aparencia)
-                        print('-Não existe nenhum cliente cadastrado')
-                        print('-Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
+                        print('• Não existe nenhum cliente cadastrado')
+                        print('• Volta ao menu principal e escolha a opção "2" para realizar um cadastro.')
                         print(self.linhas_aparencia)
                         aperte_enter()
                     else:
@@ -755,7 +806,7 @@ class SalaCinema:
 
                 # Colocar um filme em cartaz.
                 elif resp_admin == 3:
-                    lista_filmes_em_cartaz()
+                    gravando_filmes_em_cartaz()
 
                 # Consultar todas as reservas no sistema
                 elif resp_admin == 4:
@@ -835,9 +886,9 @@ class SalaCinema:
         """
         Sobre as variaveis abaixo do texto.
         :param cinema: Pega as informações na função "sala_cinema" para criar a estrutura que o usuário ira visualizar.
-        :param lendo_dados_arq_cliente_txt: Quando o programa abrir, ele vai pegar as informações do cliente no banco de 
-        dados e deixa-lo disponivel para o sistema utilizar conforme necessidade. 
-        :param lendo_dados_no_arq_reserva: Depois que as informações do cliente estiverem disponivel, sera preciso colocar
+        :param lendo_dados_arq_cliente_txt: quando o programa abrir, ele vai pegar as informações do cliente no banco de 
+        dados e deixá-lo disponivel para o sistema utilizar conforme necessidade. 
+        :param lendo_dados_no_arq_reserva: depois que as informações do cliente estiverem disponivel, sera preciso colocar
         as informações de reservas, como, nome e cpf do cliente que reservou, quais as cadeiras reservadas, etc. Essas 
         informações serão necessarias para saber quem reservou as cadeiras.
         """
