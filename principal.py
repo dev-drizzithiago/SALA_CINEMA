@@ -790,9 +790,10 @@ class SalaCinema:
         | [1] | Consultar cadastro cliente
         | [2] | Cadastrar Filmes no sistema
         | [3] | Colocar filme em cartaz
-        | [4] | Consultar todas as reservas no sistema       
-        | [5] | Cadastrar um cliente
-        | [6] | Consultar cadeiras disponiveis
+        | [4] | Filmes em cartaz!
+        | [5] | Consultar todas as reservas no sistema       
+        | [6] | Cadastrar um cliente
+        | [7] | Consultar cadeiras disponiveis
         | [0] | Voltar ao menu principal
         {self.linhas_aparencia}""")
                 resp_admin = leiaInt('Escolha uma opção: ')
