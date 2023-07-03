@@ -63,22 +63,27 @@ class SalaCinema:
             cod_filme = leiaInt('Cod:')
             print(self.linhas_aparencia)
             dias_cartaz = str(input('Periodo do filme(Em dias): '))
-            fim_cartaz = 
+            fim_cartaz = dias_cartaz
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
                     print(f'Você colocou em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
                     arq_cartaz_filme = arq_filmes_em_cartazes_local_pasta + codigo[0] + '-' + \
-                                       '(' + self.data_atual + ')' + codigo[1] + codigo[0] + '.txt'
+                                       '(' + self.data_atual + ')' + codigo[1] + '.txt'
                     print(arq_cartaz_filme)
                     aperte_enter()
                     try:
                         verif_arq_cartaz = open(arq_cartaz_filme, 'r')
-                        print(f'O filme vai ficar em cartaz até o dia {fim_cartaz}')
+                        print(f'O filme {codigo[1]} vai ficar em cartaz por {fim_cartaz} dias')
                         aperte_enter()
                         verif_arq_cartaz.close()
                     except FileNotFoundError:
-                        print('Esse filme ainda não esta cartaz!')
+                        print('Esse filme ainda não está cartaz!')
+                    try:
+                        gravando_filme_cartaz = open(arq_cartaz_filme, 'w')
+                    except:
+                        print('teste')
+
 
             print(self.linhas_aparencia)
             aperte_enter()
