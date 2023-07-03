@@ -28,7 +28,7 @@ class SalaCinema:
         def data_atual():
             data = datetime.now()
             self.ano_atual = data.strftime('%Y')
-            self.data_atual = data.strftime('%d/%m/%y')
+            self.data_atual = data.strftime('%d-%m-%y')
             self.hora_atual = data.strftime('%H:%M:%S')
 
         def logo_cinema(texto_exibicao):
@@ -42,7 +42,6 @@ class SalaCinema:
             :return:
             """
             lendo_dados_no_arq_filmes_txt()
-            gravando_filme_em_cartaz = open(arq_filmes_em_cartazes_local_pasta, 'a')
             for lista_filmes in self.lista_filme_cadastrado:
                 print(self.linhas_aparencia)
                 print(
@@ -62,14 +61,32 @@ class SalaCinema:
             print()
             print('Digite o código do filme para reserva-lo')
             cod_filme = leiaInt('Cod:')
+            print(self.linhas_aparencia)
+            dias_cartaz = str(input('Periodo do filme(Em dias): '))
+            fim_cartaz = dias_cartaz
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
                     print(f'Você colocou em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    gravando_filme_em_cartaz.write(f'{codigo[0]};{codigo[1]};{codigo[2]};'
-                                                   f'{codigo[3]};{codigo[4]};{codigo[5]}\n')
-                    gravando_filme_em_cartaz.close()
-                    break
+                    arq_cartaz_filme = arq_filmes_em_cartazes_local_pasta + codigo[0] + '-' + \
+                                       '(' + self.data_atual + ')' + codigo[1] + '.txt'
+                    print(arq_cartaz_filme)
+                    aperte_enter()
+                    try:
+                        verif_arq_cartaz = open(arq_cartaz_filme, 'r')
+                        print(f'O filme {codigo[1]} vai ficar em cartaz por {fim_cartaz} dias')
+                        aperte_enter()
+                        verif_arq_cartaz.close()
+                    except FileNotFoundError:
+                        print('Esse filme ainda não está cartaz!')
+                    try:
+                        gravando_filme_cartaz = open(arq_cartaz_filme, 'w')
+                        gravando_filme_cartaz.write(f'{arq_cartaz_filme} \n')
+                        print('Filme registrado com sucesso!!')
+                    except:
+                        print(f'Não foi possivel registrar o filme {codigo[1]}')
+
+
             print(self.linhas_aparencia)
             aperte_enter()
 
