@@ -28,7 +28,8 @@ class SalaCinema:
 
         def listando_filmes_cartaz():
             filmes_listados = listdir(arq_filmes_em_cartazes_local_pasta)
-            print(filmes_listados[1])
+            for filmes in filmes_listados:
+                print(filmes)
             aperte_enter()
 
         def data_atual():
@@ -75,8 +76,8 @@ class SalaCinema:
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
                     dias_cartaz = str(input('Periodo do filme(Em dias): '))
                     fim_cartaz = dias_cartaz
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + \
-                                        '(' + self.data_atual + ')' + ' - ' + codigo[1] + '.txt')
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + self.data_atual + ')' + ' - ' \
+                                        + codigo[1] + '.txt')
                     aperte_enter()
                     try:
                         verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
