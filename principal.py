@@ -641,7 +641,6 @@ class SalaCinema:
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     self.linhas_aparencia
                     aperte_enter()
-                    gravando_filmes_em_cartaz()
                 else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
                     sleep(1)
                     print(self.linhas_aparencia)
