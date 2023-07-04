@@ -29,7 +29,8 @@ class SalaCinema:
         def listando_filmes_cartaz():
             filmes_listados = listdir(arq_filmes_em_cartazes_local_pasta)
             for filmes in filmes_listados:
-                print(filmes)
+                lista = filmes.split('-')
+                print(lista[1])
             aperte_enter()
 
         def data_atual():
