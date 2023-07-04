@@ -71,21 +71,21 @@ class SalaCinema:
             print(self.linhas_aparencia)
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
-                    print(self.linhas_aparencia)
-                    print(f'Você ira colocar em cartaz o seguinte filme:\n'
+                    print()
+                    print(f'O filmes que você escolheu para colocar em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    dias_cartaz = str(input('Periodo do filme(Em dias): '))
+                    dias_cartaz = str(input('Periodo de tempo que o filme ficara em cartaz (Em dias): '))
                     fim_cartaz = dias_cartaz
                     arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + self.data_atual + ')' + ' - ' \
                                         + codigo[1] + '.txt')
                     aperte_enter()
                     try:
                         verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
-                        print(self.linhas_aparencia)
+                        print()
                         print(f'O filme [{codigo[1]}] vai ficar em cartaz por [{fim_cartaz}] dias')
                         verif_arq_cartaz.close()
                     except FileNotFoundError:
-                        print(self.linhas_aparencia)
+                        print()
                         print(f'O filme [{codigo[1]}] ainda não foi reservado para cartaz!!')
                         try:
                             gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
