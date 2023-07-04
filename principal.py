@@ -1,6 +1,7 @@
 import threading
 from datetime import datetime
 from time import sleep
+from os import listdir
 
 # from threading import Thread
 
@@ -24,6 +25,11 @@ class SalaCinema:
         self.lista_de_filmes_cadastrados = list()
         self.lista_filme_cadastrado = list()
         self.lista_info_registro = list()
+
+        def listando_filmes_cartaz():
+            filmes_listados = listdir(arq_filmes_em_cartazes_local_pasta)
+            print(filmes_listados[1])
+            aperte_enter()
 
         def data_atual():
             data = datetime.now()
@@ -791,7 +797,7 @@ class SalaCinema:
         | [2] | Cadastrar Filmes no sistema
         | [3] | Colocar filme em cartaz
         | [4] | Consultar todas as reservas no sistema       
-        | [5] | Cadastrar um cliente
+        | [5] | Filmes em cartaz
         | [6] | Consultar cadeiras disponiveis
         | [0] | Voltar ao menu principal
         {self.linhas_aparencia}""")
@@ -825,7 +831,7 @@ class SalaCinema:
                               'Verifique se a sessão já terminou...')
 
                 elif resp_admin == 5:
-                    print('<desenvolvimento>')
+                    listando_filmes_cartaz()
 
                 elif resp_admin == 6:
                     print('<desenvolvimento>')
