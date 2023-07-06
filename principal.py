@@ -28,9 +28,14 @@ class SalaCinema:
 
         def listando_filmes_cartaz():
             filmes_listados = listdir(arq_filmes_em_cartazes_local_pasta)
-            for filmes in filmes_listados:
-                lista = filmes
-                print(lista[1])
+            if len(filmes_listados) == 0:
+                print('Não encontrei nenhum filme em cartaz!')
+            else:
+                for filmes in filmes_listados:
+                    print(self.linhas_aparencia)
+                    lista = filmes.split('-')
+                    print(lista)
+            print(self.linhas_aparencia)
             aperte_enter()
 
         def data_atual():
