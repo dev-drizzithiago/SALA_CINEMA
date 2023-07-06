@@ -34,6 +34,7 @@ class SalaCinema:
                 for filmes in filmes_listados:
                     print(self.linhas_aparencia)
                     lista = filmes.split('-')
+                    lista = lista[1].split(';')
                     print(lista)
             print(self.linhas_aparencia)
             aperte_enter()
