@@ -29,15 +29,16 @@ class SalaCinema:
         def listando_filmes_cartaz():
             filmes_listados = listdir(arq_filmes_em_cartazes_local_pasta)
             for filmes in filmes_listados:
-                lista = filmes.split('-')
+                lista = filmes
                 print(lista[1])
             aperte_enter()
 
         def data_atual():
-            data = datetime.now()
-            self.ano_atual = data.strftime('%Y')
-            self.data_atual = data.strftime('%d-%m-%y')
-            self.hora_atual = data.strftime('%H:%M:%S')
+            valor_data = datetime.now()
+            self.data_cartaz = valor_data.strftime('%d;%m;%Y')
+            self.ano_atual = valor_data.strftime('%Y')
+            self.data_atual = valor_data.strftime('%d-%m-%y')
+            self.hora_atual = valor_data.strftime('%H:%M:%S')
 
         def logo_cinema(texto_exibicao):
             print(self.linhas_aparencia)
@@ -77,7 +78,7 @@ class SalaCinema:
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
                     dias_cartaz = str(input('Periodo de tempo que o filme ficara em cartaz (Em dias): '))
                     fim_cartaz = dias_cartaz
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + self.data_atual + ')' + ' - ' \
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + self.data_cartaz + ')' + ' - ' \
                                         + codigo[1] + '.txt')
                     aperte_enter()
                     try:
