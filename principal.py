@@ -2,7 +2,8 @@ import os
 import threading
 from datetime import datetime
 from time import sleep
-from os import listdir
+from os import listdir, remove
+from re import search
 
 # from threading import Thread
 
@@ -44,7 +45,9 @@ class SalaCinema:
                     print(self.data_cartaz)
                     if dia_mes_ano == self.data_cartaz:
                         print('deu certo')
-                        os.confstr(filmes)
+                        aperte_enter()
+                        remove(filmes)
+                        print(f'Filme {filmes} saiu de cartaz!!')
                     else:
                         print('não deu certo')
             print(self.linhas_aparencia)
