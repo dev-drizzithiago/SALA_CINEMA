@@ -92,7 +92,7 @@ class SalaCinema:
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
                     dias_cartaz = str(input('Periodo de tempo que o filme ficara em cartaz (Em dias): '))
                     fim_cartaz = dias_cartaz
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + self.data_cartaz + ')' + ' - ' \
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + self.data_atual + ')' + ' - ' \
                                         + codigo[1] + '.txt')
                     aperte_enter()
                     try:
