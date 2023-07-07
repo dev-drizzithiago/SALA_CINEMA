@@ -44,9 +44,8 @@ class SalaCinema:
                     print(f'{dia}/{mes}/{ano}')
                     print(self.data_cartaz)
                     if dia_mes_ano == self.data_cartaz:
-                        print('deu certo')
-                        aperte_enter()
-                        remove(filmes)
+                        print(f'Filme {filmes} não esta mais em cartaz')
+                        remove(str(arq_filmes_em_cartazes_local_pasta + '/' + filmes))
                         print(f'Filme {filmes} saiu de cartaz!!')
                     else:
                         print('não deu certo')
