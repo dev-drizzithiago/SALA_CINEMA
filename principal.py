@@ -1,3 +1,4 @@
+import os
 import threading
 from datetime import datetime
 from time import sleep
@@ -34,11 +35,18 @@ class SalaCinema:
                 for filmes in filmes_listados:
                     print(self.linhas_aparencia)
                     lista = filmes.split('-')
-                    lista[1] = lista[1].replace('-', ';')
-                    print(lista[1])
-                    print(self.data_atual)
-                    if lista[1] == self.data_atual:
+                    lista_dia_mes_ano = lista[1].replace('-', ';').replace('(', '').replace(')', '').strip()
+                    dia_mes_ano = lista_dia_mes_ano
+                    dia = dia_mes_ano[0]
+                    mes = dia_mes_ano[1]
+                    ano = dia_mes_ano[2]
+                    print(f'{dia}/{mes}/{ano}')
+                    print(self.data_cartaz)
+                    if dia_mes_ano == self.data_cartaz:
                         print('deu certo')
+                        os.confstr(filmes)
+                    else:
+                        print('não deu certo')
             print(self.linhas_aparencia)
             aperte_enter()
 
