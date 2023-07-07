@@ -44,19 +44,14 @@ class SalaCinema:
                     print(f'{dia}/{mes}/{ano}')
                     print(self.data_cartaz)
                     if dia_mes_ano == self.data_cartaz:
-                        print(f'Filme {filmes} não esta mais em cartaz')
                         remove(str(arq_filmes_em_cartazes_local_pasta + '/' + filmes))
                         print(f'Filme {filmes} saiu de cartaz!!')
-                    else:
-                        print('não deu certo')
             print(self.linhas_aparencia)
             aperte_enter()
 
         def data_atual():
             valor_data = datetime.now()
-            self.data_cartaz = valor_data.strftime('%d;%m;%Y')
-            self.ano_atual = valor_data.strftime('%Y')
-            self.data_atual = valor_data.strftime('%d-%m-%y')
+            self.data_atual = valor_data.strftime('%d/%m/%Y')
             self.hora_atual = valor_data.strftime('%H:%M:%S')
 
         def logo_cinema(texto_exibicao):
