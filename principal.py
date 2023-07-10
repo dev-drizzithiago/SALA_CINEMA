@@ -91,19 +91,21 @@ class SalaCinema:
                     print()
                     print(f'O filmes que você escolheu para colocar em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    dias_cartaz = leiaInt('Periodo de tempo que o filme ficara em cartaz (Em dias): '))                    data_limite_reserva = str(self.data_atual).split('/')
+
+                    dias_cartaz = leiaInt('Periodo de tempo que o filme ficara em cartaz (Em dias): ')
+                    data_limite_reserva = str(self.data_atual).split('/')
                     dia = int(data_limite_reserva[0])
                     total_dias = str(dias_cartaz + dia)
                     mes = data_limite_reserva[1]
                     ano = data_limite_reserva[2]
-                    perido_cartaz = (f'{total_dias}/{mes}/{ano}')
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + fim_cartaz + ')' + ' - ' \
+                    periodo_cartaz = f'{total_dias}/{mes}/{ano}'
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + periodo_cartaz + ')' + ' - ' \
                                         + codigo[1] + '.txt')
                     aperte_enter()
                     try:
                         verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
                         print()
-                        print(f'O filme [{codigo[1]}] vai ficar em cartaz por [{fim_cartaz}] dias')
+                        print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{periodo_cartaz}]')
                         verif_arq_cartaz.close()
                     except FileNotFoundError:
                         print()
