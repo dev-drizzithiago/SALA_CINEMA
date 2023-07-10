@@ -64,6 +64,7 @@ class SalaCinema:
             Area destinada a gravar os filmes que ficaram em cartaz.
             :return:
             """
+            data_atual()
             lendo_dados_no_arq_filmes_txt()
             for lista_filmes in self.lista_filme_cadastrado:
                 print(self.linhas_aparencia)
@@ -90,9 +91,13 @@ class SalaCinema:
                     print()
                     print(f'O filmes que você escolheu para colocar em cartaz o seguinte filme:\n'
                           f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    dias_cartaz = str(input('Periodo de tempo que o filme ficara em cartaz (Em dias): '))
-                    fim_cartaz = dias_cartaz
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + self.data_atual + ')' + ' - ' \
+                    dias_cartaz = leiaInt('Periodo de tempo que o filme ficara em cartaz (Em dias): '))                    data_limite_reserva = str(self.data_atual).split('/')
+                    dia = int(data_limite_reserva[0])
+                    total_dias = str(dias_cartaz + dia)
+                    mes = data_limite_reserva[1]
+                    ano = data_limite_reserva[2]
+                    perido_cartaz = (f'{total_dias}/{mes}/{ano}')
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + fim_cartaz + ')' + ' - ' \
                                         + codigo[1] + '.txt')
                     aperte_enter()
                     try:
@@ -268,12 +273,14 @@ class SalaCinema:
             verificacao_reservas_cadeiras = list()
             lista_valor_arq = list()
             valor_arq = list()
+
             try:
                 abrindo_arq_cadeiras_reservadas = open(arq_cadeiras_reservadas, 'r')
                 valor_arq = abrindo_arq_cadeiras_reservadas
             except FileNotFoundError:
                 criando_arq_cadeiras_reserva = open(arq_cadeiras_reservadas, 'w')
                 criando_arq_cadeiras_reserva.close()
+
             for valor in valor_arq:  # Loop_01_verificação
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
                 valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ',
@@ -793,7 +800,6 @@ class SalaCinema:
             """
             gravando_arq_reserva_restrutura = open(arq_cadeiras_reservadas, 'w')
             for valor_reservas in self.cadeiras_reservadas:
-                valor_formatado = str(valor_reservas).strip()
                 gravando_arq_reserva_restrutura.write(f'{valor_reservas}\n')
             gravando_arq_reserva_restrutura.close()
 
