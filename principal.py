@@ -28,7 +28,30 @@ class SalaCinema:
         self.lista_filme_cadastrado = list()
         self.lista_info_registro = list()
 
-        def listando_filmes_cartaz():
+        def func_data_atual():
+            valor_data = datetime.now()
+            self.data_atual = valor_data.strftime('%d/%m/%Y')
+            self.hora_atual = valor_data.strftime('%H:%M:%S')
+
+        def func_logo_cinema(texto_exibicao):
+            print(self.linhas_aparencia)
+            print(f'{texto_exibicao}'.center(80))
+            print(self.linhas_aparencia)
+
+        def calculando_data():
+            """
+            O objetivo dessa função é aprender a mudança do mes, dependendo do dia que for acrescido, tipo:
+            O mesmo possui 30 dias, vou colocar um filme de cartaz para ficar 25 dias nas salas de cinema, mas
+            quando eu for registrar o filme é dia 25-07-2023. Quando eu for registrar o filme sera pedido o periodo
+            em dias, em 7 dias já sera o próximo mes, agosto, mas com o cálculo que fiz, ele apenas vai somar
+            os dias 25 + 25 tormando-se 50-07-2023.
+            Essa função eu vou usar para fazer essa culculo, facilitando na hora do registro.
+            Vou tentar fazer sem ajudar da foruns, tentar resolver sozinho, para assim tentar entender o funcionamento.
+            :return:
+            """
+
+        def func_listando_filmes_cartaz():
+            func_data_atual()
             filmes_listados = listdir(arq_filmes_em_cartazes_local_pasta)
             if len(filmes_listados) == 0:
                 print('Não encontrei nenhum filme em cartaz!')
@@ -36,28 +59,16 @@ class SalaCinema:
                 for filmes in filmes_listados:
                     print(self.linhas_aparencia)
                     lista = filmes.split('-')
-                    lista_dia_mes_ano = lista[1].replace('-', ';').replace('(', '').replace(')', '').strip()
-                    dia_mes_ano = lista_dia_mes_ano
-                    dia = dia_mes_ano[0]
-                    mes = dia_mes_ano[1]
-                    ano = dia_mes_ano[2]
-                    print(f'{dia}/{mes}/{ano}')
-                    print(self.data_cartaz)
-                    if dia_mes_ano == self.data_cartaz:
+                    lista_dia_mes_ano_formatado = lista[1].replace('-', '_').replace('(', '').replace(')', '').strip()
+                    dia_mes_ano = lista_dia_mes_ano_formatado
+                    print(f'{dia_mes_ano[0]}/{dia_mes_ano[1]}/{dia_mes_ano[2]}')
+                    print(self.data_atual)
+                    if dia_mes_ano == self.data_atual:
                         remove(str(arq_filmes_em_cartazes_local_pasta + '/' + filmes))
                         print(f'Filme {filmes} saiu de cartaz!!')
             print(self.linhas_aparencia)
             aperte_enter()
 
-        def data_atual():
-            valor_data = datetime.now()
-            self.data_atual = valor_data.strftime('%d/%m/%Y')
-            self.hora_atual = valor_data.strftime('%H:%M:%S')
-
-        def logo_cinema(texto_exibicao):
-            print(self.linhas_aparencia)
-            print(f'{texto_exibicao}'.center(80))
-            print(self.linhas_aparencia)
 
         def gravando_filmes_em_cartaz():
             """
