@@ -1,12 +1,7 @@
-import os
 import threading
 from datetime import datetime
 from time import sleep
 from os import listdir, remove
-from re import search
-
-# from threading import Thread
-
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
@@ -75,7 +70,7 @@ class SalaCinema:
             Area destinada a gravar os filmes que ficaram em cartaz.
             :return:
             """
-            data_atual()
+            func_data_atual()
             lendo_dados_no_arq_filmes_txt()
             for lista_filmes in self.lista_filme_cadastrado:
                 print(self.linhas_aparencia)
@@ -139,7 +134,7 @@ class SalaCinema:
                     criando_arq_cadastro_filmes_txt = open(arq_cadastro_filmes_local_txt, 'w')
                     criando_arq_cadastro_filmes_txt.close()
                 else:
-                    logo_cinema('AREA DE CADASTRO DE FILMES')
+                    func_logo_cinema('AREA DE CADASTRO DE FILMES')
                     while True:
                         registro_filme = str('Número de registro: ')
                         if len(registro_filme) != 4:
@@ -215,7 +210,6 @@ class SalaCinema:
                            cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
                            cadeiras_cinema_j]
             verif_estrutura_reserva()
-            valor_verificacao = self.verificacao_reservas
 
             # Verificação de estrutura
             if self.verificacao_reservas:
@@ -815,10 +809,10 @@ class SalaCinema:
             gravando_arq_reserva_restrutura.close()
 
         def area_admin():
-            data_atual()
+            func_data_atual()
             while True:
 
-                logo_cinema('Area do Administração')
+                func_logo_cinema('Area do Administração')
                 print(
                     f"""
                       Hora certa
@@ -864,7 +858,7 @@ class SalaCinema:
                               'Verifique se a sessão já terminou...')
 
                 elif resp_admin == 5:
-                    listando_filmes_cartaz()
+                    func_listando_filmes_cartaz()
 
                 elif resp_admin == 6:
                     print('<desenvolvimento>')
@@ -874,7 +868,7 @@ class SalaCinema:
                     break
 
         def area_cliente():
-            data_atual()
+            func_data_atual()
             while True:
                 print(
                     f"""
@@ -945,7 +939,7 @@ class SalaCinema:
 
         # Menu principal
         while True:
-            data_atual()
+            func_data_atual()
             print(
                 f'''
                       Hora certa
