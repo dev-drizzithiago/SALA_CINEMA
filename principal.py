@@ -232,7 +232,7 @@ class SalaCinema:
                 sleep(1)
                 print('Pronto, conseguimos criar o arquivo.')
                 sleep(1)
-                print('Faça uma boa reserva!!')
+                print('Faça uma boa reserva!')
                 print(self.linhas_aparencia)
 
         def verif_estrutura_reserva():
@@ -273,9 +273,7 @@ class SalaCinema:
             :return:
             """
             global abrindo_arq_cadeiras_reservadas
-            cadeiras_cinema_reservado = list()
             cont_verificacao = 0
-            verificacao_reservas_cadeiras = list()
             lista_valor_arq = list()
             valor_arq = list()
 
@@ -316,7 +314,6 @@ class SalaCinema:
                 while True:
                     fila_a = lista_valor_arq[cont_verificacao]
                     for valor in fila_a:
-                        valor_1 = str(valor)
                         if valor == '--':
                             self.verificacao_reservas = True
                     cont_verificacao += 1
@@ -365,7 +362,7 @@ class SalaCinema:
                 sleep(1)
                 print('Arquivo para cadastro foi criado!!')
                 sleep(1)
-                print('Realize seu cadastro e boa reserva!!')
+                print('Realize seu cadastro e boa reserva!')
                 print(self.linhas_aparencia)
                 sleep(1)
                 criando_arq_cliente.close()
