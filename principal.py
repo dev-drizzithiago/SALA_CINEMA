@@ -96,9 +96,7 @@ class SalaCinema:
                     data_limite_reserva = str(self.data_atual).split('/')
                     dia = int(data_limite_reserva[0])
                     total_dias = str(dias_cartaz + dia)
-                    mes = data_limite_reserva[1]
-                    ano = data_limite_reserva[2]
-                    periodo_cartaz = f'{total_dias}/{mes}/{ano}'
+                    periodo_cartaz = f'{total_dias}_{data_limite_reserva[1]}_{data_limite_reserva[2]}'
                     arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + periodo_cartaz + ')' + ' - ' \
                                         + codigo[1] + '.txt')
                     aperte_enter()
