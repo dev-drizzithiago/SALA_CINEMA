@@ -52,16 +52,17 @@ class SalaCinema:
                 print('Não encontrei nenhum filme em cartaz!')
             else:
                 for filmes in filmes_listados:
+                    valor_form_filme = filmes.replace('.txt', '')
                     print(self.linhas_aparencia)
                     lista = filmes.split('-')
                     lista_dia_mes_ano_formatado = lista[1].replace('_', '/').replace('(', '').replace(')', '').strip()
                     print(lista_dia_mes_ano_formatado)
                     dia_mes_ano = lista_dia_mes_ano_formatado
                     if dia_mes_ano > self.data_atual:
-                        print(f'O filme {filmes} está em seu ultimo dia! Ele sai de cartaz no dia {dia_mes_ano}')
+                        print(f'O filme [{valor_form_filme}] está em seu ultimo dia! Ele sai de cartaz no dia {dia_mes_ano}')
                     elif dia_mes_ano == self.data_atual:
                         remove(str(arq_filmes_em_cartazes_local_pasta + '/' + filmes))
-                        print(f'Filme {filmes} saiu de cartaz!!')
+                        print(f'Filme [{valor_form_filme}] saiu de cartaz!!')
                     else:
                         print(filmes)
             print(self.linhas_aparencia)
