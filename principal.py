@@ -80,6 +80,9 @@ class SalaCinema:
             :param: func_data_atual() atualiza no sistema a data atual, coloca no objeto self.data_atual
             :param: lendo_dados_no_arq-filmes_txt() atualiza as informações dos filmes que estão no cadastrados, as
             informações são gravadas no obejto "self.lista_filmes_cadastrado"
+
+            obs: Verificar duplicidade no registro dos filmes
+
             :return:
             """
             func_data_atual()
@@ -104,11 +107,18 @@ class SalaCinema:
             print('Digite o código do filme para reserva-lo')
             cod_filme = leiaInt('Cod:')
             print(self.linhas_aparencia)
+            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
+            for valor_listagem in listando_filmes_cartaz:
+                valor_format_01 = valor_listagem.split('-')
+                valor_format_02 = valor_format_01[0]
+                print(valor_format_02)
+
+
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
                     print()
-                    print(f'O filmes que você escolheu para colocar em cartaz o seguinte filme:\n'
-                          f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
+                    print(f'Você colocou em cartaz o seguinte filme:\n'
+                          f'Titulo:{codigo[1]}, Duração: {codigo[3]} minutos')
 
                     dias_cartaz = leiaInt('Periodo de tempo que o filme ficara em cartaz (Em dias): ')
                     data_limite_reserva = str(self.data_atual).split('/')
@@ -118,11 +128,13 @@ class SalaCinema:
                     arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + periodo_cartaz + ')' + ' - ' \
                                         + codigo[1] + '.txt')
                     aperte_enter()
+
                     try:
                         verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
                         print()
                         print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{periodo_cartaz}]')
                         verif_arq_cartaz.close()
+
                     except FileNotFoundError:
                         print('Registrando filme... aguarde!')
                         sleep(2)
