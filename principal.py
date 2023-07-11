@@ -46,6 +46,10 @@ class SalaCinema:
             """
 
         def func_listando_filmes_cartaz():
+            """
+            Função destinadas em lista os filmes que estiverem em cartaz. 
+            :return:
+            """
             func_data_atual()
             filmes_listados = listdir(arq_filmes_em_cartazes_local_pasta)
             if len(filmes_listados) == 0:
@@ -55,8 +59,7 @@ class SalaCinema:
                     valor_form_filme_01 = filmes.replace('.txt', '')
                     valor_form_filme_02 = valor_form_filme_01.split('-')
                     valor_titulo_listando = valor_form_filme_02[2]
-                    valor_data_listando = valor_form_filme_02[1]
-
+                    valor_data_listando = valor_form_filme_02[1].replace('_', '/').replace('(', '').replace(')', '')
                     print(self.linhas_aparencia)
                     lista = filmes.split('-')
                     data_termino_formatado = lista[1].replace('_', '/').replace('(', '').replace(')', '').strip()
@@ -67,7 +70,7 @@ class SalaCinema:
                         remove(str(arq_filmes_em_cartazes_local_pasta + '/' + filmes))
                         print(f'Filme [{valor_form_filme_01}] saiu de cartaz!!')
                     else:
-                        print(f'O filme {valor_titulo_listando} ficara em cartaz até o dia {valor_data_listando}')
+                        print(f'O filme [{valor_titulo_listando}] ficara em cartaz até o dia {valor_data_listando}')
             print(self.linhas_aparencia)
             aperte_enter()
 
