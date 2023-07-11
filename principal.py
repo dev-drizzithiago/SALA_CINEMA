@@ -110,8 +110,10 @@ class SalaCinema:
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
                 valor_format_01 = valor_listagem.split('-')
-                valor_format_02 = valor_format_01[0]
-                print(valor_format_02)
+                valor_codigo = valor_format_01[0]
+                if cod_filme == valor_codigo:
+                    print('deu certo')
+                    aperte_enter()
 
 
             for codigo in self.lista_filme_cadastrado:
