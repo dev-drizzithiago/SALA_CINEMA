@@ -47,7 +47,7 @@ class SalaCinema:
 
         def func_listando_filmes_cartaz():
             """
-            Função destinadas em lista os filmes que estiverem em cartaz. 
+            Função destinadas em lista os filmes que estiverem em cartaz.
             :return:
             """
             func_data_atual()
@@ -77,6 +77,9 @@ class SalaCinema:
         def gravando_filmes_em_cartaz():
             """
             Area destinada a gravar os filmes que ficaram em cartaz.
+            :param: func_data_atual() atualiza no sistema a data atual, coloca no objeto self.data_atual
+            :param: lendo_dados_no_arq-filmes_txt() atualiza as informações dos filmes que estão no cadastrados, as
+            informações são gravadas no obejto "self.lista_filmes_cadastrado"
             :return:
             """
             func_data_atual()
@@ -121,8 +124,8 @@ class SalaCinema:
                         print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{periodo_cartaz}]')
                         verif_arq_cartaz.close()
                     except FileNotFoundError:
-                        print()
-                        print(f'O filme [{codigo[1]}] ainda não foi reservado para cartaz!!')
+                        print('Registrando filme... aguarde!')
+                        sleep(2)
                         try:
                             gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
                             gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]} \n')
