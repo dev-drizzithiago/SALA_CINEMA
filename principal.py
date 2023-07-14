@@ -169,15 +169,18 @@ class SalaCinema:
 
                     while True:
                         registro_filme = str(input('Número de registro: '))
-                        for registro_salvos_conf in self.registros_filmes:
-                            if registro_filme == registro_salvos_conf[0]:
-                                print(
-                                    f'O código {registro_salvos_conf} já foi registrado. Coloque o código conforme a sequencia!')
-                            else:
-                                break
-                    if len(registro_filme) != 4:
-                        print('Registro fora padrão. O registro precisa possui 4 números!')
-                    else:
+                        if len(registro_filme) != 4:
+                            print('Registro fora padrão. O registro precisa possui 4 números!')
+                        else:
+                            break
+                    for registro_salvos_conf in self.registros_filmes:
+                        if registro_filme == registro_salvos_conf[0]:
+                            print('Esse codigo já existe')
+                            self.quebra_loop = False
+                            break
+                        else:
+                            self.quebra_loop = True
+                    if not self.quebra_loop:
                         break
                     nome_filme_cadastro = input('Titulo: ')
                     genero_filme_cadastro = input('Genero: ')
