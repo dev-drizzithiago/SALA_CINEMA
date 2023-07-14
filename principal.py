@@ -173,19 +173,19 @@ class SalaCinema:
                         else:
                             for registro_salvos_conf in self.registros_filmes:
                                 if registro_filme == registro_salvos_conf[0]:
-                                    print('Esse código já foi registrado. Coloque o código conforme a sequencia!')
+                                    print(f'O código {registro_salvos_conf} já foi registrado. Coloque o código conforme a sequencia!')
                                 else:
                                     break
-                        nome_filme_cadastro = input('Titulo: ')
-                        genero_filme_cadastro = input('Genero: ')
-                        duracao_filme_cadastro = input('Duração: ')
-                        classificacao_filme_cadastro = leiaInt('Classificação: ')
-                        sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
-                        abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
-                                                      f'{duracao_filme_cadastro};{classificacao_filme_cadastro};'
-                                                      f'{sinopse_filme_cadastro} \n')
-                        print('Filme cadastrado com sucesso')
-                        break
+                    nome_filme_cadastro = input('Titulo: ')
+                    genero_filme_cadastro = input('Genero: ')
+                    duracao_filme_cadastro = input('Duração: ')
+                    classificacao_filme_cadastro = leiaInt('Classificação: ')
+                    sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
+                    abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
+                                                  f'{duracao_filme_cadastro};{classificacao_filme_cadastro};'
+                                                  f'{sinopse_filme_cadastro} \n')
+                    print('Filme cadastrado com sucesso')
+                    break
                     print(self.linhas_aparencia)
                     aperte_enter()
                 abrindo_cadastro_filmes.close()
