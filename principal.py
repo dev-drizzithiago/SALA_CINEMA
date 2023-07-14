@@ -162,10 +162,11 @@ class SalaCinema:
                     criando_arq_cadastro_filmes_txt.close()
                 else:
                     func_logo_cinema('AREA DE CADASTRO DE FILMES')
+                    print(self.linhas_aparencia)
+                    lendo_dados_no_arq_filmes_txt()
+                    for registro_salvos in self.registros_filmes:
+                        print(f' Registro: [{registro_salvos[0]}] - [{registro_salvos[1]}]')
                     while True:
-                        lendo_dados_no_arq_filmes_txt()
-                        for registro_salvos in self.registros_filmes:
-                            print(f' Registro: [{registro_salvos[0]}] - [{registro_salvos[1]}]')
                         registro_filme = str(input('Número de registro: '))
                         if len(registro_filme) != 4:
                             print('Registro fora padrão. Digite o correto!')
@@ -175,15 +176,16 @@ class SalaCinema:
                                     print('Esse código já foi registrado. Coloque o código conforme a sequencia!')
                                 else:
                                     break
-                    nome_filme_cadastro = input('Titulo: ')
-                    genero_filme_cadastro = input('Genero: ')
-                    duracao_filme_cadastro = input('Duração: ')
-                    classificacao_filme_cadastro = leiaInt('Classificação: ')
-                    sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
-                    abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
-                                                  f'{duracao_filme_cadastro};{classificacao_filme_cadastro};'
-                                                  f'{sinopse_filme_cadastro} \n')
-                    print('Filme cadastrado com sucesso')
+                        nome_filme_cadastro = input('Titulo: ')
+                        genero_filme_cadastro = input('Genero: ')
+                        duracao_filme_cadastro = input('Duração: ')
+                        classificacao_filme_cadastro = leiaInt('Classificação: ')
+                        sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
+                        abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
+                                                      f'{duracao_filme_cadastro};{classificacao_filme_cadastro};'
+                                                      f'{sinopse_filme_cadastro} \n')
+                        print('Filme cadastrado com sucesso')
+                        break
                     print(self.linhas_aparencia)
                     aperte_enter()
                 abrindo_cadastro_filmes.close()
