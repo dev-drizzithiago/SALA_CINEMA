@@ -162,7 +162,7 @@ class SalaCinema:
                 else:
                     func_logo_cinema('AREA DE CADASTRO DE FILMES')
                     while True:
-                        registro_filme = str('Número de registro: ')
+                        registro_filme = str(input('Número de registro: '))
                         if len(registro_filme) != 4:
                             print('Registro fora padrão. Digite o correto!')
                         else:
