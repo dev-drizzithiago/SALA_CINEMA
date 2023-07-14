@@ -22,6 +22,7 @@ class SalaCinema:
         self.lista_de_filmes_cadastrados = list()
         self.lista_filme_cadastrado = list()
         self.lista_info_registro = list()
+        self.registros_filmes = list()
 
         def func_data_atual():
             valor_data = datetime.now()
@@ -162,11 +163,18 @@ class SalaCinema:
                 else:
                     func_logo_cinema('AREA DE CADASTRO DE FILMES')
                     while True:
+                        lendo_dados_no_arq_filmes_txt()
+                        for registro_salvos in self.registros_filmes:
+                            print(f' Registro: [{registro_salvos[0]}] - [{registro_salvos[1]}]')
                         registro_filme = str(input('Número de registro: '))
                         if len(registro_filme) != 4:
                             print('Registro fora padrão. Digite o correto!')
                         else:
-                            break
+                            for registro_salvos_conf in self.registros_filmes:
+                                if registro_filme == registro_salvos_conf[0]:
+                                    print('Esse código já foi registro. Coloque o código conforme a sequencia!')
+                                else:
+                                    break
                     nome_filme_cadastro = input('Titulo: ')
                     genero_filme_cadastro = input('Genero: ')
                     duracao_filme_cadastro = input('Duração: ')
@@ -536,7 +544,7 @@ class SalaCinema:
                     self.lista_filme_cadastrado.append([lendo_dados_registro, lendo_dados_titulo, lendo_dados_genero,
                                                         lendo_dados_duracao, lendo_dados_classificacao,
                                                         lendo_dados_sinopse])
-                    self.registros_filmes = ([lendo_dados_registro, lendo_dados_titulo])
+                    self.registros_filmes.append([lendo_dados_registro, lendo_dados_titulo])
 
         def consultar_cadastro_cliente():
             """
