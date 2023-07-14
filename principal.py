@@ -172,7 +172,7 @@ class SalaCinema:
                         else:
                             for registro_salvos_conf in self.registros_filmes:
                                 if registro_filme == registro_salvos_conf[0]:
-                                    print('Esse código já foi registro. Coloque o código conforme a sequencia!')
+                                    print('Esse código já foi registrado. Coloque o código conforme a sequencia!')
                                 else:
                                     break
                     nome_filme_cadastro = input('Titulo: ')
