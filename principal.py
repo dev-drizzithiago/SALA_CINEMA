@@ -1,9 +1,7 @@
 import threading
 from datetime import datetime
 from time import sleep
-
-# from threading import Thread
-
+from os import listdir, remove
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
@@ -24,23 +22,71 @@ class SalaCinema:
         self.lista_de_filmes_cadastrados = list()
         self.lista_filme_cadastrado = list()
         self.lista_info_registro = list()
+        self.registros_filmes = list()
 
-        def data_atual():
-            data = datetime.now()
-            self.ano_atual = data.strftime('%Y')
-            self.data_atual = data.strftime('%d-%m-%y')
-            self.hora_atual = data.strftime('%H:%M:%S')
+        def func_data_atual():
+            valor_data = datetime.now()
+            self.data_atual = valor_data.strftime('%d/%m/%Y')
+            self.hora_atual = valor_data.strftime('%H:%M:%S')
 
-        def logo_cinema(texto_exibicao):
+        def func_logo_cinema(texto_exibicao):
             print(self.linhas_aparencia)
             print(f'{texto_exibicao}'.center(80))
             print(self.linhas_aparencia)
 
+        def calculando_data():
+            """
+            O objetivo dessa função é aprender a mudança do mes, dependendo do dia que for acrescido, tipo:
+            O mesmo possui 30 dias, vou colocar um filme de cartaz para ficar 25 dias nas salas de cinema, mas
+            quando eu for registrar o filme é dia 25-07-2023. Quando eu for registrar o filme sera pedido o periodo
+            em dias, em 7 dias já sera o próximo mes, agosto, mas com o cálculo que fiz, ele apenas vai somar
+            os dias 25 + 25 tormando-se 50-07-2023.
+            Essa função eu vou usar para fazer essa culculo, facilitando na hora do registro.
+            Vou tentar fazer sem ajudar da foruns, tentar resolver sozinho, para assim tentar entender o funcionamento.
+            :return:
+            """
+
+        def func_listando_filmes_cartaz():
+            """
+            Função destinadas em lista os filmes que estiverem em cartaz.
+            :return:
+            """
+            func_data_atual()
+            filmes_listados = listdir(arq_filmes_em_cartazes_local_pasta)
+            if len(filmes_listados) == 0:
+                print('Não encontrei nenhum filme em cartaz!')
+            else:
+                for filmes in filmes_listados:
+                    valor_form_filme_01 = filmes.replace('.txt', '')
+                    valor_form_filme_02 = valor_form_filme_01.split('-')
+                    valor_titulo_listando = valor_form_filme_02[2]
+                    valor_data_listando = valor_form_filme_02[1].replace('_', '/').replace('(', '').replace(')', '')
+                    print(self.linhas_aparencia)
+                    lista = filmes.split('-')
+                    data_termino_formatado = lista[1].replace('_', '/').replace('(', '').replace(')', '').strip()
+                    fim_cartaz = data_termino_formatado
+                    if self.data_atual == fim_cartaz:
+                        print(f'O filme [{valor_form_filme_01}] está em seu ultimo dia!')
+                    elif self.data_atual > fim_cartaz:
+                        remove(str(arq_filmes_em_cartazes_local_pasta + '/' + filmes))
+                        print(f'Filme [{valor_form_filme_01}] saiu de cartaz!!')
+                    else:
+                        print(f'O filme [{valor_titulo_listando}] ficara em cartaz até o dia {valor_data_listando}')
+            print(self.linhas_aparencia)
+            aperte_enter()
+
         def gravando_filmes_em_cartaz():
             """
             Area destinada a gravar os filmes que ficaram em cartaz.
+            :param: func_data_atual() atualiza no sistema a data atual, coloca no objeto self.data_atual
+            :param: lendo_dados_no_arq-filmes_txt() atualiza as informações dos filmes que estão no cadastrados, as
+            informações são gravadas no obejto "self.lista_filmes_cadastrado"
+
+            obs: Verificar duplicidade no registro dos filmes
+
             :return:
             """
+            func_data_atual()
             lendo_dados_no_arq_filmes_txt()
             for lista_filmes in self.lista_filme_cadastrado:
                 print(self.linhas_aparencia)
@@ -62,24 +108,39 @@ class SalaCinema:
             print('Digite o código do filme para reserva-lo')
             cod_filme = leiaInt('Cod:')
             print(self.linhas_aparencia)
+            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
+            for valor_listagem in listando_filmes_cartaz:
+                valor_format_01 = valor_listagem.split('-')
+                valor_codigo = valor_format_01[0]
+                if cod_filme == valor_codigo:
+                    print('deu certo')
+                    aperte_enter()
+
+
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
-                    print(self.linhas_aparencia)
-                    print(f'Você ira colocar em cartaz o seguinte filme:\n'
-                          f'Titulo:{codigo[1]}, Duração: {codigo[3]}')
-                    dias_cartaz = str(input('Periodo do filme(Em dias): '))
-                    fim_cartaz = dias_cartaz
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + \
-                                       '(' + self.data_atual + ')' + ' - ' + codigo[1] + '.txt')
+                    print()
+                    print(f'Você colocou em cartaz o seguinte filme:\n'
+                          f'Titulo:{codigo[1]}, Duração: {codigo[3]} minutos')
+
+                    dias_cartaz = leiaInt('Periodo de tempo que o filme ficara em cartaz (Em dias): ')
+                    data_limite_reserva = str(self.data_atual).split('/')
+                    dia = int(data_limite_reserva[0])
+                    total_dias = str(dias_cartaz + dia)
+                    periodo_cartaz = f'{total_dias}_{data_limite_reserva[1]}_{data_limite_reserva[2]}'
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + periodo_cartaz + ')' + ' - ' \
+                                        + codigo[1] + '.txt')
                     aperte_enter()
+
                     try:
                         verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
-                        print(self.linhas_aparencia)
-                        print(f'O filme [{codigo[1]}] vai ficar em cartaz por [{fim_cartaz}] dias')
+                        print()
+                        print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{periodo_cartaz}]')
                         verif_arq_cartaz.close()
+
                     except FileNotFoundError:
-                        print(self.linhas_aparencia)
-                        print(f'O filme [{codigo[1]}] ainda não foi reservado para cartaz!!')
+                        print('Registrando filme... aguarde!')
+                        sleep(2)
                         try:
                             gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
                             gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]} \n')
@@ -100,22 +161,31 @@ class SalaCinema:
                     criando_arq_cadastro_filmes_txt = open(arq_cadastro_filmes_local_txt, 'w')
                     criando_arq_cadastro_filmes_txt.close()
                 else:
-                    logo_cinema('AREA DE CADASTRO DE FILMES')
+                    func_logo_cinema('AREA DE CADASTRO DE FILMES')
+                    print(self.linhas_aparencia)
+                    lendo_dados_no_arq_filmes_txt()
+                    for registro_salvos in self.registros_filmes:
+                        print(f' Registro: [{registro_salvos[0]}] - [{registro_salvos[1]}]')
                     while True:
-                        registro_filme = str('Número de registro: ')
+                        registro_filme = str(input('Número de registro: '))
                         if len(registro_filme) != 4:
                             print('Registro fora padrão. Digite o correto!')
                         else:
-                            break
-                    nome_filme_cadastro = input('Titulo: ')
-                    genero_filme_cadastro = input('Genero: ')
-                    duracao_filme_cadastro = input('Duração: ')
-                    classificacao_filme_cadastro = leiaInt('Classificação: ')
-                    sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
-                    abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
-                                                  f'{duracao_filme_cadastro};{classificacao_filme_cadastro};'
-                                                  f'{sinopse_filme_cadastro} \n')
-                    print('Filme cadastrado com sucesso')
+                            for registro_salvos_conf in self.registros_filmes:
+                                if registro_filme == registro_salvos_conf[0]:
+                                    print('Esse código já foi registrado. Coloque o código conforme a sequencia!')
+                                else:
+                                    break
+                        nome_filme_cadastro = input('Titulo: ')
+                        genero_filme_cadastro = input('Genero: ')
+                        duracao_filme_cadastro = input('Duração: ')
+                        classificacao_filme_cadastro = leiaInt('Classificação: ')
+                        sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
+                        abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
+                                                      f'{duracao_filme_cadastro};{classificacao_filme_cadastro};'
+                                                      f'{sinopse_filme_cadastro} \n')
+                        print('Filme cadastrado com sucesso')
+                        break
                     print(self.linhas_aparencia)
                     aperte_enter()
                 abrindo_cadastro_filmes.close()
@@ -176,7 +246,6 @@ class SalaCinema:
                            cadeiras_cinema_f, cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i,
                            cadeiras_cinema_j]
             verif_estrutura_reserva()
-            valor_verificacao = self.verificacao_reservas
 
             # Verificação de estrutura
             if self.verificacao_reservas:
@@ -199,7 +268,7 @@ class SalaCinema:
                 sleep(1)
                 print('Pronto, conseguimos criar o arquivo.')
                 sleep(1)
-                print('Faça uma boa reserva!!')
+                print('Faça uma boa reserva!')
                 print(self.linhas_aparencia)
 
         def verif_estrutura_reserva():
@@ -240,17 +309,17 @@ class SalaCinema:
             :return:
             """
             global abrindo_arq_cadeiras_reservadas
-            cadeiras_cinema_reservado = list()
             cont_verificacao = 0
-            verificacao_reservas_cadeiras = list()
             lista_valor_arq = list()
             valor_arq = list()
+
             try:
                 abrindo_arq_cadeiras_reservadas = open(arq_cadeiras_reservadas, 'r')
                 valor_arq = abrindo_arq_cadeiras_reservadas
             except FileNotFoundError:
                 criando_arq_cadeiras_reserva = open(arq_cadeiras_reservadas, 'w')
                 criando_arq_cadeiras_reserva.close()
+
             for valor in valor_arq:  # Loop_01_verificação
                 valor_sem_caracteres_especial = (valor.replace("'", '').replace('[', '').replace(']', ''))
                 valor_formatado_inicio = valor_sem_caracteres_especial.replace('\n', '').replace(',', '').replace(' ',
@@ -281,7 +350,6 @@ class SalaCinema:
                 while True:
                     fila_a = lista_valor_arq[cont_verificacao]
                     for valor in fila_a:
-                        valor_1 = str(valor)
                         if valor == '--':
                             self.verificacao_reservas = True
                     cont_verificacao += 1
@@ -330,7 +398,7 @@ class SalaCinema:
                 sleep(1)
                 print('Arquivo para cadastro foi criado!!')
                 sleep(1)
-                print('Realize seu cadastro e boa reserva!!')
+                print('Realize seu cadastro e boa reserva!')
                 print(self.linhas_aparencia)
                 sleep(1)
                 criando_arq_cliente.close()
@@ -478,6 +546,7 @@ class SalaCinema:
                     self.lista_filme_cadastrado.append([lendo_dados_registro, lendo_dados_titulo, lendo_dados_genero,
                                                         lendo_dados_duracao, lendo_dados_classificacao,
                                                         lendo_dados_sinopse])
+                    self.registros_filmes.append([lendo_dados_registro, lendo_dados_titulo])
 
         def consultar_cadastro_cliente():
             """
@@ -634,7 +703,6 @@ class SalaCinema:
                     print(f'Seja bem vindo Sr/a {nome_cliente}')  # Da as boas vindas para o cliente, pelo nome.
                     self.linhas_aparencia
                     aperte_enter()
-                    gravando_filmes_em_cartaz()
                 else:  # Caso não encontre o cadastro, vai pedir para voltar no meu principal
                     sleep(1)
                     print(self.linhas_aparencia)
@@ -771,15 +839,14 @@ class SalaCinema:
             """
             gravando_arq_reserva_restrutura = open(arq_cadeiras_reservadas, 'w')
             for valor_reservas in self.cadeiras_reservadas:
-                valor_formatado = str(valor_reservas).strip()
                 gravando_arq_reserva_restrutura.write(f'{valor_reservas}\n')
             gravando_arq_reserva_restrutura.close()
 
         def area_admin():
-            data_atual()
+            func_data_atual()
             while True:
 
-                logo_cinema('Area do Administração')
+                func_logo_cinema('Area do Administração')
                 print(
                     f"""
                       Hora certa
@@ -791,7 +858,7 @@ class SalaCinema:
         | [2] | Cadastrar Filmes no sistema
         | [3] | Colocar filme em cartaz
         | [4] | Consultar todas as reservas no sistema       
-        | [5] | Cadastrar um cliente
+        | [5] | Filmes em cartaz
         | [6] | Consultar cadeiras disponiveis
         | [0] | Voltar ao menu principal
         {self.linhas_aparencia}""")
@@ -825,7 +892,7 @@ class SalaCinema:
                               'Verifique se a sessão já terminou...')
 
                 elif resp_admin == 5:
-                    print('<desenvolvimento>')
+                    func_listando_filmes_cartaz()
 
                 elif resp_admin == 6:
                     print('<desenvolvimento>')
@@ -835,7 +902,7 @@ class SalaCinema:
                     break
 
         def area_cliente():
-            data_atual()
+            func_data_atual()
             while True:
                 print(
                     f"""
@@ -906,7 +973,7 @@ class SalaCinema:
 
         # Menu principal
         while True:
-            data_atual()
+            func_data_atual()
             print(
                 f'''
                       Hora certa
