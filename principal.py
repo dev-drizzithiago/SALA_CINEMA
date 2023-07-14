@@ -166,16 +166,19 @@ class SalaCinema:
                     lendo_dados_no_arq_filmes_txt()
                     for registro_salvos in self.registros_filmes:
                         print(f' Registro: [{registro_salvos[0]}] - [{registro_salvos[1]}]')
+
                     while True:
                         registro_filme = str(input('Número de registro: '))
-                        if len(registro_filme) != 4:
-                            print('Registro fora padrão. Digite o correto!')
-                        else:
-                            for registro_salvos_conf in self.registros_filmes:
-                                if registro_filme == registro_salvos_conf[0]:
-                                    print(f'O código {registro_salvos_conf} já foi registrado. Coloque o código conforme a sequencia!')
-                                else:
-                                    break
+                        for registro_salvos_conf in self.registros_filmes:
+                            if registro_filme == registro_salvos_conf[0]:
+                                print(
+                                    f'O código {registro_salvos_conf} já foi registrado. Coloque o código conforme a sequencia!')
+                            else:
+                                break
+                    if len(registro_filme) != 4:
+                        print('Registro fora padrão. O registro precisa possui 4 números!')
+                    else:
+                        break
                     nome_filme_cadastro = input('Titulo: ')
                     genero_filme_cadastro = input('Genero: ')
                     duracao_filme_cadastro = input('Duração: ')
