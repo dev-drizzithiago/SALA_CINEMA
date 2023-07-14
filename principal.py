@@ -536,6 +536,7 @@ class SalaCinema:
                     self.lista_filme_cadastrado.append([lendo_dados_registro, lendo_dados_titulo, lendo_dados_genero,
                                                         lendo_dados_duracao, lendo_dados_classificacao,
                                                         lendo_dados_sinopse])
+                    self.registros_filmes = ([lendo_dados_registro, lendo_dados_titulo])
 
         def consultar_cadastro_cliente():
             """
