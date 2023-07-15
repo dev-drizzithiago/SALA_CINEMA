@@ -174,21 +174,21 @@ class SalaCinema:
                                 print(self.linhas_aparencia)
                                 aperte_enter()
                             else:
+                                print(self.linhas_aparencia)
                                 break
-                        print(self.registros_filmes)
                         for registro_salvos_conf in self.registros_filmes:
                             if registro_filme == registro_salvos_conf[0]:
-                                print(f'Codigo já registrado [{registro_salvos_conf[1]}]')
+                                print(f'Codigo {registro_filme} já  esta registrado [{registro_salvos_conf[1]}]')
                                 print(self.linhas_aparencia)
                                 aperte_enter()
                                 self.quebra_loop = False
                                 break
                             else:
                                 self.quebra_loop = True  # Se o codigo não existir no registro, pode ser usado
-                                print(f'Código [{registro_filme}] sendo registrado!')
-                                sleep(1)
-                    if self.quebra_loop:
-                        break
+                        if self.quebra_loop:
+                            print(f'Código [{registro_filme}] sendo registrado!')
+                            sleep(1)
+                            break
 
                 if self.quebra_loop:
                     nome_filme_cadastro = input('Titulo: ')
