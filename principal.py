@@ -152,12 +152,33 @@ class SalaCinema:
             aperte_enter()
 
         def cadastrando_filmes():
+            """
+            :param: loop_listagem_arquivo: linha da função vai pega as informações dos filmes já cadastrados.
+            :param: loop_principal_1: basicamente abrange toda função
+            :param: loop_principal_2: esses parametros são responsavel por coletar as informações para a variavel
+             registro_filmes e verificar se esta fora do padrão, e logo depois se possui duplicidade como descrito na
+             proxima linha;
+            :param: loop_registro: serve para coletar o número do registro e colocar variavel registro_filme, caso
+            o registro não esteja com o parametro de 4 digitos, ele vai solicitar que digite novamente
+            :param: loop_verificacao_duplicidade: depois que o loop_registro der tudo certo, ainda dentro do loop_registro,
+             vai para o próximo paramentro, aqui ele vai buscar no objeto self.registros_filmes e ira verificar se
+             o código que você digitou está já cadastrado, caso o codigo já esteja cadastrado, o loop quebra e
+             volta para o loop_registro.
+            :param: coleta_informacoes: apos todos os parametros estarem corretos, mas alinhas acima, o obejto
+            self.quebra_loop ira receber que a condição é verdadeira e ira proceguir solicitando que adminitrador
+            registre mais informações sobre o filme.
+            :return: Apos tudo está finalizado, as informações serão salvas no arquivo "FILMES_CADASTRADOS.txt"
+            """
             global abrindo_cadastro_filmes
             func_logo_cinema('AREA DE CADASTRO DE FILMES')
             lendo_dados_no_arq_filmes_txt()
+
+            # loop_listagem_arquivo
             for registro_salvos in self.registros_filmes:
                 print(f' Registro: [{registro_salvos[0]}] - [{registro_salvos[1]}]')
             print(self.linhas_aparencia)
+
+            # loop_principal_1
             while True:
                 try:
                     abrindo_cadastro_filmes = open(arq_cadastro_filmes_local_txt, 'a')
@@ -165,7 +186,11 @@ class SalaCinema:
                     criando_arq_cadastro_filmes_txt = open(arq_cadastro_filmes_local_txt, 'w')
                     criando_arq_cadastro_filmes_txt.close()
                 else:
+
+                    # loop_principal_2
                     while True:
+
+                        # loop_registro
                         while True:
                             registro_filme = str(input('Número de registro: '))
                             if len(registro_filme) != 4:
@@ -176,6 +201,8 @@ class SalaCinema:
                             else:
                                 print(self.linhas_aparencia)
                                 break
+
+                        # loop_verificacao_duplicidade
                         for registro_salvos_conf in self.registros_filmes:
                             if registro_filme == registro_salvos_conf[0]:
                                 print(f'Codigo {registro_filme} já esta registrado [{registro_salvos_conf[1]}]')
@@ -190,6 +217,7 @@ class SalaCinema:
                             sleep(1)
                             break
 
+                # coleta_informacoes
                 if self.quebra_loop:
                     nome_filme_cadastro = input('Titulo: ')
                     genero_filme_cadastro = input('Genero: ')
