@@ -173,7 +173,7 @@ class SalaCinema:
                                   'O registro precisa possui 4 números!')
                             aperte_enter()
                         else:
-
+                            lendo_dados_no_arq_filmes_txt()
                             for registro_salvos_conf in self.registros_filmes:
                                 if registro_filme == registro_salvos_conf[0]:
                                     print(f'O [{registro_salvos_conf[0]}] codigo já existe um filme registrado '
