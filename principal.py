@@ -154,6 +154,11 @@ class SalaCinema:
 
         def cadastrando_filmes():
             global abrindo_cadastro_filmes
+            func_logo_cinema('AREA DE CADASTRO DE FILMES')
+            lendo_dados_no_arq_filmes_txt()
+            for registro_salvos in self.registros_filmes:
+                print(f' Registro: [{registro_salvos[0]}] - [{registro_salvos[1]}]')
+            print(self.linhas_aparencia)
             while True:
                 try:
                     abrindo_cadastro_filmes = open(arq_cadastro_filmes_local_txt, 'a')
@@ -161,15 +166,12 @@ class SalaCinema:
                     criando_arq_cadastro_filmes_txt = open(arq_cadastro_filmes_local_txt, 'w')
                     criando_arq_cadastro_filmes_txt.close()
                 else:
-                    func_logo_cinema('AREA DE CADASTRO DE FILMES')
-                    print(self.linhas_aparencia)
-                    lendo_dados_no_arq_filmes_txt()
-                    for registro_salvos in self.registros_filmes:
-                        print(f' Registro: [{registro_salvos[0]}] - [{registro_salvos[1]}]')
                     while True:
                         registro_filme = str(input('Número de registro: '))
                         if len(registro_filme) != 4:
-                            print('Registro fora padrão. O registro precisa possui 4 números!')
+                            print('Registro fora padrão. '
+                                  'O registro precisa possui 4 números!')
+                            aperte_enter()
                             self.quebra_loop = False
 
                         if not self.quebra_loop:
@@ -177,7 +179,7 @@ class SalaCinema:
 
                         for registro_salvos_conf in self.registros_filmes:
                             if registro_filme == registro_salvos_conf[0]:
-                                print(f'Esse codigo já existe, esta registro para o filme {registro_salvos_conf[1]}')
+                                print(f'Esse codigo já existe, esta registro para o filme [{registro_salvos_conf[1]}]')
                                 self.quebra_loop = False
                                 break
                             else:
@@ -186,24 +188,28 @@ class SalaCinema:
 
                         if not self.quebra_loop:
                             break
-
-                        nome_filme_cadastro = input('Titulo: ')
-                        genero_filme_cadastro = input('Genero: ')
-                        duracao_filme_cadastro = input('Duração: ')
-                        classificacao_filme_cadastro = leiaInt('Classificação: ')
-                        sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
-                        abrindo_cadastro_filmes.write(f'{nome_filme_cadastro};{genero_filme_cadastro};'
-                                                      f'{duracao_filme_cadastro};{classificacao_filme_cadastro};'
-                                                      f'{sinopse_filme_cadastro} \n')
-                        print('Filme cadastrado com sucesso')
-                        print(self.linhas_aparencia)
-                        aperte_enter()
-                        abrindo_cadastro_filmes.close()
-                        resp_cadastro_filme = input('Cadastrar outro filme? [S/N]: ').upper()
-                        if resp_cadastro_filme == 'N':
-                            print('Voltando ao menu...')
-                            sleep(1)
-                            break
+                            
+                    nome_filme_cadastro = input('Titulo: ')
+                    genero_filme_cadastro = input('Genero: ')
+                    duracao_filme_cadastro = input('Duração (min): ')
+                    classificacao_filme_cadastro = leiaInt('Classificação(anos): ')
+                    sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
+                    abrindo_cadastro_filmes.write(f'{registro_filme};'
+                                                  f'{nome_filme_cadastro};'
+                                                  f'{genero_filme_cadastro};'
+                                                  f'{duracao_filme_cadastro};'
+                                                  f'{classificacao_filme_cadastro};'
+                                                  f'{sinopse_filme_cadastro} \n')
+                    print('Filme cadastrado com sucesso')
+                    sleep(1)
+                    print(self.linhas_aparencia)
+                    aperte_enter()
+                    abrindo_cadastro_filmes.close()
+                    resp_cadastro_filme = input('Cadastrar outro filme? [S/N]: ').upper()
+                if resp_cadastro_filme == 'N':
+                    print('Voltando ao menu...')
+                    sleep(1)
+                    break
 
         def aperte_enter():
             """
