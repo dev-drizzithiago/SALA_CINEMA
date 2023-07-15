@@ -178,7 +178,7 @@ class SalaCinema:
                                 break
                         for registro_salvos_conf in self.registros_filmes:
                             if registro_filme == registro_salvos_conf[0]:
-                                print(f'Codigo {registro_filme} já  esta registrado [{registro_salvos_conf[1]}]')
+                                print(f'Codigo {registro_filme} já esta registrado [{registro_salvos_conf[1]}]')
                                 print(self.linhas_aparencia)
                                 aperte_enter()
                                 self.quebra_loop = False
