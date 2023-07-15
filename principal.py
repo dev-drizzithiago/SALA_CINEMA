@@ -172,23 +172,22 @@ class SalaCinema:
                             print('Registro fora padrão. '
                                   'O registro precisa possui 4 números!')
                             aperte_enter()
-                            self.quebra_loop = False
+                        else:
 
-                        if not self.quebra_loop:
-                            break
+                            for registro_salvos_conf in self.registros_filmes:
+                                if registro_filme == registro_salvos_conf[0]:
+                                    print(f'O [{registro_salvos_conf[0]}] codigo já existe um filme registrado '
+                                          f'[{registro_salvos_conf[1]}]')
+                                    self.quebra_loop = False
+                                    break
+                                else:
+                                    print('Registrando novo código!')
+                                    sleep(1)
+                                    self.quebra_loop = True
+                                    break
 
-                        for registro_salvos_conf in self.registros_filmes:
-                            if registro_filme == registro_salvos_conf[0]:
-                                print(f'Esse codigo já existe, esta registro para o filme [{registro_salvos_conf[1]}]')
-                                self.quebra_loop = False
-                                break
-                            else:
-                                self.quebra_loop = True
-                                break
 
-                        if not self.quebra_loop:
-                            break
-                            
+                if self.quebra_loop:
                     nome_filme_cadastro = input('Titulo: ')
                     genero_filme_cadastro = input('Genero: ')
                     duracao_filme_cadastro = input('Duração (min): ')
@@ -206,9 +205,12 @@ class SalaCinema:
                     aperte_enter()
                     abrindo_cadastro_filmes.close()
                     resp_cadastro_filme = input('Cadastrar outro filme? [S/N]: ').upper()
-                if resp_cadastro_filme == 'N':
-                    print('Voltando ao menu...')
-                    sleep(1)
+                    if resp_cadastro_filme == 'N':
+                        print('Voltando ao menu...')
+                        sleep(1)
+                        break
+                else:
+                    aperte_enter()
                     break
 
         def aperte_enter():
