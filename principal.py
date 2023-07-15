@@ -79,10 +79,10 @@ class SalaCinema:
             """
             Area destinada a gravar os filmes que ficaram em cartaz.
             :param: func_data_atual() atualiza no sistema a data atual, coloca no objeto self.data_atual
-            :param: lendo_dados_no_arq-filmes_txt() atualiza as informações dos filmes que estão no cadastrados, as
+            :param: lendo_dados_no_arq-filmes_txt() atualiza as informações dos filmes que estão cadastrados, as
             informações são gravadas no obejto "self.lista_filmes_cadastrado"
 
-            obs: Verificar duplicidade no registro dos filmes
+            “obs”: Verificar duplicidade no registro dos filmes
 
             :return:
             """
@@ -127,8 +127,7 @@ class SalaCinema:
                     dia = int(data_limite_reserva[0])
                     total_dias = str(dias_cartaz + dia)
                     periodo_cartaz = f'{total_dias}_{data_limite_reserva[1]}_{data_limite_reserva[2]}'
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + periodo_cartaz + ')' + ' - ' \
-                                        + codigo[1] + '.txt')
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + periodo_cartaz + ')' + ' - ' + codigo[1] + '.txt')
                     aperte_enter()
 
                     try:
@@ -957,7 +956,7 @@ class SalaCinema:
                     f"""
                           Hora certa
             |                                     |
-            |         {self.data_atual} - {self.hora_atual}         |
+            |         {self.data_atual} - {self.hora_atual}       |
             |_____________________________________|
             {self.linhas_aparencia}            
             | [1] | Escolha um filme
@@ -1027,7 +1026,7 @@ class SalaCinema:
                 f'''
                       Hora certa
         |                                     |
-        |         {self.data_atual} - {self.hora_atual}         |
+        |         {self.data_atual} - {self.hora_atual}       |
         |_____________________________________|
         {self.linhas_aparencia}
         | [1] |  Area do CLIENTE      
