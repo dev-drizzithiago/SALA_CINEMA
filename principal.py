@@ -116,7 +116,6 @@ class SalaCinema:
                     print('deu certo')
                     aperte_enter()
 
-
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
                     print()
@@ -167,25 +166,29 @@ class SalaCinema:
                     criando_arq_cadastro_filmes_txt.close()
                 else:
                     while True:
-                        registro_filme = str(input('Número de registro: '))
-                        if len(registro_filme) != 4:
-                            print('Registro fora padrão. '
-                                  'O registro precisa possui 4 números!')
-                            aperte_enter()
-                        else:
-                            lendo_dados_no_arq_filmes_txt()
-                            for registro_salvos_conf in self.registros_filmes:
-                                if registro_filme == registro_salvos_conf[0]:
-                                    print(f'O [{registro_salvos_conf[0]}] codigo já existe um filme registrado '
-                                          f'[{registro_salvos_conf[1]}]')
-                                    self.quebra_loop = False
-                                    break
-                                else:
-                                    print('Registrando novo código!')
-                                    sleep(1)
-                                    self.quebra_loop = True
-                                    break
-
+                        while True:
+                            registro_filme = str(input('Número de registro: '))
+                            if len(registro_filme) != 4:
+                                print('Registro fora padrão. '
+                                      'O registro precisa possui 4 números!')
+                                print(self.linhas_aparencia)
+                                aperte_enter()
+                            else:
+                                break
+                        print(self.registros_filmes)
+                        for registro_salvos_conf in self.registros_filmes:
+                            if registro_filme == registro_salvos_conf[0]:
+                                print(f'Codigo já registrado [{registro_salvos_conf[1]}]')
+                                print(self.linhas_aparencia)
+                                aperte_enter()
+                                self.quebra_loop = False
+                                break
+                            else:
+                                self.quebra_loop = True  # Se o codigo não existir no registro, pode ser usado
+                                print(f'Código [{registro_filme}] sendo registrado!')
+                                sleep(1)
+                    if self.quebra_loop:
+                        break
 
                 if self.quebra_loop:
                     nome_filme_cadastro = input('Titulo: ')
