@@ -88,6 +88,8 @@ class SalaCinema:
             """
             func_data_atual()
             lendo_dados_no_arq_filmes_txt()
+
+            # loop_listando_filmes_cadastrados
             for lista_filmes in self.lista_filme_cadastrado:
                 print(self.linhas_aparencia)
                 print(
@@ -108,14 +110,13 @@ class SalaCinema:
             print('Digite o código do filme para reserva-lo!')
             cod_filme = leiaInt('Cod:')
             print(self.linhas_aparencia)
+
+            # loop_lista_filmes_cartaz
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
-                valor_format_01 = valor_listagem.split('-')
-                valor_codigo = valor_format_01[0]
-                if cod_filme == valor_codigo:
-                    print('deu certo')
-                    aperte_enter()
+                print(valor_listagem)
 
+            # loop_registro_filme_cartaz
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
                     print()
