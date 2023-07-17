@@ -108,8 +108,13 @@ class SalaCinema:
             print(self.linhas_aparencia)
             print()
             print('Digite o código do filme para reserva-lo!')
-            cod_filme = leiaInt('Cod:')
+            valor_codigo_filme = leiaInt('Cod:')
             print(self.linhas_aparencia)
+            valor_cod_formt = str(valor_codigo_filme)
+            if len(valor_cod_formt) == 1:
+                cod_filme = "0" + "0" + "0" + valor_cod_formt
+            elif len(valor_cod_formt) == 2:
+                cod_filme = '0' + '0' + valor_cod_formt
 
             # loop_lista_verifica_filmes_cartaz
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
