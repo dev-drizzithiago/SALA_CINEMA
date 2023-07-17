@@ -79,15 +79,18 @@ class SalaCinema:
             """
             Area destinada a gravar os filmes que ficaram em cartaz.
             :param: func_data_atual() atualiza no sistema a data atual, coloca no objeto self.data_atual
-            :param: lendo_dados_no_arq-filmes_txt() atualiza as informações dos filmes que estão cadastrados, as
+            :param: lendo_dados_no_arq-filmes_txt() atualiza as informações dos filmes que estão no cadastrados, as
             informações são gravadas no obejto "self.lista_filmes_cadastrado"
 
-            “obs”: Verificar duplicidade no registro dos filmes
+            obs: Verificar duplicidade no registro dos filmes
 
             :return:
             """
+            global cod_filme
             func_data_atual()
             lendo_dados_no_arq_filmes_txt()
+
+            # loop_listando_filmes_cadastrados
             for lista_filmes in self.lista_filme_cadastrado:
                 print(self.linhas_aparencia)
                 print(
@@ -105,35 +108,45 @@ class SalaCinema:
                         print(f'')
             print(self.linhas_aparencia)
             print()
-            print('Digite o código do filme para reserva-lo')
-            cod_filme = leiaInt('Cod:')
+            print('Digite o código do filme para reserva-lo!')
+            valor_codigo_filme = leiaInt('Cod:')
             print(self.linhas_aparencia)
+            valor_cod_formt = str(valor_codigo_filme)
+            if len(valor_cod_formt) == 1:
+                cod_filme = "0" + "0" + "0" + valor_cod_formt
+            elif len(valor_cod_formt) == 2:
+                cod_filme = '0' + '0' + valor_cod_formt
+            elif len(valor_cod_formt) == 3:
+                cod_filme = '0' + valor_cod_formt
+            print(cod_filme)
+
+            # loop_lista_verifica_filmes_cartaz
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
-                valor_format_01 = valor_listagem.split('-')
-                valor_codigo = valor_format_01[0]
-                if cod_filme == valor_codigo:
+                valor_formt_list = valor_listagem.split('-')
+                valor_codigo = valor_formt_list[0]
+
+
+                if valor_codigo == cod_filme:
                     print('deu certo')
                     aperte_enter()
 
+            # loop_registro_filme_cartaz
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
                     print()
-                    print(f'Você colocou em cartaz o seguinte filme:\n'
-                          f'Titulo:{codigo[1]}, Duração: {codigo[3]} minutos')
+                    print(f' Entrando em cartaz o filme...:\n'
+                          f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
 
-                    dias_cartaz = leiaInt('Periodo de tempo que o filme ficara em cartaz (Em dias): ')
-                    data_limite_reserva = str(self.data_atual).split('/')
-                    dia = int(data_limite_reserva[0])
-                    total_dias = str(dias_cartaz + dia)
-                    periodo_cartaz = f'{total_dias}_{data_limite_reserva[1]}_{data_limite_reserva[2]}'
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + periodo_cartaz + ')' + ' - ' + codigo[1] + '.txt')
+                    valor_fim_cartaz = input('Periodo de tempo que o filme ficara em cartaz (dd/mm/aaaa): ')
+                    data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
+                                        + codigo[1] + '.txt')
                     aperte_enter()
-
                     try:
                         verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
                         print()
-                        print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{periodo_cartaz}]')
+                        print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{valor_fim_cartaz}]')
                         verif_arq_cartaz.close()
 
                     except FileNotFoundError:
@@ -956,7 +969,7 @@ class SalaCinema:
                     f"""
                           Hora certa
             |                                     |
-            |         {self.data_atual} - {self.hora_atual}       |
+            |         {self.data_atual} - {self.hora_atual}         |
             |_____________________________________|
             {self.linhas_aparencia}            
             | [1] | Escolha um filme
@@ -1026,7 +1039,7 @@ class SalaCinema:
                 f'''
                       Hora certa
         |                                     |
-        |         {self.data_atual} - {self.hora_atual}       |
+        |         {self.data_atual} - {self.hora_atual}         |
         |_____________________________________|
         {self.linhas_aparencia}
         | [1] |  Area do CLIENTE      
