@@ -105,7 +105,7 @@ class SalaCinema:
                         print(f'')
             print(self.linhas_aparencia)
             print()
-            print('Digite o código do filme para reserva-lo')
+            print('Digite o código do filme para reserva-lo!')
             cod_filme = leiaInt('Cod:')
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
@@ -119,22 +119,18 @@ class SalaCinema:
             for codigo in self.lista_filme_cadastrado:
                 if cod_filme == int(codigo[0]):
                     print()
-                    print(f'Você colocou em cartaz o seguinte filme:\n'
-                          f'Titulo:{codigo[1]}, Duração: {codigo[3]} minutos')
+                    print(f' Entrando em cartaz o filme...:\n'
+                          f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
 
-                    dias_cartaz = leiaInt('Periodo de tempo que o filme ficara em cartaz (Em dias): ')
-                    data_limite_reserva = str(self.data_atual).split('/')
-                    dia = int(data_limite_reserva[0])
-                    total_dias = str(dias_cartaz + dia)
-                    periodo_cartaz = f'{total_dias}_{data_limite_reserva[1]}_{data_limite_reserva[2]}'
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + periodo_cartaz + ')' + ' - ' \
+                    valor_fim_cartaz = input('Periodo de tempo que o filme ficara em cartaz (dd/mm/aaaa): ')
+                    data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
+                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
                                         + codigo[1] + '.txt')
                     aperte_enter()
-
                     try:
                         verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
                         print()
-                        print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{periodo_cartaz}]')
+                        print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{valor_fim_cartaz}]')
                         verif_arq_cartaz.close()
 
                     except FileNotFoundError:
