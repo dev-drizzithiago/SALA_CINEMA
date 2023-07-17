@@ -111,10 +111,12 @@ class SalaCinema:
             cod_filme = leiaInt('Cod:')
             print(self.linhas_aparencia)
 
-            # loop_lista_filmes_cartaz
+            # loop_lista_verifica_filmes_cartaz
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
-                print(valor_listagem)
+                valor_formt_list = valor_listagem.split('-')
+                valor_formt_codigo = valor_formt_list[0]
+                print(valor_formt_codigo)
 
             # loop_registro_filme_cartaz
             for codigo in self.lista_filme_cadastrado:
