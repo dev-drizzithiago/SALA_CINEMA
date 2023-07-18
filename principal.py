@@ -81,7 +81,9 @@ class SalaCinema:
             :param: func_data_atual() atualiza no sistema a data atual, coloca no objeto self.data_atual
             :param: lendo_dados_no_arq-filmes_txt() atualiza as informações dos filmes que estão no cadastrados, as
             informações são gravadas no obejto "self.lista_filmes_cadastrado"
-
+            :param: loop_listando_filmes_cadastrados:
+            :param: loop_lista_verifica_filmes_cartaz:
+            :param: loop_registro_filme_cartaz:
             obs: Verificar duplicidade no registro dos filmes
 
             :return:
