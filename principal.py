@@ -118,15 +118,12 @@ class SalaCinema:
                 cod_filme = '0' + '0' + valor_cod_formt
             elif len(valor_cod_formt) == 3:
                 cod_filme = '0' + valor_cod_formt
-            print(cod_filme)
 
             # loop_lista_verifica_filmes_cartaz
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
                 valor_codigo = valor_formt_list[0]
-
-
                 if valor_codigo == cod_filme:
                     print('deu certo')
                     aperte_enter()
