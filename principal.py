@@ -126,8 +126,13 @@ class SalaCinema:
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
                 valor_codigo = valor_formt_list[0]
+                print(valor_listagem)
+                print(valor_codigo)
                 if valor_codigo == cod_filme:
                     print('deu certo')
+                    aperte_enter()
+                else:
+                    print('náo deu certo')
                     aperte_enter()
 
             # loop_registro_filme_cartaz
