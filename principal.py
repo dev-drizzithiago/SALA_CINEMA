@@ -46,216 +46,6 @@ class SalaCinema:
             :return:
             """
 
-        def func_listando_filmes_cartaz():
-            """
-            Função destinadas em lista os filmes que estiverem em cartaz.
-            :return:
-            """
-            func_data_atual()
-            filmes_listados = listdir(arq_filmes_em_cartazes_local_pasta)
-            if len(filmes_listados) == 0:
-                print('Não encontrei nenhum filme em cartaz!')
-            else:
-                for filmes in filmes_listados:
-                    valor_form_filme_01 = filmes.replace('.txt', '')
-                    valor_form_filme_02 = valor_form_filme_01.split('-')
-                    valor_titulo_listando = valor_form_filme_02[2]
-                    valor_data_listando = valor_form_filme_02[1].replace('_', '/').replace('(', '').replace(')', '')
-                    print(self.linhas_aparencia)
-                    lista = filmes.split('-')
-                    data_termino_formatado = lista[1].replace('_', '/').replace('(', '').replace(')', '').strip()
-                    fim_cartaz = data_termino_formatado
-                    if self.data_atual == fim_cartaz:
-                        print(f'O filme [{valor_form_filme_01}] está em seu ultimo dia!')
-                    elif self.data_atual > fim_cartaz:
-                        remove(str(arq_filmes_em_cartazes_local_pasta + '/' + filmes))
-                        print(f'Filme [{valor_form_filme_01}] saiu de cartaz!!')
-                    else:
-                        print(f'O filme [{valor_titulo_listando}] ficara em cartaz até o dia {valor_data_listando}')
-            print(self.linhas_aparencia)
-            aperte_enter()
-
-        def gravando_filmes_em_cartaz():
-            """
-            Area destinada a gravar os filmes que ficaram em cartaz.
-            :param: func_data_atual() atualiza no sistema a data atual, coloca no objeto self.data_atual
-            :param: lendo_dados_no_arq-filmes_txt() atualiza as informações dos filmes que estão no cadastrados, as
-            informações são gravadas no obejto "self.lista_filmes_cadastrado"
-
-            obs: Verificar duplicidade no registro dos filmes
-
-            :return:
-            """
-            global cod_filme
-            func_data_atual()
-            lendo_dados_no_arq_filmes_txt()
-
-            # loop_listando_filmes_cadastrados
-            for lista_filmes in self.lista_filme_cadastrado:
-                print(self.linhas_aparencia)
-                print(
-                    f'Registro: {lista_filmes[0]} \n'
-                    f'Titulo: {lista_filmes[1]} \n'
-                    f'Genero: {lista_filmes[2]} \n'
-                    f'Duração: {lista_filmes[3]} minutos \n'
-                    f'Classificação: {lista_filmes[4]} \n'
-                    f'Sinopse:')
-                for valor_sinopse in lista_filmes[5]:
-                    if valor_sinopse != '.':
-                        valor_str = str(valor_sinopse).title()
-                        print(f'{valor_str}', end='')
-                    else:
-                        print(f'')
-            print(self.linhas_aparencia)
-            print()
-            print('Digite o código do filme para reserva-lo!')
-            valor_codigo_filme = leiaInt('Cod:')
-            print(self.linhas_aparencia)
-            valor_cod_formt = str(valor_codigo_filme)
-            if len(valor_cod_formt) == 1:
-                cod_filme = "0" + "0" + "0" + valor_cod_formt
-            elif len(valor_cod_formt) == 2:
-                cod_filme = '0' + '0' + valor_cod_formt
-            elif len(valor_cod_formt) == 3:
-                cod_filme = '0' + valor_cod_formt
-            print(cod_filme)
-
-            # loop_lista_verifica_filmes_cartaz
-            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
-            for valor_listagem in listando_filmes_cartaz:
-                valor_formt_list = valor_listagem.split('-')
-                valor_codigo = valor_formt_list[0]
-
-
-                if valor_codigo == cod_filme:
-                    print('deu certo')
-                    aperte_enter()
-
-            # loop_registro_filme_cartaz
-            for codigo in self.lista_filme_cadastrado:
-                if cod_filme == int(codigo[0]):
-                    print()
-                    print(f' Entrando em cartaz o filme...:\n'
-                          f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
-
-                    valor_fim_cartaz = input('Periodo de tempo que o filme ficara em cartaz (dd/mm/aaaa): ')
-                    data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
-                                        + codigo[1] + '.txt')
-                    aperte_enter()
-                    try:
-                        verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
-                        print()
-                        print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{valor_fim_cartaz}]')
-                        verif_arq_cartaz.close()
-
-                    except FileNotFoundError:
-                        print('Registrando filme... aguarde!')
-                        sleep(2)
-                        try:
-                            gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
-                            gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]} \n')
-                            sleep(1)
-                            print('Filme registrado com sucesso!!')
-                        except:
-                            sleep(2)
-                            print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
-            print(self.linhas_aparencia)
-            aperte_enter()
-
-        def cadastrando_filmes():
-            """
-            :param: loop_listagem_arquivo: linha da função vai pega as informações dos filmes já cadastrados.
-            :param: loop_principal_1: basicamente abrange toda função
-            :param: loop_principal_2: esses parametros são responsavel por coletar as informações para a variavel
-             registro_filmes e verificar se esta fora do padrão, e logo depois se possui duplicidade como descrito na
-             proxima linha;
-            :param: loop_registro: serve para coletar o número do registro e colocar variavel registro_filme, caso
-            o registro não esteja com o parametro de 4 digitos, ele vai solicitar que digite novamente
-            :param: loop_verificacao_duplicidade: depois que o loop_registro der tudo certo, ainda dentro do loop_registro,
-             vai para o próximo paramentro, aqui ele vai buscar no objeto self.registros_filmes e ira verificar se
-             o código que você digitou está já cadastrado, caso o codigo já esteja cadastrado, o loop quebra e
-             volta para o loop_registro.
-            :param: coleta_informacoes: apos todos os parametros estarem corretos, mas alinhas acima, o obejto
-            self.quebra_loop ira receber que a condição é verdadeira e ira proceguir solicitando que adminitrador
-            registre mais informações sobre o filme.
-            :return: Apos tudo está finalizado, as informações serão salvas no arquivo "FILMES_CADASTRADOS.txt"
-            """
-            global abrindo_cadastro_filmes
-            func_logo_cinema('AREA DE CADASTRO DE FILMES')
-            lendo_dados_no_arq_filmes_txt()
-
-            # loop_listagem_arquivo
-            for registro_salvos in self.registros_filmes:
-                print(f' Registro: [{registro_salvos[0]}] - [{registro_salvos[1]}]')
-            print(self.linhas_aparencia)
-
-            # loop_principal_1
-            while True:
-                try:
-                    abrindo_cadastro_filmes = open(arq_cadastro_filmes_local_txt, 'a')
-                except FileNotFoundError:
-                    criando_arq_cadastro_filmes_txt = open(arq_cadastro_filmes_local_txt, 'w')
-                    criando_arq_cadastro_filmes_txt.close()
-                else:
-
-                    # loop_principal_2
-                    while True:
-
-                        # loop_registro
-                        while True:
-                            registro_filme = str(input('Número de registro: '))
-                            if len(registro_filme) != 4:
-                                print('Registro fora padrão. '
-                                      'O registro precisa possui 4 números!')
-                                print(self.linhas_aparencia)
-                                aperte_enter()
-                            else:
-                                print(self.linhas_aparencia)
-                                break
-
-                        # loop_verificacao_duplicidade
-                        for registro_salvos_conf in self.registros_filmes:
-                            if registro_filme == registro_salvos_conf[0]:
-                                print(f'Codigo {registro_filme} já esta registrado [{registro_salvos_conf[1]}]')
-                                print(self.linhas_aparencia)
-                                aperte_enter()
-                                self.quebra_loop = False
-                                break
-                            else:
-                                self.quebra_loop = True  # Se o codigo não existir no registro, pode ser usado
-                        if self.quebra_loop:
-                            print(f'Código [{registro_filme}] sendo registrado!')
-                            sleep(1)
-                            break
-
-                # coleta_informacoes
-                if self.quebra_loop:
-                    nome_filme_cadastro = input('Titulo: ')
-                    genero_filme_cadastro = input('Genero: ')
-                    duracao_filme_cadastro = input('Duração (min): ')
-                    classificacao_filme_cadastro = leiaInt('Classificação(anos): ')
-                    sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
-                    abrindo_cadastro_filmes.write(f'{registro_filme};'
-                                                  f'{nome_filme_cadastro};'
-                                                  f'{genero_filme_cadastro};'
-                                                  f'{duracao_filme_cadastro};'
-                                                  f'{classificacao_filme_cadastro};'
-                                                  f'{sinopse_filme_cadastro} \n')
-                    print('Filme cadastrado com sucesso')
-                    sleep(1)
-                    print(self.linhas_aparencia)
-                    aperte_enter()
-                    abrindo_cadastro_filmes.close()
-                    resp_cadastro_filme = input('Cadastrar outro filme? [S/N]: ').upper()
-                    if resp_cadastro_filme == 'N':
-                        print('Voltando ao menu...')
-                        sleep(1)
-                        break
-                else:
-                    aperte_enter()
-                    break
-
         def aperte_enter():
             """
             :return: Retorna uma entrada de teclado, para dar uma pausa até o usuário decidir continuar
@@ -442,6 +232,35 @@ class SalaCinema:
             except:
                 return False
 
+        def func_listando_filmes_cartaz():
+            """
+            Função destinadas em lista os filmes que estiverem em cartaz.
+            :return:
+            """
+            func_data_atual()
+            filmes_listados = listdir(arq_filmes_em_cartazes_local_pasta)
+            if len(filmes_listados) == 0:
+                print('Não encontrei nenhum filme em cartaz!')
+            else:
+                for filmes in filmes_listados:
+                    valor_form_filme_01 = filmes.replace('.txt', '')
+                    valor_form_filme_02 = valor_form_filme_01.split('-')
+                    valor_titulo_listando = valor_form_filme_02[2]
+                    valor_data_listando = valor_form_filme_02[1].replace('_', '/').replace('(', '').replace(')', '')
+                    print(self.linhas_aparencia)
+                    lista = filmes.split('-')
+                    data_termino_formatado = lista[1].replace('_', '/').replace('(', '').replace(')', '').strip()
+                    fim_cartaz = data_termino_formatado
+                    if self.data_atual == fim_cartaz:
+                        print(f'O filme [{valor_form_filme_01}] está em seu ultimo dia!')
+                    elif self.data_atual > fim_cartaz:
+                        remove(str(arq_filmes_em_cartazes_local_pasta + '/' + filmes))
+                        print(f'Filme [{valor_form_filme_01}] saiu de cartaz!!')
+                    else:
+                        print(f'O filme [{valor_titulo_listando}] ficara em cartaz até o dia {valor_data_listando}')
+            print(self.linhas_aparencia)
+            aperte_enter()    
+
         def criando_arq_cadastro_cliente():
             """
             Após receber a informação de que o arquivo não existe. Essa função cria o arquivo no caminho solicitado.
@@ -534,6 +353,121 @@ class SalaCinema:
                 gravando_reserva.close()
             except:
                 print('Não foi possível abrir o arquivo de texto para salvar sua reserva!')
+
+        def gravando_filmes_em_cartaz():
+            """
+            Area destinada a gravar os filmes que ficaram em cartaz.
+            :param: func_data_atual() atualiza no sistema a data atual, coloca no objeto self.data_atual
+            :param: lendo_dados_no_arq-filmes_txt() atualiza as informações dos filmes que estão no cadastrados, as
+            informações são gravadas no obejto "self.lista_filmes_cadastrado"
+            :param: loop_listando_filmes_cadastrados:
+            :param: loop_lista_verifica_filmes_cartaz: esse loop é responsavel por analisar se o filme esta em cartaz.
+            O programa lista a pasta responsavel e caso encontre o codigo do filme na pasta, o objeto self.'quebra_loop'
+            passa a ter o valor 'True' e quabra do loop loop_cadastrando_filme_cartaz. Caso o filme não estaje na lista
+            o objeto self.'quebra_loop' passa a ter o valor 'False' e continuar o cadastro.
+
+            :param: loop_registro_filme_cartaz:
+            obs: Verificar duplicidade no registro dos filmes
+
+            :return:
+            """
+            global cod_filme
+            func_data_atual()
+            lendo_dados_no_arq_filmes_txt()
+
+            # loop_listando_filmes_cadastrados
+            for lista_filmes in self.lista_filme_cadastrado:
+                print(self.linhas_aparencia)
+                print(
+                    f'Registro: {lista_filmes[0]} \n'
+                    f'Titulo: {lista_filmes[1]} \n'
+                    f'Genero: {lista_filmes[2]} \n'
+                    f'Duração: {lista_filmes[3]} minutos \n'
+                    f'Classificação: {lista_filmes[4]} \n'
+                    f'Sinopse:')
+                for valor_sinopse in lista_filmes[5]:
+                    if valor_sinopse != '.':
+                        valor_str = str(valor_sinopse).title()
+                        print(f'{valor_str}', end='')
+                    else:
+                        print(f'')
+            print(self.linhas_aparencia)
+            print()
+            print('Digite o código do filme para reserva-lo!')
+            valor_codigo_filme = leiaInt('Cod:')
+            print(self.linhas_aparencia)
+            valor_cod_formt = str(valor_codigo_filme)
+            if len(valor_cod_formt) == 1:
+                cod_filme = "0" + "0" + "0" + valor_cod_formt
+            elif len(valor_cod_formt) == 2:
+                cod_filme = '0' + '0' + valor_cod_formt
+            elif len(valor_cod_formt) == 3:
+                cod_filme = str('0' + valor_cod_formt)
+
+            # loop_lista_verifica_filmes_cartaz
+            """                            
+            :param: valor_listagem: valor 'str'
+            """
+            print(f'Codigo consultado {cod_filme}')
+            print(f'Filmes em cartaz ')
+            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
+            for valor_listagem in listando_filmes_cartaz:
+                valor_formt_list = valor_listagem.split('-')
+                valor_cod_list_str = valor_formt_list[0].strip()
+                valor_titulo_list_str = valor_formt_list[2].strip()
+                valor_data_list_str = valor_formt_list[1].replace('_', '/').strip()
+                print(f'[{valor_cod_list_str}] - {valor_titulo_list_str}')
+                if valor_cod_list_str == cod_filme:
+                    print(f"O filme que você digitou [{valor_titulo_list_str}] já esta em cartaz!\n"
+                          f"Ficara até o dia {valor_data_list_str}")
+                    print(self.linhas_aparencia)
+                    aperte_enter()
+                    # Se encontrou, é verdadeiro
+                    self.quebra_loop = True
+                else:
+                    self.quebra_loop = False
+
+            # loop_cadastrando_filme_cartaz
+            while True:
+                if self.quebra_loop:
+                    break
+                # loop_registro_filme_cartaz
+                for codigo in self.lista_filme_cadastrado:
+                    if int(cod_filme) == int(codigo[0]):
+                        print()
+                        print(f'Você vai coloca em cartaz o filme...:\n'
+                              f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
+
+                        valor_fim_cartaz = input('Até que dia o filme ficara em cartaz? (dd/mm/aaaa): ')
+                        data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
+                        arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
+                                            + codigo[1] + '.txt')
+                        try:
+                            verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
+                            print()
+                            print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{valor_fim_cartaz}]')
+                            print('Para continuar...')
+                            aperte_enter()
+                            verif_arq_cartaz.close()
+
+                        except FileNotFoundError:
+                            print('Registrando filme... aguarde!')
+                            sleep(2)
+                            try:
+                                gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
+                                gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]} \n')
+                                sleep(1)
+                                print('Filme registrado com sucesso!!')
+                                self.quebra_loop = True
+                            except:
+                                sleep(2)
+                                print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
+                                print('Analise o codigo')
+                                print(self.linhas_aparencia)
+                                aperte_enter()
+                                self.quebra_loop = True
+                print(self.linhas_aparencia)
+                aperte_enter()
 
         def lendo_dados_arq_cliente_txt():
             """
@@ -710,6 +644,99 @@ class SalaCinema:
                 resp = input('Realizar outro cadastro? [S/N]: ').upper()
                 if resp == 'N':
                     lendo_dados_arq_cliente_txt()
+                    break
+
+        def cadastrando_filmes():
+            """
+            :param: loop_listagem_arquivo: linha da função vai pega as informações dos filmes já cadastrados.
+            :param: loop_principal_1: basicamente abrange toda função
+            :param: loop_principal_2: esses parametros são responsavel por coletar as informações para a variavel
+             registro_filmes e verificar se esta fora do padrão, e logo depois se possui duplicidade como descrito na
+             proxima linha;
+            :param: loop_registro: serve para coletar o número do registro e colocar variavel registro_filme, caso
+            o registro não esteja com o parametro de 4 digitos, ele vai solicitar que digite novamente
+            :param: loop_verificacao_duplicidade: depois que o loop_registro der tudo certo, ainda dentro do loop_registro,
+             vai para o próximo paramentro, aqui ele vai buscar no objeto self.registros_filmes e ira verificar se
+             o código que você digitou está já cadastrado, caso o codigo já esteja cadastrado, o loop quebra e
+             volta para o loop_registro.
+            :param: coleta_informacoes: apos todos os parametros estarem corretos, mas alinhas acima, o obejto
+            self.quebra_loop ira receber que a condição é verdadeira e ira proceguir solicitando que adminitrador
+            registre mais informações sobre o filme.
+            :return: Apos tudo está finalizado, as informações serão salvas no arquivo "FILMES_CADASTRADOS.txt"
+            """
+            global abrindo_cadastro_filmes, registro_filme
+            func_logo_cinema('AREA DE CADASTRO DE FILMES')
+            lendo_dados_no_arq_filmes_txt()
+
+            # loop_listagem_arquivo
+            for registro_salvos in self.registros_filmes:
+                print(f' Registro: [{registro_salvos[0]}] - [{registro_salvos[1]}]')
+            print(self.linhas_aparencia)
+
+            # loop_principal_1
+            while True:
+                try:
+                    abrindo_cadastro_filmes = open(arq_cadastro_filmes_local_txt, 'a')
+                except FileNotFoundError:
+                    criando_arq_cadastro_filmes_txt = open(arq_cadastro_filmes_local_txt, 'w')
+                    criando_arq_cadastro_filmes_txt.close()
+                else:
+
+                    # loop_principal_2
+                    while True:
+
+                        # loop_registro
+                        while True:
+                            registro_filme = str(input('Número de registro: '))
+                            if len(registro_filme) != 4:
+                                print('Registro fora padrão. '
+                                      'O registro precisa possui 4 números!')
+                                print(self.linhas_aparencia)
+                                aperte_enter()
+                            else:
+                                print(self.linhas_aparencia)
+                                break
+
+                        # loop_verificacao_duplicidade
+                        for registro_salvos_conf in self.registros_filmes:
+                            if registro_filme == registro_salvos_conf[0]:
+                                print(f'Codigo {registro_filme} já esta registrado [{registro_salvos_conf[1]}]')
+                                print(self.linhas_aparencia)
+                                aperte_enter()
+                                self.quebra_loop = False
+                                break
+                            else:
+                                self.quebra_loop = True  # Se o codigo não existir no registro, pode ser usado
+                        if self.quebra_loop:
+                            print(f'Código [{registro_filme}] sendo registrado!')
+                            sleep(1)
+                            break
+
+                # coleta_informacoes
+                if self.quebra_loop:
+                    nome_filme_cadastro = input('Titulo: ')
+                    genero_filme_cadastro = input('Genero: ')
+                    duracao_filme_cadastro = input('Duração (min): ')
+                    classificacao_filme_cadastro = leiaInt('Classificação(anos): ')
+                    sinopse_filme_cadastro = str(input('Sinopse: ')).capitalize()
+                    abrindo_cadastro_filmes.write(f'{registro_filme};'
+                                                  f'{nome_filme_cadastro};'
+                                                  f'{genero_filme_cadastro};'
+                                                  f'{duracao_filme_cadastro};'
+                                                  f'{classificacao_filme_cadastro};'
+                                                  f'{sinopse_filme_cadastro} \n')
+                    print('Filme cadastrado com sucesso')
+                    sleep(1)
+                    print(self.linhas_aparencia)
+                    aperte_enter()
+                    abrindo_cadastro_filmes.close()
+                    resp_cadastro_filme = input('Cadastrar outro filme? [S/N]: ').upper()
+                    if resp_cadastro_filme == 'N':
+                        print('Voltando ao menu...')
+                        sleep(1)
+                        break
+                else:
+                    aperte_enter()
                     break
 
         # Corpo do programa
