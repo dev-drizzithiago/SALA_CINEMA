@@ -129,6 +129,7 @@ class SalaCinema:
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
                 valor_cod_list_str = valor_formt_list[0]
+                print(f'Codigo consultado {cod_filme}')
                 if valor_cod_list_str == cod_filme:
                     print("Filme já esta em cartaz!")
                 else:
@@ -161,8 +162,8 @@ class SalaCinema:
                                 except:
                                     sleep(2)
                                     print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
-                    print(self.linhas_aparencia)
-                    aperte_enter()
+                print(self.linhas_aparencia)
+                aperte_enter()
 
         def cadastrando_filmes():
             """
