@@ -119,7 +119,7 @@ class SalaCinema:
             elif len(valor_cod_formt) == 2:
                 cod_filme = '0' + '0' + valor_cod_formt
             elif len(valor_cod_formt) == 3:
-                cod_filme = '0' + valor_cod_formt
+                cod_filme = str('0' + valor_cod_formt)
 
             # loop_lista_verifica_filmes_cartaz
             """                            
@@ -129,40 +129,40 @@ class SalaCinema:
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
                 valor_cod_list_str = valor_formt_list[0]
+                if valor_cod_list_str == cod_filme:
+                    print("Filme já esta em cartaz!")
+                else:
+                    # loop_registro_filme_cartaz
+                    for codigo in self.lista_filme_cadastrado:
+                        if int(cod_filme) == int(codigo[0]):
+                            print()
+                            print(f'Você vai coloca em cartaz o filme...:\n'
+                                  f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
 
-            aperte_enter()
+                            valor_fim_cartaz = input('Qual o periodo de tempo que o filme ficara em cartaz (dd/mm/aaaa): ')
+                            data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
+                            arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
+                                                + codigo[1] + '.txt')
+                            aperte_enter()
+                            try:
+                                verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
+                                print()
+                                print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{valor_fim_cartaz}]')
+                                verif_arq_cartaz.close()
 
-            # loop_registro_filme_cartaz
-            for codigo in self.lista_filme_cadastrado:
-                if int(cod_filme) == int(codigo[0]):
-                    print()
-                    print(f'Você vai coloca em cartaz o filme...:\n'
-                          f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
-
-                    valor_fim_cartaz = input('Qual o periodo de tempo que o filme ficara em cartaz (dd/mm/aaaa): ')
-                    data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
-                    arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
-                                        + codigo[1] + '.txt')
+                            except FileNotFoundError:
+                                print('Registrando filme... aguarde!')
+                                sleep(2)
+                                try:
+                                    gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
+                                    gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]} \n')
+                                    sleep(1)
+                                    print('Filme registrado com sucesso!!')
+                                except:
+                                    sleep(2)
+                                    print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
+                    print(self.linhas_aparencia)
                     aperte_enter()
-                    try:
-                        verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
-                        print()
-                        print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{valor_fim_cartaz}]')
-                        verif_arq_cartaz.close()
-
-                    except FileNotFoundError:
-                        print('Registrando filme... aguarde!')
-                        sleep(2)
-                        try:
-                            gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
-                            gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]} \n')
-                            sleep(1)
-                            print('Filme registrado com sucesso!!')
-                        except:
-                            sleep(2)
-                            print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
-            print(self.linhas_aparencia)
-            aperte_enter()
 
         def cadastrando_filmes():
             """
