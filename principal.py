@@ -134,7 +134,7 @@ class SalaCinema:
             for codigo in self.lista_filme_cadastrado:
                 if int(cod_filme) == int(codigo[0]):
                     print()
-                    print(f' Entrando em cartaz o filme...:\n'
+                    print(f'Você vai coloca em cartaz o filme...:\n'
                           f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
 
                     valor_fim_cartaz = input('Qual o periodo de tempo que o filme ficara em cartaz (dd/mm/aaaa): ')
