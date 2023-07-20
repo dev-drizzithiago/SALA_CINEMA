@@ -125,16 +125,20 @@ class SalaCinema:
             """                            
             :param: valor_listagem: valor 'str'
             """
+            print(f'Codigo consultado {len(cod_filme)}')
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
-                valor_cod_list_str = valor_formt_list[0]
-                print(f'Codigo consultado {cod_filme}')
+                valor_cod_list_str = valor_formt_list[0].strip()
+                print(f'Codigos encontrados {valor_cod_list_str}')
                 if valor_cod_list_str == cod_filme:
                     print("Filme já esta em cartaz!")
+                    print(self.linhas_aparencia)
+                    aperte_enter()
                     self.quebra_loop = False
                 else:
                     self.quebra_loop = True
+
             while True:
                 if not self.quebra_loop:
                     break
