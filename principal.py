@@ -129,14 +129,15 @@ class SalaCinema:
             """                            
             :param: valor_listagem: valor 'str'
             """
-            print(f'Codigo consultado {len(cod_filme)}')
+            print(f'Codigo consultado {cod_filme}')
+            print(f'Filmes em cartaz ')
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
                 valor_cod_list_str = valor_formt_list[0].strip()
                 valor_titulo_list_str = valor_formt_list[2].strip()
                 valor_data_list_str = valor_formt_list[1].replace('_', '/').strip()
-                print(f'Codigos encontrados {valor_cod_list_str}')
+                print(f'[{valor_cod_list_str}] - {valor_titulo_list_str}')
                 if valor_cod_list_str == cod_filme:
                     print(f"O filme que você digitou [{valor_titulo_list_str}] já esta em cartaz!\n"
                           f"Ficara em cartaz até o dia {valor_data_list_str}")
