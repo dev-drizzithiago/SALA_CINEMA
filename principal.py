@@ -129,23 +129,10 @@ class SalaCinema:
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
                 valor_cod_list_str = valor_formt_list[0]
-                valor_cod_list_int = int(valor_cod_list_str)
-                cod_filme_int = int(cod_filme)
 
-                print(valor_cod_list_int)
-                print(type(valor_cod_list_int))
-
-                print(cod_filme)
-                print(type(cod_filme))
-
-                print(cod_filme_int)
-                print(type(cod_filme_int))
-
-                if cod_filme == cod_filme_int:
-                    print('deu certo')
             aperte_enter()
 
-            '''# loop_registro_filme_cartaz
+            # loop_registro_filme_cartaz
             for codigo in self.lista_filme_cadastrado:
                 if int(cod_filme) == int(codigo[0]):
                     print()
@@ -175,7 +162,7 @@ class SalaCinema:
                             sleep(2)
                             print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
             print(self.linhas_aparencia)
-            aperte_enter()'''
+            aperte_enter()
 
         def cadastrando_filmes():
             """
