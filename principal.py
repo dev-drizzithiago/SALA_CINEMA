@@ -122,8 +122,11 @@ class SalaCinema:
                 cod_filme = '0' + valor_cod_formt
 
             # loop_lista_verifica_filmes_cartaz
+            """                            
+            :param: valor_listagem: valor 'str'
+            """
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
-            for valor_listagem in listando_filmes_cartaz
+            for valor_listagem in listando_filmes_cartaz:
                 print(valor_listagem)
             aperte_enter()
 
