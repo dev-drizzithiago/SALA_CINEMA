@@ -122,22 +122,22 @@ class SalaCinema:
                 cod_filme = '0' + valor_cod_formt
 
             # loop_lista_verifica_filmes_cartaz
-            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
+            ''''listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
                 valor_codigo = valor_formt_list[0]
                 if cod_filme == valor_codigo:
-                    print('deu certo')
+                    print('deu certo')'''
 
 
             # loop_registro_filme_cartaz
             for codigo in self.lista_filme_cadastrado:
-                if cod_filme == int(codigo[0]):
+                if int(cod_filme) == int(codigo[0]):
                     print()
                     print(f' Entrando em cartaz o filme...:\n'
                           f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
 
-                    valor_fim_cartaz = input('Periodo de tempo que o filme ficara em cartaz (dd/mm/aaaa): ')
+                    valor_fim_cartaz = input('Qual o periodo de tempo que o filme ficara em cartaz (dd/mm/aaaa): ')
                     data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
                     arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
                                         + codigo[1] + '.txt')
