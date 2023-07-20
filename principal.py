@@ -159,7 +159,7 @@ class SalaCinema:
                         print(f'Você vai coloca em cartaz o filme...:\n'
                               f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
 
-                        valor_fim_cartaz = input('Qual o periodo de tempo que o filme ficara em cartaz (dd/mm/aaaa): ')
+                        valor_fim_cartaz = input('Até que dia o filme ficara em cartaz? (dd/mm/aaaa): ')
                         data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
                         arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
                                             + codigo[1] + '.txt')
