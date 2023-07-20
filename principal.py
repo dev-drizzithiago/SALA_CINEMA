@@ -83,8 +83,10 @@ class SalaCinema:
             informações são gravadas no obejto "self.lista_filmes_cadastrado"
             :param: loop_listando_filmes_cadastrados:
             :param: loop_lista_verifica_filmes_cartaz: esse loop é responsavel por analisar se o filme esta em cartaz.
-            O problema lista a pasta responsavel e caso encontre o codigo do filme na pasta, ele não deixa dar duplicdade.
-            
+            O programa lista a pasta responsavel e caso encontre o codigo do filme na pasta, o objeto self.'quebra_loop'
+            passa a ter o valor 'True' e quabra do loop loop_cadastrando_filme_cartaz. Caso o filme não estaje na lista
+            o objeto self.'quebra_loop' passa a ter o valor 'False' e continuar o cadastro.
+
             :param: loop_registro_filme_cartaz:
             obs: Verificar duplicidade no registro dos filmes
 
@@ -140,12 +142,15 @@ class SalaCinema:
                           f"Ficara em cartaz até o dia {valor_data_list_str}")
                     print(self.linhas_aparencia)
                     aperte_enter()
-                    self.quebra_loop = False
-                else:
-                    self.quebra_loop = True
 
+                    # Se encontrou, é verdadeiro
+                    self.quebra_loop = True
+                else:
+                    self.quebra_loop = False
+
+            # loop_cadastrando_filme_cartaz
             while True:
-                if not self.quebra_loop:
+                if self.quebra_loop:
                     break
                 # loop_registro_filme_cartaz
                 for codigo in self.lista_filme_cadastrado:
@@ -158,11 +163,12 @@ class SalaCinema:
                         data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
                         arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
                                             + codigo[1] + '.txt')
-                        aperte_enter()
                         try:
                             verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
                             print()
                             print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{valor_fim_cartaz}]')
+                            print('Para continuar...')
+                            aperte_enter()
                             verif_arq_cartaz.close()
 
                         except FileNotFoundError:
@@ -173,9 +179,14 @@ class SalaCinema:
                                 gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]} \n')
                                 sleep(1)
                                 print('Filme registrado com sucesso!!')
+                                self.quebra_loop = True
                             except:
                                 sleep(2)
                                 print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
+                                print('Analise o codigo')
+                                print(self.linhas_aparencia)
+                                aperte_enter()
+                                self.quebra_loop = True
                 print(self.linhas_aparencia)
                 aperte_enter()
 
