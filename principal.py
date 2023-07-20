@@ -195,7 +195,7 @@ class SalaCinema:
             registre mais informações sobre o filme.
             :return: Apos tudo está finalizado, as informações serão salvas no arquivo "FILMES_CADASTRADOS.txt"
             """
-            global abrindo_cadastro_filmes
+            global abrindo_cadastro_filmes, registro_filme
             func_logo_cinema('AREA DE CADASTRO DE FILMES')
             lendo_dados_no_arq_filmes_txt()
 
