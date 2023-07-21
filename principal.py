@@ -29,7 +29,8 @@ class SalaCinema:
             O intuito dessa função é verificar se os filmes que estão em cartaz ainda estão no periodo. Caso
             esteja chegando no final ou já terminado, o filme é retirado de cartaz e as informações ficara dentro
             de um arquivo de log para registro. Assim, quando o cliente abrir o programa, evita que ele encontre
-            o filme na lista, sendo que já passou a data.
+            o filme na lista, sendo que já passou a data. O arquivo de log vai server para, caso o cliente consiga
+            encontrar as informações do filme, mostra quando ele entrou em cartaz e saiu.
             :return:
             """
 
