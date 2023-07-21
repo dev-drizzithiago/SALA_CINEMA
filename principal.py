@@ -419,7 +419,9 @@ class SalaCinema:
             :param: valor_listagem: valor 'str'
             """
             print(f'Codigo consultado {cod_filme}')
+            print()
             print(f'Filmes em cartaz ')
+            print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
@@ -432,14 +434,14 @@ class SalaCinema:
                           f"Ficara até o dia {valor_data_list_str}")
                     print(self.linhas_aparencia)
                     aperte_enter()
-                    # Se encontrou, é verdadeiro
-                    self.quebra_loop = True
-                else:
+                    # Se encontrou o filme em cartaz, quebra o loop_cadastrando_filme_cartaz
                     self.quebra_loop = False
-
+                else:
+                    # Se não encontrou, é verdadeiro.
+                    self.quebra_loop = True
             # loop_cadastrando_filme_cartaz
             while True:
-                if self.quebra_loop:
+                if not self.quebra_loop:
                     break
                 # loop_registro_filme_cartaz
                 for codigo in self.lista_filme_cadastrado:
@@ -477,7 +479,7 @@ class SalaCinema:
                                 print('Analise o codigo')
                                 print(self.linhas_aparencia)
                                 aperte_enter()
-                                self.quebra_loop = True
+                                break
                 print(self.linhas_aparencia)
                 aperte_enter()
 
