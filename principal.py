@@ -24,6 +24,15 @@ class SalaCinema:
         self.lista_info_registro = list()
         self.registros_filmes = list()
 
+        def func_verificar_data_cartaz():
+            """
+            O intuito dessa função é verificar se os filmes que estão em cartaz ainda estão no periodo. Caso
+            esteja chegando no final ou já terminado, o filme é retirado de cartaz e as informações ficara dentro
+            de um arquivo de log para registro. Assim, quando o cliente abrir o programa, evita que ele encontre
+            o filme na lista, sendo que já passou a data.
+            :return:
+            """
+
         def func_data_atual():
             valor_data = datetime.now()
             self.data_atual = valor_data.strftime('%d/%m/%Y')
