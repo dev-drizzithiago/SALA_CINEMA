@@ -447,7 +447,6 @@ class SalaCinema:
                         print()
                         print(f'Você vai coloca em cartaz o filme...:\n'
                               f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
-
                         valor_fim_cartaz = input('Até que dia o filme ficara em cartaz? (dd/mm/aaaa): ')
                         data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
                         arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
@@ -465,7 +464,10 @@ class SalaCinema:
                             sleep(2)
                             try:
                                 gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
-                                gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]} \n')
+                                data_inicio_cartaz = str(self.data_atual)
+                                gravando_filme_cartaz.write(f'{codigo[1]};{codigo[3]};'
+                                                            f'{data_inicio_cartaz};'
+                                                            f'{data_fim_cartaz} \n')
                                 sleep(1)
                                 print('Filme registrado com sucesso!!')
                                 self.quebra_loop = True
