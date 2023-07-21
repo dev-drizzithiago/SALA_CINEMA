@@ -463,6 +463,7 @@ class SalaCinema:
 
                         except FileNotFoundError:
                             print('Registrando filme... aguarde!')
+                            print()
                             sleep(2)
                             try:
                                 gravando_filme_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'w')
@@ -472,7 +473,7 @@ class SalaCinema:
                                                             f'{data_fim_cartaz} \n')
                                 sleep(1)
                                 print('Filme registrado com sucesso!!')
-                                self.quebra_loop = True
+                                self.quebra_loop = False
                             except:
                                 sleep(2)
                                 print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
@@ -482,6 +483,7 @@ class SalaCinema:
                                 break
                 print(self.linhas_aparencia)
                 aperte_enter()
+                print()
 
         def lendo_dados_arq_cliente_txt():
             """
