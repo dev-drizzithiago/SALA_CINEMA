@@ -415,16 +415,19 @@ class SalaCinema:
                 cod_filme = str('0' + valor_cod_formt)
 
             # loop_lista_verifica_filmes_cartaz
+            print()
             print(f'Filmes em cartaz ')
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
                 valor_cod_list_str = valor_formt_list[0].strip()
-                valor_titulo_list_str = valor_formt_list[2].strip()
-                valor_data_list_str = valor_formt_list[1].replace('_', '/').replace('.exe', '').strip()
+                valor_titulo_list_str = valor_formt_list[2].replace('.exe', '').strip()
+                valor_data_list_str = valor_formt_list[1].replace('_', '/').strip()
                 print(f'[{valor_cod_list_str}] - {valor_titulo_list_str}')
                 if valor_cod_list_str == cod_filme:
+                    print()
+                    print(self.linhas_aparencia)
                     print(f"O filme que você digitou [{valor_titulo_list_str}] já esta em cartaz!\n"
                           f"Ficara até o dia {valor_data_list_str}")
                     print(self.linhas_aparencia)
