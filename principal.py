@@ -415,11 +415,6 @@ class SalaCinema:
                 cod_filme = str('0' + valor_cod_formt)
 
             # loop_lista_verifica_filmes_cartaz
-            """                            
-            :param: valor_listagem: valor 'str'
-            """
-            print(f'Codigo consultado {cod_filme}')
-            print()
             print(f'Filmes em cartaz ')
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
@@ -427,7 +422,7 @@ class SalaCinema:
                 valor_formt_list = valor_listagem.split('-')
                 valor_cod_list_str = valor_formt_list[0].strip()
                 valor_titulo_list_str = valor_formt_list[2].strip()
-                valor_data_list_str = valor_formt_list[1].replace('_', '/').strip()
+                valor_data_list_str = valor_formt_list[1].replace('_', '/').replace('.exe', '').strip()
                 print(f'[{valor_cod_list_str}] - {valor_titulo_list_str}')
                 if valor_cod_list_str == cod_filme:
                     print(f"O filme que você digitou [{valor_titulo_list_str}] já esta em cartaz!\n"
@@ -435,9 +430,12 @@ class SalaCinema:
                     print(self.linhas_aparencia)
                     # Se encontrou o filme em cartaz, quebra o loop_cadastrando_filme_cartaz
                     self.quebra_loop = False
+                    aperte_enter()
+                    break
                 else:
                     # Se não encontrou, é verdadeiro.
                     self.quebra_loop = True
+
             # loop_cadastrando_filme_cartaz
             while True:
                 if not self.quebra_loop:
@@ -472,7 +470,7 @@ class SalaCinema:
                                                             f'{data_fim_cartaz} \n')
                                 sleep(1)
                                 print('Filme registrado com sucesso!!')
-                                self.quebra_loop = False
+                                break
                             except:
                                 sleep(2)
                                 print(f'Não foi possível criar o arquivo para o filme [{codigo[1]}]')
