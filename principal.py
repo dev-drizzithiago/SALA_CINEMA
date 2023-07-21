@@ -433,7 +433,6 @@ class SalaCinema:
                     print(f"O filme que você digitou [{valor_titulo_list_str}] já esta em cartaz!\n"
                           f"Ficara até o dia {valor_data_list_str}")
                     print(self.linhas_aparencia)
-                    aperte_enter()
                     # Se encontrou o filme em cartaz, quebra o loop_cadastrando_filme_cartaz
                     self.quebra_loop = False
                 else:
