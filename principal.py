@@ -36,8 +36,9 @@ class SalaCinema:
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_busca in listando_filmes_cartaz:
                 filme_cartaz_formt = valor_busca.split('-')
-                filme_cartaz_data_formt = filme_cartaz_formt[2].replace('_', '/')
-
+                filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '')
+                print(filme_cartaz_data)
+        func_verificar_data_cartaz()
         def func_data_atual():
             valor_data = datetime.now()
             self.data_atual = valor_data.strftime('%d/%m/%Y')
