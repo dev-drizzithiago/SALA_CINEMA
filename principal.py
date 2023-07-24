@@ -33,6 +33,10 @@ class SalaCinema:
             encontrar as informações do filme, mostra quando ele entrou em cartaz e saiu.
             :return:
             """
+            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
+            for valor_busca in listando_filmes_cartaz:
+                filme_cartaz_formt = valor_busca.split('-')
+                filme_cartaz_data_formt = filme_cartaz_formt[2].replace('_', '/')
 
         def func_data_atual():
             valor_data = datetime.now()
