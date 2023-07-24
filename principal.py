@@ -24,21 +24,6 @@ class SalaCinema:
         self.lista_info_registro = list()
         self.registros_filmes = list()
 
-        def func_verificar_data_cartaz():
-            """
-            O intuito dessa função é verificar se os filmes que estão em cartaz ainda estão no periodo. Caso
-            esteja chegando no final ou já terminado, o filme é retirado de cartaz e as informações ficara dentro
-            de um arquivo de log para registro. Assim, quando o cliente abrir o programa, evita que ele encontre
-            o filme na lista, sendo que já passou a data. O arquivo de log vai server para, caso o cliente consiga
-            encontrar as informações do filme, mostra quando ele entrou em cartaz e saiu.
-            :return:
-            """
-            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
-            for valor_busca in listando_filmes_cartaz:
-                filme_cartaz_formt = valor_busca.split('-')
-                filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '')
-                print(filme_cartaz_data)
-        func_verificar_data_cartaz()
         def func_data_atual():
             valor_data = datetime.now()
             self.data_atual = valor_data.strftime('%d/%m/%Y')
@@ -48,6 +33,28 @@ class SalaCinema:
             print(self.linhas_aparencia)
             print(f'{texto_exibicao}'.center(80))
             print(self.linhas_aparencia)
+
+        def func_verificar_data_cartaz():
+            """
+            O intuito dessa função é verificar se os filmes que estão em cartaz ainda estão no periodo. Caso
+            esteja chegando no final ou já terminado, o filme é retirado de cartaz e as informações ficara dentro
+            de um arquivo de log para registro. Assim, quando o cliente abrir o programa, evita que ele encontre
+            o filme na lista, sendo que já passou a data. O arquivo de log vai server para, caso o cliente consiga
+            encontrar as informações do filme, mostra quando ele entrou em cartaz e saiu.
+            :return:
+            """
+            func_data_atual()
+            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
+            for valor_busca in listando_filmes_cartaz:
+                filme_cartaz_formt = valor_busca.split('-')
+                filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
+                if filme_cartaz_data != self.data_atual:
+                    print('deu certo')
+
+        func_verificar_data_cartaz()
+
+
+
 
         def calculando_data():
             """
