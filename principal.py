@@ -23,6 +23,14 @@ class SalaCinema:
         self.lista_filme_cadastrado = list()
         self.lista_info_registro = list()
         self.registros_filmes = list()
+        
+        def func_qtdd_cadeiras():
+            """
+            Essafuncação vai ser destinada a escolher a quantidade de cadeiras que serão disponibilizadas para cada filmes. 
+            Quando foi colocar o filme em cartz, o program chama essa funcao e é escolho quantas fileiras e cadeiras. 
+            Função essa que ajuda me ajudar com a monipulação de matrizes.
+            :return: 
+            """
 
         def func_data_atual():
             valor_data = datetime.now()
@@ -48,13 +56,13 @@ class SalaCinema:
             for valor_busca in listando_filmes_cartaz:
                 filme_cartaz_formt = valor_busca.split('-')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
-                if filme_cartaz_data != self.data_atual:
-                    print('deu certo')
-
+                if filme_cartaz_data == self.data_atual:
+                    remove()
+                else:
+                    print("Não possui nenhum filme em cartaz!")
+                    print(self.linhas_aparencia)
+                    aperte_enter()
         func_verificar_data_cartaz()
-
-
-
 
         def calculando_data():
             """
