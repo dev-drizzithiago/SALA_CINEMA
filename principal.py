@@ -61,13 +61,24 @@ class SalaCinema:
             for valor_busca in listando_filmes_cartaz:
                 filme_cartaz_formt = valor_busca.split('-')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
-                filme_cartaz_nome = filme_cartaz_formt[2]
-
-                if filme_cartaz_data == self.data_atual:
-                    print("deu certo")
-                    print(filme_cartaz_nome)
+                data_termino_cartaz = filme_cartaz_data.split('/')
+                filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '').strip()
+                dia_termino = data_termino_cartaz[0]
+                mes_termino = data_termino_cartaz[1]
+                ano_termino = data_termino_cartaz[2]
+                if ano_termino == ano_atual:
+                    if mes_termino == mes_atual:
+                        if dia_termino < dia_atual:
+                            print(f'Filme [{filme_termino_cartaz}] foi retirado de cartaz')
+                        elif dia_termino == dia_atual:
+                            print(f'O filme {filme_termino_cartaz} esta em seu ultimo dia')
+                        else:
+                            print(f'Filme {filme_termino_cartaz} ficara em cartaz até o dia {filme_cartaz_data}')
+                    else:
+                        print('não continua')
                 else:
-                    print("Não possui nenhum filme em cartaz!")
+                    print('não continua')
+
 
         func_verificar_data_cartaz()
 
