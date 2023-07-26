@@ -52,32 +52,35 @@ class SalaCinema:
             :return:
             """
             func_data_atual()
-            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             data_atual = str(self.data_atual).split('/')
-            dia_atual = data_atual[0]
-            mes_atual = data_atual[1]
-            ano_atual = data_atual[2]
+            dia_atual = data_atual[0].strip()
+            mes_atual = data_atual[1].strip()
+            ano_atual = data_atual[2].strip()
             print(f'Data Atual [{dia_atual}/{mes_atual}/{ano_atual}]')
+            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_busca in listando_filmes_cartaz:
+                print(valor_busca.replace('.txt', ''))
                 filme_cartaz_formt = valor_busca.split('-')
+                print(f'Valor variavel "filme_cartaz_formt" {filme_cartaz_formt}')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
+                print(f'Valor da variavel "filme_cartaz_data" {filme_cartaz_data}')
                 data_termino_cartaz = filme_cartaz_data.split('/')
-                filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '').strip()
-                dia_termino = data_termino_cartaz[0]
-                mes_termino = data_termino_cartaz[1]
-                ano_termino = data_termino_cartaz[2]
-                if ano_termino == ano_atual:
-                    if mes_termino == mes_atual:
-                        if dia_termino < dia_atual:
-                            print(f'Filme [{filme_termino_cartaz}] foi retirado de cartaz')
-                        elif dia_termino == dia_atual:
-                            print(f'O filme {filme_termino_cartaz} esta em seu ultimo dia')
-                        else:
-                            print(f'Filme {filme_termino_cartaz} ficara em cartaz até o dia {filme_cartaz_data}')
+                print(f'Valor da variavel "data_termino_cartaz" [{data_termino_cartaz}]')
+                filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '')
+                ano_termino = data_termino_cartaz[2].strip()
+                print(f'Valor variavel "ano_termino" [{ano_termino}] len [{len(ano_termino)}]')
+                mes_termino = data_termino_cartaz[1].strip()
+                print(f'Valor variavel "mes_termino" [{mes_termino}] len [{len(mes_termino)}]')
+                dia_termino = data_termino_cartaz[0].strip()
+                print(f'Valor variavel "dia_termino" [{dia_termino}] len [{len(dia_termino)}]')
+
+                if ano_termino >= ano_atual:
+                    if mes_termino >= mes_atual:
+                        print('')
                     else:
-                        print('não continua')
+                        print(f'Filme {filme_termino_cartaz} continua em cartaz, até o dia [{data_termino_cartaz}]!')
                 else:
-                    print('não continua')
+                    print(f'Filme {filme_termino_cartaz} continuar em cartaz, até o dia [{data_termino_cartaz}]!')
 
 
         func_verificar_data_cartaz()
