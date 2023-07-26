@@ -53,15 +53,22 @@ class SalaCinema:
             """
             func_data_atual()
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
+            data_atual = str(self.data_atual).split('/')
+            dia_atual = data_atual[0]
+            mes_atual = data_atual[1]
+            ano_atual = data_atual[2]
+            print(f'Data Atual [{dia_atual}/{mes_atual}/{ano_atual}]')
             for valor_busca in listando_filmes_cartaz:
                 filme_cartaz_formt = valor_busca.split('-')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
+                filme_cartaz_nome = filme_cartaz_formt[2]
+
                 if filme_cartaz_data == self.data_atual:
-                    remove()
+                    print("deu certo")
+                    print(filme_cartaz_nome)
                 else:
                     print("Não possui nenhum filme em cartaz!")
-                    print(self.linhas_aparencia)
-                    aperte_enter()
+
         func_verificar_data_cartaz()
 
         def calculando_data():
