@@ -76,9 +76,23 @@ class SalaCinema:
                 print(f'Valor variavel "mes_termino" [{mes_termino}] len [{len(mes_termino)}]')
                 dia_termino = data_termino_cartaz[0].strip()
                 print(f'Valor variavel "dia_termino" [{dia_termino}] len [{len(dia_termino)}]')
-
-                if ano_termino >= ano_atual:
-                    if mes_termino >= mes_atual:
+                """
+                >> A verificação que possui abaixo é responsavel por analisar as datas dos filmes que estão em cartaz. Caso 
+                a data atual é IGUAL a data do termino, a o cliente era receber a mensagem de 'ULTIMO DIA DE CARTAZ'. 
+                Caso a data atual é MAIOR que a data termino, então o filmes sera retirado de cartaz. Tudo isso sem 
+                o cliente saber. 
+                Cada etapa que a verificação é verdadeira, ele vai descer uma etapa; caso o ano atual
+                seja igual ou maior que ano do termino, desce uma escada; se o mes atual for igual ou maior que o mes de 
+                terminio, então vai descer mais uma etapa, chegando no dia, caso ele seja igual, o cliente ira receber a
+                mensagem que o filme esta em seu ultimo dia de cartaz, caso dia seja maio que o dia do termino, o filme
+                sera retirado de cartaz, sem o conhecimento do cliente. Mas caso o cliente queira algumas informações
+                sobre os filmes que ficaram em cartaz, mas pra frente vou disponibilizar. 
+                >> Caso já no if do ano dê falso, então ele vai analisar que o filme ainda esta em cartaz, mostrando a 
+                data que o filme saira do cinema. Acontece a mesma coisa com o mes e dia; se der falso, então a verif. 
+                vai aguardar até o dia correto para tirar os filmes de cartaz. 
+                """
+                if ano_atual >= ano_termino:
+                    if mes_atual >= mes_termino:
                         print('deu certo o mes')
                         if dia_atual >= dia_termino:
                             print(f'dia atual {dia_atual} >= dia do termino {dia_termino}')
