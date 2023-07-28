@@ -60,6 +60,7 @@ class SalaCinema:
             ano_atual = data_atual[2].strip()
             print(f'Valor variavel "ano_atual" [{ano_atual}]')
             print(f'Data Atual [{dia_atual}/{mes_atual}/{ano_atual}]')
+            print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_busca in listando_filmes_cartaz:
                 print(valor_busca.replace('.txt', ''))
@@ -94,18 +95,15 @@ class SalaCinema:
                 if ano_atual >= ano_termino:
                     if mes_atual >= mes_termino:
                         print('deu certo o mes')
-                        if dia_atual >= dia_termino:
-                            print(f'dia atual {dia_atual} >= dia do termino {dia_termino}')
-                            print('deu certo o dia')
-                        elif dia_termino >= dia_atual:
-                            print(f'dia atual {dia_atual} <= {dia_termino}')
-                        else:
-                            print('não deu certo')
+                        
                     else:
-                        print(f'Filme {filme_termino_cartaz} continua em cartaz, até o dia [{data_termino_cartaz}]!')
+                        print(f'Filme {filme_termino_cartaz} continua em cartaz, até o dia ['
+                              f'{dia_termino}/'
+                              f'{mes_termino}/'
+                              f'{ano_termino}]!')
                 else:
-                    print(f'Filme {filme_termino_cartaz} continuar em cartaz, até o dia [{data_termino_cartaz}]!')
-
+                    print(f'Filme {filme_termino_cartaz} continuar em cartaz, até o dia [{filme_termino_cartaz}]!')
+                print(self.linhas_aparencia)
 
         func_verificar_data_cartaz()
 
