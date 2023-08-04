@@ -77,17 +77,19 @@ class SalaCinema:
 
                 # loop_delete_cartaz
                 while True:
-                    if ano_termino <= ano_atual:
+                    if ano_termino < ano_atual:
                         # Se o ano do termino for menor que o ano atual. Filme não esta mais em cartaz
                         valor_null = 0
+                        break
 
-                    if mes_termino <= mes_atual:
+                    if mes_termino >= mes_atual:
                         # Se o mes do terminio, for menor ou igual o mes atual; o filme não esta em cartaz
-                        valor_null = 1
+                        valor_null = 0
                     else:
                         # Se o mes do termino for maio ou igual que o mes atual;
                         # filme ainda esta em cartaz, passa para verificar o dia.
-                        valor_null = 1
+                        valor_null = 2
+                        break
 
                     if dia_termino <= dia_atual:
                         # Se o dia do terminio, for menor ou igual o dia atual; o filme não esta em cartaz
@@ -96,8 +98,9 @@ class SalaCinema:
                     else:
                         # Se o dia do termino for maio ou igual que o dia atual;
                         # filme ainda esta em cartaz.
-                        valor_null = 1
-
+                        valor_null = 3
+                        break
+                print(valor_null)
 
 
 
