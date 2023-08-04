@@ -66,7 +66,6 @@ class SalaCinema:
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_busca in listando_filmes_cartaz:
-                valor_null = None
                 # print(valor_busca.replace('.txt', ''))
                 filme_cartaz_formt = valor_busca.split('-')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
@@ -80,38 +79,27 @@ class SalaCinema:
                 while True:
                     if ano_termino <= ano_atual:
                         # Se o ano do termino for menor que o ano atual. Filme não esta mais em cartaz
-                        valor_null = False
-                    else:
-                        # Se o ano do termino for maio ou igual que o ano atual,
-                        # filme ainda esta em cartaz, passa para verificar o mes.
-                        valor_null = True
-                        break
+                        valor_null = 0
 
                     if mes_termino <= mes_atual:
                         # Se o mes do terminio, for menor ou igual o mes atual; o filme não esta em cartaz
-                        valor_null = False
+                        valor_null = 1
                     else:
                         # Se o mes do termino for maio ou igual que o mes atual;
                         # filme ainda esta em cartaz, passa para verificar o dia.
-                        valor_null = True
-                        break
+                        valor_null = 1
 
                     if dia_termino <= dia_atual:
                         # Se o dia do terminio, for menor ou igual o dia atual; o filme não esta em cartaz
                         # então, caso seja um dia depois, o filmes sera retirado do cartaz.
-                        valor_null = False
+                        valor_null = 0
                     else:
                         # Se o dia do termino for maio ou igual que o dia atual;
                         # filme ainda esta em cartaz.
-                        valor_null = True
-                        break
+                        valor_null = 1
 
-                    if valor_null:
-                        print(f'Filme {filme_termino_cartaz} ainda esta em cartaz, ficará até o dia {data_termino_cartaz}')
-                        break
-                    else:
-                        print('teste')
-                    aperte_enter()
+
+
 
         func_verificar_data_cartaz()
 
