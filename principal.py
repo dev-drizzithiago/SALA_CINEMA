@@ -74,15 +74,40 @@ class SalaCinema:
                 ano_termino = data_termino_cartaz[2].strip()
                 mes_termino = data_termino_cartaz[1].strip()
                 dia_termino = data_termino_cartaz[0].strip()
+
+                # loop_delete_cartaz
                 while True:
                     if ano_termino <= ano_atual:
-                        print('Ano deu certo')
+                        # Se o ano do termino for menor que o ano atual. Filme não esta mais em cartaz
+                        valor_null = False
+                    else:
+                        # Se o ano do termino for maio ou igual que o ano atual,
+                        # filme ainda esta em cartaz, passa para verificar o mes.
+                        valor_null = True
+                        break
+
                     if mes_termino <= mes_atual:
-                        print('mes deu certo')
-                    if dia_termino >= dia_atual:
-                        print('dia deu certo')
+                        # Se o mes do terminio, for menor ou igual o mes atual; o filme não esta em cartaz
+                        valor_null = False
+                    else:
+                        # Se o mes do termino for maio ou igual que o mes atual;
+                        # filme ainda esta em cartaz, passa para verificar o dia.
+                        valor_null = True
+
+                    if dia_termino <= dia_atual:
+                        # Se o dia do terminio, for menor ou igual o dia atual; o filme não esta em cartaz
+                        # então, caso seja um dia depois, o filmes sera retirado do cartaz.
+                        valor_null = False
+                    else:
+                        # Se o mes do termino for maio ou igual que o mes atual;
+                        # filme ainda esta em cartaz, passa para verificar o dia.
+                        valor_null = True
+
+                    if valor_null:
+                        print(f'Filme {filme_termino_cartaz} ainda esta em cartaz, ficará até o dia {data_termino_cartaz}')
+                    else:
+                        print('teste')
                     aperte_enter()
-                print(f'{ano_termino}/{mes_termino}/{dia_termino}')
 
         func_verificar_data_cartaz()
 
