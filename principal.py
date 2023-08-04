@@ -42,6 +42,12 @@ class SalaCinema:
             print(f'{texto_exibicao}'.center(80))
             print(self.linhas_aparencia)
 
+        def aperte_enter():
+            """
+            :return: Retorna uma entrada de teclado, para dar uma pausa até o usuário decidir continuar
+            """
+            input('Aperte ENTER para continuar!')
+
         def func_verificar_data_cartaz():
             """
             O intuito dessa função é verificar se os filmes que estão em cartaz ainda estão no periodo. Caso
@@ -54,11 +60,8 @@ class SalaCinema:
             func_data_atual()
             data_atual = str(self.data_atual).split('/')
             dia_atual = data_atual[0].strip()
-            print(f'Valor variavel "dia_atual"[{dia_atual}]')
             mes_atual = data_atual[1].strip()
-            print(f'Valor variavel "mes_atual" [{mes_atual}]')
             ano_atual = data_atual[2].strip()
-            print(f'Valor variavel "ano_atual" [{ano_atual}]')
             print(f'Data Atual [{dia_atual}/{mes_atual}/{ano_atual}]')
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
@@ -71,8 +74,17 @@ class SalaCinema:
                 ano_termino = data_termino_cartaz[2].strip()
                 mes_termino = data_termino_cartaz[1].strip()
                 dia_termino = data_termino_cartaz[0].strip()
+                while True:
+                    if ano_termino <= ano_atual:
+                        print('Ano deu certo')
+                    if mes_termino <= mes_atual:
+                        print('mes deu certo')
+                    if dia_termino >= dia_atual:
+                        print('dia deu certo')
+                    aperte_enter()
+                print(f'{ano_termino}/{mes_termino}/{dia_termino}')
 
-
+        func_verificar_data_cartaz()
 
         def calculando_data():
             """
@@ -86,11 +98,7 @@ class SalaCinema:
             :return:
             """
 
-        def aperte_enter():
-            """
-            :return: Retorna uma entrada de teclado, para dar uma pausa até o usuário decidir continuar
-            """
-            input('Aperte ENTER para continuar!')
+
 
         def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
             """
