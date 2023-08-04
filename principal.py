@@ -65,51 +65,14 @@ class SalaCinema:
             for valor_busca in listando_filmes_cartaz:
                 print(valor_busca.replace('.txt', ''))
                 filme_cartaz_formt = valor_busca.split('-')
-                ## print(f'Valor variavel "filme_cartaz_formt" {filme_cartaz_formt}')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
-                ## print(f'Valor da variavel "filme_cartaz_data" {filme_cartaz_data}')
                 data_termino_cartaz = filme_cartaz_data.split('/')
-                ## print(f'Valor da variavel "data_termino_cartaz" [{data_termino_cartaz}]')
                 filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '')
                 ano_termino = data_termino_cartaz[2].strip()
-                ## print(f'Valor variavel "ano_termino" [{ano_termino}] len [{len(ano_termino)}]')
                 mes_termino = data_termino_cartaz[1].strip()
-                ## print(f'Valor variavel "mes_termino" [{mes_termino}] len [{len(mes_termino)}]')
                 dia_termino = data_termino_cartaz[0].strip()
-                ## print(f'Valor variavel "dia_termino" [{dia_termino}] len [{len(dia_termino)}]')
-                """
-                >> A verificação que possui abaixo é responsavel por analisar as datas dos filmes que estão em cartaz. Caso 
-                a data atual é IGUAL a data do termino, a o cliente era receber a mensagem de 'ULTIMO DIA DE CARTAZ'. 
-                Caso a data atual é MAIOR que a data termino, então o filmes sera retirado de cartaz. Tudo isso sem 
-                o cliente saber. 
-                Cada etapa que a verificação é verdadeira, ele vai descer uma etapa; caso o ano atual
-                seja igual ou maior que ano do termino, desce uma escada; se o mes atual for igual ou maior que o mes de 
-                terminio, então vai descer mais uma etapa, chegando no dia, caso ele seja igual, o cliente ira receber a
-                mensagem que o filme esta em seu ultimo dia de cartaz, caso dia seja maio que o dia do termino, o filme
-                sera retirado de cartaz, sem o conhecimento do cliente. Mas caso o cliente queira algumas informações
-                sobre os filmes que ficaram em cartaz, mas pra frente vou disponibilizar. 
-                >> Caso já no if do ano dê falso, então ele vai analisar que o filme ainda esta em cartaz, mostrando a 
-                data que o filme saira do cinema. Acontece a mesma coisa com o mes e dia; se der falso, então a verif. 
-                vai aguardar até o dia correto para tirar os filmes de cartaz. 
-                """
-                if ano_atual >= ano_termino:
-                    if mes_atual >= mes_termino:
-                        if dia_atual > dia_termino:
-                            print(f'Filmes removidos {filme_termino_cartaz}')
-                        elif dia_termino == dia_atual:
-                            print(f'Ultimo dia do filme {filme_termino_cartaz}')
-                        else:
-                            print(f'Filme continua em cartaz até o dia {dia_termino} do mes atual {mes_atual}')
-                    else:
-                        print(f'Filme {filme_termino_cartaz} continua em cartaz, até o dia ['
-                              f'{dia_termino}/'
-                              f'{mes_termino}/'
-                              f'{ano_termino}]!')
-                else:
-                    print(f'Filme {filme_termino_cartaz} continuar em cartaz, até o dia [{filme_termino_cartaz}]!')
-                print(self.linhas_aparencia)
 
-        func_verificar_data_cartaz()
+
 
         def calculando_data():
             """
