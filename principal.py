@@ -48,7 +48,7 @@ class SalaCinema:
                          'Abril', 'Maio', 'Junho',
                          'Julho', 'Agosto', 'Setembro',
                          'Outubro', 'Novembro', 'Desembro']
-            print(mes)
+            print(mes+1)
             return lista_mes[mes]
 
         def func_logo_cinema(texto_exibicao):
@@ -77,7 +77,7 @@ class SalaCinema:
             mes_atual = data_atual[1].strip()
             ano_atual = data_atual[2].strip()
             mes_atual_extenso = mes_extenso(mes_atual)
-            print(f'Data Atual [{dia_atual}/{mes_atual}/{ano_atual}]')
+            print(f'Data Atual [{dia_atual} de {mes_atual_extenso} de {ano_atual}]')
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_busca in listando_filmes_cartaz:
@@ -95,7 +95,7 @@ class SalaCinema:
                     print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes foi removido das salas")
                 elif ano_termino == ano_atual:
                     if mes_termino < mes_atual:
-                        print(f'O mes {mes_termino_extenso} já passou, o filme estava em cartaz até o dia {data_termino}\n'
+                        print(f'O mes {mes_termino_extenso} terminou, o filme estava em cartaz até o dia {data_termino}\n'
                               f'Filme foi removido das salas!')
                     elif mes_termino == mes_atual:
                         if dia_termino < dia_atual:
@@ -103,17 +103,14 @@ class SalaCinema:
                         elif dia_termino == dia_atual:
                             print(f'{valor_busca} esta em seu ultimo dia!!')
                         else:
-                            print(f'{valor_busca} esta em seu ultimo mes, vai sair das salas de cinam no dia {dia_termino}'
-                                  f'/{mes_termino}')
+                            print(f'{valor_busca} esta em seu ultimo mes, vai sair das salas de cinam no dia '
+                                  f'{dia_termino} de {mes_atual_extenso}')
                     elif mes_termino > mes_atual:
                         print(f'Filme {valor_busca} vai esta em cartaz até {data_termino}')
                 elif ano_termino > ano_atual:
                     print(f'Filmes {valor_busca} ira ficar em cartaz até o dia {dia_termino}/{mes_termino}/{ano_termino}')
                 print(self.linhas_aparencia)
-
         func_verificar_data_cartaz()
-
-
 
         def calculando_data():
             """
