@@ -1145,7 +1145,7 @@ class SalaCinema:
                 f'''
                       Hora certa
         |                                     |
-        |         {self.data_atual} - {self.hora_atual}         |
+        |         {self.data_atual} - {self.hora_atual}       |
         |_____________________________________|
         {self.linhas_aparencia}
         | [1] |  Area do CLIENTE      
