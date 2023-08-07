@@ -66,7 +66,6 @@ class SalaCinema:
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_busca in listando_filmes_cartaz:
-                print(self.linhas_aparencia)
                 print(valor_busca.replace('.txt', ''))
                 filme_cartaz_formt = valor_busca.split('-')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
@@ -75,16 +74,25 @@ class SalaCinema:
                 ano_termino = data_termino_cartaz[2].strip()
                 mes_termino = data_termino_cartaz[1].strip()
                 dia_termino = data_termino_cartaz[0].strip()
+                data_termino = f'{dia_termino}/{mes_termino}/{ano_termino}'
                 if ano_termino < ano_atual:
                     print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes era removido das salas")
                 elif ano_termino == ano_atual:
-                    print(f'Verificando o mes do termino...')
                     if mes_termino < mes_atual:
-                        print(f'O mes {mes_termino} já passou, filmes era removodo das salas!')
+                        print(f'O mes {mes_termino} já passou, o filme estava em cartaz até o dia {data_termino}\n'
+                              f'Filmes era removodo das salas!')
                     elif mes_termino == mes_atual:
                         print(f'Verificando o dia...')
                         if dia_termino < dia_atual:
                             print(f'{valor_busca} filmes esta sendo removido das salas de cinema!')
+                        elif dia_termino == dia_atual:
+                            print(f'{valor_busca} esta em seu ultimo dia!!')
+                        else:
+                            print(f'{valor_busca} esta em seu ultimo mes, vai sair das salas de cinam no dia {dia_termino}'
+                                  f'/{mes_termino}')
+                elif ano_termino > ano_atual:
+                    print(f'Filmes {valor_busca} ira ficar em cartaz até o dia {dia_termino}/{mes_termino}/{ano_termino}')
+                print(self.linhas_aparencia)
 
         func_verificar_data_cartaz()
 
