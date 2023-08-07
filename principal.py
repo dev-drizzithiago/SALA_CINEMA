@@ -41,13 +41,14 @@ class SalaCinema:
             global mes
             valor_data_num = str(valor_data[0])
             if valor_data_num == '0':
-                mes = int(valor_data_num[1]) - 1
+                mes = int(valor_data[1]) - 1
             elif valor_data_num == '1':
-                mes = str(valor_data_num) - 1
+                mes = int(valor_data_num) - 1
             lista_mes = ['Janeiro', 'Fevereiro', 'Março',
                          'Abril', 'Maio', 'Junho',
                          'Julho', 'Agosto', 'Setembro',
                          'Outubro', 'Novembro', 'Desembro']
+            print(mes)
             return lista_mes[mes]
 
         def func_logo_cinema(texto_exibicao):
