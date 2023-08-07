@@ -75,19 +75,16 @@ class SalaCinema:
                 ano_termino = data_termino_cartaz[2].strip()
                 mes_termino = data_termino_cartaz[1].strip()
                 dia_termino = data_termino_cartaz[0].strip()
-                if ano_termino <= ano_atual:
-                    print(f"ano deu certo")
-                    if mes_termino <= mes_atual:
-                        print(f'mes deu certo!')
-                        if dia_termino <= dia_atual:
-                            print(f'dia deu certo!!')
-                        else:
-                            print(f'Dia não deu certo')
-                    else:
-                        print(f'{valor_busca} ainda esta em cartaz!')
-                else:
-                    print(f'Filmes {valor_busca} ainda esta em cartaz!')
-
+                if ano_termino < ano_atual:
+                    print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes era removido das salas")
+                elif ano_termino == ano_atual:
+                    print(f'Verificando o mes do termino...')
+                    if mes_termino < mes_atual:
+                        print(f'O mes {mes_termino} já passou, filmes era removodo das salas!')
+                    elif mes_termino == mes_atual:
+                        print(f'Verificando o dia...')
+                        if dia_termino < dia_atual:
+                            print(f'{valor_busca} filmes esta sendo removido das salas de cinema!')
 
         func_verificar_data_cartaz()
 
