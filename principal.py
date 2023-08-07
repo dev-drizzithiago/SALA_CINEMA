@@ -76,13 +76,12 @@ class SalaCinema:
                 dia_termino = data_termino_cartaz[0].strip()
                 data_termino = f'{dia_termino}/{mes_termino}/{ano_termino}'
                 if ano_termino < ano_atual:
-                    print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes era removido das salas")
+                    print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes foi removido das salas")
                 elif ano_termino == ano_atual:
                     if mes_termino < mes_atual:
                         print(f'O mes {mes_termino} já passou, o filme estava em cartaz até o dia {data_termino}\n'
-                              f'Filmes era removodo das salas!')
+                              f'Filme foi removido das salas!')
                     elif mes_termino == mes_atual:
-                        print(f'Verificando o dia...')
                         if dia_termino < dia_atual:
                             print(f'{valor_busca} filmes esta sendo removido das salas de cinema!')
                         elif dia_termino == dia_atual:
@@ -90,6 +89,8 @@ class SalaCinema:
                         else:
                             print(f'{valor_busca} esta em seu ultimo mes, vai sair das salas de cinam no dia {dia_termino}'
                                   f'/{mes_termino}')
+                    elif mes_termino > mes_atual:
+                        print(f'Filme {valor_busca} vai esta em cartaz até {data_termino}')
                 elif ano_termino > ano_atual:
                     print(f'Filmes {valor_busca} ira ficar em cartaz até o dia {dia_termino}/{mes_termino}/{ano_termino}')
                 print(self.linhas_aparencia)
