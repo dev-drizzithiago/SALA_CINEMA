@@ -74,9 +74,14 @@ class SalaCinema:
                 ano_termino = data_termino_cartaz[2].strip()
                 mes_termino = data_termino_cartaz[1].strip()
                 dia_termino = data_termino_cartaz[0].strip()
-
-                # loop_delete_cartaz
-
+                if ano_termino == ano_atual:
+                    print(f"{valor_busca} deu certo")
+                    if mes_termino == mes_atual:
+                        print(f'{valor_busca} deu certo!')
+                        if dia_termino == dia_atual:
+                            print(f'{valor_busca} Filme deu certo!!')
+                        else:
+                            print(f'Dia não deu certo')
 
 
         func_verificar_data_cartaz()
