@@ -37,6 +37,19 @@ class SalaCinema:
             self.data_atual = valor_data.strftime('%d/%m/%Y')
             self.hora_atual = valor_data.strftime('%H:%M:%S')
 
+        def mes_extenso(valor_data):
+            global mes
+            valor_data_num = str(valor_data[0])
+            if valor_data_num == '0':
+                mes = int(valor_data_num[1]) - 1
+            elif valor_data_num == '1':
+                mes = str(valor_data_num) - 1
+            lista_mes = ['Janeiro', 'Fevereiro', 'Março',
+                         'Abril', 'Maio', 'Junho',
+                         'Julho', 'Agosto', 'Setembro',
+                         'Outubro', 'Novembro', 'Desembro']
+            return lista_mes[mes]
+
         def func_logo_cinema(texto_exibicao):
             print(self.linhas_aparencia)
             print(f'{texto_exibicao}'.center(80))
@@ -62,6 +75,7 @@ class SalaCinema:
             dia_atual = data_atual[0].strip()
             mes_atual = data_atual[1].strip()
             ano_atual = data_atual[2].strip()
+            mes_atual_extenso = mes_extenso(mes_atual)
             print(f'Data Atual [{dia_atual}/{mes_atual}/{ano_atual}]')
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
@@ -74,12 +88,13 @@ class SalaCinema:
                 ano_termino = data_termino_cartaz[2].strip()
                 mes_termino = data_termino_cartaz[1].strip()
                 dia_termino = data_termino_cartaz[0].strip()
+                mes_termino_extenso = mes_extenso(mes_termino)
                 data_termino = f'{dia_termino}/{mes_termino}/{ano_termino}'
                 if ano_termino < ano_atual:
                     print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes foi removido das salas")
                 elif ano_termino == ano_atual:
                     if mes_termino < mes_atual:
-                        print(f'O mes {mes_termino} já passou, o filme estava em cartaz até o dia {data_termino}\n'
+                        print(f'O mes {mes_termino_extenso} já passou, o filme estava em cartaz até o dia {data_termino}\n'
                               f'Filme foi removido das salas!')
                     elif mes_termino == mes_atual:
                         if dia_termino < dia_atual:
@@ -97,6 +112,8 @@ class SalaCinema:
 
         func_verificar_data_cartaz()
 
+
+
         def calculando_data():
             """
             O objetivo dessa função é aprender a mudança do mes, dependendo do dia que for acrescido, tipo:
@@ -108,7 +125,6 @@ class SalaCinema:
             Vou tentar fazer sem ajudar da foruns, tentar resolver sozinho, para assim tentar entender o funcionamento.
             :return:
             """
-
 
 
         def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
