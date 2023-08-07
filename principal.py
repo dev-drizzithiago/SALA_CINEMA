@@ -66,7 +66,7 @@ class SalaCinema:
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_busca in listando_filmes_cartaz:
-                # print(valor_busca.replace('.txt', ''))
+                print(valor_busca.replace('.txt', ''))
                 filme_cartaz_formt = valor_busca.split('-')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
                 data_termino_cartaz = filme_cartaz_data.split('/')
@@ -75,11 +75,11 @@ class SalaCinema:
                 mes_termino = data_termino_cartaz[1].strip()
                 dia_termino = data_termino_cartaz[0].strip()
                 if ano_termino == ano_atual:
-                    print(f"{valor_busca} deu certo")
+                    print(f"ano deu certo")
                     if mes_termino == mes_atual:
-                        print(f'{valor_busca} deu certo!')
+                        print(f'mes deu certo!')
                         if dia_termino == dia_atual:
-                            print(f'{valor_busca} Filme deu certo!!')
+                            print(f'dia deu certo!!')
                         else:
                             print(f'Dia não deu certo')
 
