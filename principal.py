@@ -92,14 +92,17 @@ class SalaCinema:
                 mes_termino_extenso = mes_extenso(mes_termino)
                 data_termino = f'{dia_termino}/{mes_termino}/{ano_termino}'
                 if ano_termino < ano_atual:
-                    print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes foi removido das salas")
+                    # print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes foi removido das salas")
+                    remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
                 elif ano_termino == ano_atual:
                     if mes_termino < mes_atual:
                         print(f'O mes {mes_termino_extenso} terminou, o filme estava em cartaz até o dia {data_termino}\n'
-                              f'Filme foi removido das salas!')
+                              f'Filme {valor_busca} foi removido das salas!')
+                        remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
                     elif mes_termino == mes_atual:
                         if dia_termino < dia_atual:
                             print(f'{valor_busca} filmes esta sendo removido das salas de cinema!')
+                            remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
                         elif dia_termino == dia_atual:
                             print(f'{valor_busca} esta em seu ultimo dia!!')
                         else:
