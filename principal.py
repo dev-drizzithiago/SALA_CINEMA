@@ -51,15 +51,8 @@ class SalaCinema:
             return lista_mes[mes]
 
         def func_logo_cinema(texto_exibicao):
-            func_data_atual()
-            data_atual = str(self.data_atual).split('/')
-            dia_atual = data_atual[0].strip()
-            mes_atual = data_atual[1].strip()
-            ano_atual = data_atual[2].strip()
-            mes_atual_extenso = mes_extenso(mes_atual)
             print(self.linhas_aparencia)
             print(f'{texto_exibicao}'.center(80))
-            print(f'Data Atual [{dia_atual} de {mes_atual_extenso} de {ano_atual}]')
             print(self.linhas_aparencia)
 
         def aperte_enter():
@@ -78,17 +71,17 @@ class SalaCinema:
             :return:
             """
             func_data_atual()
-            func_logo_cinema("Filmes em cartaz, Aproveite!!")
+
             data_atual = str(self.data_atual).split('/')
             dia_atual = data_atual[0].strip()
             mes_atual = data_atual[1].strip()
             ano_atual = data_atual[2].strip()
             mes_atual_extenso = mes_extenso(mes_atual)
+            print()
             print(f'Data Atual [{dia_atual} de {mes_atual_extenso} de {ano_atual}]')
-            print(self.linhas_aparencia)
+            func_logo_cinema("Filmes em cartaz, Aproveite!!")
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_busca in listando_filmes_cartaz:
-                print(valor_busca.replace('.txt', ''))
                 filme_cartaz_formt = valor_busca.split('-')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
                 data_termino_cartaz = filme_cartaz_data.split('/')
