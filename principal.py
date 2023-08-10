@@ -48,12 +48,18 @@ class SalaCinema:
                          'Abril', 'Maio', 'Junho',
                          'Julho', 'Agosto', 'Setembro',
                          'Outubro', 'Novembro', 'Desembro']
-            print(mes+1)
             return lista_mes[mes]
 
         def func_logo_cinema(texto_exibicao):
+            func_data_atual()
+            data_atual = str(self.data_atual).split('/')
+            dia_atual = data_atual[0].strip()
+            mes_atual = data_atual[1].strip()
+            ano_atual = data_atual[2].strip()
+            mes_atual_extenso = mes_extenso(mes_atual)
             print(self.linhas_aparencia)
             print(f'{texto_exibicao}'.center(80))
+            print(f'Data Atual [{dia_atual} de {mes_atual_extenso} de {ano_atual}]')
             print(self.linhas_aparencia)
 
         def aperte_enter():
@@ -72,6 +78,7 @@ class SalaCinema:
             :return:
             """
             func_data_atual()
+            func_logo_cinema("Filmes em cartaz, Aproveite!!")
             data_atual = str(self.data_atual).split('/')
             dia_atual = data_atual[0].strip()
             mes_atual = data_atual[1].strip()
@@ -92,7 +99,7 @@ class SalaCinema:
                 mes_termino_extenso = mes_extenso(mes_termino)
                 data_termino = f'{dia_termino}/{mes_termino}/{ano_termino}'
                 if ano_termino < ano_atual:
-                    # print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes foi removido das salas")
+                    print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes foi removido das salas")
                     remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
                 elif ano_termino == ano_atual:
                     if mes_termino < mes_atual:
@@ -1148,7 +1155,7 @@ class SalaCinema:
                 f'''
                       Hora certa
         |                                     |
-        |         {self.data_atual} - {self.hora_atual}       |
+        |              {self.hora_atual}               |
         |_____________________________________|
         {self.linhas_aparencia}
         | [1] |  Area do CLIENTE      
