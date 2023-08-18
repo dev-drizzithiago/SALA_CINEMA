@@ -139,7 +139,7 @@ class SalaCinema:
             Vou tentar fazer sem ajudar da foruns, tentar resolver sozinho, para assim tentar entender o funcionamento.
             :return:
             """
-
+2
         def sala_cinema():  # A montagem do programa
             """
             :param: "PRIMEIRA ESTRUTURA DE CADEIRAS", responsavel em criar a primeira estrutura de paoltronas. Quando a
