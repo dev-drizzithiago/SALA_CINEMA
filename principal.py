@@ -127,7 +127,6 @@ class SalaCinema:
                 elif ano_termino > ano_atual:
                     print(f'Filmes {valor_busca} ira ficar em cartaz até o dia {dia_termino}/{mes_termino}/{ano_termino}')
                 print(self.linhas_aparencia)
-        func_verificar_data_cartaz()
 
         def calculando_data():
             """
@@ -140,7 +139,6 @@ class SalaCinema:
             Vou tentar fazer sem ajudar da foruns, tentar resolver sozinho, para assim tentar entender o funcionamento.
             :return:
             """
-
 
         def sala_cinema():  # A montagem do programa
             """
