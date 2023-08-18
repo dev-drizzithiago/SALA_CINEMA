@@ -61,6 +61,20 @@ class SalaCinema:
             """
             input('Aperte ENTER para continuar!')
 
+        def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
+            """
+            Essa função é responsavel por verificar se a entrada que os usuários informarem é um "número inteiro"
+            :param valor_int: Recebe o texto exibido para o usuário.
+            :return: Se o valor, digitado pelo usuário, for um número inteiro, ele retorna o valor como correto. Mas,
+            caso o valor não for um "número inteiro" a função pede para o usuário digitar o valor navamente.
+            """
+            while True:  # loop_01
+                try:
+                    valor_correto = int(input(valor_int))
+                    return valor_correto
+                except ValueError:
+                    print('Valor incorreto. Digite novamente.')
+
         def func_verificar_data_cartaz():
             """
             O intuito dessa função é verificar se os filmes que estão em cartaz ainda estão no periodo. Caso
@@ -127,20 +141,6 @@ class SalaCinema:
             :return:
             """
 
-
-        def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
-            """
-            Essa função é responsavel por verificar se a entrada que os usuários informarem é um "número inteiro"
-            :param valor_int: Recebe o texto exibido para o usuário.
-            :return: Se o valor, digitado pelo usuário, for um número inteiro, ele retorna o valor como correto. Mas,
-            caso o valor não for um "número inteiro" a função pede para o usuário digitar o valor navamente.
-            """
-            while True:  # loop_01
-                try:
-                    valor_correto = int(input(valor_int))
-                    return valor_correto
-                except ValueError:
-                    print('Valor incorreto. Digite novamente.')
 
         def sala_cinema():  # A montagem do programa
             """
@@ -1021,7 +1021,7 @@ class SalaCinema:
                     f"""
                       Hora certa
         |                                     |
-        |         {self.data_atual} - {self.hora_atual}         |
+        |         {self.data_atual} - {self.hora_atual}       |
         |_____________________________________|
         {self.linhas_aparencia}      
         | [1] | Consultar cadastro cliente
@@ -1078,7 +1078,7 @@ class SalaCinema:
                     f"""
                           Hora certa
             |                                     |
-            |         {self.data_atual} - {self.hora_atual}         |
+            |         {self.data_atual} - {self.hora_atual}       |
             |_____________________________________|
             {self.linhas_aparencia}            
             | [1] | Escolha um filme
