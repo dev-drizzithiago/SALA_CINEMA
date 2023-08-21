@@ -26,22 +26,6 @@ class SalaCinema:
         self.lista_info_registro = list()
         self.registros_filmes = list()
 
-        def criando_salas():
-            """
-            Serão destinadas 12 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
-            salasque ficaram disponiveis para o filme.
-            :return: 
-            """
-
-            lista_salas = [('Sala_01_ARIES',25), ('Sala_02_TOURO',36), ('Sala_03_GEMEOS',50),
-                          ('Sala_04_CANCER',1000), ('Sala_05_LEAO',90), ('Sala_06_VIRGEM',50),
-                           ('Sala_07_Libra',70), ('Sala_08_ESCORPIAO',100), ('Sala_09_SAGITARIO',80),
-                          ('Sala_10_CAPRICORNIO',80), ('Sala_11_AQUARIO',50), ('Sala_12_PEIXES',50)]
-            for salas_0 in lista_salas:
-                nome_sala = salas_0[0]
-                qtd_cadeiras = salas_0[1]
-                print(f'Sala {nome_sala} - Números de cadeiras {qtd_cadeiras}')
-        criando_salas()
         def criando_salas_disponivel():
             print('')
 
@@ -385,6 +369,27 @@ class SalaCinema:
                 aperte_enter()
             else:
                 criando_arq_registro_reserva_txt.close()
+
+
+        def criando_arq_salas():
+            """
+            Serão destinadas 12 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
+            salasque ficaram disponiveis para o filme.
+            :return:
+            """
+
+            global criando_arq
+            criando_arq = open(arq_salas_cineme_disponivel_txt, 'w')
+            lista_salas = [('Sala_01_ARIES',25), ('Sala_02_TOURO',36), ('Sala_03_GEMEOS',50),
+                          ('Sala_04_CANCER',100), ('Sala_05_LEAO',90), ('Sala_06_VIRGEM',50),
+                           ('Sala_07_Libra',70), ('Sala_08_ESCORPIAO',100), ('Sala_09_SAGITARIO',80),
+                          ('Sala_10_CAPRICORNIO',80), ('Sala_11_AQUARIO',50), ('Sala_12_PEIXES',50)]
+            for salas_0 in lista_salas:
+                nome_sala = salas_0[0]
+                qtd_cadeiras = salas_0[1]
+                criando_arq.write(f'{nome_sala} - {qtd_cadeiras}\n')
+                print(f'Sala {nome_sala} - Números de cadeiras {qtd_cadeiras}')
+            criando_arq.close()
 
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
             """
