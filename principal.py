@@ -26,8 +26,6 @@ class SalaCinema:
         self.lista_info_registro = list()
         self.registros_filmes = list()
 
-        def criando_salas_disponivel():
-            print('')
 
         def func_data_atual():
             valor_data = datetime.now()
@@ -193,7 +191,9 @@ class SalaCinema:
                 print('Faça uma boa reserva!')
                 print(self.linhas_aparencia)
 
-
+        def inicio_verif_arq_salas():
+            if not verificando_arq_sala_cinema():
+                criando_arq_salas_disponivel()
         def verif_estrutura_reserva():
             """
             :param: loop_01_verificação, visa em formatar a string adquirida pelo arquivo de texto.
@@ -304,6 +304,14 @@ class SalaCinema:
             except:
                 return False
 
+        def verificando_arq_sala_cinema():
+            try:
+                abrindo_sala_cinema = open(arq_salas_cineme_disponivel_txt, 'r')
+                abrindo_sala_cinema.close()
+                return True
+            except FileNotFoundError:
+                return False
+
         def func_listando_filmes_cartaz():
             """
             Função destinadas em lista os filmes que estiverem em cartaz.
@@ -370,8 +378,7 @@ class SalaCinema:
             else:
                 criando_arq_registro_reserva_txt.close()
 
-
-        def criando_arq_salas():
+        def criando_arq_salas_disponivel():
             """
             Serão destinadas 12 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
             salasque ficaram disponiveis para o filme.
@@ -1167,6 +1174,7 @@ class SalaCinema:
         cinema = sala_cinema()
         lendo_dados_arq_cliente_txt()
         lendo_dados_no_arq_reserva()
+        inicio_verif_arq_salas()
 
         # Menu principal
         while True:
