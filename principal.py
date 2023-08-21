@@ -511,9 +511,15 @@ class SalaCinema:
                 for codigo in self.lista_filme_cadastrado:
                     if int(cod_filme) == int(codigo[0]):
                         print()
-                        print(f'Você vai coloca em cartaz o filme...:\n'
+                        print(f'Você vai coloca em cartaz o filme... (Para cancelar 9999):\n'
                               f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
                         valor_fim_cartaz = input('Até que dia o filme ficara em cartaz? (dd/mm/aaaa): ')
+                        if valor_fim_cartaz == "9999":
+                            print('Você cancelou o processo! Voltando ao menu!')
+                            print(self.linhas_aparencia)
+                            sleep(1)
+                            self.quebra_loop = False
+                            break
                         data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
                         arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
                                             + codigo[1] + '.txt')
