@@ -9,7 +9,7 @@ arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CI
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
 arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES'
 arq_salas_cineme_disponivel_txt = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Disponivel.txt'
-arq_salas_cinema_reservada_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Reservadas'
+arq_salas_cinema_reservada_txt = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Reservadas.txt'
 
 
 class SalaCinema:
@@ -25,21 +25,21 @@ class SalaCinema:
         self.lista_filme_cadastrado = list()
         self.lista_info_registro = list()
         self.registros_filmes = list()
-        
-        def SalasReservadas(valor_qtd=0, titulo_filme=''):
+
+        def criando_salas():
+            self.lista_salas_disponivel = []
             """
             Serão destinadas 12 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
             salasque ficaram disponiveis para o filme.
             :return: 
             """
-            lista_salas = ['Sala_01_ARIES', 'Sala_02_TOURO', 'Sala_03_GEMEOS', 'Sala_04_CANCER',
-                           'Sala_05_LEAO', 'Sala_06_VIRGEM', 'Sala_07_Libra', 'Sala_08_ESCORPIAO',
-                           'Sala_09_SAGITARIO', 'Sala_10_CAPRICORNIO', 'Sala_11_AQUARIO', 'Sala_12_PEIXES']
-            cont = 1
-            for salas in lista_salas:
-                print(f'{cont} {salas}')
-                cont += 1
-        SalasReservadas()
+
+            lista_salas = ([['Sala_01_ARIES',25], ['Sala_02_TOURO',36] ['Sala_03_GEMEOS',50],
+                           ['Sala_04_CANCER',100], ['Sala_05_LEAO',90], ['Sala_06_VIRGEM',50],
+                           ['Sala_07_Libra',70], ['Sala_08_ESCORPIAO',100], ['Sala_09_SAGITARIO',80],
+                           ['Sala_10_CAPRICORNIO',80], ['Sala_11_AQUARIO',50], ['Sala_12_PEIXES',50]])
+            print(lista_salas)
+        criando_salas()
         def criando_salas_disponivel():
             print('')
 
@@ -528,7 +528,7 @@ class SalaCinema:
                         print(f'Você vai coloca em cartaz o filme... (Para cancelar 9999):\n'
                               f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
                         salas_reservadas = leiaInt('Quantas salas ficará disponivel para o filme: ')
-                        valor_salas_reservadas = SalasReservadas(salas_reservadas)
+
                         valor_fim_cartaz = input('Até que dia o filme ficara em cartaz? (dd/mm/aaaa): ')
                         if valor_fim_cartaz == "9999":
                             print('Você cancelou o processo! Voltando ao menu!')
