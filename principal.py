@@ -8,7 +8,8 @@ arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SAL
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
 arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES'
-arq_salas_cinemas_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema'
+arq_salas_cineme_disponivel = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Disponivel'
+arq_salas_cinema_reservada = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Reservadas'
 
 
 class SalaCinema:
