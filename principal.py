@@ -8,6 +8,8 @@ arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SAL
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
 arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES'
+arq_salas_cineme_disponivel = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Disponivel'
+arq_salas_cinema_reservada = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Reservadas'
 
 
 class SalaCinema:
@@ -24,13 +26,14 @@ class SalaCinema:
         self.lista_info_registro = list()
         self.registros_filmes = list()
         
-        def func_qtdd_cadeiras():
+        def SalasReservadas(valor_qtd):
             """
-            Essafuncação vai ser destinada a escolher a quantidade de cadeiras que serão disponibilizadas para cada filmes. 
-            Quando foi colocar o filme em cartz, o program chama essa funcao e é escolho quantas fileiras e cadeiras. 
-            Função essa que ajuda me ajudar com a monipulação de matrizes.
+            Serão destinadas 10 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
+            salasque ficaram disponiveis para o filme.
             :return: 
             """
+        def criando_salas_disponivel():
+            print('')
 
         def func_data_atual():
             valor_data = datetime.now()
@@ -48,7 +51,6 @@ class SalaCinema:
                          'Abril', 'Maio', 'Junho',
                          'Julho', 'Agosto', 'Setembro',
                          'Outubro', 'Novembro', 'Desembro']
-            print(mes+1)
             return lista_mes[mes]
 
         def func_logo_cinema(texto_exibicao):
@@ -61,69 +63,6 @@ class SalaCinema:
             :return: Retorna uma entrada de teclado, para dar uma pausa até o usuário decidir continuar
             """
             input('Aperte ENTER para continuar!')
-
-        def func_verificar_data_cartaz():
-            """
-            O intuito dessa função é verificar se os filmes que estão em cartaz ainda estão no periodo. Caso
-            esteja chegando no final ou já terminado, o filme é retirado de cartaz e as informações ficara dentro
-            de um arquivo de log para registro. Assim, quando o cliente abrir o programa, evita que ele encontre
-            o filme na lista, sendo que já passou a data. O arquivo de log vai server para, caso o cliente consiga
-            encontrar as informações do filme, mostra quando ele entrou em cartaz e saiu.
-            :return:
-            """
-            func_data_atual()
-            data_atual = str(self.data_atual).split('/')
-            dia_atual = data_atual[0].strip()
-            mes_atual = data_atual[1].strip()
-            ano_atual = data_atual[2].strip()
-            mes_atual_extenso = mes_extenso(mes_atual)
-            print(f'Data Atual [{dia_atual} de {mes_atual_extenso} de {ano_atual}]')
-            print(self.linhas_aparencia)
-            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
-            for valor_busca in listando_filmes_cartaz:
-                print(valor_busca.replace('.txt', ''))
-                filme_cartaz_formt = valor_busca.split('-')
-                filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
-                data_termino_cartaz = filme_cartaz_data.split('/')
-                filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '')
-                ano_termino = data_termino_cartaz[2].strip()
-                mes_termino = data_termino_cartaz[1].strip()
-                dia_termino = data_termino_cartaz[0].strip()
-                mes_termino_extenso = mes_extenso(mes_termino)
-                data_termino = f'{dia_termino}/{mes_termino}/{ano_termino}'
-                if ano_termino < ano_atual:
-                    print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes foi removido das salas")
-                elif ano_termino == ano_atual:
-                    if mes_termino < mes_atual:
-                        print(f'O mes {mes_termino_extenso} terminou, o filme estava em cartaz até o dia {data_termino}\n'
-                              f'Filme foi removido das salas!')
-                    elif mes_termino == mes_atual:
-                        if dia_termino < dia_atual:
-                            print(f'{valor_busca} filmes esta sendo removido das salas de cinema!')
-                        elif dia_termino == dia_atual:
-                            print(f'{valor_busca} esta em seu ultimo dia!!')
-                        else:
-                            print(f'{valor_busca} esta em seu ultimo mes, vai sair das salas de cinam no dia '
-                                  f'{dia_termino} de {mes_atual_extenso}')
-                    elif mes_termino > mes_atual:
-                        print(f'Filme {valor_busca} vai esta em cartaz até {data_termino}')
-                elif ano_termino > ano_atual:
-                    print(f'Filmes {valor_busca} ira ficar em cartaz até o dia {dia_termino}/{mes_termino}/{ano_termino}')
-                print(self.linhas_aparencia)
-        func_verificar_data_cartaz()
-
-        def calculando_data():
-            """
-            O objetivo dessa função é aprender a mudança do mes, dependendo do dia que for acrescido, tipo:
-            O mesmo possui 30 dias, vou colocar um filme de cartaz para ficar 25 dias nas salas de cinema, mas
-            quando eu for registrar o filme é dia 25-07-2023. Quando eu for registrar o filme sera pedido o periodo
-            em dias, em 7 dias já sera o próximo mes, agosto, mas com o cálculo que fiz, ele apenas vai somar
-            os dias 25 + 25 tormando-se 50-07-2023.
-            Essa função eu vou usar para fazer essa culculo, facilitando na hora do registro.
-            Vou tentar fazer sem ajudar da foruns, tentar resolver sozinho, para assim tentar entender o funcionamento.
-            :return:
-            """
-
 
         def leiaInt(valor_int):  # Verificar se o valor digitado é 'numero inteiro'
             """
@@ -138,6 +77,71 @@ class SalaCinema:
                     return valor_correto
                 except ValueError:
                     print('Valor incorreto. Digite novamente.')
+
+        def func_verificar_data_cartaz():
+            """
+            O intuito dessa função é verificar se os filmes que estão em cartaz ainda estão no periodo. Caso
+            esteja chegando no final ou já terminado, o filme é retirado de cartaz e as informações ficara dentro
+            de um arquivo de log para registro. Assim, quando o cliente abrir o programa, evita que ele encontre
+            o filme na lista, sendo que já passou a data. O arquivo de log vai server para, caso o cliente consiga
+            encontrar as informações do filme, mostra quando ele entrou em cartaz e saiu.
+            :return:
+            """
+            func_data_atual()
+
+            data_atual = str(self.data_atual).split('/')
+            dia_atual = data_atual[0].strip()
+            mes_atual = data_atual[1].strip()
+            ano_atual = data_atual[2].strip()
+            mes_atual_extenso = mes_extenso(mes_atual)
+            print()
+            print(f'Data Atual [{dia_atual} de {mes_atual_extenso} de {ano_atual}]')
+            func_logo_cinema("Filmes em cartaz, Aproveite!!")
+            listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
+            for valor_busca in listando_filmes_cartaz:
+                filme_cartaz_formt = valor_busca.split('-')
+                filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
+                data_termino_cartaz = filme_cartaz_data.split('/')
+                # filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '')
+                ano_termino = data_termino_cartaz[2].strip()
+                mes_termino = data_termino_cartaz[1].strip()
+                dia_termino = data_termino_cartaz[0].strip()
+                mes_termino_extenso = mes_extenso(mes_termino)
+                data_termino = f'{dia_termino}/{mes_termino}/{ano_termino}'
+                if ano_termino < ano_atual:
+                    print(f"O ano de terminio é {ano_termino}, foi no ana passado - Filmes foi removido das salas")
+                    remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
+                elif ano_termino == ano_atual:
+                    if mes_termino < mes_atual:
+                        print(f'O mes {mes_termino_extenso} terminou, o filme estava em cartaz até o dia {data_termino}\n'
+                              f'Filme {valor_busca} foi removido das salas!')
+                        remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
+                    elif mes_termino == mes_atual:
+                        if dia_termino < dia_atual:
+                            print(f'{valor_busca} filmes esta sendo removido das salas de cinema!')
+                            remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
+                        elif dia_termino == dia_atual:
+                            print(f'{valor_busca} esta em seu ultimo dia!!')
+                        else:
+                            print(f'{valor_busca} esta em seu ultimo mes, vai sair das salas de cinam no dia '
+                                  f'{dia_termino} de {mes_atual_extenso}')
+                    elif mes_termino > mes_atual:
+                        print(f'Filme {valor_busca} vai esta em cartaz até {data_termino}')
+                elif ano_termino > ano_atual:
+                    print(f'Filmes {valor_busca} ira ficar em cartaz até o dia {dia_termino}/{mes_termino}/{ano_termino}')
+                print(self.linhas_aparencia)
+
+        def calculando_data():
+            """
+            O objetivo dessa função é aprender a mudança do mes, dependendo do dia que for acrescido, tipo:
+            O mesmo possui 30 dias, vou colocar um filme de cartaz para ficar 25 dias nas salas de cinema, mas
+            quando eu for registrar o filme é dia 25-07-2023. Quando eu for registrar o filme sera pedido o periodo
+            em dias, em 7 dias já sera o próximo mes, agosto, mas com o cálculo que fiz, ele apenas vai somar
+            os dias 25 + 25 tormando-se 50-07-2023.
+            Essa função eu vou usar para fazer essa culculo, facilitando na hora do registro.
+            Vou tentar fazer sem ajudar da foruns, tentar resolver sozinho, para assim tentar entender o funcionamento.
+            :return:
+            """
 
         def sala_cinema():  # A montagem do programa
             """
@@ -194,6 +198,7 @@ class SalaCinema:
                 sleep(1)
                 print('Faça uma boa reserva!')
                 print(self.linhas_aparencia)
+
 
         def verif_estrutura_reserva():
             """
@@ -427,6 +432,7 @@ class SalaCinema:
             except:
                 print('Não foi possível abrir o arquivo de texto para salvar sua reserva!')
 
+        # REGISTRANDO OS FILMES EM CARTAZ
         def gravando_filmes_em_cartaz():
             """
             Area destinada a gravar os filmes que ficaram em cartaz.
@@ -479,19 +485,20 @@ class SalaCinema:
 
             # loop_lista_verifica_filmes_cartaz
             print()
-            print(f'Filmes em cartaz ')
+            print(f'Filmes que estão em cartaz... ')
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
                 valor_formt_list = valor_listagem.split('-')
                 valor_cod_list_str = valor_formt_list[0].strip()
-                valor_titulo_list_str = valor_formt_list[2].replace('.exe', '').strip()
+                valor_titulo_list_str = valor_formt_list[2].replace('.txt', '').strip()
                 valor_data_list_str = valor_formt_list[1].replace('_', '/').strip()
-                print(f'[{valor_cod_list_str}] - {valor_titulo_list_str}')
+                print(f'[{valor_cod_list_str}] - [{valor_titulo_list_str}] Ficará até o dia [{valor_data_list_str}]')
                 if valor_cod_list_str == cod_filme:
                     print()
                     print(self.linhas_aparencia)
-                    print(f"O filme que você digitou [{valor_titulo_list_str}] já esta em cartaz!\n"
+                    print(f"O filme que você digitou [{valor_titulo_list_str.replace('.txt', '')}] "
+                          f"já esta em cartaz!\n"
                           f"Ficara até o dia {valor_data_list_str}")
                     print(self.linhas_aparencia)
                     # Se encontrou o filme em cartaz, quebra o loop_cadastrando_filme_cartaz
@@ -510,9 +517,17 @@ class SalaCinema:
                 for codigo in self.lista_filme_cadastrado:
                     if int(cod_filme) == int(codigo[0]):
                         print()
-                        print(f'Você vai coloca em cartaz o filme...:\n'
+                        print(f'Você vai coloca em cartaz o filme... (Para cancelar 9999):\n'
                               f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
+                        salas_reservadas = leiaInt('Quantas salas ficará disponivel para o filme: ')
+                        valor_salas_reservadas = SalasReservadas(salas_reservadas)
                         valor_fim_cartaz = input('Até que dia o filme ficara em cartaz? (dd/mm/aaaa): ')
+                        if valor_fim_cartaz == "9999":
+                            print('Você cancelou o processo! Voltando ao menu!')
+                            print(self.linhas_aparencia)
+                            sleep(1)
+                            self.quebra_loop = False
+                            break
                         data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
                         arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
                                             + codigo[1] + '.txt')
@@ -520,7 +535,6 @@ class SalaCinema:
                             verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
                             print()
                             print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{valor_fim_cartaz}]')
-                            print('Para continuar...')
                             aperte_enter()
                             verif_arq_cartaz.close()
 
@@ -536,6 +550,7 @@ class SalaCinema:
                                                             f'{data_fim_cartaz} \n')
                                 sleep(1)
                                 print('Filme registrado com sucesso!!')
+                                self.quebra_loop = False
                                 break
                             except:
                                 sleep(2)
@@ -1018,7 +1033,7 @@ class SalaCinema:
                     f"""
                       Hora certa
         |                                     |
-        |         {self.data_atual} - {self.hora_atual}         |
+        |         {self.data_atual} - {self.hora_atual}       |
         |_____________________________________|
         {self.linhas_aparencia}      
         | [1] | Consultar cadastro cliente
@@ -1075,7 +1090,7 @@ class SalaCinema:
                     f"""
                           Hora certa
             |                                     |
-            |         {self.data_atual} - {self.hora_atual}         |
+            |         {self.data_atual} - {self.hora_atual}       |
             |_____________________________________|
             {self.linhas_aparencia}            
             | [1] | Escolha um filme
@@ -1145,7 +1160,7 @@ class SalaCinema:
                 f'''
                       Hora certa
         |                                     |
-        |         {self.data_atual} - {self.hora_atual}       |
+        |              {self.hora_atual}               |
         |_____________________________________|
         {self.linhas_aparencia}
         | [1] |  Area do CLIENTE      
