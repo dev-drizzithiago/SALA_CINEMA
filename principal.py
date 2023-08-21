@@ -8,8 +8,8 @@ arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SAL
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
 arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES'
-arq_salas_cineme_disponivel = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Disponivel'
-arq_salas_cinema_reservada = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Reservadas'
+arq_salas_cineme_disponivel_txt = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Disponivel.txt'
+arq_salas_cinema_reservada_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Reservadas'
 
 
 class SalaCinema:
@@ -26,12 +26,20 @@ class SalaCinema:
         self.lista_info_registro = list()
         self.registros_filmes = list()
         
-        def SalasReservadas(valor_qtd):
+        def SalasReservadas(valor_qtd=0, titulo_filme=''):
             """
-            Serão destinadas 10 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
+            Serão destinadas 12 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
             salasque ficaram disponiveis para o filme.
             :return: 
             """
+            lista_salas = ['Sala_01_ARIES', 'Sala_02_TOURO', 'Sala_03_GEMEOS', 'Sala_04_CANCER',
+                           'Sala_05_LEAO', 'Sala_06_VIRGEM', 'Sala_07_Libra', 'Sala_08_ESCORPIAO',
+                           'Sala_09_SAGITARIO', 'Sala_10_CAPRICORNIO', 'Sala_11_AQUARIO', 'Sala_12_PEIXES']
+            cont = 1
+            for salas in lista_salas:
+                print(f'{cont} {salas}')
+                cont += 1
+        SalasReservadas()
         def criando_salas_disponivel():
             print('')
 
