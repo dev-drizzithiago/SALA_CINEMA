@@ -37,7 +37,10 @@ class SalaCinema:
                           ('Sala_04_CANCER',1000), ('Sala_05_LEAO',90), ('Sala_06_VIRGEM',50),
                            ('Sala_07_Libra',70), ('Sala_08_ESCORPIAO',100), ('Sala_09_SAGITARIO',80),
                           ('Sala_10_CAPRICORNIO',80), ('Sala_11_AQUARIO',50), ('Sala_12_PEIXES',50)]
-            print(lista_salas)
+            for salas_0 in lista_salas:
+                nome_sala = salas_0[0]
+                qtd_cadeiras = salas_0[1]
+                print(f'Sala {nome_sala} - Números de cadeiras {qtd_cadeiras}')
         criando_salas()
         def criando_salas_disponivel():
             print('')
