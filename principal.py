@@ -24,11 +24,10 @@ class SalaCinema:
         self.lista_info_registro = list()
         self.registros_filmes = list()
         
-        def func_qtdd_cadeiras():
+        def SalasReservadas():
             """
-            Essafuncação vai ser destinada a escolher a quantidade de cadeiras que serão disponibilizadas para cada filmes. 
-            Quando foi colocar o filme em cartz, o program chama essa funcao e é escolho quantas fileiras e cadeiras. 
-            Função essa que ajuda me ajudar com a monipulação de matrizes.
+            Serão destinadas 10 salas ao todos. Qual o filme for colocado em cartaz, srão apresentados a quantidade de
+            salasque ficaram disponiveis para o filme.
             :return: 
             """
 
@@ -195,6 +194,7 @@ class SalaCinema:
                 sleep(1)
                 print('Faça uma boa reserva!')
                 print(self.linhas_aparencia)
+
 
         def verif_estrutura_reserva():
             """
@@ -428,6 +428,7 @@ class SalaCinema:
             except:
                 print('Não foi possível abrir o arquivo de texto para salvar sua reserva!')
 
+        # REGISTRANDO OS FILMES EM CARTAZ
         def gravando_filmes_em_cartaz():
             """
             Area destinada a gravar os filmes que ficaram em cartaz.
