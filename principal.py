@@ -33,7 +33,7 @@ class SalaCinema:
             :return: 
             """
         def criando_salas_disponivel():
-            
+            print('')
 
         def func_data_atual():
             valor_data = datetime.now()
