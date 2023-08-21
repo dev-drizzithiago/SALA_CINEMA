@@ -28,10 +28,12 @@ class SalaCinema:
         
         def SalasReservadas(valor_qtd):
             """
-            Serão destinadas 10 salas ao todos. Qual o filme for colocado em cartaz, srão apresentados a quantidade de
+            Serão destinadas 10 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
             salasque ficaram disponiveis para o filme.
             :return: 
             """
+        def criando_salas_disponivel():
+            
 
         def func_data_atual():
             valor_data = datetime.now()
