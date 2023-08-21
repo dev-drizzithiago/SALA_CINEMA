@@ -27,17 +27,16 @@ class SalaCinema:
         self.registros_filmes = list()
 
         def criando_salas():
-            self.lista_salas_disponivel = []
             """
             Serão destinadas 12 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
             salasque ficaram disponiveis para o filme.
             :return: 
             """
 
-            lista_salas = ([['Sala_01_ARIES',25], ['Sala_02_TOURO',36] ['Sala_03_GEMEOS',50],
-                           ['Sala_04_CANCER',100], ['Sala_05_LEAO',90], ['Sala_06_VIRGEM',50],
-                           ['Sala_07_Libra',70], ['Sala_08_ESCORPIAO',100], ['Sala_09_SAGITARIO',80],
-                           ['Sala_10_CAPRICORNIO',80], ['Sala_11_AQUARIO',50], ['Sala_12_PEIXES',50]])
+            lista_salas = [('Sala_01_ARIES',25), ('Sala_02_TOURO',36), ('Sala_03_GEMEOS',50),
+                          ('Sala_04_CANCER',1000), ('Sala_05_LEAO',90), ('Sala_06_VIRGEM',50),
+                           ('Sala_07_Libra',70), ('Sala_08_ESCORPIAO',100), ('Sala_09_SAGITARIO',80),
+                          ('Sala_10_CAPRICORNIO',80), ('Sala_11_AQUARIO',50), ('Sala_12_PEIXES',50)]
             print(lista_salas)
         criando_salas()
         def criando_salas_disponivel():
