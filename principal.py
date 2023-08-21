@@ -8,6 +8,7 @@ arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SAL
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
 arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES'
+arq_salas_cinemas_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema'
 
 
 class SalaCinema:
@@ -24,7 +25,7 @@ class SalaCinema:
         self.lista_info_registro = list()
         self.registros_filmes = list()
         
-        def SalasReservadas():
+        def SalasReservadas(valor_qtd):
             """
             Serão destinadas 10 salas ao todos. Qual o filme for colocado em cartaz, srão apresentados a quantidade de
             salasque ficaram disponiveis para o filme.
@@ -515,6 +516,8 @@ class SalaCinema:
                         print()
                         print(f'Você vai coloca em cartaz o filme... (Para cancelar 9999):\n'
                               f'Titulo:[{codigo[1]}], com duração de: [{codigo[3]}] minutos')
+                        salas_reservadas = leiaInt('Quantas salas ficará disponivel para o filme: ')
+                        valor_salas_reservadas = SalasReservadas(salas_reservadas)
                         valor_fim_cartaz = input('Até que dia o filme ficara em cartaz? (dd/mm/aaaa): ')
                         if valor_fim_cartaz == "9999":
                             print('Você cancelou o processo! Voltando ao menu!')
