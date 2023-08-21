@@ -537,6 +537,7 @@ class SalaCinema:
                                                             f'{data_fim_cartaz} \n')
                                 sleep(1)
                                 print('Filme registrado com sucesso!!')
+                                self.quebra_loop = False
                                 break
                             except:
                                 sleep(2)
