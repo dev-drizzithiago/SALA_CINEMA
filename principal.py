@@ -480,7 +480,7 @@ class SalaCinema:
 
             # loop_lista_verifica_filmes_cartaz
             print()
-            print(f'Filmes em cartaz ')
+            print(f'Filmes que estão em cartaz... ')
             print(self.linhas_aparencia)
             listando_filmes_cartaz = listdir(arq_filmes_em_cartazes_local_pasta)
             for valor_listagem in listando_filmes_cartaz:
