@@ -503,6 +503,8 @@ class SalaCinema:
                     # Se não encontrou, é verdadeiro.
                     self.quebra_loop = True
 
+                if cod_filme > valor_cod_list_str:
+
             # loop_cadastrando_filme_cartaz
             while True:
                 if not self.quebra_loop:
