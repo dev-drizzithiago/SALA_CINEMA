@@ -503,8 +503,6 @@ class SalaCinema:
                     # Se não encontrou, é verdadeiro.
                     self.quebra_loop = True
 
-                if cod_filme > valor_cod_list_str:
-
             # loop_cadastrando_filme_cartaz
             while True:
                 if not self.quebra_loop:
@@ -529,7 +527,6 @@ class SalaCinema:
                             verif_arq_cartaz = open(arq_filmes_em_cartazes_local_pasta + arq_filme_txt, 'r')
                             print()
                             print(f'O filme [{codigo[1]}] vai ficar em cartaz até [{valor_fim_cartaz}]')
-                            print('Para continuar...')
                             aperte_enter()
                             verif_arq_cartaz.close()
 
