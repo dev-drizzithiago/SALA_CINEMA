@@ -367,6 +367,7 @@ class SalaCinema:
             else:
                 criando_arq_registro_reserva_txt.close()
 
+        # Função criando as salas
         def criando_arq_salas_disponivel():
             """
             Serão destinadas 12 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
