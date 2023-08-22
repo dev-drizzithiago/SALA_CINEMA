@@ -190,7 +190,7 @@ class SalaCinema:
                 sleep(1)
                 print('Faça uma boa reserva!')
                 print(self.linhas_aparencia)
-       
+
         def verif_estrutura_reserva():
             """
             :param: loop_01_verificação, visa em formatar a string adquirida pelo arquivo de texto.
@@ -378,7 +378,9 @@ class SalaCinema:
                            ('Sala_07_Libra', 70), ('Sala_08_ESCORPIAO', 100), ('Sala_09_SAGITARIO', 80),
                            ('Sala_10_CAPRICORNIO', 80), ('Sala_11_AQUARIO', 50), ('Sala_12_PEIXES', 50)]
             for valor_sl_disp in lista_salas:
-                print(valor_sl_disp)
+                nome_sala = valor_sl_disp[0]
+                qt_cadeir = valor_sl_disp[1]
+                print(f'{nome_sala} - {qt_cadeir}')
         criando_arq_salas_disponivel()
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
             """
@@ -1157,7 +1159,6 @@ class SalaCinema:
         lendo_dados_arq_cliente_txt()
         lendo_dados_no_arq_reserva()
         func_verificar_data_cartaz()
-        inicio_verif_arq_salas()
 
         # Menu principal
         while True:
