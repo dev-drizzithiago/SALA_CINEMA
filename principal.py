@@ -104,9 +104,8 @@ class SalaCinema:
                     remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
                 elif ano_termino == ano_atual:
                     if mes_termino < mes_atual:
-                        print(
-                            f'O mes {mes_termino_extenso} terminou, o filme estava em cartaz até o dia {data_termino}\n'
-                            f'Filme {valor_busca} foi removido das salas!')
+                        print(f'O mes {mes_termino_extenso} terminou, o filme estava em cartaz até o dia '
+                              f'{data_termino}\n Filme {valor_busca} foi removido das salas!')
                         remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
                     elif mes_termino == mes_atual:
                         if dia_termino < dia_atual:
