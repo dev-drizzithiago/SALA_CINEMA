@@ -190,11 +190,7 @@ class SalaCinema:
                 sleep(1)
                 print('Faça uma boa reserva!')
                 print(self.linhas_aparencia)
-
-        def inicio_verif_arq_salas():
-            if not verificando_arq_sala_cinema():
-                criando_arq_salas_disponivel()
-
+       
         def verif_estrutura_reserva():
             """
             :param: loop_01_verificação, visa em formatar a string adquirida pelo arquivo de texto.
@@ -305,14 +301,6 @@ class SalaCinema:
             except:
                 return False
 
-        def verificando_arq_sala_cinema():
-            try:
-                abrindo_sala_cinema = open(arq_salas_cineme_disponivel_txt, 'r')
-                abrindo_sala_cinema.close()
-                return True
-            except FileNotFoundError:
-                return False
-
         def func_listando_filmes_cartaz():
             """
             Função destinadas em lista os filmes que estiverem em cartaz.
@@ -389,8 +377,9 @@ class SalaCinema:
                            ('Sala_04_CANCER', 100), ('Sala_05_LEAO', 90), ('Sala_06_VIRGEM', 50),
                            ('Sala_07_Libra', 70), ('Sala_08_ESCORPIAO', 100), ('Sala_09_SAGITARIO', 80),
                            ('Sala_10_CAPRICORNIO', 80), ('Sala_11_AQUARIO', 50), ('Sala_12_PEIXES', 50)]
-
-
+            for valor_sl_disp in lista_salas:
+                print(valor_sl_disp)
+        criando_arq_salas_disponivel()
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
             """
             Essa função é responsavel por gravar as informações do cliente, criando um cadastro.
