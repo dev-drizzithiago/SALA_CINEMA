@@ -26,7 +26,6 @@ class SalaCinema:
         self.lista_info_registro = list()
         self.registros_filmes = list()
 
-
         def func_data_atual():
             valor_data = datetime.now()
             self.data_atual = valor_data.strftime('%d/%m/%Y')
@@ -94,7 +93,7 @@ class SalaCinema:
                 filme_cartaz_formt = valor_busca.split('-')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
                 data_termino_cartaz = filme_cartaz_data.split('/')
-                # filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '')
+                #filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '')
                 ano_termino = data_termino_cartaz[2].strip()
                 mes_termino = data_termino_cartaz[1].strip()
                 dia_termino = data_termino_cartaz[0].strip()
@@ -105,22 +104,24 @@ class SalaCinema:
                     remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
                 elif ano_termino == ano_atual:
                     if mes_termino < mes_atual:
-                        print(f'O mes {mes_termino_extenso} terminou, o filme estava em cartaz até o dia {data_termino}\n'
-                              f'Filme {valor_busca} foi removido das salas!')
+                        print(
+                            f'O mes {mes_termino_extenso} terminou, o filme estava em cartaz até o dia {data_termino}\n'
+                            f'Filme {valor_busca} foi removido das salas!')
                         remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
                     elif mes_termino == mes_atual:
                         if dia_termino < dia_atual:
-                            print(f'{valor_busca} filmes esta sendo removido das salas de cinema!')
+                            print(f'Filme {valor_busca} esta sendo removido das salas de cinema!')
                             remove(arq_filmes_em_cartazes_local_pasta + '/' + valor_busca)
                         elif dia_termino == dia_atual:
-                            print(f'{valor_busca} esta em seu ultimo dia!!')
+                            print(f'Filme {valor_busca} esta em seu ultimo dia!!')
                         else:
-                            print(f'{valor_busca} esta em seu ultimo mes, vai sair das salas de cinam no dia '
+                            print(f'Filme {valor_busca} esta em seu ultimo mes, vai sair das salas de cinam no dia '
                                   f'{dia_termino} de {mes_atual_extenso}')
                     elif mes_termino > mes_atual:
                         print(f'Filme {valor_busca} vai esta em cartaz até {data_termino}')
                 elif ano_termino > ano_atual:
-                    print(f'Filmes {valor_busca} ira ficar em cartaz até o dia {dia_termino}/{mes_termino}/{ano_termino}')
+                    print(
+                        f'Filmes {valor_busca} ira ficar em cartaz até o dia {dia_termino}/{mes_termino}/{ano_termino}')
                 print(self.linhas_aparencia)
 
         def calculando_data():
@@ -194,6 +195,7 @@ class SalaCinema:
         def inicio_verif_arq_salas():
             if not verificando_arq_sala_cinema():
                 criando_arq_salas_disponivel()
+
         def verif_estrutura_reserva():
             """
             :param: loop_01_verificação, visa em formatar a string adquirida pelo arquivo de texto.
@@ -339,7 +341,7 @@ class SalaCinema:
                     else:
                         print(f'O filme [{valor_titulo_listando}] ficara em cartaz até o dia {valor_data_listando}')
             print(self.linhas_aparencia)
-            aperte_enter()    
+            aperte_enter()
 
         def criando_arq_cadastro_cliente():
             """
@@ -387,10 +389,10 @@ class SalaCinema:
 
             global criando_arq
             criando_arq = open(arq_salas_cineme_disponivel_txt, 'w')
-            lista_salas = [('Sala_01_ARIES',25), ('Sala_02_TOURO',36), ('Sala_03_GEMEOS',50),
-                          ('Sala_04_CANCER',100), ('Sala_05_LEAO',90), ('Sala_06_VIRGEM',50),
-                           ('Sala_07_Libra',70), ('Sala_08_ESCORPIAO',100), ('Sala_09_SAGITARIO',80),
-                          ('Sala_10_CAPRICORNIO',80), ('Sala_11_AQUARIO',50), ('Sala_12_PEIXES',50)]
+            lista_salas = [('Sala_01_ARIES', 25), ('Sala_02_TOURO', 36), ('Sala_03_GEMEOS', 50),
+                           ('Sala_04_CANCER', 100), ('Sala_05_LEAO', 90), ('Sala_06_VIRGEM', 50),
+                           ('Sala_07_Libra', 70), ('Sala_08_ESCORPIAO', 100), ('Sala_09_SAGITARIO', 80),
+                           ('Sala_10_CAPRICORNIO', 80), ('Sala_11_AQUARIO', 50), ('Sala_12_PEIXES', 50)]
             for salas_0 in lista_salas:
                 nome_sala = salas_0[0]
                 qtd_cadeiras = salas_0[1]
@@ -550,7 +552,7 @@ class SalaCinema:
                             sleep(1)
                             self.quebra_loop = False
                             break
-                        data_fim_cartaz = str(valor_fim_cartaz).replace('/','_')
+                        data_fim_cartaz = str(valor_fim_cartaz).replace('/', '_')
                         arq_filme_txt = str('/' + codigo[0] + ' - ' + '(' + data_fim_cartaz + ')' + ' - ' \
                                             + codigo[1] + '.txt')
                         try:
@@ -1174,6 +1176,7 @@ class SalaCinema:
         cinema = sala_cinema()
         lendo_dados_arq_cliente_txt()
         lendo_dados_no_arq_reserva()
+        func_verificar_data_cartaz()
         inicio_verif_arq_salas()
 
         # Menu principal
