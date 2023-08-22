@@ -381,6 +381,7 @@ class SalaCinema:
                 nome_sala = valor_sl_disp[0]
                 qt_cadeir = valor_sl_disp[1]
                 print(f'{nome_sala} - {qt_cadeir}')
+                
         criando_arq_salas_disponivel()
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
             """
