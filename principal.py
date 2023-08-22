@@ -8,8 +8,8 @@ arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SAL
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
 arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES'
-arq_salas_cineme_disponivel_txt = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Disponivel.txt'
-arq_salas_cinema_reservada_txt = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\Salas_Cinema_Reservadas.txt'
+arq_salas_cineme_disponivel_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\SALAS_DISPONIVEL'
+arq_salas_cinema_reservada_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\SALAS_RESERVADAS'
 
 
 class SalaCinema:
@@ -117,7 +117,7 @@ class SalaCinema:
                             print(f'Filme {valor_busca} esta em seu ultimo mes, vai sair das salas de cinam no dia '
                                   f'{dia_termino} de {mes_atual_extenso}')
                     elif mes_termino > mes_atual:
-                        print(f'Filme {valor_busca} vai esta em cartaz até {data_termino}')
+                        print(f'Filme {valor_busca} vai ficar em cartaz até {data_termino}')
                 elif ano_termino > ano_atual:
                     print(
                         f'Filmes {valor_busca} ira ficar em cartaz até o dia {dia_termino}/{mes_termino}/{ano_termino}')
@@ -385,19 +385,11 @@ class SalaCinema:
             salasque ficaram disponiveis para o filme.
             :return:
             """
-
-            global criando_arq
-            criando_arq = open(arq_salas_cineme_disponivel_txt, 'w')
             lista_salas = [('Sala_01_ARIES', 25), ('Sala_02_TOURO', 36), ('Sala_03_GEMEOS', 50),
                            ('Sala_04_CANCER', 100), ('Sala_05_LEAO', 90), ('Sala_06_VIRGEM', 50),
                            ('Sala_07_Libra', 70), ('Sala_08_ESCORPIAO', 100), ('Sala_09_SAGITARIO', 80),
                            ('Sala_10_CAPRICORNIO', 80), ('Sala_11_AQUARIO', 50), ('Sala_12_PEIXES', 50)]
-            for salas_0 in lista_salas:
-                nome_sala = salas_0[0]
-                qtd_cadeiras = salas_0[1]
-                criando_arq.write(f'{nome_sala} - {qtd_cadeiras}\n')
-                print(f'Sala {nome_sala} - Números de cadeiras {qtd_cadeiras}')
-            criando_arq.close()
+
 
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
             """
