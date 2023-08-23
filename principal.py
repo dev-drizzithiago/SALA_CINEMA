@@ -93,7 +93,7 @@ class SalaCinema:
                 filme_cartaz_formt = valor_busca.split('-')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
                 data_termino_cartaz = filme_cartaz_data.split('/')
-                #filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '')
+                # filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '')
                 ano_termino = data_termino_cartaz[2].strip()
                 mes_termino = data_termino_cartaz[1].strip()
                 dia_termino = data_termino_cartaz[0].strip()
