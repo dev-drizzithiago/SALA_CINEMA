@@ -379,10 +379,18 @@ class SalaCinema:
                            ('Sala-04_CANCER', 100), ('Sala-05_LEAO', 90), ('Sala-06_VIRGEM', 49),
                            ('Sala-07_Libra', 81), ('Sala-08_ESCORPIAO', 100), ('Sala-09_SAGITARIO', 80),
                            ('Sala-10_CAPRICORNIO', 80), ('Sala-11_AQUARIO', 49), ('Sala-12_PEIXES', 50)]
+
+            valor_verif = listdir(arq_salas_cineme_disponivel_pasta)
+            for lista_salas in valor_verif:
+                if len(lista_salas) == 0:
+                    print('não encontrou nada')
+                else:
+                    print(lista_salas)
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
                 qt_cadeir = valor_sl_disp[1]
-                print(f'{nome_sala} - {qt_cadeir}')
+
+
 
         criando_arq_salas_disponivel()
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
