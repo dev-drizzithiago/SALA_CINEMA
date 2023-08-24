@@ -369,6 +369,7 @@ class SalaCinema:
 
         # Função criando as salas
         def criando_arq_salas_disponivel():
+        
             """
             Serão destinadas 12 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
             salasque ficaram disponiveis para o filme.
