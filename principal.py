@@ -376,9 +376,9 @@ class SalaCinema:
             :return:
             """
             lista_salas = [('Sala-01_ARIES', 25), ('Sala-02_TOURO', 36), ('Sala-03_GEMEOS', 50),
-                           ('Sala-04_CANCER', 100), ('Sala-05_LEAO', 90), ('Sala-06_VIRGEM', 50),
-                           ('Sala-07_Libra', 70), ('Sala-08_ESCORPIAO', 100), ('Sala-09_SAGITARIO', 80),
-                           ('Sala-10_CAPRICORNIO', 80), ('Sala-11_AQUARIO', 50), ('Sala-12_PEIXES', 50)]
+                           ('Sala-04_CANCER', 100), ('Sala-05_LEAO', 90), ('Sala-06_VIRGEM', 49),
+                           ('Sala-07_Libra', 81), ('Sala-08_ESCORPIAO', 100), ('Sala-09_SAGITARIO', 80),
+                           ('Sala-10_CAPRICORNIO', 80), ('Sala-11_AQUARIO', 49), ('Sala-12_PEIXES', 50)]
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
                 qt_cadeir = valor_sl_disp[1]
