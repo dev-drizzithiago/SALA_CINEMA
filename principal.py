@@ -378,7 +378,8 @@ class SalaCinema:
             """
             qtd_cadeiras = leiaInt('Escolha a contidade de cadeiras na sala: ')
             valor_raiz = math.sqrt(qtd_cadeiras)
-            _cade_aries, _cade_touro, _cade_gemeos = valor_raiz ** 2 #
+            print(valor_raiz)
+            _cade_aries, _cade_touro, _cade_gemeos = 3 ** 2
             _cade_cancer, _cade_leao, _cade_virgem = 7 ** 2
             _cade_libra, _cade_escorpiao, _cade_sagitario = 8 ** 2
             _cade_capricornio, _cade_aquario, _cade_peixes = 10 ** 2
