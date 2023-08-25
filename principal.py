@@ -376,13 +376,11 @@ class SalaCinema:
             salasque ficaram disponiveis para o filme.
             :return:
             """
-            qtd_cadeiras = leiaInt('Escolha a contidade de cadeiras na sala: ')
-            valor_raiz = math.sqrt(qtd_cadeiras)
-            print(valor_raiz)
-            _cade_aries, _cade_touro, _cade_gemeos = 3 ** 2
-            _cade_cancer, _cade_leao, _cade_virgem = 7 ** 2
-            _cade_libra, _cade_escorpiao, _cade_sagitario = 8 ** 2
-            _cade_capricornio, _cade_aquario, _cade_peixes = 10 ** 2
+
+            _cade_aries, _cade_touro, _cade_gemeos = 5**2, 5**2, 5**2
+            _cade_cancer, _cade_leao, _cade_virgem = 7**2, 7**2, 7**2
+            _cade_libra, _cade_escorpiao, _cade_sagitario = 8**2, 8**2, 8**2
+            _cade_capricornio, _cade_aquario, _cade_peixes = 10**2, 10**2, 10**2
 
             lista_salas = [('Sala-01_ARIES', _cade_aries), ('Sala-02_TOURO', _cade_touro), ('Sala-03_GEMEOS', _cade_gemeos),
                            ('Sala-04_CANCER', _cade_cancer), ('Sala-05_LEAO', _cade_leao), ('Sala-06_VIRGEM', _cade_virgem),
@@ -398,6 +396,8 @@ class SalaCinema:
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
                 qt_cadeir = valor_sl_disp[1]
+                print(nome_sala)
+                print(qt_cadeir)
 
 
 
