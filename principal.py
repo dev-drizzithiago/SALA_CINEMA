@@ -2,6 +2,7 @@ import threading
 from datetime import datetime
 from time import sleep
 from os import listdir, remove
+import math
 
 arq_cadastro_cliente_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADASTRO_CLIENTE.txt'
 arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/REGISTRO_RESERVAS.txt'
@@ -375,10 +376,17 @@ class SalaCinema:
             salasque ficaram disponiveis para o filme.
             :return:
             """
-            lista_salas = [('Sala-01_ARIES', 25), ('Sala-02_TOURO', 36), ('Sala-03_GEMEOS', 50),
-                           ('Sala-04_CANCER', 100), ('Sala-05_LEAO', 90), ('Sala-06_VIRGEM', 49),
-                           ('Sala-07_Libra', 81), ('Sala-08_ESCORPIAO', 100), ('Sala-09_SAGITARIO', 80),
-                           ('Sala-10_CAPRICORNIO', 80), ('Sala-11_AQUARIO', 49), ('Sala-12_PEIXES', 50)]
+            qtd_cadeiras = leiaInt('Escolha a contidade de cadeiras na sala: ')
+            valor_raiz = math.sqrt(qtd_cadeiras)
+            _cade_aries, _cade_touro, _cade_gemeos = valor_raiz ** 2 #
+            _cade_cancer, _cade_leao, _cade_virgem = 7 ** 2
+            _cade_libra, _cade_escorpiao, _cade_sagitario = 8 ** 2
+            _cade_capricornio, _cade_aquario, _cade_peixes = 10 ** 2
+
+            lista_salas = [('Sala-01_ARIES', _cade_aries), ('Sala-02_TOURO', _cade_touro), ('Sala-03_GEMEOS', _cade_gemeos),
+                           ('Sala-04_CANCER', _cade_cancer), ('Sala-05_LEAO', _cade_leao), ('Sala-06_VIRGEM', _cade_virgem),
+                           ('Sala-07_Libra', _cade_libra), ('Sala-08_ESCORPIAO', _cade_escorpiao), ('Sala-09_SAGITARIO', _cade_sagitario),
+                           ('Sala-10_CAPRICORNIO', _cade_capricornio), ('Sala-11_AQUARIO', _cade_aquario), ('Sala-12_PEIXES', _cade_peixes)]
 
             valor_verif = listdir(arq_salas_cineme_disponivel_pasta)
             for lista_salas in valor_verif:
