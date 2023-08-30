@@ -388,7 +388,11 @@ class SalaCinema:
                     print('Todas as salas estão disponiveis para reserva!')
             else:
                 for lista in valor_verif_dispo:
-                    print(lista)
+                    if lista != valor_verif_reser:
+                        print('deu certo')
+                        print(valor_verif_reser)
+                    else:
+                        print('Não deu certo')
 
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
