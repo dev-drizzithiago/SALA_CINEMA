@@ -371,15 +371,50 @@ class SalaCinema:
         def criando_arq_salas_disponivel():
         
             """
-            Serão destinadas 12 salas ao todos. Qual o filme for colocado em cartaz, serão apresentados a quantidade de
+            Serão destinadas 12 salas ao todos. Quando o filme for colocado em cartaz, serão apresentados a quantidade de
             salasque ficaram disponiveis para o filme.
             :return:
             """
-
-            _cade_aries, _cade_touro, _cade_gemeos = 5**2, 5**2, 5**2
-            _cade_cancer, _cade_leao, _cade_virgem = 7**2, 7**2, 7**2
-            _cade_libra, _cade_escorpiao, _cade_sagitario = 8**2, 8**2, 8**2
-            _cade_capricornio, _cade_aquario, _cade_peixes = 10**2, 10**2, 10**2
+            print("""
+                    [-1] Aries
+                    [-2] Touro
+                    [-3] Gemeos
+                    [-4] Cancer
+                    [-5] Leão
+                    [-6] Virgem
+                    [-7] Libra
+                    [-8] Escorpião
+                    [-9] Sagitário
+                    [10] Capricornio
+                    [11] Aquario
+                    [12] Peixes
+                    """)
+            resp_opc = leiaInt('Escolha uma opção: ')
+            num_cadeiras = leiaInt("Número de cadeiras: ")
+            if resp_opc == 1:
+                _cade_aries = num_cadeiras ** 2
+            elif resp_opc == 2:
+                _cade_touro = num_cadeiras ** 2
+            elif resp_opc == 3:
+                _cade_gemeos = num_cadeiras ** 2
+            elif resp_opc == 4:
+                _cade_cancer = num_cadeiras ** 2
+            elif resp_opc == 5:
+                _cade_leao = num_cadeiras ** 2
+            elif resp_opc == 6:
+                _cade_virgem = num_cadeiras ** 2
+            elif resp_opc == 7:
+                _cade_libra = num_cadeiras ** 2
+            elif resp_opc == 8:
+                _cade_escorpiao = num_cadeiras ** 2
+            elif resp_opc == 9:
+                _cade_sagitario = num_cadeiras ** 2
+            elif resp_opc == 10:
+                _cade_capricornio = num_cadeiras ** 2
+            elif resp_opc == 11:
+                _cade_aquario = num_cadeiras ** 2
+            elif resp_opc == 12:
+                _cade_peixes = num_cadeiras ** 2
 
             lista_salas = [('Sala-01_ARIES', _cade_aries), ('Sala-02_TOURO', _cade_touro), ('Sala-03_GEMEOS', _cade_gemeos),
                            ('Sala-04_CANCER', _cade_cancer), ('Sala-05_LEAO', _cade_leao), ('Sala-06_VIRGEM', _cade_virgem),
@@ -395,8 +430,7 @@ class SalaCinema:
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
                 qt_cadeir = valor_sl_disp[1]
-                print(nome_sala)
-                print(qt_cadeir)
+
 
 
 
