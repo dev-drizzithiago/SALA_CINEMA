@@ -8,7 +8,7 @@ arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SAL
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
 arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES'
-arq_salas_cineme_disponivel_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\SALAS_DISPONIVEL'
+arq_salas_cinema_disponivel_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\SALAS_DISPONIVEL'
 arq_salas_cinema_reservada_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\SALAS_RESERVADAS'
 
 
@@ -375,21 +375,26 @@ class SalaCinema:
             salasque ficaram disponiveis para o filme.
             :return:
             """
-
+            criando_salas_dispo = open(arq_salas_cinema_disponivel_pasta, 'w')
             lista_salas = [('Sala-01_ARIES', 50), ('Sala-02_TOURO', 60), ('Sala-03_GEMEOS', 100),
                            ('Sala-04_CANCER', 80), ('Sala-05_LEAO', 80), ('Sala-06_VIRGEM', 40),
                            ('Sala-07_Libra', 60), ('Sala-08_ESCORPIAO', 100), ('Sala-09_SAGITARIO', 100),
                            ('Sala-10_CAPRICORNIO', 70), ('Sala-11_AQUARIO', 80), ('Sala-12_PEIXES', 80)]
 
-            valor_verif = listdir(arq_salas_cineme_disponivel_pasta)
+            for valor_sl_disp in lista_salas:
+                nome_sala = valor_sl_disp[0]
+                num_cadeir = str(valor_sl_disp[1])
+                _salas_arq = nome_sala + '(' + num_cadeir + ')' + '.txt'
+                print(_salas_arq)
+
+            valor_verif = listdir(arq_salas_cinema_reservada_pasta)
             for lista_salas in valor_verif:
                 if len(lista_salas) == 0:
+                    criando_salas_dispo.write(arq_salas_cinema_disponivel_pasta)
                     print('não encontrou nada')
                 else:
                     print(lista_salas)
-            for valor_sl_disp in lista_salas:
-                nome_sala = valor_sl_disp[0]
-                qt_cadeir = valor_sl_disp[1]
+
 
 
         criando_arq_salas_disponivel()
