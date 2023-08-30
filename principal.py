@@ -375,51 +375,11 @@ class SalaCinema:
             salasque ficaram disponiveis para o filme.
             :return:
             """
-            print("""
-                    [-1] Aries
-                    [-2] Touro
-                    [-3] Gemeos
-                    [-4] Cancer
-                    [-5] Leão
-                    [-6] Virgem
-                    [-7] Libra
-                    [-8] Escorpião
-                    [-9] Sagitário
-                    [10] Capricornio
-                    [11] Aquario
-                    [12] Peixes
-                    """)
-            resp_opc = leiaInt('Escolha uma opção: ')
-            num_cadeiras = leiaInt("Número de cadeiras: ")
-            if resp_opc == 1:
-                _cade_aries = num_cadeiras ** 2
-            elif resp_opc == 2:
-                _cade_touro = num_cadeiras ** 2
-            elif resp_opc == 3:
-                _cade_gemeos = num_cadeiras ** 2
-            elif resp_opc == 4:
-                _cade_cancer = num_cadeiras ** 2
-            elif resp_opc == 5:
-                _cade_leao = num_cadeiras ** 2
-            elif resp_opc == 6:
-                _cade_virgem = num_cadeiras ** 2
-            elif resp_opc == 7:
-                _cade_libra = num_cadeiras ** 2
-            elif resp_opc == 8:
-                _cade_escorpiao = num_cadeiras ** 2
-            elif resp_opc == 9:
-                _cade_sagitario = num_cadeiras ** 2
-            elif resp_opc == 10:
-                _cade_capricornio = num_cadeiras ** 2
-            elif resp_opc == 11:
-                _cade_aquario = num_cadeiras ** 2
-            elif resp_opc == 12:
-                _cade_peixes = num_cadeiras ** 2
 
-            lista_salas = [('Sala-01_ARIES', _cade_aries), ('Sala-02_TOURO', _cade_touro), ('Sala-03_GEMEOS', _cade_gemeos),
-                           ('Sala-04_CANCER', _cade_cancer), ('Sala-05_LEAO', _cade_leao), ('Sala-06_VIRGEM', _cade_virgem),
-                           ('Sala-07_Libra', _cade_libra), ('Sala-08_ESCORPIAO', _cade_escorpiao), ('Sala-09_SAGITARIO', _cade_sagitario),
-                           ('Sala-10_CAPRICORNIO', _cade_capricornio), ('Sala-11_AQUARIO', _cade_aquario), ('Sala-12_PEIXES', _cade_peixes)]
+            lista_salas = [('Sala-01_ARIES', 50), ('Sala-02_TOURO', 60), ('Sala-03_GEMEOS', 100),
+                           ('Sala-04_CANCER', 80), ('Sala-05_LEAO', 80), ('Sala-06_VIRGEM', 40),
+                           ('Sala-07_Libra', 60), ('Sala-08_ESCORPIAO', 100), ('Sala-09_SAGITARIO', 100),
+                           ('Sala-10_CAPRICORNIO', 70), ('Sala-11_AQUARIO', 80), ('Sala-12_PEIXES', 80)]
 
             valor_verif = listdir(arq_salas_cineme_disponivel_pasta)
             for lista_salas in valor_verif:
@@ -430,8 +390,6 @@ class SalaCinema:
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
                 qt_cadeir = valor_sl_disp[1]
-
-
 
 
         criando_arq_salas_disponivel()
