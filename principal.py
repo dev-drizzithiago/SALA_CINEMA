@@ -384,13 +384,11 @@ class SalaCinema:
             valor_verif_reser = listdir(arq_salas_cinema_reservada_pasta)
             valor_verif_dispo = listdir(arq_salas_cinema_disponivel_pasta)
             if len(valor_verif_reser) == 0:
-                print('Não possui nenhuma sala reservada')
                 if len(valor_verif_dispo) == 12:
                     print('Todas as salas estão disponiveis para reserva!')
-                elif len(valor_verif_dispo) < 12:
-                    print('Ainda possui salas para reservar o filme')
             else:
-                print()
+                for lista in valor_verif_dispo:
+                    print(lista)
 
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
