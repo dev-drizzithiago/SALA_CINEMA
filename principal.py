@@ -375,29 +375,22 @@ class SalaCinema:
             salasque ficaram disponiveis para o filme.
             :return:
             """
-            # criando_salas_dispo = open(arq_salas_cinema_disponivel_pasta, 'w')
+
             lista_salas = [('Sala-01_ARIES', 50), ('Sala-02_TOURO', 60), ('Sala-03_GEMEOS', 100),
                            ('Sala-04_CANCER', 80), ('Sala-05_LEAO', 80), ('Sala-06_VIRGEM', 40),
                            ('Sala-07_Libra', 60), ('Sala-08_ESCORPIAO', 100), ('Sala-09_SAGITARIO', 100),
                            ('Sala-10_CAPRICORNIO', 70), ('Sala-11_AQUARIO', 80), ('Sala-12_PEIXES', 80)]
 
-            valor_verif_reser = listdir(arq_salas_cinema_reservada_pasta)
-            valor_verif_dispo = listdir(arq_salas_cinema_disponivel_pasta)
-            if len(valor_verif_reser) == 0:
-                if len(valor_verif_dispo) == 12:
-                    print('Todas as salas estão disponiveis para reserva!')
-            else:
-                for lista in valor_verif_dispo:
-                    if lista != valor_verif_reser:
-                        print('deu certo')
-                        print(valor_verif_reser)
-                    else:
-                        print('Não deu certo')
-
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
                 num_cadeir = str(valor_sl_disp[1])
                 _salas_arq = nome_sala + '(' + num_cadeir + ')' + '.txt'
+                try:
+                    criando_salas_dispo = open(arq_salas_cinema_disponivel_pasta + _salas_arq, 'w')
+                    criando_salas_dispo.close()
+                except FileExistsError:
+                    print('')
+                
 
 
 
