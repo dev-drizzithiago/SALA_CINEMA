@@ -381,19 +381,17 @@ class SalaCinema:
                            ('Sala-07_Libra', 60), ('Sala-08_ESCORPIAO', 100), ('Sala-09_SAGITARIO', 100),
                            ('Sala-10_CAPRICORNIO', 70), ('Sala-11_AQUARIO', 80), ('Sala-12_PEIXES', 80)]
 
-            valor_verif = listdir(arq_salas_cinema_reservada_pasta)
-            if len(valor_verif) == 0:
+            valor_verif_reser = listdir(arq_salas_cinema_reservada_pasta)
+            valor_verif_dispo = listdir(arq_salas_cinema_disponivel_pasta)
+            if len(valor_verif_reser) == 0:
                 print('não encontrou nada')
             else:
-                for listando in valor_verif:
-                    print(listando)
+                print()
 
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
                 num_cadeir = str(valor_sl_disp[1])
                 _salas_arq = nome_sala + '(' + num_cadeir + ')' + '.txt'
-
-
 
 
 
