@@ -375,25 +375,25 @@ class SalaCinema:
             salasque ficaram disponiveis para o filme.
             :return:
             """
-            criando_salas_dispo = open(arq_salas_cinema_disponivel_pasta, 'w')
+            # criando_salas_dispo = open(arq_salas_cinema_disponivel_pasta, 'w')
             lista_salas = [('Sala-01_ARIES', 50), ('Sala-02_TOURO', 60), ('Sala-03_GEMEOS', 100),
                            ('Sala-04_CANCER', 80), ('Sala-05_LEAO', 80), ('Sala-06_VIRGEM', 40),
                            ('Sala-07_Libra', 60), ('Sala-08_ESCORPIAO', 100), ('Sala-09_SAGITARIO', 100),
                            ('Sala-10_CAPRICORNIO', 70), ('Sala-11_AQUARIO', 80), ('Sala-12_PEIXES', 80)]
 
+            valor_verif = listdir(arq_salas_cinema_reservada_pasta)
+            if len(valor_verif) == 0:
+                print('não encontrou nada')
+            else:
+                for listando in valor_verif:
+                    print(listando)
+
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
                 num_cadeir = str(valor_sl_disp[1])
                 _salas_arq = nome_sala + '(' + num_cadeir + ')' + '.txt'
-                print(_salas_arq)
 
-            valor_verif = listdir(arq_salas_cinema_reservada_pasta)
-            for lista_salas in valor_verif:
-                if len(lista_salas) == 0:
-                    criando_salas_dispo.write(arq_salas_cinema_disponivel_pasta)
-                    print('não encontrou nada')
-                else:
-                    print(lista_salas)
+
 
 
 
