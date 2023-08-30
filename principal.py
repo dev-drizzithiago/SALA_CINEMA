@@ -8,8 +8,8 @@ arq_cadastro_registro_local = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SAL
 arq_cadeiras_reservadas = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/CADEIRAS_RESERVADAS.txt'
 arq_cadastro_filmes_local_txt = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_CADASTRADOS.txt'
 arq_filmes_em_cartazes_local_pasta = 'G:/Meu Drive/Estudos/Python/Arquivos de texto/SALA_CINEMA/FILMES_EM_CARTAZES'
-arq_salas_cinema_disponivel_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\SALAS_DISPONIVEL'
-arq_salas_cinema_reservada_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\SALAS_RESERVADAS'
+arq_salas_cinema_disponivel_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\SALAS_DISPONIVEL/'
+arq_salas_cinema_reservada_pasta = 'G:\Meu Drive\Estudos\Python\Arquivos de texto\SALA_CINEMA\SALAS_RESERVADAS/'
 
 
 class SalaCinema:
@@ -388,9 +388,9 @@ class SalaCinema:
                 try:
                     criando_salas_dispo = open(arq_salas_cinema_disponivel_pasta + _salas_arq, 'w')
                     criando_salas_dispo.close()
+                    print('Salas criadas com sucesso!')
                 except FileExistsError:
-                    print('')
-                
+                    None
 
 
 
