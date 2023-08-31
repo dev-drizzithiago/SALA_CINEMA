@@ -384,7 +384,7 @@ class SalaCinema:
             for valor_sl_disp in lista_salas:
                 nome_sala = valor_sl_disp[0]
                 num_cadeir = str(valor_sl_disp[1])
-                _salas_arq = nome_sala + '(' + num_cadeir + ')' + '.txt'
+                _salas_arq = nome_sala + '-' + num_cadeir + '.txt'
                 try:
                     criando_salas_dispo = open(arq_salas_cinema_disponivel_pasta + _salas_arq, 'w')
                     criando_salas_dispo.close()
