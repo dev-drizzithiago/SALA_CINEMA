@@ -369,7 +369,7 @@ class SalaCinema:
 
         # Função criando as salas
         def criando_arq_salas_disponivel():
-        
+
             """
             Serão destinadas 12 salas ao todos. Quando o filme for colocado em cartaz, serão apresentados a quantidade de
             salasque ficaram disponiveis para o filme.
@@ -392,9 +392,8 @@ class SalaCinema:
                 except FileExistsError:
                     None
 
-
-
         criando_arq_salas_disponivel()
+
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
             """
             Essa função é responsavel por gravar as informações do cliente, criando um cadastro.
@@ -427,7 +426,7 @@ class SalaCinema:
         def gravando_reserva_cliente_txt(nome_reserva, cpf_reserva):
             """
             Quando cliente realiza uma reserva, as informações como, nome e cpf do cliente são gravadas com
-            as cadeiras que foram solicitadas.
+            as cadeiras solicitadas.
             :param: valor_1: recebe o valor iterado da lista de cadeiras, reservadas pelo cliente.
             :param: “cont”: contador, responsável em buscar as informações iteradas na lista. Ex cont = 1 - lista[cont] = lista[1]
             :param: gravando_reserva: salva os dados no arquivo de texto "REGISTRO_RESERVAS.txt".
