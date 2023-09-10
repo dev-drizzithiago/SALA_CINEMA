@@ -72,8 +72,8 @@ class SalaCinema:
         def func_verificar_data_cartaz():
             """
             O intuito dessa função é verificar se os filmes que estão em cartaz ainda estão no periodo. Caso
-            esteja chegando no final ou já terminado, o filme é retirado de cartaz e as informações ficara dentro
-            de um arquivo de log para registro. Assim, quando o cliente abrir o programa, evita que ele encontre
+            esteja chegando no final ou já terminado, o filme é retirado de cartaz e as informações ficara em
+            um arquivo de log para registro. Assim, quando o cliente abrir o programa, evita que ele encontre
             o filme na lista, sendo que já passou a data. O arquivo de log vai server para, caso o cliente consiga
             encontrar as informações do filme, mostra quando ele entrou em cartaz e saiu.
             :return:
@@ -122,18 +122,6 @@ class SalaCinema:
                     print(
                         f'Filmes {valor_busca} ira ficar em cartaz até o dia {dia_termino}/{mes_termino}/{ano_termino}')
                 print(self.linhas_aparencia)
-
-        def calculando_data():
-            """
-            O objetivo dessa função é aprender a mudança do mes, dependendo do dia que for acrescido, tipo:
-            O mesmo possui 30 dias, vou colocar um filme de cartaz para ficar 25 dias nas salas de cinema, mas
-            quando eu for registrar o filme é dia 25-07-2023. Quando eu for registrar o filme sera pedido o periodo
-            em dias, em 7 dias já sera o próximo mes, agosto, mas com o cálculo que fiz, ele apenas vai somar
-            os dias 25 + 25 tormando-se 50-07-2023.
-            Essa função eu vou usar para fazer essa culculo, facilitando na hora do registro.
-            Vou tentar fazer sem ajudar da foruns, tentar resolver sozinho, para assim tentar entender o funcionamento.
-            :return:
-            """
 
         def sala_cinema():  # A montagem do programa
             """
