@@ -93,7 +93,7 @@ class SalaCinema:
                 filme_cartaz_formt = valor_busca.split('-')
                 filme_cartaz_data = filme_cartaz_formt[1].replace('_', '/').replace('(', '').replace(')', '').strip()
                 data_termino_cartaz = filme_cartaz_data.split('/')
-                #filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '')
+                # filme_termino_cartaz = listando_filmes_cartaz[2].replace('.txt', '')
                 ano_termino = data_termino_cartaz[2].strip()
                 mes_termino = data_termino_cartaz[1].strip()
                 dia_termino = data_termino_cartaz[0].strip()
@@ -140,7 +140,7 @@ class SalaCinema:
             :param: "PRIMEIRA ESTRUTURA DE CADEIRAS", responsavel em criar a primeira estrutura de paoltronas. Quando a
             primeira poltrona for reservada, essa estrutura esperara até a próxima atração.
 
-            :param: "verificação de estrutura" essa condição serva para saber qual estrutura deve ser aprensentada no
+            :param: "Verificação de estrutura" essa condição serva para saber qual estrutura deve ser aprensentada no
             início do programa. Caso não tenha nenhuma cadeira reservada, seja a primeira vez que abre o programa, é
             preciso criar uma estrutura nova. Apos a verificação der FALSA, passa a buscar as informações dentro
             do arquivo de texto.
@@ -922,7 +922,7 @@ class SalaCinema:
                     for coluna in linhas:
                         print(f'[{coluna}] ', end='   ')
                 print(f'\n{self.linhas_aparencia}')
-                
+
                 while True:
                     escolha_cliente = str(input('Escolha uma Poltrona (999 para Confirmar): ').upper())
                     if len(escolha_cliente) == 2:
