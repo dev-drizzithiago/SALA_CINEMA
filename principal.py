@@ -922,6 +922,7 @@ class SalaCinema:
                     for coluna in linhas:
                         print(f'[{coluna}] ', end='   ')
                 print(f'\n{self.linhas_aparencia}')
+                
                 while True:
                     escolha_cliente = str(input('Escolha uma Poltrona (999 para Confirmar): ').upper())
                     if len(escolha_cliente) == 2:
