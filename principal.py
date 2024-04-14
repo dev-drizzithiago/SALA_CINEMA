@@ -162,7 +162,7 @@ class SalaCinema:
             cadeiras_cinema_i = ['I0', 'I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I9']
             cadeiras_cinema_j = ['J0', 'J1', 'J2', 'J3', 'J4', 'J5', 'J6', 'J7', 'J8', 'J9']
             cinema_sala = [cadeiras_cinema_a, cadeiras_cinema_b, cadeiras_cinema_c,
-                           cadeiras_cinema_d, cadeiras_cinema_e,cadeiras_cinema_f,
+                           cadeiras_cinema_d, cadeiras_cinema_e, cadeiras_cinema_f,
                            cadeiras_cinema_g, cadeiras_cinema_h, cadeiras_cinema_i, cadeiras_cinema_j]
 
             verif_estrutura_reserva()
@@ -383,6 +383,7 @@ class SalaCinema:
                 print(f'{nome_sala} - {qt_cadeir}')
 
         criando_arq_salas_disponivel()
+
         def gravando_dados_arq_cliente_txt(cpf, nome, idade, email):
             """
             Essa função é responsavel por gravar as informações do cliente, criando um cadastro.
