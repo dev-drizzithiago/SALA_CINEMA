@@ -8,5 +8,8 @@
     <orderEntry type="jdk" jdkName="Python 3.12 (SALA_CINEMA)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Meus_Projetos" />
+    <orderEntry type="module" module-name="JOGO_MEMORIA" />
+    <orderEntry type="module" module-name="Listando_Pastas" />
+    <orderEntry type="module" module-name="Projeto_YOUTUBE" />
   </component>
 </module>
