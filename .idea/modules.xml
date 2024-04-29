@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../JOGO_MEMORIA/.idea/JOGO_MEMORIA.iml" filepath="$PROJECT_DIR$/../JOGO_MEMORIA/.idea/JOGO_MEMORIA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Listando_Pastas/.idea/Listando_Pastas.iml" filepath="$PROJECT_DIR$/../Listando_Pastas/.idea/Listando_Pastas.iml" />
       <module fileurl="file://$PROJECT_DIR$/../.idea/Meus_Projetos.iml" filepath="$PROJECT_DIR$/../.idea/Meus_Projetos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Projeto_YOUTUBE/.idea/Projeto_YOUTUBE.iml" filepath="$PROJECT_DIR$/../Projeto_YOUTUBE/.idea/Projeto_YOUTUBE.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Sala_Cinema.iml" filepath="$PROJECT_DIR$/.idea/Sala_Cinema.iml" />
     </modules>
   </component>
